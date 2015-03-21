@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CERF Room:Test</title>
+    <title>CERF Pi 1</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,23 +35,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <?php
-		//Don't forget to remove the trailing slash
-
-		$the_folder = '/data/raw_data';
-		$zip_file_name = '/data/pi_test_raw.zip';
-
-		$za = new FlxZipArchive;
-
-		$res = $za->open($zip_file_name, ZipArchive::CREATE);
-
-		if($res === TRUE) {
-   			 $za->addDir($the_folder, basename($the_folder));
-    			$za->close();
-		}
-		else
-    	echo 'Could not create a zip archive';
-	?>
 
 </head>
 
@@ -68,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Test Room</a>
+                <a class="navbar-brand" href="index.html">Pi 1: Sensor 1</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -76,22 +59,13 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Sensor 1</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="sensor2.html"><i class="fa fa-bar-chart-o fa-fw"></i> Sensor 2</a>
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="sensor3.html"><i class="fa fa-table fa-fw"></i> Sensor 3</a>
                         </li>
                     </ul>
                 </div>
@@ -317,78 +291,6 @@
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i>
-                            Chat
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                                <ul class="dropdown-menu slidedown">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat">
-                                <li class="left clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Prof. Huen</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> May 23
-                                            </small>
-                                        </div>
-                                        <p>
-                                            School is finishing expecting usage to go down
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> June 4</small>
-                                            <strong class="pull-right primary-font">Curtis</strong>
-                                        </div>
-                                        <p>
-                                            Can definitely see a change in usage from last month
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Lauren</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> June 21</small>
-                                        </div>
-                                        <p>
-                                            There was a power outage today. Big Thunder storm.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> September 1</small>
-                                            <strong class="pull-right primary-font">Derek</strong>
-                                        </div>
-                                        <p>
-                                            School is starting up again, watch for an increase in usage
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                         <!-- /.panel-body -->
                         <div class="panel-footer">
                             <div class="input-group">
