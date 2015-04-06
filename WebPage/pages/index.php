@@ -29,17 +29,28 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
 <body>
-
+<?php
+	$year = date("Y");
+	$day = date("Y-m-d");
+	if(isset($_GET['Year'])){
+		$year = $_GET['Year'];
+	}
+	if(isset($_GET['Day'])){
+		$day = $_GET['Day'];
+	}
+	include 'global_vars.php' ;
+	
+	$day_file1 = "Sensor1/Pi_" . $Pi_Number . "_1_" . $day . ".txt";
+	$day_file2 = "Sensor2/Pi_" . $Pi_Number . "_2_" . $day . ".txt";
+	$day_file3 = "Sensor3/Pi_" . $Pi_Number . "_3_" . $day . ".txt";
+	$year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".txt";
+	$year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".txt";
+	$year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".txt";
+?>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -58,14 +69,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Sensor 1</a>
+						<li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="sensor2.php"><i class="fa fa-bar-chart-o fa-fw"></i> Sensor 2</a>
+                            <a href="sensor1.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR1 ?></a>
                         </li>
                         <li>
-                            <a href="sensor3.php"><i class="fa fa-table fa-fw"></i> Sensor 3</a>
+                            <a href="sensor2.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?></a>
+                        </li>
+                        <li>
+                            <a href="sensor3.php"><i class="fa fa-table fa-fw"></i> <?php echo $SENSOR3 ?></a>
                         </li>
                     </ul>
                 </div>
@@ -173,10 +187,16 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Yesterday's Data
+                            <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR1 ?> : <?php echo $day ?>
+							<div class="pull-right">
+							<form action="index.php">
+  						<input type="date" name="Day">
+  							<input type="submit">
+							</form>
+							</div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -187,7 +207,13 @@
                     <!-- /.panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Monthly Usage
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?>
+							<div class="pull-right">
+							<form action="index.php" method="get">
+							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
+							<input type="submit">
+							</form>
+							</div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -195,7 +221,7 @@
                                 <div class="col-lg-4">
                                     <div class="table-responsive">
                                         <?php
-											$lines = file('2015.txt');
+											$lines = file($Summary_Base . $year_file1);
 											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
 											foreach($lines as $line){
 												list($month, $on_peak, $off_peak) = explode(',', $line);
@@ -219,20 +245,7 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
-                <!-- /.col-lg-4 -->
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
@@ -258,7 +271,8 @@
 		new Morris.Bar({
         	element: 'summary-bar-chart',
         	data: <?php
-					$lines = file('2015.txt');
+					$filename = $Summary_Base . $year_file1;
+					$lines = file($filename);
 					$data = '[';
 					foreach($lines as $line){
 						list($month, $on_peak, $off_peak) = explode(',', $line);
@@ -274,17 +288,21 @@
         	hideHover: 'auto',
         	resize: true
     	});
-		new Morris.Line({
+		new Morris.Area({
   			// ID of the element in which to draw the chart.
   			element: 'lux-line-chart',
 			smooth: false,
+			pointSize: 0,
+			resize: true,
+			goals: [30, 80],
+			ymax: 120,
   			// Chart data records -- each entry in this array corresponds to a point on
   			// the chart.
  		 	data: <?php
-					$lines = file('test.txt');
+					$lines = file('../../../Data/Pi_Test_1_Raw_Data/pi_1_1_test.txt');
 					$data = '[';
 					foreach($lines as $line){
-						list($date, $time, $lux) = explode(',', $line);
+						list($id, $time, $lux) = explode(',', $line);
 						$data .= "{minute:'$time',lux: $lux},";
 					}
 					$data = rtrim($data, ',');
