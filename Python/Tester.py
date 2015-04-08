@@ -11,24 +11,24 @@
 # **************************IMPORTS************************************* #
 import time
 import datetime
-<<<<<<< HEAD
+#<<<<<<< HEAD
 import os
 # from Adafruit_I2C.py import *
 
 # **************************INITIALIZE VARIABLES************************ #
 
-debug = True # used for helping in development of code, turn to false for normal operation
+debug = False # used for helping in development of code, turn to false for normal operation
 
 # ******************COULD BE CHANGED AUTOMATICALLY********************** #
 # Find a way to read this from pi itself
-nameOfPi = 'Pi1' 
+nameOfPi = 'Pi_1' 
 # This is currently set to Curtis' computer not the PI
 # Enter the path here for where you want the files stored
-path = 'D:\Eclipse\CERF_i2c_LUXSENSOR\Python'  
+path = '/home/pi/Desktop/Data/Pi_1_Raw/'  
 # Could enter more descriptive names if desired
-sensor1 = 'Sensor1'
-sensor2 = 'Sensor2'
-sensor3 = 'Sensor3'
+sensor1 = '1'
+sensor2 = '2'
+sensor3 = '3'
 # This value should be replaced with the LUX readings inside of outputLux()
 value = 1
 
@@ -46,7 +46,7 @@ def outputLux():
 # directory if it does not exist, and then writes the output to a .txt file
 # for the readings based on the time
 def navigateToDirectory(sensor):
-    fullpath = (path + '\\' + sensor)
+    fullpath = (path + 'Sensor ' + sensor)
     
     if debug:
         print ('directory: ' + fullpath)
@@ -56,7 +56,7 @@ def navigateToDirectory(sensor):
         os.makedirs(fullpath)    
         
     # changes the filepath to include a year
-    fullpath = fullpath + '\\' + datetime.datetime.strftime(datetime.datetime.now(), '%Y')
+    fullpath = fullpath + '/' + datetime.datetime.strftime(datetime.datetime.now(), '%Y')
         
     if not os.path.exists(fullpath): # creates the year folder if it does not exist
         os.makedirs(fullpath)
@@ -64,22 +64,22 @@ def navigateToDirectory(sensor):
     os.chdir(fullpath) # navigate into the sensor and year folder
     
     # create a file for the day if it does not exist, else open for appending
-    filename = (nameOfPi + sensor + datetime.datetime.strftime(datetime.datetime.now(), '%Y_%m_%d') + '.txt')
+    filename = (nameOfPi +'_'+ sensor +'_'+ datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d') + '.txt')
     filetest = open(filename, 'a')  
     global value
     
     # write all time and sensor data to the file
-    time = datetime.datetime.strftime(datetime.datetime.now(), '%Y_%m_%d_%H:%M')
-    filetest.write(nameOfPi + ' ' + sensor + ' ' + time + ' Reading: ' + str(value) + '\n')
+    time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
+    filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value) + '\n')
     filetest.close()
     value += 1
     
-while(debug):
+while(1):
     outputLux()
     if not debug:
         break
     time.sleep(5)
-=======
+#=======
 
 # print('Creating a new text file or deleting the old one')
 # filetest = open('test.txt', 'w')
@@ -99,7 +99,7 @@ while(debug):
 # filetest.close()
 # a += 1
 
->>>>>>> 8a93097856b4363f44f808d5bfc16744a5ba98d3
+#>>>>>>> 8a93097856b4363f44f808d5bfc16744a5ba98d3
 
 
 
