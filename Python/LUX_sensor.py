@@ -2,14 +2,18 @@ import Adafruit_I2C
 from Adafruit_I2C import *
 import re
 import smbus
+import TSL2561
+import time
 
 #==================================================================
 #------------------------------LUX SENSOR--------------------------
 #==================================================================
+luxsensor1 = TSL2561.TSL2561()		#Initialize the sensor at i2c address 0x39
+luxsensor1.setGain()			#Gain at deafault value of 1
+time.sleep(1)
 
-class luxSensor:
+for x in range (0,10):
 
-	def _init_(self, address = 0x39, debug = False):
-		if (debug):
-			print "Initializing a new instance of luxSensor at 0x%02X" % address
+	print( luxsensor1.readLux() )	#Read out the raw value for the full spectrum reading
+	time.sleep(1)
 	

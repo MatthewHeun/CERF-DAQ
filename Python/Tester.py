@@ -11,9 +11,22 @@
 # **************************IMPORTS************************************* #
 import time
 import datetime
+import Adafruit_I2C
+from Adafruit_I2C import *
+import smbus
+import TSL2561
+import re
+
 #<<<<<<< HEAD
 import os
 # from Adafruit_I2C.py import *
+#==================================================================
+#------------------------------LUX SENSOR--------------------------
+#==================================================================
+luxsensor1 = TSL2561.TSL2561()		#Initialize the sensor at i2c address 0x39
+luxsensor1.setGain()			#Gain at deafault value of 1
+time.sleep(1)
+value1 = luxsensor1.readLux()
 
 # **************************INITIALIZE VARIABLES************************ #
 
@@ -70,7 +83,7 @@ def navigateToDirectory(sensor):
     
     # write all time and sensor data to the file
     time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
-    filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value) + '\n')
+    filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value1) + '\n')
     filetest.close()
     value += 1
     

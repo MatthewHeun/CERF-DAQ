@@ -34,7 +34,7 @@ class Adafruit_I2C(object):
     # Gets the I2C bus number /dev/i2c#
     return 1 if Adafruit_I2C.getPiRevision() > 1 else 0
 
-  def __init__(self, address, busnum=-1, debug=True):
+  def __init__(self, address, busnum=-1, debug=False):
     self.address = address
     # By default, the correct I2C bus is auto-detected using /proc/cpuinfo
     # Alternatively, you can hard-code the bus version below:

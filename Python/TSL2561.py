@@ -1,29 +1,13 @@
 #!/usr/bin/python
-# Code sourced from AdaFruit discussion board: https://www.adafruit.com/forums/viewtopic.php?f=8&t=34922
-
 
 import sys
-# Not needed here. Thanks to https://github.com/mackstann for highlighting this.
-#import smbus
 import time
-#Adafruit_I2C from https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code/blob/master/Adafruit_I2C/Adafruit_I2C.py
 from Adafruit_I2C import Adafruit_I2C
-
-
-### Written for Python 2 <-!!!
-### Big thanks to bryand, who wrote the code that I borrowed heavily from/was inspired by
-### More thanks pandring who kind of kickstarted my work on the TSL2561 sensor
-### A great big huge thanks to driverblock and the Adafruit team (Congrats on your many succeses
-### Ladyada).  Without you folks I would just be a guy sitting somewhere thinking about cool stuff
-### Now I'm a guy building cool stuff.
-### If any of this code proves useful, drop me a line at medicforlife.blogspot.com
-
-# TODO: Strip out values into constants. 
 
 class TSL2561:
     i2c = None
 
-    def __init__(self, address=0x39, debug=0, pause=0.8):
+    def __init__(self, address=0x39, debug=False, pause=0.8):
         self.i2c = Adafruit_I2C(address)
         self.address = address
         self.pause = pause
@@ -36,11 +20,11 @@ class TSL2561:
         """ Set the gain """
         if (gain != self.gain):
             if (gain==1):
-                self.i2c.write8(0x81, 0x02)     # set gain = 1X and timing = 402 mSec
+                self.i2c.write8(0x81, 0x00)     # set gain = 1X and timing = 13.7 mSec
                 if (self.debug):
                     print "Setting low gain"
             else:
-                self.i2c.write8(0x81, 0x12)     # set gain = 16X and timing = 402 mSec
+                self.i2c.write8(0x81, 0x00)     # set gain = 16X and timing = 402 mSec
                 if (self.debug):
                     print "Setting high gain"
             self.gain=gain;                     # safe gain for calculation
@@ -60,11 +44,11 @@ class TSL2561:
             return -1
 
 
-    def readFull(self, reg=0x8C):
+    def readFull(self, reg=0xAC):
         """Reads visible+IR diode from the I2C device"""
         return self.readWord(reg);
 
-    def readIR(self, reg=0x8E):
+    def readIR(self, reg=0xAE):
         """Reads IR only diode from the I2C device"""
         return self.readWord(reg);
 
