@@ -309,7 +309,7 @@
         new Morris.Bar({
         	element: 'summary-bar-chart 2',
         	data: <?php
-					$filename = $Summary_Base . $year_file1;
+					$filename = $Summary_Base . $year_file2;
 					$lines = file($filename);
 					$data = '[';
 					foreach($lines as $line){
@@ -329,7 +329,7 @@
         new Morris.Bar({
         	element: 'summary-bar-chart 3',
         	data: <?php
-					$filename = $Summary_Base . $year_file1;
+					$filename = $Summary_Base . $year_file3;
 					$lines = file($filename);
 					$data = '[';
 					foreach($lines as $line){

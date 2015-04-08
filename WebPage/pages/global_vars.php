@@ -1,7 +1,7 @@
 <?php
 
 $Pi_Number= "1"; 
-$SENSOR1= "TNT North Wall";
+$SENSOR1= "Sensor 1";
 $SENSOR2= "Sensor 2";
 $SENSOR3= "Sensor 3";
 

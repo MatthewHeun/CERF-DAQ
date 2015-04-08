@@ -44,9 +44,9 @@
 	}
 	include 'global_vars.php' ;
 	
-	$day_file1 = "Sensor1/Pi_" . $Pi_Number . "_1_" . $day . ".txt";
-	$day_file2 = "Sensor2/Pi_" . $Pi_Number . "_2_" . $day . ".txt";
-	$day_file3 = "Sensor3/Pi_" . $Pi_Number . "_3_" . $day . ".txt";
+	$day_file1 = "Sensor 1/" . $year . "/Pi_" . $Pi_Number . "_1_" . $day . ".txt";
+	$day_file2 = "Sensor 2/" . $year . "/Pi_" . $Pi_Number . "_2_" . $day . ".txt";
+	$day_file3 = "Sensor 3/" . $year . "/Pi_" . $Pi_Number . "_3_" . $day . ".txt";
 	$year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".txt";
 	$year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".txt";
 	$year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".txt";
@@ -102,7 +102,7 @@
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR1 ?> : <?php echo $day ?>
 							<div class="pull-right">
-							<form action="index.php">
+							<form action="sensor1.php">
   						<input type="date" name="Day">
   							<input type="submit">
 							</form>
@@ -204,15 +204,14 @@
 			smooth: false,
 			pointSize: 0,
 			resize: true,
-			goals: [30, 80],
-			ymax: 120,
   			// Chart data records -- each entry in this array corresponds to a point on
   			// the chart.
  		 	data: <?php
-					$lines = file('../../../Data/Pi_Test_1_Raw_Data/pi_1_1_test.txt');
+					$dayfilename = $Raw_Base . $day_file1;
+					$lines = file($dayfilename);
 					$data = '[';
 					foreach($lines as $line){
-						list($id, $time, $lux) = explode(',', $line);
+						list($pi_id, $sensor_id, $time, $lux) = explode(',', $line);
 						$data .= "{minute:'$time',lux: $lux},";
 					}
 					$data = rtrim($data, ',');
