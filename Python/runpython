@@ -1,0 +1,3 @@
+#!/bin/sh
+
+python ~/Desktop/GITFILES/CERF-DAQ/Python/Tester.py

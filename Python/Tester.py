@@ -11,6 +11,7 @@
 # **************************IMPORTS************************************* #
 import time
 import datetime
+<<<<<<< HEAD
 import os
 # from Adafruit_I2C.py import *
 
@@ -78,6 +79,27 @@ while(debug):
     if not debug:
         break
     time.sleep(5)
+=======
+
+# print('Creating a new text file or deleting the old one')
+# filetest = open('test.txt', 'w')
+# filetest.close()
+# a = 1
+# print(datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M'))
+#      
+# while(True):
+#      
+# filetest = open('test.txt', 'a')
+#       
+#    # print(datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M'))
+#    # print ('writing ' +str(a) + '....' + '\n')
+#      
+# filetest.write(' ' + str(a) + ' ')
+# filetest.write(datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M') + '\n')
+# filetest.close()
+# a += 1
+
+>>>>>>> 8a93097856b4363f44f808d5bfc16744a5ba98d3
 
 
 
