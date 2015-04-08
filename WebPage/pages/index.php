@@ -50,6 +50,15 @@
 	$year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".txt";
 	$year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".txt";
 	$year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".txt";
+
+	$size = 0;
+	foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($Raw_Base)) as $file){
+		$size+=$file->getSize();
+	}
+	$size /= 1000000;
+	$size = number_format($size, 1, '.', ',');
+	$free_space = disk_free_space ('/')/1000000000;
+	$free_space = number_format($free_space, 1, '.', ',');
 ?>
     <div id="wrapper">
 
@@ -62,7 +71,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Pi 1: Sensor 1</a>
+                <a class="navbar-brand" href="index.html">CERF Pi <?php echo $Pi_Number ?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -97,7 +106,7 @@
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -106,7 +115,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="hugeTitle">Raw Data</div>
-                                    <div>200 kb</div>
+                                    <div><?php echo $size ?>mb uncompressed</div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +128,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
@@ -128,6 +137,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="hugeTitle">Summary Data</div>
+									<div><?php echo $free_space ?>gb Free Disk Space</div>
                                 </div>
                             </div>
                         </div>
@@ -140,71 +150,11 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar-o fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">391</div>
-                                    <div>Recorded Days</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Recored Months</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR1 ?> : <?php echo $day ?>
-							<div class="pull-right">
-							<form action="index.php">
-  						<input type="date" name="Day">
-  							<input type="submit">
-							</form>
-							</div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div id="lux-line-chart" style="height: 300px;"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                    <!-- /.YEAR SENSOR 1 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?>
@@ -235,7 +185,75 @@
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
                                 <div class="col-lg-8">
-                                    <div id="summary-bar-chart" style="height: 100%;"></div>
+                                    <div id="summary-bar-chart 1" style="height: 100%;"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+					<!-- /.YEAR SENSOR 2 panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?> : <?php echo $year ?>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="table-responsive">
+                                        <?php
+											$lines = file($Summary_Base . $year_file2);
+											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
+											foreach($lines as $line){
+												list($month, $on_peak, $off_peak) = explode(',', $line);
+												$table .= "<tr><td>$month</td><td>$on_peak</td><td>$off_peak</td></tr>";
+											}
+											$table .= '</tbody></table>';
+											echo $table;
+										?>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class="col-lg-8">
+                                    <div id="summary-bar-chart 2" style="height: 100%;"></div>
+                                </div>
+                                <!-- /.col-lg-8 (nested) -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                    <!-- /.YEAR SENSOR 2 panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR3 ?> : <?php echo $year ?>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="table-responsive">
+                                        <?php
+											$lines = file($Summary_Base . $year_file3);
+											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
+											foreach($lines as $line){
+												list($month, $on_peak, $off_peak) = explode(',', $line);
+												$table .= "<tr><td>$month</td><td>$on_peak</td><td>$off_peak</td></tr>";
+											}
+											$table .= '</tbody></table>';
+											echo $table;
+										?>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.col-lg-4 (nested) -->
+                                <div class="col-lg-8">
+                                    <div id="summary-bar-chart 3" style="height: 100%;"></div>
                                 </div>
                                 <!-- /.col-lg-8 (nested) -->
                             </div>
@@ -269,7 +287,7 @@
     <script src="../js/morris-data.js"></script>
 	<script>
 		new Morris.Bar({
-        	element: 'summary-bar-chart',
+        	element: 'summary-bar-chart 1',
         	data: <?php
 					$filename = $Summary_Base . $year_file1;
 					$lines = file($filename);
@@ -288,35 +306,47 @@
         	hideHover: 'auto',
         	resize: true
     	});
-		new Morris.Area({
-  			// ID of the element in which to draw the chart.
-  			element: 'lux-line-chart',
-			smooth: false,
-			pointSize: 0,
-			resize: true,
-			goals: [30, 80],
-			ymax: 120,
-  			// Chart data records -- each entry in this array corresponds to a point on
-  			// the chart.
- 		 	data: <?php
-					$lines = file('../../../Data/Pi_Test_1_Raw_Data/pi_1_1_test.txt');
+        new Morris.Bar({
+        	element: 'summary-bar-chart 2',
+        	data: <?php
+					$filename = $Summary_Base . $year_file1;
+					$lines = file($filename);
 					$data = '[';
 					foreach($lines as $line){
-						list($id, $time, $lux) = explode(',', $line);
-						$data .= "{minute:'$time',lux: $lux},";
+						list($month, $on_peak, $off_peak) = explode(',', $line);
+						$data .= "{y:'$month', a: $on_peak, b: $off_peak},";
 					}
 					$data = rtrim($data, ',');
 					$data .= '],';
 					echo $data;
-				?>
-  			// The name of the data record attribute that contains x-values.
-  			xkey: 'minute',
-  			// A list of names of data record attributes that contain y-values.
-  			ykeys: ['lux'],
-  			// Labels for the ykeys -- will be displayed when you hover over the
-  			// chart.
-  			labels: ['LUX Value']
-		});
+				?> 
+        	xkey: 'y',
+        	ykeys: ['a', 'b'],
+        	labels: ['On Peak %', 'Off Peak %'],
+        	hideHover: 'auto',
+        	resize: true
+    	});
+        new Morris.Bar({
+        	element: 'summary-bar-chart 3',
+        	data: <?php
+					$filename = $Summary_Base . $year_file1;
+					$lines = file($filename);
+					$data = '[';
+					foreach($lines as $line){
+						list($month, $on_peak, $off_peak) = explode(',', $line);
+						$data .= "{y:'$month', a: $on_peak, b: $off_peak},";
+					}
+					$data = rtrim($data, ',');
+					$data .= '],';
+					echo $data;
+				?> 
+        	xkey: 'y',
+        	ykeys: ['a', 'b'],
+        	labels: ['On Peak %', 'Off Peak %'],
+        	hideHover: 'auto',
+        	resize: true
+    	});
+		
 	</script>
 
     <!-- Custom Theme JavaScript -->
