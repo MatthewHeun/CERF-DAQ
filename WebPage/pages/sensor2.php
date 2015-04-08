@@ -29,17 +29,28 @@
     <!-- Custom Fonts -->
     <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 
 <body>
-
+<?php
+	$year = date("Y");
+	$day = date("Y-m-d");
+	if(isset($_GET['Year'])){
+		$year = $_GET['Year'];
+	}
+	if(isset($_GET['Day'])){
+		$day = $_GET['Day'];
+	}
+	include 'global_vars.php' ;
+	
+	$day_file1 = "Sensor1/Pi_" . $Pi_Number . "_1_" . $day . ".txt";
+	$day_file2 = "Sensor2/Pi_" . $Pi_Number . "_2_" . $day . ".txt";
+	$day_file3 = "Sensor3/Pi_" . $Pi_Number . "_3_" . $day . ".txt";
+	$year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".txt";
+	$year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".txt";
+	$year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".txt";
+?>
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -51,21 +62,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Pi 1: Sensor 1</a>
+                <a class="navbar-brand" href="index.html">Pi <?php echo $Pi_Number ?>: <?php echo $SENSOR2 ?></a>
             </div>
             <!-- /.navbar-header -->
 
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Sensor 1</a>
+						<li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="sensor2.html"><i class="fa fa-bar-chart-o fa-fw"></i> Sensor 2</a>
+                            <a href="sensor1.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR1 ?></a>
                         </li>
                         <li>
-                            <a href="sensor3.html"><i class="fa fa-table fa-fw"></i> Sensor 3</a>
+                            <a href="sensor2.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?></a>
+                        </li>
+                        <li>
+                            <a href="sensor3.php"><i class="fa fa-table fa-fw"></i> <?php echo $SENSOR3 ?></a>
                         </li>
                     </ul>
                 </div>
@@ -77,199 +91,61 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header"><?php echo $SENSOR2 ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-database fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="hugeTitle">Raw Data</div>
-                                    <div>200 kb</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="/data/summary_data/yearly.rtf" download="pi_test_yearly.txt">
-                            <div class="panel-footer">
-                                <span class="pull-left">Download</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="hugeTitle">Summary Data</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href=""/data/summary_data/yearly.rtf" download="pi_test_yearly.txt"">
-                            <div class="panel-footer">
-                                <span class="pull-left">Download</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar-o fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">391</div>
-                                    <div>Recorded Days</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-calendar fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Recored Months</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Yesterday's Data
+                            <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR2 ?> : <?php echo $day ?>
+							<div class="pull-right">
+							<form action="index.php">
+  						<input type="date" name="Day">
+  							<input type="submit">
+							</form>
+							</div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
+                            <div id="lux-line-chart" style="height: 300px;"></div>
                         </div>
                         <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
+                    <!-- /.YEAR SENSOR 1 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Monthly Usage
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?> : <?php echo $year ?>
+							<div class="pull-right">
+							<form action="sensor1.php" method="get">
+							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
+							<input type="submit">
+							</form>
+							</div>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Month</th>
-                                                    <th>Peak</th>
-                                                    <th>Off Peak</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Jan</td>
-                                                    <td>70</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Feb</td>
-                                                    <td>67</td>
-                                                    <td>15</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Mar</td>
-                                                    <td>70</td>
-                                                    <td>12</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Apr</td>
-                                                    <td>80</td>
-                                                    <td>15</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>May</td>
-                                                    <td>78</td>
-                                                    <td>13</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jun</td>
-                                                    <td>54</td>
-                                                    <td>13</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Jul</td>
-                                                    <td>61</td>
-                                                    <td>14</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Aug</td>
-                                                    <td>59</td>
-                                                    <td>17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Sep</td>
-                                                    <td>82</td>
-                                                    <td>14</td>
-                                                </tr> 
-                                                <tr>
-                                                    <td>Oct</td>
-                                                    <td>75</td>
-                                                    <td>15</td>
-                                                </tr>                   
-                                                 <tr>
-                                                    <td>Nov</td>
-                                                    <td>83</td>
-                                                    <td>17</td>
-                                                </tr>  
-                                                <tr>
-                                                    <td>Dec</td>
-                                                    <td>67</td>
-                                                    <td>12</td>
-                                                </tr>                                                                                                                                                                         
-                                        </table>
+                                        <?php
+											$lines = file($Summary_Base . $year_file2);
+											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
+											foreach($lines as $line){
+												list($month, $on_peak, $off_peak) = explode(',', $line);
+												$table .= "<tr><td>$month</td><td>$on_peak</td><td>$off_peak</td></tr>";
+											}
+											$table .= '</tbody></table>';
+											echo $table;
+										?>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
                                 <!-- /.col-lg-4 (nested) -->
                                 <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
+                                    <div id="summary-bar-chart" style="height: 100%;"></div>
                                 </div>
                                 <!-- /.col-lg-8 (nested) -->
                             </div>
@@ -279,106 +155,7 @@
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <a href="#" class="btn btn-default btn-block">View Details</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="chat-panel panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i>
-                            Chat
-                            <div class="btn-group pull-right">
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-chevron-down"></i>
-                                </button>
-                                <ul class="dropdown-menu slidedown">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-refresh fa-fw"></i> Refresh
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="chat">
-                                <li class="left clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Prof. Huen</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> May 23
-                                            </small>
-                                        </div>
-                                        <p>
-                                            School is finishing expecting usage to go down
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> June 4</small>
-                                            <strong class="pull-right primary-font">Curtis</strong>
-                                        </div>
-                                        <p>
-                                            Can definitely see a change in usage from last month
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="left clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <strong class="primary-font">Lauren</strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> June 21</small>
-                                        </div>
-                                        <p>
-                                            There was a power outage today. Big Thunder storm.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="right clearfix">
-                                    <div class="chat-body clearfix">
-                                        <div class="header">
-                                            <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> September 1</small>
-                                            <strong class="pull-right primary-font">Derek</strong>
-                                        </div>
-                                        <p>
-                                            School is starting up again, watch for an increase in usage
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                                        Send
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- /.panel-footer -->
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
-                <!-- /.col-lg-4 -->
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
         </div>
@@ -400,6 +177,57 @@
     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
     <script src="../js/morris-data.js"></script>
+	<script>
+		new Morris.Bar({
+        	element: 'summary-bar-chart',
+        	data: <?php
+					$filename = $Summary_Base . $year_file1;
+					$lines = file($filename);
+					$data = '[';
+					foreach($lines as $line){
+						list($month, $on_peak, $off_peak) = explode(',', $line);
+						$data .= "{y:'$month', a: $on_peak, b: $off_peak},";
+					}
+					$data = rtrim($data, ',');
+					$data .= '],';
+					echo $data;
+				?> 
+        	xkey: 'y',
+        	ykeys: ['a', 'b'],
+        	labels: ['On Peak %', 'Off Peak %'],
+        	hideHover: 'auto',
+        	resize: true
+    	});
+		new Morris.Area({
+  			// ID of the element in which to draw the chart.
+  			element: 'lux-line-chart',
+			smooth: false,
+			pointSize: 0,
+			resize: true,
+			goals: [30, 80],
+			ymax: 120,
+  			// Chart data records -- each entry in this array corresponds to a point on
+  			// the chart.
+ 		 	data: <?php
+					$lines = file('../../../Data/Pi_Test_1_Raw_Data/pi_1_1_test.txt');
+					$data = '[';
+					foreach($lines as $line){
+						list($id, $time, $lux) = explode(',', $line);
+						$data .= "{minute:'$time',lux: $lux},";
+					}
+					$data = rtrim($data, ',');
+					$data .= '],';
+					echo $data;
+				?>
+  			// The name of the data record attribute that contains x-values.
+  			xkey: 'minute',
+  			// A list of names of data record attributes that contain y-values.
+  			ykeys: ['lux'],
+  			// Labels for the ykeys -- will be displayed when you hover over the
+  			// chart.
+  			labels: ['LUX Value']
+		});
+	</script>
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>

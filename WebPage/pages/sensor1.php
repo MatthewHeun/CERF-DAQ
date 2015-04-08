@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Pi <?php echo $Pi_Number ?>: <?php echo $SENSOR3 ?></a>
+                <a class="navbar-brand" href="index.html">Pi <?php echo $Pi_Number ?>: <?php echo $SENSOR1 ?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -91,7 +91,7 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"><?php echo $SENSOR3 ?></h1>
+                    <h1 class="page-header"><?php echo $SENSOR1 ?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -100,7 +100,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR3 ?> : <?php echo $day ?>
+                            <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR1 ?> : <?php echo $day ?>
 							<div class="pull-right">
 							<form action="index.php">
   						<input type="date" name="Day">
@@ -117,7 +117,7 @@
                     <!-- /.YEAR SENSOR 1 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR3 ?> : <?php echo $year ?>
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?>
 							<div class="pull-right">
 							<form action="sensor1.php" method="get">
 							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
@@ -131,7 +131,7 @@
                                 <div class="col-lg-4">
                                     <div class="table-responsive">
                                         <?php
-											$lines = file($Summary_Base . $year_file2);
+											$lines = file($Summary_Base . $year_file1);
 											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
 											foreach($lines as $line){
 												list($month, $on_peak, $off_peak) = explode(',', $line);
