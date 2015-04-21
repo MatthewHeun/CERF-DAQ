@@ -79,16 +79,16 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
 						<li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="index.php"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="sensor1.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR1 ?></a>
                         </li>
                         <li>
-                            <a href="sensor2.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?></a>
+                            <a href="sensor2.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR2 ?></a>
                         </li>
                         <li>
-                            <a href="sensor3.php"><i class="fa fa-table fa-fw"></i> <?php echo $SENSOR3 ?></a>
+                            <a href="sensor3.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR3 ?></a>
                         </li>
                     </ul>
                 </div>
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="/data/summary_data/yearly.rtf" download="pi_test_yearly.txt">
+                        <a href="Raw.zip" download>
                             <div class="panel-footer">
                                 <span class="pull-left">Download</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href=""/data/summary_data/yearly.rtf" download="pi_test_yearly.txt"">
+                        <a href="Summary.zip" download>
                             <div class="panel-footer">
                                 <span class="pull-left">Download</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
