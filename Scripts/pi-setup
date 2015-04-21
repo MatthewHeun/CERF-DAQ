@@ -1,0 +1,93 @@
+#!/bin/sh
+
+
+#===============================
+#==========Pi Number============
+#===============================
+echo "\nWelcome to the CERF Pi setup script"
+echo "What number Pi is this? You will not be able to change this."
+echo "This number will be used for the identification of the Pi and its data."
+echo "Example: 2 (Please only enter a number)\n"
+echo -n "Pi Number >"
+read PI_NUMBER
+echo "\nYou entered: $PI_NUMBER"
+echo "If you would like to change it press 'ctr-c' right now"
+#sleep 2
+echo "You have 5 seconds, then the script will continue"
+#sleep 5
+echo "Proceeding...\n"
+
+#===============================
+#=====PASSWORD SETTING==========
+#===============================
+echo "We will now update the Pi password."
+echo "The default passord is 'raspberry'"
+echo "Please record the new password, it will be used for SSH\n"
+#passwd
+
+#===============================
+#=====Creating Directories======
+#===============================
+echo "Creating directories"
+#RawDir='Pi_'$PI_NUMBER'_Raw'
+#SummaryDir='Pi_'$PI_NUMBER'_Summary'
+#mkdir "$HOME/Desktop/DataTest"
+#mkdir "$HOME/Desktop/DataTest/$RawDir"
+#mkdir "$HOME/Desktop/DataTest/$SummaryDir"
+#echo "	+Done"
+#===============================
+#=====Geting Git Repository=====
+#===============================
+echo "Seting up Git Repository"
+#cd $HOME/Desktop
+#git clone 'https://github.com/MatthewHeun/CERF-DAQ.git'
+#===============================
+#===Getting necessary stuff=====
+#===============================
+echo "Installing packages"
+#sudo apt-get update
+#sudo apt-get install r-base
+#sudo apt-get install apache2 -y
+#sudo apt-get install php5 libapache2-mod-php5 -y
+#==================================
+#====Creating Global Vars PHP =====
+#==================================
+echo "Writing PHP Global Vars"
+cd $HOME/Desktop/CERF-DAQ/WebPage/pages
+echo "<?php" > global_vars_test.php
+echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars_test.php 
+echo "//********************************************************************************************" >> global_vars_test.php
+echo "//**SENSOR NAMES: Only change the sensor names in this file between the two stared lines" >> global_vars_test.php
+echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars_test.php
+echo "//**The name must remain in quotes!" >> global_vars_test.php
+echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars_test.php
+echo "//**This file can be updated by running the pi-settings sript" >> global_vars_test.php
+echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars_test.php 
+echo "$""SENSOR2= "\"Sensor 2\"";" >> global_vars_test.php 
+echo "$""SENSOR3= "\"Sensor 3\"";" >> global_vars_test.php 
+echo "//**DO NOT EDIT BELOW THIS POINT " >> global_vars_test.php
+echo "//********************************************************************************************" >> global_vars_test.php
+echo "$""Summary_Base= "\"'../../../Data/Pi_ . $''Pi_Number . _Summary/'\"";" >> global_vars_test.php 
+echo "$""Raw_Base= "\"'../../../Data/Pi_ . $''Pi_Number . _Raw/'\"";" >> global_vars_test.php
+echo "?>" >> global_vars_test.php 
+sudo nano $HOME/Desktop/CERF-DAQ/WebPage/pages/global_vars_test.php
+echo "PHP Saved"
+#==============================
+#====Creating Global Vars =====
+#==============================
+echo "Creating enviroment Vars"
+#===============================
+#==moving git web to webserver =
+#===============================
+echo "Creating the Web Server"
+#sudo rm -r /var/www/html
+#sudo mkdir /var/www/html
+#sudo ln -s $HOME/Desktop/CERF-DAQ/WebPage/* /var/www/html
+#==============================
+#====Creating Cron Jobs =======
+#==============================
+echo "Creating Cron Jobs"
+
+
+echo "Setup is Finished  :)"
+
