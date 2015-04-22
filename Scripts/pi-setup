@@ -16,7 +16,10 @@ echo "If you would like to change it press 'ctr-c' right now"
 echo "You have 5 seconds, then the script will continue"
 #sleep 5
 echo "Proceeding...\n"
-
+#===============================
+#=====CHANGING HOSTNAME=========
+#===============================
+sudo hostname cerfpi$PI_NUMBER
 #===============================
 #=====PASSWORD SETTING==========
 #===============================
@@ -45,6 +48,7 @@ echo "Seting up Git Repository"
 #===Getting necessary stuff=====
 #===============================
 echo "Installing packages"
+#sudo apt-get install zip
 #sudo apt-get update
 #sudo apt-get install r-base
 #sudo apt-get install apache2 -y
@@ -54,23 +58,23 @@ echo "Installing packages"
 #==================================
 echo "Writing PHP Global Vars"
 cd $HOME/Desktop/CERF-DAQ/WebPage/pages
-echo "<?php" > global_vars_test.php
-echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars_test.php 
-echo "//********************************************************************************************" >> global_vars_test.php
-echo "//**SENSOR NAMES: Only change the sensor names in this file between the two stared lines" >> global_vars_test.php
-echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars_test.php
-echo "//**The name must remain in quotes!" >> global_vars_test.php
-echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars_test.php
-echo "//**This file can be updated by running the pi-settings sript" >> global_vars_test.php
-echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars_test.php 
-echo "$""SENSOR2= "\"Sensor 2\"";" >> global_vars_test.php 
-echo "$""SENSOR3= "\"Sensor 3\"";" >> global_vars_test.php 
-echo "//**DO NOT EDIT BELOW THIS POINT " >> global_vars_test.php
-echo "//********************************************************************************************" >> global_vars_test.php
-echo "$""Summary_Base= "\"'../../../Data/Pi_ . $''Pi_Number . _Summary/'\"";" >> global_vars_test.php 
-echo "$""Raw_Base= "\"'../../../Data/Pi_ . $''Pi_Number . _Raw/'\"";" >> global_vars_test.php
-echo "?>" >> global_vars_test.php 
-sudo nano $HOME/Desktop/CERF-DAQ/WebPage/pages/global_vars_test.php
+echo "<?php" > global_vars.php
+echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars.php 
+echo "//********************************************************************************************" >> global_vars.php
+echo "//**SENSOR NAMES: Only change the sensor names in this file between the two stared lines" >> global_vars.php
+echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars.php
+echo "//**The name must remain in quotes!" >> global_vars.php
+echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars.php
+echo "//**This file can be updated by running the pi-settings sript" >> global_vars.php
+echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars.php 
+echo "$""SENSOR2= "\"Sensor 2\"";" >> global_vars.php 
+echo "$""SENSOR3= "\"Sensor 3\"";" >> global_vars.php 
+echo "//**DO NOT EDIT BELOW THIS POINT " >> global_vars.php
+echo "//********************************************************************************************" >> global_vars.php
+echo "$""Summary_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Summary/\""";" >> global_vars.php 
+echo "$""Raw_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Raw/\""";" >> global_vars.php
+echo "?>" >> global_vars.php 
+#sudo nano $HOME/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
 echo "PHP Saved"
 #==============================
 #====Creating Global Vars =====
