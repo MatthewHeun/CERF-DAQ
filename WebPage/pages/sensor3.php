@@ -102,8 +102,8 @@
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR3 ?> : <?php echo $day ?>
 							<div class="pull-right">
-							<form action="index.php">
-  						<input type="date" name="Day">
+							<form action="sensor3.php">
+  							<input type="date" name="Day" placeholder="YYYY-MM-DD" maxlength= 10>
   							<input type="submit">
 							</form>
 							</div>
@@ -119,7 +119,7 @@
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR3 ?> : <?php echo $year ?>
 							<div class="pull-right">
-							<form action="sensor1.php" method="get">
+							<form action="sensor3.php" method="get">
 							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
 							<input type="submit">
 							</form>
