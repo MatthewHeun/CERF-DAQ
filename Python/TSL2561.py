@@ -73,7 +73,9 @@ class TSL2561:
            IR *= 16         # scale 1x to 16x
 	if (float(ambient)==0):
 	   ambient = 0.00000000001
-                           
+                         
+	IR *= 322/float(11)
+	ambient *= 322/float(11)
         ratio = (IR / float(ambient)) # changed to make it run under python 2
 
         if (self.debug):

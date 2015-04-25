@@ -23,10 +23,17 @@ import os
 #==================================================================
 #------------------------------LUX SENSOR--------------------------
 #==================================================================
-luxsensor1 = TSL2561.TSL2561()		#Initialize the sensor at i2c address 0x39
-luxsensor1.setGain()			#Gain at deafault value of 1
+#luxsensor1 = TSL2561.TSL2561(address = 0x39)		#Initialize the sensor at i2c address 0x39
+#luxsensor1.setGain()					#Gain at default value of 1
+luxsensor2 = TSL2561.TSL2561(address = 0x49)		#Initialize the sensor at i2c address 0x49
+luxsensor2.setGain()					#Gain at default value of 1
+luxsensor3 = TSL2561.TSL2561(address = 0x29)		#Initialize the sensor at i2c address 0x29
+luxsensor3.setGain()
+
 time.sleep(1)
-value1 = luxsensor1.readLux()
+#value1 = luxsensor1.readLux()
+value2 = luxsensor2.readLux()
+value3 = luxsensor3.readLux()
 
 # **************************INITIALIZE VARIABLES************************ #
 
@@ -50,7 +57,7 @@ value = 1
     
 # outputLux() calls the functions to output for each of the sensors
 def outputLux():      
-    navigateToDirectory(sensor1)
+    #navigateToDirectory(sensor1)
     navigateToDirectory(sensor2)
     navigateToDirectory(sensor3)
         
@@ -80,10 +87,17 @@ def navigateToDirectory(sensor):
     filename = (nameOfPi +'_'+ sensor +'_'+ datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d') + '.txt')
     filetest = open(filename, 'a')  
     global value
-    
+
     # write all time and sensor data to the file
     time = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
-    filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value1) + '\n')
+
+    if (sensor == '1'):
+	filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value1) + '\n')
+    if (sensor == '2'):
+	print(nameOfPi + ',' + sensor + ',' + time + ',' + str(value2) + '\n')
+	filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value2) + '\n')
+    if (sensor == '3'):
+	filetest.write(nameOfPi + ',' + sensor + ',' + time + ',' + str(value3) + '\n')
     filetest.close()
     value += 1
     
