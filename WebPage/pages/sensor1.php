@@ -35,21 +35,24 @@
 <body>
 <?php
 	$year = date("Y");
+	$month = date("m");
 	$day = date("Y-m-d");
 	if(isset($_GET['Year'])){
 		$year = $_GET['Year'];
 	}
 	if(isset($_GET['Day'])){
 		$day = $_GET['Day'];
+		$month = substr($day, 5, 2);
+		$year = substr($day, 0, 4);
 	}
 	include 'global_vars.php' ;
 	
-	$day_file1 = "Sensor 1/" . $year . "/Pi_" . $Pi_Number . "_1_" . $day . ".txt";
-	$day_file2 = "Sensor 2/" . $year . "/Pi_" . $Pi_Number . "_2_" . $day . ".txt";
-	$day_file3 = "Sensor 3/" . $year . "/Pi_" . $Pi_Number . "_3_" . $day . ".txt";
-	$year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".txt";
-	$year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".txt";
-	$year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".txt";
+        $day_file1 = "Sensor 1/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_1_" . $day . ".csv";
+        $day_file2 = "Sensor 2/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_2_" . $day . ".csv";
+        $day_file3 = "Sensor 3/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_3_" . $day . ".csv";
+        $year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".csv";
+        $year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".csv";
+        $year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".csv";
 ?>
     <div id="wrapper">
 
@@ -131,15 +134,20 @@
                                 <div class="col-lg-4">
                                     <div class="table-responsive">
                                         <?php
-											$lines = file($Summary_Base . $year_file1);
-											$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
-											foreach($lines as $line){
-												list($month, $on_peak, $off_peak) = explode(',', $line);
-												$table .= "<tr><td>$month</td><td>$on_peak</td><td>$off_peak</td></tr>";
-											}
-											$table .= '</tbody></table>';
-											echo $table;
-										?>
+						$lines = file($Summary_Base . $year_file1);
+						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
+						$count1 = 0;
+						foreach($lines as $line){
+							if($count1 < 2){
+								$count1 += 1;
+							}else{
+								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								$table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
+							}
+						}
+						$table .= '</tbody></table>';
+						echo $table;
+					?>
                                     </div>
                                     <!-- /.table-responsive -->
                                 </div>
@@ -184,9 +192,15 @@
 					$filename = $Summary_Base . $year_file1;
 					$lines = file($filename);
 					$data = '[';
-					foreach($lines as $line){
-						list($month, $on_peak, $off_peak) = explode(',', $line);
-						$data .= "{y:'$month', a: $on_peak, b: $off_peak},";
+					$count2 = 0;
+                                        foreach($lines as $line){
+						if($count2 < 2){
+							$count2 += 1;
+						}else{
+                                                	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+							$data .= "{y: '$month', a: $on, b: $off},";
+							$count2 += 1;
+						}
 					}
 					$data = rtrim($data, ',');
 					$data .= '],';
@@ -195,7 +209,8 @@
         	xkey: 'y',
         	ykeys: ['a', 'b'],
         	labels: ['On Peak %', 'Off Peak %'],
-        	hideHover: 'auto',
+        	hideHover: false,
+		grid: false,
         	resize: true
     	});
 		new Morris.Area({
@@ -203,6 +218,8 @@
   			element: 'lux-line-chart',
 			smooth: false,
 			pointSize: 0,
+			lineWidth: 0,
+			grid: false,
 			resize: true,
   			// Chart data records -- each entry in this array corresponds to a point on
   			// the chart.
@@ -210,9 +227,15 @@
 					$dayfilename = $Raw_Base . $day_file1;
 					$lines = file($dayfilename);
 					$data = '[';
-					foreach($lines as $line){
-						list($pi_id, $sensor_id, $time, $lux) = explode(',', $line);
-						$data .= "{minute:'$time',lux: $lux},";
+					$count3 = 0;
+                                        foreach($lines as $line){
+						if($count3 < 2){
+							$count3 += 1;
+						}else{
+                                                	list($pi_id, $sensor_id, $time, $lux) = explode(',', $line);
+							$data .= "{minute:'$time',lux: $lux},";
+							$count3 += 1;
+						}
 					}
 					$data = rtrim($data, ',');
 					$data .= '],';
