@@ -108,6 +108,7 @@ def AnalyzeLightSensor(sensor):
 					#print (min_off_peak)			
     			#print(str(total_min_on_peak))
 			#print(str(min_on_peak))
+			file.close()
 		if total_min_on_peak != 0:
     			percentage_on_peak = (float(min_on_peak)/total_min_on_peak)*100
 		else:
