@@ -35,10 +35,11 @@
 <body>
 <?php
 	$year = date("Y");
+	$year_sum = date("Y");
 	$month = date("m");
 	$day = date("Y-m-d");
 	if(isset($_GET['Year'])){
-		$year = $_GET['Year'];
+		$year_sum = $_GET['Year'];
 	}
 	if(isset($_GET['Day'])){
 		$day = $_GET['Day'];
@@ -50,9 +51,9 @@
         $day_file1 = "Sensor 1/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_1_" . $day . ".csv";
         $day_file2 = "Sensor 2/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_2_" . $day . ".csv";
         $day_file3 = "Sensor 3/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_3_" . $day . ".csv";
-        $year_file1 = "Pi_" . $Pi_Number . "_1_" . $year . ".csv";
-        $year_file2 = "Pi_" . $Pi_Number . "_2_" . $year . ".csv";
-        $year_file3 = "Pi_" . $Pi_Number . "_3_" . $year . ".csv";
+        $year_file1 = "Pi_" . $Pi_Number . "_1_" . $year_sum . ".csv";
+        $year_file2 = "Pi_" . $Pi_Number . "_2_" . $year_sum . ".csv";
+        $year_file3 = "Pi_" . $Pi_Number . "_3_" . $year_sum . ".csv";
 ?>
     <div id="wrapper">
 
@@ -120,7 +121,7 @@
                     <!-- /.YEAR SENSOR 1 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?>
+                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year_sum ?>
 							<div class="pull-right">
 							<form action="sensor1.php" method="get">
 							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
@@ -137,11 +138,15 @@
 						$lines = file($Summary_Base . $year_file1);
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
 						$count1 = 0;
+						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
 							if($count1 < 2){
 								$count1 += 1;
 							}else{
 								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								$month = $IndexToMonth[$month];
+								if($on == "0.00"){$on = "-";}
+								if($off == "0.00\n"){$off = "-";}
 								$table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
 							}
 						}
@@ -193,12 +198,14 @@
 					$lines = file($filename);
 					$data = '[';
 					$count2 = 0;
+					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
                                         foreach($lines as $line){
 						if($count2 < 2){
 							$count2 += 1;
 						}else{
                                                 	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
-							$data .= "{y: '$month', a: $on, b: $off},";
+							$monthstring = $IndexToMonth[$month];
+							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
 						}
 					}
@@ -210,6 +217,7 @@
         	ykeys: ['a', 'b'],
         	labels: ['On Peak %', 'Off Peak %'],
         	hideHover: false,
+		xLabelMargin: 10,
 		grid: false,
         	resize: true
     	});

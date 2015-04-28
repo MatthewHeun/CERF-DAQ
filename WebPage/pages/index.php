@@ -157,7 +157,7 @@
                     <!-- /.YEAR SENSOR 1 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?>
+                            <a href="sensor1.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR1 ?> : <?php echo $year ?></a>
 							<div class="pull-right">
 							<form action="index.php" method="get">
 							<input type="text" name="Year" placeholder="Enter Year" maxlength= 4>
@@ -173,12 +173,16 @@
                                         <?php
 						$lines = file($Summary_Base . $year_file1);
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
-						$count3 = 0;
+						$count1 = 0;
+						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
-							if($count3 < 2){
-								$count3 += 1;
+							if($count1 < 2){
+								$count1 += 1;
 							}else{
 								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								$month = $IndexToMonth[$month];
+								if($on == "0.00"){$on = "-";}
+								if($off == "0.00\n"){$off = "-";}
 								$table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
 							}
 						}
@@ -202,7 +206,7 @@
 					<!-- /.YEAR SENSOR 2 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?> : <?php echo $year ?>
+                            <a href="sensor2.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR2 ?> : <?php echo $year ?></a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -212,12 +216,16 @@
                                         <?php
 						$lines = file($Summary_Base . $year_file2);
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
-						$count3 = 0;
+						$count1 = 0;
+						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
-							if($count3 < 2){
-								$count3 += 1;
+							if($count1 < 2){
+								$count1 += 1;
 							}else{
 								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								$month = $IndexToMonth[$month];
+								if($on == "0.00"){$on = "-";}
+								if($off == "0.00\n"){$off = "-";}
 								$table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
 							}
 						}
@@ -241,7 +249,7 @@
                     <!-- /.YEAR SENSOR 2 panel -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR3 ?> : <?php echo $year ?>
+                            <a href="sensor3.php"><i class="fa fa-bar-chart-o fa-fw"></i> <?php echo $SENSOR3 ?> : <?php echo $year ?></a>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -251,12 +259,16 @@
                                         <?php
 						$lines = file($Summary_Base . $year_file3);
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
-						$count3 = 0;
+						$count1 = 0;
+						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
-							if($count3 < 2){
-								$count3 += 1;
+							if($count1 < 2){
+								$count1 += 1;
 							}else{
 								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								$month = $IndexToMonth[$month];
+								if($on == "0.00"){$on = "-";}
+								if($off == "0.00\n"){$off = "-";}
 								$table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
 							}
 						}
@@ -308,23 +320,26 @@
 					$lines = file($filename);
 					$data = '[';
 					$count2 = 0;
+					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
                                         foreach($lines as $line){
 						if($count2 < 2){
 							$count2 += 1;
 						}else{
                                                 	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
-							$data .= "{y: '$month', a: $on, b: $off},";
+							$monthstring = $IndexToMonth[$month];
+							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
 						}
 					}
 					$data = rtrim($data, ',');
 					$data .= '],';
 					echo $data;
-				?> 
+				?>
         	xkey: 'y',
         	ykeys: ['a', 'b'],
         	labels: ['On Peak %', 'Off Peak %'],
         	hideHover: false,
+		xLabelMargin: 10,
 		grid: false,
         	resize: true
     	});
@@ -335,39 +350,44 @@
 					$lines = file($filename);
 					$data = '[';
 					$count2 = 0;
+					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
                                         foreach($lines as $line){
 						if($count2 < 2){
 							$count2 += 1;
 						}else{
                                                 	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
-							$data .= "{y: '$month', a: $on, b: $off},";
+							$monthstring = $IndexToMonth[$month];
+							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
 						}
 					}
 					$data = rtrim($data, ',');
 					$data .= '],';
 					echo $data;
-				?> 
+				?>
         	xkey: 'y',
         	ykeys: ['a', 'b'],
         	labels: ['On Peak %', 'Off Peak %'],
         	hideHover: false,
 		grid: false,
+		xLabelMargin: 10,
         	resize: true
     	});
         new Morris.Bar({
         	element: 'summary-bar-chart 3',
-        	data: <?php
+         	data: <?php
 					$filename = $Summary_Base . $year_file3;
 					$lines = file($filename);
 					$data = '[';
 					$count2 = 0;
+					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
                                         foreach($lines as $line){
 						if($count2 < 2){
 							$count2 += 1;
 						}else{
                                                 	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
-							$data .= "{y: '$month', a: $on, b: $off},";
+							$monthstring = $IndexToMonth[$month];
+							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
 						}
 					}
@@ -380,6 +400,7 @@
         	labels: ['On Peak %', 'Off Peak %'],
         	hideHover: false,
 		grid: false,
+		xLabelMargin: 10,
         	resize: true
     	});
 		
