@@ -101,7 +101,7 @@ def navigateToDirectory(sensor):
 	filetest.write("#Calvin College CERF PI DATA"+ '\n')
 	filetest.close()
 	filetest = open(filename, 'a')
- 	filetest.write("Pi_Number,Sensor_Number,Date/Time,Light"+ '\n')
+ 	filetest.write("#Pi_Number,Sensor_Number,Date/Time,Light"+ '\n')
     else:
 	filetest = open(filename, 'a')
 
