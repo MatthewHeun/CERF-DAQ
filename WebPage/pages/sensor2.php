@@ -140,8 +140,7 @@
 						$count1 = 0;
 						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
-							if($count1 < 2){
-								$count1 += 1;
+							if(substr($line, 0, 1) == "#"){
 							}else{
 								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
@@ -201,8 +200,7 @@
 					$count2 = 0;
 					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
                                         foreach($lines as $line){
-						if($count2 < 2){
-							$count2 += 1;
+						if(substr($line, 0, 1) == "#"){
 						}else{
                                                 	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
@@ -236,8 +234,7 @@
                                         $lines = file($dayfilename);
 					$data = '[';
                                         foreach($lines as $line){
-						if($count < 2){
-							$count += 1;
+						if(substr($line, 0, 1) == "#"){
 						}else{
                                                 	list($pi_id, $sensor_id, $time, $lux) = explode(',', $line);
 							$data .= "{minute:'$time',lux: $lux},";
