@@ -29,7 +29,7 @@ raw_path = '/home/pi/Desktop/Data/Pi_1_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 # **************************LIGHT ON TOLERANCE************************ #
 light_tol = 6
-low_peak_time = 7
+low_peak_time = 11
 high_peak_time = 19
 # **************************INITIALIZE VARIABLES************************ #
 debug = False # used for helping in development of code, turn to false for normal operation
@@ -57,7 +57,7 @@ def AnalyzeLightSensor(sensor):
     summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
     summaryfile.close()
     summaryfile = open(filename, 'a')
-    summaryfile.write("Pi_Number,Sensor_Number,Year,On_Peak,Off_Peak" + '\n')
+    summaryfile.write("#Pi_Number,Sensor_Number,Year,On_Peak,Off_Peak" + '\n')
 
     if debug:
         print ('directory: ' + fullpath)
@@ -89,7 +89,7 @@ def AnalyzeLightSensor(sensor):
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
 					#print(str(weekday))
-					peak_hour = int(hour) >= low_peak_time and int(hour) <= high_peak_time
+					peak_hour = int(hour) >= low_peak_time and int(hour) < high_peak_time
 					peak_day = weekday < 5
 					#print(peak_day)
 					if peak_hour and peak_day:
@@ -106,8 +106,10 @@ def AnalyzeLightSensor(sensor):
 							total_min_off_peak += 1
 					#print (total_min_off_peak)	
 					#print (min_off_peak)			
-    			#print(str(total_min_on_peak))
-			#print(str(min_on_peak))
+    			#print("Total on: " + str(total_min_on_peak))
+			#print("Amount on: " + str(min_on_peak))
+			#print("Total off: " + str(total_min_off_peak))
+			#print("Amount off: " + str(min_off_peak))
 			file.close()
 		if total_min_on_peak != 0:
     			percentage_on_peak = (float(min_on_peak)/total_min_on_peak)*100
