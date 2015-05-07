@@ -35,9 +35,9 @@ passwd
 echo "Creating directories"
 RawDir='Pi_'$PI_NUMBER'_Raw'
 SummaryDir='Pi_'$PI_NUMBER'_Summary'
-mkdir "$HOME/Desktop/Data"
-mkdir "$HOME/Desktop/Data/$RawDir"
-mkdir "$HOME/Desktop/Data/$SummaryDir"
+mkdir "/home/pi/Desktop/Data"
+mkdir "/home/pi/Desktop/Data/$RawDir"
+mkdir "/home/pi/Desktop/Data/$SummaryDir"
 echo "	+Done"
 #===============================
 #===Getting necessary stuff=====
@@ -45,14 +45,13 @@ echo "	+Done"
 echo "Installing packages"
 sudo apt-get install zip
 sudo apt-get update
-sudo apt-get install r-base
 sudo apt-get install apache2 -y
 sudo apt-get install php5 libapache2-mod-php5 -y
 #==================================
 #====Creating Global Vars PHP =====
 #==================================
 echo "Writing PHP Global Vars"
-cd $HOME/Desktop/CERF-DAQ/WebPage/pages
+cd /home/pi/Desktop/CERF-DAQ/WebPage/pages
 echo "<?php" > global_vars.php
 echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars.php 
 echo "//********************************************************************************************" >> global_vars.php
@@ -69,19 +68,30 @@ echo "//************************************************************************
 echo "$""Summary_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Summary/\""";" >> global_vars.php 
 echo "$""Raw_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Raw/\""";" >> global_vars.php
 echo "?>" >> global_vars.php 
-sudo nano $HOME/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
+sudo nano /home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
 echo "PHP Saved"
 #==============================
 #====Creating Global Vars =====
 #==============================
+
 echo "Creating enviroment Vars"
+echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Scripts" >> /ect/profile
+echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /ect/profile
+echo "export PATH" >> /ect/profile
+echo "Pi_Number = " . $Pi_Number >> /ect/profile
+echo "export Pi_Number" >> /ect/profile
+echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Scripts" >> /root/.profile
+echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /root/.profile
+echo "export PATH" >> /root/.profile
+echo "Pi_Number = " . $Pi_Number >> /root/.profile
+echo "export Pi_Number" >> /root/.profile
+
 #===============================
 #==moving git web to webserver =
 #===============================
 echo "Creating the Web Server"
-#sudo rm -r /var/www/html
-#sudo mkdir /var/www/html
-#sudo ln -s $HOME/Desktop/CERF-DAQ/WebPage/* /var/www/html
+sudo rm -r /var/www/html
+sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 #==============================
 #====Creating Cron Jobs =======
 #==============================
