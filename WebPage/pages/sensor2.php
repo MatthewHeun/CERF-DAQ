@@ -46,6 +46,15 @@
 		$month = substr($day, 5, 2);
 		$year = substr($day, 0, 4);
 	}
+	$day_alone = substr($day, -2, 2);
+	$today_string = $month . "/" . $day_alone . "/" . $year;
+	$current = new DateTime($today_string);
+	$nextDay = new DateTime($today_string);
+	date_modify($nextDay, '+1 day');
+	$prevDay = new DateTime($today_string);
+	date_modify($prevDay, '-1 day');
+	$next = date_format($nextDay, 'Y-m-d');
+	$prev = date_format($prevDay, 'Y-m-d');
 	include 'global_vars.php' ;
 	
         $day_file1 = "Sensor 1/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_1_" . $day . ".csv";
@@ -104,6 +113,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
+				<a href="sensor2.php?Day=<?php echo $prev ?>"><h3 style=" margin: 0px; margin-right: 10px; padding: 0px; float: left;"><</h3></a> 
+				<a href="sensor2.php?Day=<?php echo $next ?>"><h3 style=" margin: 0px; margin-right: 10px; padding: 0px; float: left;"> ></h3></a>
                             <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $SENSOR2 ?> : <?php echo $day ?>
 							<div class="pull-right">
 							<form action="sensor2.php">
@@ -142,7 +153,7 @@
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
 							}else{
-								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
 								if($on == "0.00"){$on = "-";}
 								if($off == "0.00\n"){$off = "-";}
@@ -202,7 +213,7 @@
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+                                                	list($pi_id, $sensor_id,  $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
 							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
@@ -236,7 +247,7 @@
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $time, $lux) = explode(',', $line);
+                                                	list($pi_id, $sensor_id, $sensor_name,$utc_time, $time, $lux) = explode(',', $line);
 							$data .= "{minute:'$time',lux: $lux},";
 							$count += 1;
 						}

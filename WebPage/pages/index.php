@@ -178,7 +178,7 @@
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
 							}else{
-								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
 								if($on == "0.00"){$on = "-";}
 								if($off == "0.00\n"){$off = "-";}
@@ -220,7 +220,7 @@
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
 							}else{
-								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
 								if($on == "0.00"){$on = "-";}
 								if($off == "0.00\n"){$off = "-";}
@@ -262,7 +262,7 @@
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
 							}else{
-								list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+								list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
 								if($on == "0.00"){$on = "-";}
 								if($off == "0.00\n"){$off = "-";}
@@ -321,7 +321,7 @@
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+                                                	list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
 							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
@@ -350,7 +350,7 @@
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+                                                	list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
 							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
@@ -379,7 +379,7 @@
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $month, $on, $off) = explode(',', $line);
+                                                	list($pi_id, $sensor_id,$sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
 							$data .= "{y: '$monthstring', a: $on, b: $off},";
 							$count2 += 1;
