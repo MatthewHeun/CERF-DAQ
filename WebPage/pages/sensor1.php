@@ -76,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Pi <?php echo $Pi_Number ?>: <?php echo $SENSOR1 ?></a>
+                <a class="navbar-brand" href="index.php">Pi <?php echo $Pi_Number ?>: <?php echo $SENSOR1 ?></a>
             </div>
             <!-- /.navbar-header -->
 
