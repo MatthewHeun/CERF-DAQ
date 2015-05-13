@@ -68,6 +68,8 @@ echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.p
 echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_tol = 25' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime1 = 11' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime2 = 19' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "Global Variables are Reset"
 echo "Run command sensor-edit to edit sensor names"
