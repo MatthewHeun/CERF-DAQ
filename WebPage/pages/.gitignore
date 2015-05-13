@@ -1,0 +1,4 @@
+# Do not include the zip files #
+###############################
+
+*.zip
