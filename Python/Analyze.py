@@ -16,6 +16,7 @@ import re
 import os
 import re  #line delimiter
 from datetime import date
+from global_vars import*  # Global vars
 #<<<<<<< HEAD
 #==================================================================
 #------------------------------DEFAULT LIST------------------------
@@ -28,7 +29,7 @@ summary_path = '/home/pi/Desktop/Data/Pi_1_Summary/'
 raw_path = '/home/pi/Desktop/Data/Pi_1_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 # **************************LIGHT ON TOLERANCE************************ #
-light_tol = 6
+light_tol = Sensor_tol   # from global_vars
 low_peak_time = 11
 high_peak_time = 19
 # **************************INITIALIZE VARIABLES************************ #
@@ -36,7 +37,7 @@ debug = False # used for helping in development of code, turn to false for norma
 
 # ******************COULD BE CHANGED AUTOMATICALLY********************** #
 # Find a way to read this from pi itself
-nameOfPi = 'Pi_1' 
+nameOfPi = str(Pi_Number) # From Global Vars 
 sensor1 = '1'
 sensor2 = '2'
 sensor3 = '3'
@@ -45,19 +46,19 @@ sensor3 = '3'
     
 # analyzeLux() calls the functions to output for each of the sensors
 def analyzeLux():      
-    AnalyzeLightSensor(sensor1)
-    AnalyzeLightSensor(sensor2)
-    AnalyzeLightSensor(sensor3)
+    AnalyzeLightSensor(sensor1, Sensor_1)  #Sensor_X is from Gloabl Vars for discriptive name 
+    AnalyzeLightSensor(sensor2, Sensor_2)
+    AnalyzeLightSensor(sensor3, Sensor_3)
         
 
-def AnalyzeLightSensor(sensor):
+def AnalyzeLightSensor(sensor, sensor_discrip):
     full_raw_path = (raw_path + 'Sensor ' + sensor + '/' + year + '/')
-    filename = (summary_path + '/' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+    filename = (summary_path + '/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
     summaryfile = open(filename, 'w')
     summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
     summaryfile.close()
     summaryfile = open(filename, 'a')
-    summaryfile.write("#Pi_Number,Sensor_Number,Year,On_Peak,Off_Peak" + '\n')
+    summaryfile.write("#Pi_Number,Sensor_Number,Sensor_Name,Year,Month,On_Peak%,Off_Peak%" + '\n')
 
     if debug:
         print ('directory: ' + fullpath)
@@ -71,18 +72,16 @@ def AnalyzeLightSensor(sensor):
     	min_off_peak = 0
 	#*********************************
 	if not os.path.exists(full_raw_path + month):
-		summaryfile.write(nameOfPi + ',' + sensor + ',' + month + ',0.00,0.00\n')
+		summaryfile.write(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',0.00,0.00\n')
 	else:
 		for file in os.listdir(full_raw_path + month):
 			file = open(full_raw_path + month + '/' + file)
 			count = 0
 			for line in file:
-				if count < 2:
-					count += 1
-				else:
+				if line[0] != "#":
 					row = re.split(',',line)
-					time = row[2]
-					light = row[3].replace('\n','')
+					time = row[4]
+					light = row[5].replace('\n','')
 					if 'e' in light:
 						light = '0'
 					hour = time[-8:-6]
@@ -119,8 +118,8 @@ def AnalyzeLightSensor(sensor):
 			percentage_off_peak = (float(min_off_peak)/total_min_off_peak)*100
 		else:
 			percentage_off_peak = 0
-		summaryfile.write(nameOfPi + ',' + sensor + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
-		print(nameOfPi + ',' + sensor + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')		
+		summaryfile.write(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
+		print(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')		
 while(1):
     analyzeLux()
     if not debug:
