@@ -33,8 +33,8 @@ if not os.path.exists(summary_path):
 	os.makedirs(summary_path)
 # **************************LIGHT ON TOLERANCE************************ #
 light_tol = Sensor_tol   # from global_vars
-low_peak_time = 11
-high_peak_time = 19
+low_peak_time = PeakTime1 # from global_vars
+high_peak_time = PeakTime2 # from global_vars
 # **************************INITIALIZE VARIABLES************************ #
 debug = False # used for helping in development of code, turn to false for normal operation
 
