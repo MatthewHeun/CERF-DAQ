@@ -1,0 +1,75 @@
+#!/bin/sh
+sudo rm -r /home/pi/Desktop/Data
+echo "Data files are deleted"
+sudo /etc/init.d/cron stop 
+echo "Data collection is paused" 
+#===============================
+#==========Pi Number============
+#===============================
+echo "\nWelcome to the CERF Pi Reset script"
+echo "What number Pi is this?"
+echo "Example: 2 (Please only enter a number)\n"
+echo -n "Pi Number >"
+read PI_NUMBER
+echo "\nYou entered: $PI_NUMBER"
+read -p "Would you like to continue?(y/n): " REPLY
+if [ "$REPLY" != "y" ]; then
+	exit
+fi
+echo
+echo "Proceeding...\n"
+#===============================
+#=====CHANGING HOSTNAME=========
+#===============================
+echo "Changing Hostname..."
+sudo hostname cerfpi$PI_NUMBER
+
+
+sudo rm /home/pi/Desktop/CERF-DAQ/WebPage/pages/Raw.zip
+sudo rm /home/pi/Desktop/CERF-DAQ/WebPage/pages/Summary.zip
+#==================================
+#====Creating Global Vars PHP =====
+#==================================
+cd /home/pi/Desktop/CERF-DAQ/WebPage/pages/
+echo "<?php" > global_vars.php
+echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars.php 
+echo "//********************************************************************************************" >> global_vars.php
+echo "//**STEP: 1/2" >> global_vars.php
+echo "//**SENSOR NAMES: Used for WEBSITE" >> global_vars.php
+echo "//**Only change the sensor names in this file between the two stared lines" >> global_vars.php
+echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars.php
+echo "//**The name must remain in quotes!These names will be used for the WEBSITE" >> global_vars.php
+echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars.php
+echo "//**This file can be updated by running the pi-settings sript" >> global_vars.php
+echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars.php 
+echo "$""SENSOR2= "\"Sensor 2\"";" >> global_vars.php 
+echo "$""SENSOR3= "\"Sensor 3\"";" >> global_vars.php 
+echo "//**DO NOT EDIT BELOW THIS POINT " >> global_vars.php
+echo "//********************************************************************************************" >> global_vars.php
+echo "$""Summary_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Summary/\""";" >> global_vars.php 
+echo "$""Raw_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Raw/\""";" >> global_vars.php
+echo "?>" >> global_vars.php 
+echo "PHP Saved"
+#==============================
+#====Creating Global Vars =====
+#==============================
+
+echo 'Pi_Number = '$PI_NUMBER > /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**STEP: 2/2" >>/home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**SENSOR NAMES: used for DATA FILES" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**Only change the sensor names and sensor tolerance in this file between the two stared lines" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**Example: SENSOR1: \"TNT NORTH\"" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**The name must remain in quotes!These names will be used for the DATA FILES!" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**This file can be updated by running the pi-settings sript" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_1 = ''"Sensor 1"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_tol = 25' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "Global Variables are Reset"
+echo "Run command sensor-edit to edit sensor names"
+echo "Run command start-pi to start data collection"
+
