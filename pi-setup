@@ -110,9 +110,9 @@ echo 'Sensor_1 = ''"Sensor 1"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.p
 echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo 'Sensor_tol = 25' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo 'PeakTime1 = 11' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo 'PeakTime2 = 19' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_tol = 25   #any light reading below this value will be considered off' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime1 = 11    #hour in a 24 hour day' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime2 = 19    #hour in a 24 hour day' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 
 #===============================
@@ -133,7 +133,8 @@ sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 #====Creating Cron Jobs =======
 #==============================
 echo "Creating Cron Jobs"
-echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" > mycron
+echo "#m h dom mon dow  command" > mycron
+echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" >> mycron
 echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/cronlog.log 2>&1" >> mycron
 echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip_raw.sh >> /dev/cronlogzip.log 2>&1" >> mycron
 echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi >> /dev/cronlogzip.log 2>&1" >> mycron
