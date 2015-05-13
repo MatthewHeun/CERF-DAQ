@@ -22,7 +22,7 @@ echo "Proceeding...\n"
 #=====CHANGING HOSTNAME=========
 #===============================
 echo "Changing Hostname..."
-sudo hostname cerfpi$PI_NUMBER
+echo "cerfpi$PI_NUMBER" > /etc/hostname 
 #===============================
 #=====PASSWORD SETTING==========
 #===============================
@@ -111,6 +111,8 @@ echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.p
 echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_tol = 25' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime1 = 11' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'PeakTime2 = 19' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 
 #===============================
@@ -132,12 +134,15 @@ sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 #==============================
 echo "Creating Cron Jobs"
 echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" > mycron
-echo "00 */3 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/cronlog.log 2>&1" >> mycron
+echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/cronlog.log 2>&1" >> mycron
 echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip_raw.sh >> /dev/cronlogzip.log 2>&1" >> mycron
 echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi >> /dev/cronlogzip.log 2>&1" >> mycron
 sudo crontab mycron 
 sudo rm mycron
 sudo /etc/init.d/cron restart
+echo "Setup is completed" 
+echo "The pi will now reboot and start taking data"
+echo "You will be disconected"
+sudo reboot 
 
-echo "Setup is Finished! Data is being collected!  :)"
 
