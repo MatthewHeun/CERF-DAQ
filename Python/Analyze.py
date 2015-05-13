@@ -21,13 +21,16 @@ from global_vars import*  # Global vars
 #==================================================================
 #------------------------------DEFAULT LIST------------------------
 #==================================================================
-
+nameOfPi = str(Pi_Number) # From Global Vars 
 month_list= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 #Base directory leading to the summary
-summary_path = '/home/pi/Desktop/Data/Pi_1_Summary/'
+summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
 #Base directory leading to the raw
-raw_path = '/home/pi/Desktop/Data/Pi_1_Raw/'
+raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
+print(year)
+if not os.path.exists(summary_path):
+	os.makedirs(summary_path)
 # **************************LIGHT ON TOLERANCE************************ #
 light_tol = Sensor_tol   # from global_vars
 low_peak_time = 11
@@ -37,7 +40,6 @@ debug = False # used for helping in development of code, turn to false for norma
 
 # ******************COULD BE CHANGED AUTOMATICALLY********************** #
 # Find a way to read this from pi itself
-nameOfPi = str(Pi_Number) # From Global Vars 
 sensor1 = '1'
 sensor2 = '2'
 sensor3 = '3'
