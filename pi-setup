@@ -5,16 +5,18 @@
 #==========Pi Number============
 #===============================
 echo "\nWelcome to the CERF Pi setup script"
-echo "What number Pi is this? You will not be able to change this."
+echo "What number Pi is this?"
 echo "This number will be used for the identification of the Pi and its data."
 echo "Example: 2 (Please only enter a number)\n"
 echo -n "Pi Number >"
 read PI_NUMBER
 echo "\nYou entered: $PI_NUMBER"
-echo "If you would like to change it press 'ctr-c' right now"
-sleep 2
-echo "You have 5 seconds, then the script will continue"
-sleep 5
+read -p "Would you like to continue?(y/n): " REPLY
+if [ "$REPLY" != "y" ]; then
+	exit
+fi
+echo
+
 echo "Proceeding...\n"
 #===============================
 #=====CHANGING HOSTNAME=========
@@ -35,6 +37,9 @@ passwd
 echo "Creating directories"
 RawDir='Pi_'$PI_NUMBER'_Raw'
 SummaryDir='Pi_'$PI_NUMBER'_Summary'
+if [ -d "/home/pi/Desktop/Data" ]; then
+	sudo rm -r /home/pi/Desktop/Data
+fi
 mkdir "/home/pi/Desktop/Data"
 mkdir "/home/pi/Desktop/Data/$RawDir"
 mkdir "/home/pi/Desktop/Data/$SummaryDir"
@@ -43,10 +48,16 @@ echo "	+Done"
 #===Getting necessary stuff=====
 #===============================
 echo "Installing packages"
-sudo apt-get install zip
 sudo apt-get update
+sudo apt-get install zip
 sudo apt-get install apache2 -y
 sudo apt-get install php5 libapache2-mod-php5 -y
+sudo apt-get install i2c-tools
+sudo apt-get install python-pip
+sudo apt-get install xrdp
+sudo easy_install pytz
+sudo easy_install smbus 
+sudo adduser pi i2c 
 #==================================
 #====Creating Global Vars PHP =====
 #==================================
@@ -55,9 +66,11 @@ cd /home/pi/Desktop/CERF-DAQ/WebPage/pages
 echo "<?php" > global_vars.php
 echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars.php 
 echo "//********************************************************************************************" >> global_vars.php
-echo "//**SENSOR NAMES: Only change the sensor names in this file between the two stared lines" >> global_vars.php
+echo "//**STEP: 1/2" >> global_vars.php
+echo "//**SENSOR NAMES: Used for WEBSITE" >> global_vars.php
+echo "//**Only change the sensor names in this file between the two stared lines" >> global_vars.php
 echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars.php
-echo "//**The name must remain in quotes!" >> global_vars.php
+echo "//**The name must remain in quotes!These names will be used for the WEBSITE" >> global_vars.php
 echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars.php
 echo "//**This file can be updated by running the pi-settings sript" >> global_vars.php
 echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars.php 
@@ -68,42 +81,63 @@ echo "//************************************************************************
 echo "$""Summary_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Summary/\""";" >> global_vars.php 
 echo "$""Raw_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Raw/\""";" >> global_vars.php
 echo "?>" >> global_vars.php 
-sudo nano /home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
 echo "PHP Saved"
 #==============================
 #====Creating Global Vars =====
 #==============================
 
 echo "Creating enviroment Vars"
-echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Scripts" >> /ect/profile
-echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /ect/profile
-echo "export PATH" >> /ect/profile
-echo "Pi_Number = " . $Pi_Number >> /ect/profile
-echo "export Pi_Number" >> /ect/profile
-echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Scripts" >> /root/.profile
-echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /root/.profile
-echo "export PATH" >> /root/.profile
-echo "Pi_Number = " . $Pi_Number >> /root/.profile
-echo "export Pi_Number" >> /root/.profile
+
+if grep "CERF-DAQ/Scripts" /etc/profile
+then
+	echo "Bash file set up correctly" 
+else
+	echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Scripts" >> /etc/profile
+	echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /etc/profile
+	echo "export PATH" >> /etc/profile
+fi
+
+echo 'Pi_Number = '$PI_NUMBER > /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**STEP: 2/2" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**SENSOR NAMES: used for DATA FILES" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**Only change the sensor names and sensor tolerance in this file between the two stared lines" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**Example: SENSOR1: \"TNT NORTH\"" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**The name must remain in quotes!These names will be used for the DATA FILES!" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**This file can be updated by running the pi-settings sript" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_1 = ''"Sensor 1"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_tol = 25' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+
+#===============================
+#=====Editing Sensor Names =====
+#===============================
+
+sudo nano /home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
+sudo nano /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 
 #===============================
 #==moving git web to webserver =
 #===============================
 echo "Creating the Web Server"
-sudo rm -r /var/www/html
+sudo rm -r /var/www
+sudo mkdir "/var/www"
 sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 #==============================
 #====Creating Cron Jobs =======
 #==============================
 echo "Creating Cron Jobs"
-sudo crontab -l > mycron
-echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" >> mycron
+echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" > mycron
 echo "00 */3 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/cronlog.log 2>&1" >> mycron
 echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip_raw.sh >> /dev/cronlogzip.log 2>&1" >> mycron
-echo "00 02 * * 2/2  /home/pi/Desktop/CERF-DAQ/Scripts/update-pi >> /dev/cronlogzip.log 2>&1" >> mycron
+echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi >> /dev/cronlogzip.log 2>&1" >> mycron
 sudo crontab mycron 
 sudo rm mycron
-
+sudo /etc/init.d/cron restart
 
 echo "Setup is Finished! Data is being collected!  :)"
 
