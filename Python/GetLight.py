@@ -106,7 +106,7 @@ def writeFile(sensor):
     naive = datetime.datetime.now()
     local_dt = local.localize(naive, is_dst = None)
     time_local = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
-    time_utc = datetime.datetime.strftime(local_dt.astimezone(pytz.utc), '%Y-%m-%dT%H:%M:%SZ')
+    time_utc = datetime.datetime.strftime(local_dt.astimezone(pytz.utc), '%Y-%m-%dT%H:%M:%S')
 
 
     if (sensor == '1'):
