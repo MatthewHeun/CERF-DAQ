@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="Raw.zip" download>
+                        <a href="Raw.zip" download="<?php echo "Pi_" . "$Pi_Number" . "_Raw_" . "$day"?>">
                             <div class="panel-footer">
                                 <span class="pull-left">Download</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="Summary.zip" download>
+                        <a href="Summary.zip" download="<?php echo "Pi_" . "$Pi_Number" . "_Summary_" . "$day"?>">
                             <div class="panel-footer">
                                 <span class="pull-left">Download</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-down"></i></span>
