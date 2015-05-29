@@ -1,7 +1,7 @@
 from global_vars import*  # Global vars
 import os
 
-f = open('/home/derek/Desktop/CERF-DAQ/WebPage/pages/global_vars.php', 'w')
+f = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php', 'w')
 
 
 f.write('<?php\n')
