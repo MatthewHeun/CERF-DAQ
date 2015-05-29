@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-<?php  $sensor_number = '1'; ?>  <! change this >
+<?php  $sensor_number = '15'; ?>  <! change this >
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
 <?php
-	$pageSensor = $SENSOR1;    // change this
+	$pageSensor = $SENSOR15;    // change this
 	$pageLink = 'sensor' . $sensor_number . '.php';
 	
 ?>

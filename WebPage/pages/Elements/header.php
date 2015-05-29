@@ -23,4 +23,7 @@
 	include 'global_vars.php' ;
         $day_file = "Sensor " . $sensor_number . "/" . $year . "/" . $month . "/Pi_" . $Pi_Number . "_" . $sensor_number . "_" . $day . ".csv";
         $year_file = "Pi_" . $Pi_Number . "_" . $sensor_number . "_" . $year_sum . ".csv";
+	$graphnum = 1;
+	$Summary_Base= "../../../Data/Pi_" . $Pi_Number . "_Summary/";
+	$Raw_Base= "../../../Data/Pi_" . $Pi_Number . "_Raw/";
 ?>

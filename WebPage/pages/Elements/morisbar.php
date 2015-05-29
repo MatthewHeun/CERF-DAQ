@@ -1,5 +1,5 @@
 new Morris.Bar({
-        	element: 'summary-bar-chart',
+        	element: 'summary-bar-chart-<?php echo $graphnum ?>',
          	data: <?php
 					$filename = $Summary_Base . $year_file;
 					$lines = file($filename);

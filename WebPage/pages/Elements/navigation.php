@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Pi <?php echo $Pi_Number ?>: <?php echo $pageSensor ?></a>
+                <a class="navbar-brand" href="index.php">CERF Pi <?php echo $Pi_Number ?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -16,15 +16,16 @@
 						<li>
                             <a href="index.php"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</a>
                         </li>
-                        <li>
-                            <a href="sensor1.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR1 ?></a>
-                        </li>
-                        <li>
-                            <a href="sensor2.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR2 ?></a>
-                        </li>
-                        <li>
-                            <a href="sensor3.php"><i class="fa fa-dashboard fa-fw"></i> <?php echo $SENSOR3 ?></a>
-                        </li>
+						<?php
+							$sensors = array($SENSOR1, $SENSOR2, $SENSOR3, $SENSOR4, $SENSOR5, $SENSOR6, $SENSOR7, $SENSOR8, $SENSOR9, $SENSOR10, $SENSOR11, $SENSOR12, $SENSOR13, $SENSOR14, $SENSOR15, $SENSOR16);
+							$i = 1;
+							while ($i <= $NUMBER_OF_SENSORS){
+								echo '<li>';
+                            	echo '<a href="sensor' . $i . '.php"><i class="fa fa-dashboard fa-fw"></i>' . $sensors[$i-1] .'</a>';
+                        		echo '</li>';
+								$i = $i + 1;
+							}
+						?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
