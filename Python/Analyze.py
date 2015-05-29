@@ -39,20 +39,18 @@ high_peak_time = PeakTime2 # from global_vars
 debug = False # used for helping in development of code, turn to false for normal operation
 
 # ******************COULD BE CHANGED AUTOMATICALLY********************** #
-# Find a way to read this from pi itself
-sensor1 = '1'
-sensor2 = '2'
-sensor3 = '3'
+sensors = [Sensor_1, Sensor_2, Sensor_3, Sensor_4, Sensor_5, Sensor_6, Sensor_7, Sensor_8, Sensor_9, Sensor_10, Sensor_11, Sensor_12, Sensor_13, Sensor_14, Sensor_15, Sensor_16] #Sensor_X is from Gloabl Vars for discriptive name
 # **********************FUNCTION DEFINITIONS***************************** #  
 
     
 # analyzeLux() calls the functions to output for each of the sensors
 def analyzeLux():      
-    AnalyzeLightSensor(sensor1, Sensor_1)  #Sensor_X is from Gloabl Vars for discriptive name 
-    AnalyzeLightSensor(sensor2, Sensor_2)
-    AnalyzeLightSensor(sensor3, Sensor_3)
-        
-
+	i = 1
+	while (i <= Number_of_Sensors):
+    	AnalyzeLightSensor(str(i), sensors[i-1]) 
+		i += 1
+		 
+  
 def AnalyzeLightSensor(sensor, sensor_discrip):
     full_raw_path = (raw_path + 'Sensor ' + sensor + '/' + year + '/')
     filename = (summary_path + '/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
