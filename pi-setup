@@ -22,14 +22,18 @@ echo "Proceeding...\n"
 #=====CHANGING HOSTNAME=========
 #===============================
 echo "Changing Hostname..."
-echo "cerfpi$PI_NUMBER" > /etc/hostname 
+#echo "cerfpi$PI_NUMBER" > /etc/hostname 
 #===============================
 #=====PASSWORD SETTING==========
 #===============================
 echo "We will now update the Pi password."
 echo "The default passord is 'raspberry'"
 echo "Please record the new password, it will be used for SSH\n"
-passwd pi
+read -p "Would you like to change the user password?(y/n): " PASSCHANGE
+if [ "$PASSCHANGE" = "y" ]; then
+	passwd pi
+fi
+echo "proceeding"
 
 #===============================
 #=====Creating Directories======
@@ -58,30 +62,6 @@ sudo apt-get install xrdp
 sudo easy_install pytz
 sudo easy_install smbus 
 sudo adduser pi i2c 
-#==================================
-#====Creating Global Vars PHP =====
-#==================================
-echo "Writing PHP Global Vars"
-cd /home/pi/Desktop/CERF-DAQ/WebPage/pages
-echo "<?php" > global_vars.php
-echo "$""Pi_Number= "\"$PI_NUMBER\"";" >> global_vars.php 
-echo "//********************************************************************************************" >> global_vars.php
-echo "//**STEP: 1/2" >> global_vars.php
-echo "//**SENSOR NAMES: Used for WEBSITE" >> global_vars.php
-echo "//**Only change the sensor names in this file between the two stared lines" >> global_vars.php
-echo "//**Example: SENSOR1: \"TNT NORTH\"" >> global_vars.php
-echo "//**The name must remain in quotes!These names will be used for the WEBSITE" >> global_vars.php
-echo "//**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> global_vars.php
-echo "//**This file can be updated by running the pi-settings sript" >> global_vars.php
-echo "$""SENSOR1= "\"Sensor 1\"";" >> global_vars.php 
-echo "$""SENSOR2= "\"Sensor 2\"";" >> global_vars.php 
-echo "$""SENSOR3= "\"Sensor 3\"";" >> global_vars.php 
-echo "//**DO NOT EDIT BELOW THIS POINT " >> global_vars.php
-echo "//********************************************************************************************" >> global_vars.php
-echo "$""Summary_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Summary/\""";" >> global_vars.php 
-echo "$""Raw_Base= "\"../../../Data/Pi_\"" . "$""Pi_Number . "\"_Raw/\""";" >> global_vars.php
-echo "?>" >> global_vars.php 
-echo "PHP Saved"
 #==============================
 #====Creating Global Vars =====
 #==============================
@@ -99,16 +79,31 @@ fi
 
 echo 'Pi_Number = '$PI_NUMBER > /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#********************************************************************************************" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo "#**STEP: 2/2" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo "#**SENSOR NAMES: used for DATA FILES" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**SENSOR NAMES: used for DATA FILES adn WEBSITE" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#**Only change the sensor names and sensor tolerance in this file between the two stared lines" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#**Example: SENSOR1: \"TNT NORTH\"" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
-echo "#**The name must remain in quotes!These names will be used for the DATA FILES!" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo "#**The name must remain in quotes!These names will be used for the DATA FILES and website" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#**To save the file hit ctr-X then Y to save the file and hit enter to commit the changes" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo "#**This file can be updated by running the pi-settings sript" >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo ''>> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Number_of_Sensors = 3  #The number of sensors connected to the pi' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo ''>> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_1 = ''"Sensor 1"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_2 = ''"Sensor 2"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_3 = ''"Sensor 3"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_4 = ''"Sensor 4"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_5 = ''"Sensor 5"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_6 = ''"Sensor 6"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_7 = ''"Sensor 7"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_8 = ''"Sensor 8"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_9 = ''"Sensor 9"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_10 = ''"Sensor 10"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_11 = ''"Sensor 11"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_12 = ''"Sensor 12"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_13 = ''"Sensor 13"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_14 = ''"Sensor 14"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_15 = ''"Sensor 15"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+echo 'Sensor_16 = ''"Sensor 16"' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo '' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'Sensor_tol = 25   #any light reading below this value will be considered off' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
 echo 'PeakTime1 = 11    #hour in a 24 hour day' >> /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
@@ -119,8 +114,8 @@ echo "#*************************************************************************
 #=====Editing Sensor Names =====
 #===============================
 
-sudo nano /home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php
 sudo nano /home/pi/Desktop/CERF-DAQ/Python/global_vars.py
+sudo python /home/pi/Desktop/CERF-DAQ/Python/global_vars_to_php.py
 
 #===============================
 #==moving git web to webserver =
@@ -144,6 +139,6 @@ sudo /etc/init.d/cron restart
 echo "Setup is completed" 
 echo "The pi will now reboot and start taking data"
 echo "You will be disconected"
-sudo reboot 
+rsudo reboot 
 
 
