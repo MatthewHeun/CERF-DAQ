@@ -139,6 +139,6 @@ sudo /etc/init.d/cron restart
 echo "Setup is completed" 
 echo "The pi will now reboot and start taking data"
 echo "You will be disconected"
-rsudo reboot 
+sudo reboot 
 
 
