@@ -47,7 +47,7 @@ sensors = [Sensor_1, Sensor_2, Sensor_3, Sensor_4, Sensor_5, Sensor_6, Sensor_7,
 def analyzeLux():      
 	i = 1
 	while (i <= Number_of_Sensors):
-    	AnalyzeLightSensor(str(i), sensors[i-1]) 
+    		AnalyzeLightSensor(str(i), sensors[i-1]) 
 		i += 1
 		 
   
