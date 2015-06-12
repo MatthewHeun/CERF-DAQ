@@ -6,38 +6,23 @@ f = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/global_vars.php', 'w')
 
 f.write('<?php\n')
 f.write('$Pi_Number= "' + str(Pi_Number) + '";\n')
-f.write('$NUMBER_OF_SENSORS= ' + str(Number_of_Sensors) + ';\n') 
-f.write('$SENSOR1= "'+Sensor_1 +'";\n')
-f.write('$SENSOR2= "'+Sensor_2 +'";\n')
-f.write('$SENSOR3= "'+Sensor_3 +'";\n')
-f.write('$SENSOR4= "'+Sensor_4 +'";\n')
-f.write('$SENSOR5= "'+Sensor_5 +'";\n')
-f.write('$SENSOR6= "'+Sensor_6 +'";\n')
-f.write('$SENSOR7= "'+Sensor_7 +'";\n')
-f.write('$SENSOR8= "'+Sensor_8 +'";\n')
-f.write('$SENSOR9= "'+Sensor_9 +'";\n')
-f.write('$SENSOR10= "'+Sensor_10 +'";\n')
-f.write('$SENSOR11= "'+Sensor_11 +'";\n')
-f.write('$SENSOR12= "'+Sensor_12 +'";\n')
-f.write('$SENSOR13= "'+Sensor_13 +'";\n')
-f.write('$SENSOR14= "'+Sensor_14 +'";\n')
-f.write('$SENSOR15= "'+Sensor_15 +'";\n')
-f.write('$SENSOR16= "'+Sensor_16 +'";\n')
+f.write('$NUMBER_OF_SENSORS= ' + str(TOTAL_SENSORS) + ';\n') 
+f.write('$SENSOR_NAMES = array(')
+
+for i in range(TOTAL_SENSORS):
+	if i != TOTAL_SENSORS - 1:
+		f.write('"' + SENSOR_NAMES[i] + '"' + ', ')
+	else:
+		f.write('"' + SENSOR_NAMES[i] + '"' + ');' + '\n')
+
 f.write('\n')
-f.write('$SENSOR1TYPE= "' + Sensor_1_Type + '";\n')
-f.write('$SENSOR2TYPE= "' + Sensor_2_Type + '";\n')
-f.write('$SENSOR3TYPE= "' + Sensor_3_Type + '";\n')
-f.write('$SENSOR4TYPE= "' + Sensor_4_Type + '";\n')
-f.write('$SENSOR5TYPE= "' + Sensor_5_Type + '";\n')
-f.write('$SENSOR6TYPE= "' + Sensor_6_Type + '";\n')
-f.write('$SENSOR7TYPE= "' + Sensor_7_Type + '";\n')
-f.write('$SENSOR8TYPE= "' + Sensor_8_Type + '";\n')
-f.write('$SENSOR9TYPE= "' + Sensor_9_Type + '";\n')
-f.write('$SENSOR10TYPE= "' + Sensor_10_Type + '";\n')
-f.write('$SENSOR11TYPE= "' + Sensor_11_Type + '";\n')
-f.write('$SENSOR12TYPE= "' + Sensor_12_Type + '";\n')
-f.write('$SENSOR13TYPE= "' + Sensor_13_Type + '";\n')
-f.write('$SENSOR14TYPE= "' + Sensor_14_Type + '";\n')
-f.write('$SENSOR15TYPE= "' + Sensor_15_Type + '";\n')
-f.write('$SENSOR16TYPE= "' + Sensor_16_Type + '";\n')
+
+f.write('$SENSOR_TYPES = array(')
+
+for i in range(TOTAL_SENSORS):
+	if i != TOTAL_SENSORS -1:
+		f.write('"' + SENSOR_TYPES[i] + '"' + ', ')
+	else:
+		f.write('"' + SENSOR_TYPES[i] + '"' + ');' + '\n')
+
 f.write('?>\n')
