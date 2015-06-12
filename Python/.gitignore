@@ -11,4 +11,6 @@
 .Rproj.user/
 
 #global var files
-global_vars*
+global_vars.php
+user_input.py
+
