@@ -27,8 +27,8 @@ from Occupancy_vars import*
 nameOfPi = str(PI_NUMBER)
 
 ##### Data holders
-volts = [0] * Number_of_Temperature_and_Light_Sensors
-value = [0] * (Number_of_Temperature_and_Light_Sensors + Number_of_Occupancy_Sensors)
+volts = [0] * NUM_TEMP_AND_LIGHT
+value = [0] * TOTAL_SENSORS
 
 ##### Data path
 path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
@@ -43,13 +43,13 @@ ADS1115 = 0x01			#16-bit ADC (would be 0x00 for the 12bit ADC)
 				#Initialize ADC0: always (Default address 0x48)
 adc0 = ADS1x15(ic = ADS1115)
 				#Initialize ADC1: if there are more than four sensors (address 0x49 - addr pin connected to VDD)
-if Number_of_Temperature_and_Light_Sensors > 4:
+if NUM_TEMP_AND_LIGHT > 4:
 	adc1 = ADS1x15(ic = ADS1115, address = 0x49)
 				#Initialize ADC2: if there are more than eight sensors (address 0x4a - addr pin connected to SDA)
-if Number_of_Temperature_and_Light_Sensors > 8:
+if NUM_TEMP_AND_LIGHT > 8:
 	adc2 = ADS1x15(ic = ADS1115, address = 0x4A)
 				#Initialize ADC3: if there are more than twelve sensors (address 0x4b - addr pin connected to SDA)
-if Number_of_Temperature_and_Light_Sensors > 12:
+if NUM_TEMP_AND_LIGHT > 12:
 	adc3 = ADS1x15(ic = ADS1115, address = 0x4B)
 
 #==================================================================
@@ -70,21 +70,21 @@ def readVoltage(sensorNumber):
 
 				#Only read as many as there are sensors
 def readVolts():		
-	for i in range(Number_of_Temperature_and_Light_Sensors):
+	for i in range(NUM_TEMP_AND_LIGHT):
 		volts[i] = readVoltage(i)
 
 #------------------------------------------------------------------
 
 def convertVolts():
-	for i in range(Number_of_Temperature_and_Light_Sensors): 
+	for i in range(NUM_TEMP_AND_LIGHT): 
 		if SENSOR_TYPES[i] == "Light":
 			value[i] = pow(10, volts[i])
 		elif SENSOR_TYPES[i] == "Temperature":
 			value[i] = (100 * volts[i]) - 50
 
 def readOccupancy():
-	for i in range(Number_of_Occupancy_Sensors):
-		value[i+Number_of_Temperature_and_Occupancy_Sensors] = Occupancy[i]
+	for i in range(NUM_OCCUPANCY):
+		value[i+NUM_TEMP_AND_LIGHT] = Occupancy[i]
 
 #------------------------------------------------------------------
 
@@ -183,10 +183,10 @@ def outputData(numberOfSensors):
 
 readVolts()
 convertVolts()
-outputData(numberOfSensors)
+readOccupancy()
+outputData(TOTAL_SENSORS)
 
-for i in range(Number_of_Temperature_and_Light_Sensors):
-	print volts[i]
+for i in range(TOTAL_SENSORS):
 	print SENSOR_TYPES[i] + ": " + str(value[i])
 
 

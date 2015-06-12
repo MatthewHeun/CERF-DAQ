@@ -17,11 +17,18 @@
                             <a href="index.php"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</a>
                         </li>
 						<?php
-							$sensors = array($SENSOR1, $SENSOR2, $SENSOR3, $SENSOR4, $SENSOR5, $SENSOR6, $SENSOR7, $SENSOR8, $SENSOR9, $SENSOR10, $SENSOR11, $SENSOR12, $SENSOR13, $SENSOR14, $SENSOR15, $SENSOR16);
 							$i = 1;
 							while ($i <= $NUMBER_OF_SENSORS){
+								$Picture = ".";
+								if ($SENSOR_TYPES[$i-1] == "Light"){
+									$Picture = '<i class="fa fa-lightbulb-o fa-fw pull-right"></i>';
+								} elseif ($SENSOR_TYPES[$i-1] == "Temperature"){
+									$Picture = '<i class="fa fa-fire fa-fw pull-right"></i>';
+								} elseif ($SENSOR_TYPES[$i-1] == "Occupancy"){
+									$Picture = '<i class="fa fa-child fa-fw pull-right"></i>';
+								}
 								echo '<li>';
-                            	echo '<a href="sensor' . $i . '.php"><i class="fa fa-dashboard fa-fw"></i>' . $sensors[$i-1] .'</a>';
+                            	echo '<a href="sensor' . $i . '.php"><i class="fa fa-dashboard fa-fw"></i>  ' . $SENSOR_NAMES[$i-1] . $Picture . '</a>';
                         		echo '</li>';
 								$i = $i + 1;
 							}

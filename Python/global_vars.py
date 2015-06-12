@@ -18,9 +18,12 @@ numberOfSensors = Number_of_Temperature_and_Light_Sensors + Number_of_Occupancy_
 
 PI_NUMBER = Pi_Number
 TOTAL_SENSORS = Number_of_Temperature_and_Light_Sensors + Number_of_Occupancy_Sensors
+NUM_TEMP_AND_LIGHT = Number_of_Temperature_and_Light_Sensors
+NUM_OCCUPANCY = Number_of_Occupancy_Sensors
+
 SENSOR_TOL = Sensor_tol
-PeakTime1 = 11
-PeakTime2 = 19
+PEAK_TIME1 = PeakTime1
+PEAK_TIME2 = PeakTime2
 
 
 SENSOR_NAMES = [""] * TOTAL_SENSORS

@@ -3,13 +3,13 @@
 
 <head>
 
-<?php  $sensor_number = 1; ?>  <! change this >
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
 <?php
-	$pageSensor = $SENSOR1;    // change this
 	$pageLink = 'index.php';
-	
+	$sensor_number = 1;
+	$pageSensor = "Bruce";
+
 ?>
 
 </head>
@@ -56,12 +56,12 @@
 	<?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			$sensors = array($SENSOR1, $SENSOR2, $SENSOR3, $SENSOR4, $SENSOR5, $SENSOR6, $SENSOR7, $SENSOR8, $SENSOR9, $SENSOR10, $SENSOR11, $SENSOR12, $SENSOR13, $SENSOR14, $SENSOR15, $SENSOR16);
 			$i = 1;
 			$graphnum = 1;
 			while ($i <= $NUMBER_OF_SENSORS){
 				$year_file = "Pi_" . $Pi_Number . "_" . $i . "_" . $year_sum . ".csv";
-				$pageSensor = $sensors[$i - 1];
+				$sensor_number = i;
+				$pageSensor = $SENSOR_NAMES[$i - 1];
 				include 'Elements/morisbar.php'; 
 				$i = $i + 1;
 				$graphnum = $graphnum + 1;

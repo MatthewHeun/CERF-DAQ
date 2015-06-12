@@ -6,7 +6,7 @@
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
 <?php
-	$pageSensor = $SENSOR11;    // change this
+	$pageSensor = $SENSOR_NAMES[$sensor_number-1];
 	$pageLink = 'sensor' . $sensor_number . '.php';
 	
 ?>
@@ -31,7 +31,11 @@
                 <div class="col-lg-12">
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
-                    <?php include 'Elements/barchart.php'; ?>
+                    <?php 
+			if ($SENSOR_TYPES[$sensor_number-1] == "Light") {
+				include 'Elements/barchart.php'; 
+			}
+		    ?>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
@@ -45,8 +49,20 @@
 
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
-		<?php include 'Elements/morisbar.php'; ?>
-		<?php include 'Elements/morisline.php'; ?>
+		<?php 
+			if ($SENSOR_TYPES[$sensor_number-1] == "Light") {
+				include 'Elements/morisbar.php'; 
+			}
+		?>
+		<?php 
+			if ($SENSOR_TYPES[$sensor_number-1] == "Light") {
+				include 'Elements/morisline.php';
+			} elseif ($SENSOR_TYPES[$sensor_number-1] == "Temperature") {
+				include 'Elements/morislinetemp.php';
+			} elseif ($SENSOR_TYPES[$sensor_number-1] == "Occupancy") {
+				include 'Elements/morislineocc.php';
+			}
+		?>
 	</script>
 
 </body>

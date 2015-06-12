@@ -29,32 +29,38 @@ summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
 raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 print(year)
-if not os.path.exists(summary_path):
-	os.makedirs(summary_path)
+if not os.path.exists(summary_path + 'Light/'):
+	os.makedirs(summary_path + 'Light/')
+if not os.path.exists(summary_path + 'Temperature/'):
+	os.makedirs(summary_path + 'Temperature/')
+if not os.path.exists(summary_path + 'Occupancy/'):
+	os.makedirs(summary_path + 'Occupancy/')
 # **************************LIGHT ON TOLERANCE************************ #
-light_tol = Sensor_tol   # from global_vars
-low_peak_time = PeakTime1 # from global_vars
-high_peak_time = PeakTime2 # from global_vars
+light_tol = SENSOR_TOL   # from global_vars
+low_peak_time = PEAK_TIME1 # from global_vars
+high_peak_time = PEAK_TIME2 # from global_vars
 # **************************INITIALIZE VARIABLES************************ #
 debug = False # used for helping in development of code, turn to false for normal operation
 
 # **********************FUNCTION DEFINITIONS***************************** #  
 
     
-# analyzeLux() calls the functions to output for each of the sensors
-def analyzeLux():      
+# analyzeData() calls the functions to output for each of the sensors
+def analyzeData():      
 	for i in range(TOTAL_SENSORS):
 		if SENSOR_TYPES[i] == "Light":
-    			AnalyzeLightSensor(str(i+1), SENSOR_NAMES[i])		 
+    			AnalyzeLightSensor(str(i+1), SENSOR_NAMES[i])
+		elif SENSOR_TYPES[i] == "Temperature":
+			AnalyzeTemperatureSensor(str(i+1), SENSOR_NAMES[i])		 
   
 def AnalyzeLightSensor(sensor, sensor_discrip):
     full_raw_path = (raw_path + 'Sensor' + sensor + '/' + year + '/')
-    filename = (summary_path + '/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+    filename = (summary_path + '/Light/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
     summaryfile = open(filename, 'w')
     summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
     summaryfile.close()
     summaryfile = open(filename, 'a')
-    summaryfile.write("#Pi_Number,Sensor_Number,Sensor_Name,Year,Month,On_Peak%,Off_Peak%" + '\n')
+    summaryfile.write("#Pi_Number,Sensor_Number,SENSOR_NAMES[sensor-1],Year,Month,On_Peak%,Off_Peak%" + '\n')
 
     if debug:
         print ('directory: ' + fullpath)
@@ -116,8 +122,81 @@ def AnalyzeLightSensor(sensor, sensor_discrip):
 			percentage_off_peak = 0
 		summaryfile.write(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
 		print(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')		
+
+def AnalyzeTemperatureSensor(sensor, sensor_discrip):
+    full_raw_path = (raw_path + 'Sensor' + sensor + '/' + year + '/')
+    filename = (summary_path + '/Temperature/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+    summaryfile = open(filename, 'w')
+    summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
+    summaryfile.close()
+    summaryfile = open(filename, 'a')
+    summaryfile.write("#Pi_Number,Sensor_Number,SENSOR_NAMES[sensor-1],Year,Month,Max_Temp_Day, Max_Temp_Night, Min_Temp_Day, Min_Temp_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
+
+    if debug:
+        print ('directory: ' + fullpath)
+        print ('This directory exists' + str(os.path.exists(fullpath)))
+ 
+    for month in month_list:
+	#******initializing counters*****
+    	maxTempDay = 0
+	maxTempNight = 0
+    	minTempDay = 100
+	minTempNight = 100
+    	minutesInRangeDay = 0
+    	minutesInRangeNight = 0
+	dayMinutes = 0
+	nightMinutes = 0
+	#*********************************
+	if not os.path.exists(full_raw_path + month):
+		summaryfile.write(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',0.00,0.00,0.00,0.00,0.00,0.00\n')
+	else:
+		for file in os.listdir(full_raw_path + month):
+			file = open(full_raw_path + month + '/' + file)
+			count = 0
+			for line in file:
+				if line[0] != "#":
+					row = re.split(',',line)
+					time = row[4]
+					temp = row[5].replace('\n','')
+					hour = time[-8:-6]
+					day = time[8:10]
+					weekday = date(int(year),int(month),int(day)).weekday()
+					day = ((int(hour) > 8) and (int(hour) < 17))
+					if day and (float(temp) > maxTempDay):
+						maxTempDay = temp
+					elif day and (float(temp) < minTempDay):
+						minTempDay = temp
+					elif (not day) and (float(temp) > maxTempNight):
+						maxTempNight = temp
+					elif (not day) and (float(temp) < minTempNight):
+						minTempNight = temp
+					if (day and (float(temp) > 19) and (float(temp) < 25)):
+						minutesInRangeDay += 1
+					elif ((not day) and (float(temp) > 19) and (float(temp) < 25)):
+						minutesInRangeNight += 1
+					if day:
+						dayMinutes += 1
+					if not day:
+						nightMinutes += 1				
+			file.close()
+		if minTempNight == 100:
+			minTempNight = 0
+		if minTempDay == 100:
+			minTempDay = 0
+		if minutesInRangeDay != 0:
+    			percentageInRangeDay = (float(minutesInRangeDay)/dayMinutes)*100
+		else:
+			percentageInRangeDay = 0
+		if minutesInRangeNight != 0:
+    			percentageInRangeNight = (float(minutesInRangeNight)/nightMinutes)*100
+		else:
+			percentageInRangeNight = 0
+		summaryfile.write(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + str(maxTempDay) + ',' + str(maxTempNight) + ',' + str(minTempDay) + ',' + str(minTempNight) + ',' + "%.2f" %percentageInRangeDay +','+ "%.2f" %percentageInRangeNight +'\n')
+		print(nameOfPi + ',' + sensor + ',' + sensor_discrip + ',' + year + ',' + month + ',' + str(maxTempDay) + ',' + str(maxTempNight) + ',' + str(minTempDay) + ',' + str(minTempNight) + ',' + "%.2f" %percentageInRangeDay +','+ "%.2f" %percentageInRangeNight +'\n')		
+
+
 while(1):
-    analyzeLux()
+    analyzeData()
     if not debug:
         break
     time.sleep(5)
