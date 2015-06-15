@@ -138,10 +138,10 @@ def AnalyzeTemperatureSensor(sensor, sensor_discrip):
  
     for month in month_list:
 	#******initializing counters*****
-    	maxTempDay = 0
-	maxTempNight = 0
-    	minTempDay = 100
-	minTempNight = 100
+    	maxTempDay = 0.0
+	maxTempNight = 0.0
+    	minTempDay = 100.0
+	minTempNight = 100.0
     	minutesInRangeDay = 0
     	minutesInRangeNight = 0
 	dayMinutes = 0
@@ -162,14 +162,16 @@ def AnalyzeTemperatureSensor(sensor, sensor_discrip):
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
 					day = ((int(hour) > 8) and (int(hour) < 17))
-					if day and (float(temp) > maxTempDay):
+					if (day and (float(temp) > float(maxTempDay))):
 						maxTempDay = temp
-					elif day and (float(temp) < minTempDay):
+					elif (day and (float(temp) < float(minTempDay))):
 						minTempDay = temp
-					elif (not day) and (float(temp) > maxTempNight):
+					elif ((not day) and (float(temp) > float(maxTempNight))):
 						maxTempNight = temp
-					elif (not day) and (float(temp) < minTempNight):
+					elif ((not day) and (float(temp) < float(minTempNight))):
+						print str(temp) + "  " + str(minTempNight)
 						minTempNight = temp
+						print minTempNight
 					if (day and (float(temp) > 19) and (float(temp) < 25)):
 						minutesInRangeDay += 1
 					elif ((not day) and (float(temp) > 19) and (float(temp) < 25)):
