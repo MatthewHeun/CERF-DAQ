@@ -1,7 +1,7 @@
 new Morris.Bar({
         	element: 'summary-bar-chart-<?php echo $graphnum ?>',
          	data: <?php
-					$filename = $Summary_Base . "Light" . '/' . $year_file;
+					$filename = $Summary_Base . $ANALYSIS_TYPES[$sensor_number-1] . '/' . $year_file;
 					$lines = file($filename);
 					$data = '[';
 					$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");

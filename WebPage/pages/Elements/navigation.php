@@ -13,9 +13,10 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-						<li>
+			<li>
                             <a href="index.php"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</a>
-                        </li>
+			</li>
+			
 						<?php
 							$i = 1;
 							while ($i <= $NUMBER_OF_SENSORS){
@@ -23,7 +24,7 @@
 								if ($SENSOR_TYPES[$i-1] == "Light"){
 									$Picture = '<i class="fa fa-lightbulb-o fa-fw pull-right"></i>';
 								} elseif ($SENSOR_TYPES[$i-1] == "Temperature"){
-									$Picture = '<i class="fa fa-fire fa-fw pull-right"></i>';
+									$Picture = '<i class="fa fa-tasks fa-fw pull-right"></i>';
 								} elseif ($SENSOR_TYPES[$i-1] == "Occupancy"){
 									$Picture = '<i class="fa fa-child fa-fw pull-right"></i>';
 								}
@@ -33,6 +34,9 @@
 								$i = $i + 1;
 							}
 						?>
+			<li>
+			    <a href="configuration.php" onClick="return confirm('Are you sure you want to edit the Pi\'s configuration settings? Incorrectly setting parameters can destroy data.');"><i class="fa fa-gear fa-fw"></i>Configuration Panel</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

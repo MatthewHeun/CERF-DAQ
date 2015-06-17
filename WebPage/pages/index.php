@@ -59,10 +59,11 @@
 			$i = 1;
 			$graphnum = 1;
 			while ($i <= $NUMBER_OF_SENSORS){
-				$year_file = "Pi_" . $Pi_Number . "_" . $i . "_" . $year_sum . ".csv";
-				$sensor_number = i;
-				$pageSensor = $SENSOR_NAMES[$i - 1];
-				include 'Elements/morisbar.php'; 
+				if ($ANALYSIS_TYPES[$i-1] == "on/off-peak") {
+					$year_file = "Pi_" . $Pi_Number . "_" . $i . "_" . $year_sum . ".csv";
+					$sensor_number = $i;
+					include 'Elements/morisbar.php'; 
+				}
 				$i = $i + 1;
 				$graphnum = $graphnum + 1;
 			}

@@ -32,10 +32,12 @@
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
                     <?php 
-			if ($SENSOR_TYPES[$sensor_number-1] == "Light") {
-				include 'Elements/barchartlight.php'; 
-			} elseif ($SENSOR_TYPES[$sensor_number-1] == "Temperature") {
-				include 'Elements/barcharttemp.php';
+			if ($ANALYSIS_TYPES[$sensor_number-1] == "on/off-peak") {
+				include 'Elements/barchartpeak.php'; 
+			} elseif ($ANALYSIS_TYPES[$sensor_number-1] == "min-max-ave") {
+				include 'Elements/barchartmin-max-ave.php';
+			} elseif ($ANALYSIS_TYPES[$sensor_number-1] == "bins") {
+				include 'Elements/barchartbins.php';
 			}
 		    ?>
                     <!-- /.panel -->
@@ -52,10 +54,11 @@
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			if ($SENSOR_TYPES[$sensor_number-1] == "Light") {
+			if ($ANALYSIS_TYPES[$sensor_number-1] == "on/off-peak") {
 				include 'Elements/morisbar.php'; 
-			} elseif ($SENSOR_TYPES[$sensor_number-1] == "Temperature") {
-				include 'Elements/morisdonuttemp.php';
+			} elseif ($ANALYSIS_TYPES[$sensor_number-1] == "min-max-ave") {
+				include 'Elements/morisdonuttempday.php';
+				include 'Elements/morisdonuttempnight.php';
 			}
 		?>
 		<?php 
