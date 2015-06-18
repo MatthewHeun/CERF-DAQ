@@ -47,3 +47,5 @@ for i in range(Number_of_Temperature_and_Light_Sensors):
 for i in range(Number_of_Occupancy_Sensors):
 	ANALYSIS_TYPES[i+Number_of_Temperature_and_Light_Sensors] = occupancyAnalysis[i-Number_of_Temperature_and_Light_Sensors]
 
+print SENSOR_NAMES
+

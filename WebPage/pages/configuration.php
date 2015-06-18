@@ -3,9 +3,11 @@
 
 <head>
 
+<?php $pageLink = 'configuration.php'; ?>
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
-<?php	$pageLink = 'configuration.php'; ?>
+<?php include 'Sensors/getNumSensors.php'; ?>
+<?php include 'Sensors/getSensorInfo.php'; ?>
 
 </head>
 
@@ -39,14 +41,15 @@
 						echo $options;
 					?>
 				</select>
+			</form>
 			<br>
-			<button style="margin-left:5%;" type="submit" form="numSensors" class="btn btn-primary">Submit</button>
+			<button style="margin-left:5%;" type="sbumit" form="numSensors" class="btn btn-primary" name="submitSensors">Submit</button>
 			</div> <!-- col-lg-3 -->
 			</div> <!-- panel-body -->
 	</div> <!-- panel panel-default -->
 		<?php include 'Elements/sensorConfig.php'; ?>
-        	<br><br>
-	</div>  <!-- /#page-wrapper -->
+  	<br><br>
+	</div>  <!-- page-wrapper -->
 	</div>	<!-- wrapper -->
 </body>
 	
