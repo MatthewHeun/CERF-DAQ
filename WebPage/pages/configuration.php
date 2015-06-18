@@ -35,7 +35,12 @@
 						$options = "";
 						$i = 1;
 						while ($i < 33) {
-							$options .= ("<option>" . $i . "</option>" . "\n");
+							if ($i == $NUM_SENSORS) {
+								$options .= ('<option selected="selected">' . $i . "</option>" . "\n");
+							} 
+							else { 
+								$options .= ("<option>" . $i . "</option>" . "\n");
+							}
 							$i += 1;
 						}
 						echo $options;
