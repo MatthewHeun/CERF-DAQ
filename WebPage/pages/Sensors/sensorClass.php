@@ -19,6 +19,8 @@ class sensor {
 		$this->thresholdMin = 25;
 		$this->thresholdMax = 500;
 		$this->number = $sensor_number;
+		$this->i2cAddress = 0;
+		$this->pinNumber = 0;
 	}
 
 	function set_name($new_name){
@@ -41,6 +43,14 @@ class sensor {
 	function set_threshold($new_threshold_min, $new_threshold_max){
 		$this->thresholdMin = $new_threshold_min;
 		$this->thresholdMax = $new_threshold_max;
+	}
+
+	function set_i2cAddress($new_i2cAddress){
+		$this->i2cAddress = $new_i2cAddress;
+	}
+
+	function set_pinNumber($new_pinNumber){
+		$this->pinNumber = $new_pinNumber;
 	}
 
 }

@@ -14,7 +14,7 @@
 var Flag = 0;
 
 function loadAndAlert(){
-	alert("The browser will need to be refreshed to reflect changes");
+	alert('After the page refreshes, hit "Display Updates!" to make the changes visible');
 }
 //-->
 </script>
@@ -22,7 +22,7 @@ function loadAndAlert(){
 
 </head>
 
-<body onLoad= "LoadOnce">
+<body>
 	<div id = "wrapper">
 		<!--Navigation -->
 		<?php include 'Elements/navigation.php'; ?>
@@ -63,6 +63,8 @@ function loadAndAlert(){
 			</div> <!-- col-lg-3 -->
 			</div> <!-- panel-body -->
 	</div> <!-- panel panel-default -->
+	<button type="button" onclick="window.location.href=window.location.href" class="btn btn-primary btn-block">Display Updates!</button>
+	<br>
 		<?php include 'Elements/sensorConfig.php'; ?>
   	<br><br>
 	</div>  <!-- page-wrapper -->

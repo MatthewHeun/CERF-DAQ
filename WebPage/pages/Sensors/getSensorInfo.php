@@ -8,6 +8,8 @@ $peakStartStrings = new ArrayObject(array());
 $peakStopStrings = new ArrayObject(array());
 $minStrings = new ArrayObject(array());
 $maxStrings = new ArrayObject(array());
+$i2cStrings = new ArrayObject(array());
+$pinStrings = new ArrayObject(array());
 
 $nameArray = new ArrayObject(array());
 $typeArray = new ArrayObject(array());
@@ -16,6 +18,8 @@ $peakStartArray = new ArrayObject(array());
 $peakStopArray = new ArrayObject(array());
 $minArray = new ArrayObject(array());
 $maxArray = new ArrayObject(array());
+$i2cArray = new ArrayObject(array());
+$pinArray = new ArrayObject(array());
 
 
 for ($i = 1; $i <= $NUM_SENSORS; $i++) {
@@ -26,6 +30,8 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$peakStopStrings->append("peakStop" . $i);
 	$minStrings->append("min" . $i);
 	$maxStrings->append("max" . $i);
+	$i2cStrings->append("i2c" . $i);
+	$pinStrings->append("pin" . $i);
 }
 
 if(isset($_GET["sensorInfo"])){
@@ -37,6 +43,8 @@ if(isset($_GET["sensorInfo"])){
 			$peakStopArray->append($_GET[$peakStopStrings[$i-1]]);
 			$minArray->append($_GET[$minStrings[$i-1]]);
 			$maxArray->append($_GET[$maxStrings[$i-1]]);
+			$i2cArray->append($_GET[$i2cStrings[$i-1]]);
+			$pinArray->append($_GET[$pinStrings[$i-1]]);
 	}
 
 	$infoFile = fopen("sensorInfo.txt", "w");
@@ -48,6 +56,8 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $peakStopArray[$i-1] . "\n");
 		fwrite($infoFile, $minArray[$i-1] . "\n");
 		fwrite($infoFile, $maxArray[$i-1] . "\n");
+		fwrite($infoFile, $i2cArray[$i-1] . "\n");
+		fwrite($infoFile, $pinArray[$i-1] . "\n");
 	}
 }
 

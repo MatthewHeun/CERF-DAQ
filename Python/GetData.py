@@ -30,7 +30,7 @@ nameOfPi = str(PI_NUMBER)
 value = [0] * NUM_SENSORS
 NUM_TEMP_AND_LIGHT = 0
 ##### Data path
-path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
+path = '/home/cjk36/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
 #==================================================================
 #------------------------INITIALIZE ADC's--------------------------
