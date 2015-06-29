@@ -14,3 +14,5 @@
 global_vars.php
 user_input.py
 
+#pyc files
+*.pyc
