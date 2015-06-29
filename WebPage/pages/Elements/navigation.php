@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">CERF Pi <?php echo $Pi_Number ?></a>
+                <a class="navbar-brand" href="index.php">CERF Pi <?php echo $PI_NUMBER ?></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -19,17 +19,17 @@
 			
 						<?php
 							$i = 1;
-							while ($i <= $NUMBER_OF_SENSORS){
+							while ($i <= $NUM_SENSORS){
 								$Picture = ".";
-								if ($SENSOR_TYPES[$i-1] == "Light"){
+								if ($SENSOR_INFO[$i-1]->type == "Light"){
 									$Picture = '<i class="fa fa-lightbulb-o fa-fw pull-right"></i>';
-								} elseif ($SENSOR_TYPES[$i-1] == "Temperature"){
+								} elseif ($SENSOR_INFO[$i-1]->type == "Temperature"){
 									$Picture = '<i class="fa fa-tasks fa-fw pull-right"></i>';
-								} elseif ($SENSOR_TYPES[$i-1] == "Occupancy"){
+								} elseif ($SENSOR_INFO[$i-1]->type == "Occupancy"){
 									$Picture = '<i class="fa fa-child fa-fw pull-right"></i>';
 								}
 								echo '<li>';
-                            	echo '<a href="sensor' . $i . '.php"><i class="fa fa-dashboard fa-fw"></i>  ' . $SENSOR_NAMES[$i-1] . $Picture . '</a>';
+                            	echo '<a href="sensor' . $i . '.php"><i class="fa fa-dashboard fa-fw"></i>  ' . $SENSOR_INFO[$i-1]->name . $Picture . '</a>';
                         		echo '</li>';
 								$i = $i + 1;
 							}

@@ -3,7 +3,7 @@
 <?php
 $pageLink = 'configuration.php' . "\n";
 $html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="get">' . "\n";
-for ($i=0; $i < $NUMBER_OF_SENSORS; $i++){
+for ($i=0; $i < $NUM_SENSORS; $i++){
 	$html_sensor_list .= '<div class="panel panel-default">' . "\n";
 		$html_sensor_list .= '<div class="panel-heading">Sensor ' . ($i+1) . ' Specifics</div>' . "\n";
 		$html_sensor_list .= '<div class="panel-body">' . "\n";
@@ -113,7 +113,7 @@ for ($i=0; $i < $NUMBER_OF_SENSORS; $i++){
 	$html_sensor_list .= '</div> <!-- panel2 panel2-default -->' . "\n";
 }
 $html_sensor_list .= '</form>' . "\n";
-$html_sensor_list .= '<button onclick="alert(' . "'" . 'the browser will automatically refresh after the changes have taken place' . "'" . ');" style="margin-left:auto; margin-right:auto;" type="submit" form="sensorSpecifics" class="btn btn-primary btn-block" name= "sensorInfo">Submit</button>' . "\n";
+$html_sensor_list .= '<button onclick="loadAndAlert()" style="margin-left:auto; margin-right:auto;" type="submit" form="sensorSpecifics" class="btn btn-primary btn-block" name= "sensorInfo">Submit</button>' . "\n";
 
 echo $html_sensor_list;
 

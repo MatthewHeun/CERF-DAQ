@@ -1,6 +1,14 @@
 <?php
 
-$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numLightSensors.txt", "r");
+$numPiFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
+
+$PI_NUMBER = fgets($numPiFile);
+
+$PI_NUMBER = intval($PI_NUMBER);
+
+fclose($numPiFile);
+
+$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
 
 $NUM_SENSORS = fgets($numSensorFile);
 
@@ -30,5 +38,6 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 
 	}	
 
+fclose($sensorInfoFile);
 
 ?>

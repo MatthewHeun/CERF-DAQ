@@ -1,9 +1,9 @@
 <?php
 
 if(isset($_GET['submitSensors'])){
-		$numLightSensors = $_GET['numLightSensors'];
-		$file = fopen("numLightSensors.txt", "w");
-		fwrite($file, $numLightSensors);
+		$numSensors = $_GET['numSensors'];
+		$file = fopen("numSensors.txt", "w");
+		fwrite($file, $numSensors);
 }
 
 ?>

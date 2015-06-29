@@ -9,9 +9,20 @@
 <?php include 'Sensors/getNumSensors.php'; ?>
 <?php include 'Sensors/getSensorInfo.php'; ?>
 
+<script language="JavaScript">
+<!-- 
+var Flag = 0;
+
+function loadAndAlert(){
+	alert("The browser will need to be refreshed to reflect changes");
+}
+//-->
+</script>
+
+
 </head>
 
-<body>
+<body onLoad= "LoadOnce">
 	<div id = "wrapper">
 		<!--Navigation -->
 		<?php include 'Elements/navigation.php'; ?>
@@ -30,7 +41,7 @@
 			<div class="col-lg-3">
 			<form action="<?php echo $pageLink?>" id="numSensors" method="get">
 				<p> Number of Sensors </p>
-				<select class="form-control" name="numLightSensors">
+				<select class="form-control" name="numSensors">
 					<?php
 						$options = "";
 						$i = 1;

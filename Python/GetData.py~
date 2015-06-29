@@ -27,8 +27,9 @@ from Occupancy_vars import*
 nameOfPi = str(PI_NUMBER)
 
 ##### Data holders
-value = [0] * NUM_SENSORS
-NUM_TEMP_AND_LIGHT = 0
+volts = [0] * NUM_TEMP_AND_LIGHT
+value = [0] * TOTAL_SENSORS
+
 ##### Data path
 path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
@@ -42,10 +43,6 @@ ADS1115 = 0x01			#16-bit ADC (would be 0x00 for the 12bit ADC)
 				#Initialize ADC0: always (Default address 0x48)
 adc0 = ADS1x15(ic = ADS1115)
 				#Initialize ADC1: if there are more than four sensors (address 0x49 - addr pin connected to VDD)
-for i in range(NUM_SENSORS):
-	if ((SENSOR_INFO[i].type == "Temperature") or (SENSOR_INFO[i].type == "Light")):
-		NUM_TEMP_AND_LIGHT += 1
-
 if NUM_TEMP_AND_LIGHT > 4:
 	adc1 = ADS1x15(ic = ADS1115, address = 0x49)
 				#Initialize ADC2: if there are more than eight sensors (address 0x4a - addr pin connected to SDA)
