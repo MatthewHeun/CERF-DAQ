@@ -1,6 +1,6 @@
 from sensorClass import *
 
-numPiFile = "/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
+numPiFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
 
 f = open(numPiFile)
 
@@ -8,7 +8,7 @@ PI_NUMBER = int(f.readline())
 
 f.close()
 
-numSensorFile = "/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt"
+numSensorFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt"
 
 f = open(numSensorFile)
 
@@ -16,7 +16,7 @@ NUM_SENSORS = int(f.readline())
 
 f.close()
 
-sensorInfoFile = "/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
+sensorInfoFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
 
 f = open(sensorInfoFile)
 
