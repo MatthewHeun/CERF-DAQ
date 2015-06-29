@@ -98,7 +98,8 @@ fi
 #=====Editing Sensor Names =====
 #===============================
 
-sudo nano /home/pi/Desktop/CERF-DAQ/Python/user_input.py
+#moved to the website
+#sudo nano /home/pi/Desktop/CERF-DAQ/Python/user_input.py
 sudo python /home/pi/Desktop/CERF-DAQ/Python/global_vars_to_php.py
 
 #===============================
