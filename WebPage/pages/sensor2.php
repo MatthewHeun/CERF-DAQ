@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-<?php  $sensor_number = '2'; ?>  <! change this >
+<?php  $sensor_number = '2'; ?>  <!-- change this -->
+<?php include 'Sensors/globalSensorInfo.php'; ?>
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
-<?php include 'Sensors/globalSensorInfo.php'; ?>
 <?php
 	$pageSensor = $SENSOR_INFO[$sensor_number-1]->name;
 	$pageLink = 'sensor' . $sensor_number . '.php';
