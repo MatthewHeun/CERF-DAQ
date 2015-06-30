@@ -34,8 +34,11 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	$SENSOR_INFO[$i-1]->set_peak(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
 	#echo $SENSOR_INFO[$i-1]->peakStart . " " . $SENSOR_INFO[$i-1]->peakStop . " ";
 	$SENSOR_INFO[$i-1]->set_threshold(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->thresholdMin . " " . $SENSOR_INFO[$i-1]->thresholdMax . "\n";
-
+	#echo $SENSOR_INFO[$i-1]->thresholdMin . " " . $SENSOR_INFO[$i-1]->thresholdMax;
+	$SENSOR_INFO[$i-1]->set_i2cAddress(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->i2cAddress . " ";
+	$SENSOR_INFO[$i-1]->set_pinNumber(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	}	
 
 fclose($sensorInfoFile);

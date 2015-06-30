@@ -1,3 +1,22 @@
+import RPi.GPIO as GPIO
+import time
+import os
+from globalVars import *
+
+def getLight(i2cAddress, pinNumber):
+	adc = ADS1x15(ic = ADS1115, address = i2cAddress)
+	voltage = adc.readADCSingleEnded(pinNumber, 4096, 250) / 1000
+	value  = pow(10, voltage)
+	return value
+
+def getTemperature(i2cAddress, pinNumber):
+	adc = ADS1x15(ic = ADS1115, address = i2cAddress)
+	voltage = adc.readADCSingleEnded(pinNumber, 4096, 250) / 1000
+	value  = (100 * voltage) - 50
+	return value
+
+def getOccupancy(pinNumber):
+
 class Sensor:
 	def __init__(self, sensorNumber):
 		self.name = ""
@@ -8,6 +27,9 @@ class Sensor:
 		self.thresholdMin = 0
 		self.thresholdMax = 0
 		self.number = sensorNumber
+		self.i2cAddress = 0
+		self.pinNumber = 0
+		self.value = 0
 
 	def set_name(self, new_name):
 		self.name = new_name
@@ -25,3 +47,20 @@ class Sensor:
 	def set_threshold(self, new_threshold_min, new_threshold_max):
 		self.thresholdMin = new_threshold_min
 		self.thresholdMax = new_threshold_max
+
+	def set_i2cAddress(self, new_address):
+		self.i2cAddress = new_address
+
+	def set_pinNumber(self, new_pinNumber):
+		self.pinNumber = new_pinNumber
+
+	def set_value(self):
+		reading = 0
+		if (self.type == "Light"):
+			reading = getLight(self.i2cAddress, self.pinNumber)
+		elif (self.type == "Temperature"):
+			reading = getTemperature(self.i2cAddress, self.pinNumber)
+		elif (self.type == "Occupancy"):
+			reading = getOccupancy(self.pinNumber)
+		self.value = reading
+
