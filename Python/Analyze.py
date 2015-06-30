@@ -17,7 +17,7 @@ import re
 import os
 import re  #line delimiter
 from datetime import date
-from global_vars import*  # Global vars
+from globalVars import*  # Global vars
 #<<<<<<< HEAD
 
 #==================================================================
@@ -34,10 +34,6 @@ summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
 raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
-# ***********************GLOABL VARIABLES************************ #
-light_tol = SENSOR_TOL   # from global_vars
-low_peak_time = PEAK_TIME1 # from global_vars
-high_peak_time = PEAK_TIME2 # from global_vars
 
 #==================================================================
 #------------------------Function Definitions----------------------
@@ -46,18 +42,18 @@ high_peak_time = PEAK_TIME2 # from global_vars
 
 					#createDirectories() creates the folders used to organize the data for easier reference 
 def createDirectories():
-	if not os.path.exists(summary_path + 'bins/'):
-		os.makedirs(summary_path + 'bins/')
-	if not os.path.exists(summary_path + 'on/off-peak/'):
-		os.makedirs(summary_path + 'on/off-peak/')
-	if not os.path.exists(summary_path + 'min-max-ave/'):
-		os.makedirs(summary_path + 'min-max-ave/')
+	if not os.path.exists(summary_path + 'Bins/'):
+		os.makedirs(summary_path + 'Bins/')
+	if not os.path.exists(summary_path + 'Peak/'):
+		os.makedirs(summary_path + 'Peak/')
+	if not os.path.exists(summary_path + 'Min-Max/'):
+		os.makedirs(summary_path + 'Min-Max/')
 
 #------------------------------------------------------------------
 
 					#initializeSummary() writes the metadata to each file
-def initializeSummary(sensor, sensorType):
-	filename = (summary_path + str(sensorType) + '/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+def initializeSummary(sensor):
+	filename = (summary_path + str(sensor.analysis) + '/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'w')
 	summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
 	summaryfile.close()
@@ -66,19 +62,19 @@ def initializeSummary(sensor, sensorType):
 					
 					#delclares the path to the data
 def get_full_raw_path(sensor):
-	return (raw_path + 'Sensor' + sensor + '/' + year + '/')
+	return (raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/')
 
 #------------------------------------------------------------------
 
 					#extrapolateOnPeakOffPeakData() determines if the data was high during on peak, or high during off peak
-def extrapolateOnPeakOffPeakData(month, sensor, sensorName):
+def extrapolateOnPeakOffPeakData(month, sensor):
 	full_raw_path = get_full_raw_path(sensor)
 	total_min_off_peak = 0
 	total_min_on_peak = 0
 	min_on_peak = 0
 	min_off_peak = 0
 	if not os.path.exists(full_raw_path + month):
-		filestring = nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',0.00,0.00\n'
+		filestring = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',0.00,0.00\n'
 	else:
 		for file in os.listdir(full_raw_path + month):
 			file = open(full_raw_path + month + '/' + file)
@@ -92,16 +88,16 @@ def extrapolateOnPeakOffPeakData(month, sensor, sensorName):
 					hour = time[-8:-6]
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
-					peak_hour = int(hour) >= low_peak_time and int(hour) < high_peak_time
+					peak_hour = int(hour) >= sensor.peakStart and int(hour) < sensor.peakStop
 					peak_day = weekday < 5
 					if (peak_hour and peak_day):
-						if (float(data) > light_tol):
+						if (float(data) > sensor.thresholdMin):
 							total_min_on_peak += 1
 							min_on_peak += 1
 						else:
 							total_min_on_peak += 1
 					else:
-						if (float(data) > light_tol):
+						if (float(data) > sensor.thresholdMin):
 							total_min_off_peak += 1
 							min_off_peak += 1
 						else:
@@ -116,17 +112,17 @@ def extrapolateOnPeakOffPeakData(month, sensor, sensorName):
 			percentage_off_peak = (float(min_off_peak)/total_min_off_peak)*100
 		else:
 			percentage_off_peak = 0
-		filestring = (nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
+		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
 	return filestring
 
 #------------------------------------------------------------------
 
-def extrapolateMinMaxAveData(month, sensor, sensorName):
+def extrapolateMinMaxAveData(month, sensor):
 	full_raw_path = get_full_raw_path(sensor)
-	maxTempDay = 0.0
-	maxTempNight = 0.0
-	minTempDay = 100.0
-	minTempNight = 100.0
+	maxDay = 0.0
+	maxNight = 0.0
+	minDay = 100000.0
+	minNight = 100000.0
 	minutesInRangeDay = 0
 	minutesInRangeNight = 0
 	dayMinutes = 0
@@ -136,7 +132,7 @@ def extrapolateMinMaxAveData(month, sensor, sensorName):
 	min_on_peak = 0
 	min_off_peak = 0
 	if not os.path.exists(full_raw_path + month):
-		filestring = (nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',0.00,0.00,0.00,0.00,0.00,0.00\n')
+		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',0.00,0.00,0.00,0.00,0.00,0.00\n')
 	else:
 		for file in os.listdir(full_raw_path + month):
 			file = open(full_raw_path + month + '/' + file)
@@ -149,13 +145,13 @@ def extrapolateMinMaxAveData(month, sensor, sensorName):
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
 					day = ((int(hour) > 8) and (int(hour) < 17))
-					if (day and (float(data) > float(maxTempDay))):
-						maxTempDay = data
-					elif (day and (float(data) < float(minTempDay))):
-						minTempDay = data
-					elif ((not day) and (float(data) > float(maxTempNight))):
-						maxTempNight = data
-					elif ((not day) and (float(data) < float(minTempNight))):
+					if (day and (float(data) > float(maxDay))):
+						maxDay = data
+					elif (day and (float(data) < float(minDay))):
+						minDay = data
+					elif ((not day) and (float(data) > float(maxNight))):
+						maxNight = data
+					elif ((not day) and (float(data) < float(minNight))):
 						minTempNight = data
 					if (day and (float(data) > 20) and (float(data) < 22)):
 						minutesInRangeDay += 1
@@ -166,9 +162,9 @@ def extrapolateMinMaxAveData(month, sensor, sensorName):
 					if not day:
 						nightMinutes += 1				
 			file.close()
-		if minTempNight == 100:
+		if minNight == 100:
 			minTempNight = 0
-		if minTempDay == 100:
+		if minDay == 100:
 			minTempDay = 0
 		if minutesInRangeDay != 0:
     			percentageInRangeDay = (float(minutesInRangeDay)/dayMinutes)*100
@@ -178,45 +174,45 @@ def extrapolateMinMaxAveData(month, sensor, sensorName):
     			percentageInRangeNight = (float(minutesInRangeNight)/nightMinutes)*100
 		else:
 			percentageInRangeNight = 0
-		filestring = (nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',' + str(maxTempDay) + ',' + str(maxTempNight) + ',' + str(minTempDay) + ',' + str(minTempNight) + ',' + "%.2f" %percentageInRangeDay +','+ "%.2f" %percentageInRangeNight +'\n')
+		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + str(maxDay) + ',' + str(maxNight) + ',' + str(minDay) + ',' + str(minNight) + ',' + "%.2f" %percentageInRangeDay +','+ "%.2f" %percentageInRangeNight +'\n')
 	return filestring
 
 #------------------------------------------------------------------
 
 					#AnalyzePeak() performas an on/off-peak analysis of the data
-def AnalyzePeak(sensor, sensorName, sensorType):
-    	initializeSummary(sensor, "on/off-peak")
-	filename = (summary_path + 'on/off-peak/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+def AnalyzePeak(sensor):
+    	initializeSummary(sensor)
+	filename = (summary_path + 'Peak/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
-    	summaryfile.write("#Pi_Number,Sensor_Number," + str(SENSOR_NAMES[int(sensor)-1]) + ",Year,Month,On_Peak%,Off_Peak%" + '\n')
+    	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,On_Peak%,Off_Peak%" + '\n')
  
     	for month in month_list:
-		filestring = extrapolateOnPeakOffPeakData(month, sensor, sensorName)
+		filestring = extrapolateOnPeakOffPeakData(month, sensor)
 		summaryfile.write(filestring)
 		print(filestring)		
 
 #------------------------------------------------------------------
 
 					#AnalyzeMinMaxAve() performs a min, max, and average analysis on the data
-def AnalyzeMinMaxAve(sensor, sensorName, sensorType):
-    	initializeSummary(sensor, "min-max-ave")
-	filename = (summary_path + 'min-max-ave/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+def AnalyzeMinMaxAve(sensor):
+    	initializeSummary(sensor)
+	filename = (summary_path + 'Min-Max/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
-    	summaryfile.write("#Pi_Number,Sensor_Number," + str(SENSOR_NAMES[int(sensor)-1]) + ",Year,Month,Max_Temp_Day, Max_Temp_Night, Min_Temp_Day, Min_Temp_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
+    	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Max_Day, Max_Night, Min_Day, Min_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
 
 	for month in month_list:
-		filestring = extrapolateMinMaxAveData(month, sensor, sensorName)
+		filestring = extrapolateMinMaxAveData(month, sensor)
 		summaryfile.write(filestring)
 		print(filestring)		
 
 #------------------------------------------------------------------
 
 					#creates bins of start and stop times for certain data parameters	
-def AnalyzeBins(sensor, sensorName, sensorType):
-	initializeSummary(sensor, "bins")
-	filename = (summary_path + 'bins/Pi_' + nameOfPi + '_'+ sensor + '_' + year + '.csv')
+def AnalyzeBins(sensor):
+	initializeSummary(sensor)
+	filename = (summary_path + 'Bins/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'a')
-	summaryfile.write("#Pi_Number,Sensor_Number," + str(SENSOR_NAMES[int(sensor)-1]) + ",Year,Month,Start_Time,End_Time" + '\n')
+	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Start_Time,End_Time" + '\n')
 	full_raw_path = get_full_raw_path(sensor)
 
 	inRangeBefore = False
@@ -246,8 +242,8 @@ def AnalyzeBins(sensor, sensorName, sensorType):
 						else:
 							inRangeNow = False
 						if ((inRangeNow == True) and (inRangeBefore == False)):
-							summaryfile.write(nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',' + time)
-							print(nameOfPi + ',' + sensor + ',' + sensorName + ',' + year + ',' + month + ',' + time),
+							summaryfile.write(nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + time)
+							print(nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + time),
 							close = False
 						if ((inRangeNow == False) and (inRangeBefore == True)):
 							summaryfile.write(',' + time + '\n')
@@ -262,10 +258,10 @@ def AnalyzeBins(sensor, sensorName, sensorType):
 
 					#analyzeData() calls the functions to output for each of the sensors
 def analyzeData():      
-	for i in range(TOTAL_SENSORS):
-    		AnalyzePeak(str(i+1), SENSOR_NAMES[i], SENSOR_TYPES[i])
-		AnalyzeMinMaxAve(str(i+1), SENSOR_NAMES[i], SENSOR_TYPES[i])
-		AnalyzeBins(str(i+1), SENSOR_NAMES[i], SENSOR_TYPES[i])
+	for i in range(NUM_SENSORS):
+    		AnalyzePeak(SENSOR_INFO[i])
+		AnalyzeMinMaxAve(SENSOR_INFO[i])
+		AnalyzeBins(SENSOR_INFO[i])
 
 #==================================================================
 #-------------------------MAIN APPLICATION-------------------------
