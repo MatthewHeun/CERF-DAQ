@@ -1,1 +1,1 @@
-Occupancy = [0, 0, 0, 0]
+Occupancy = {'11' :0}

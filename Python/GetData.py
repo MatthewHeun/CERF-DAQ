@@ -14,9 +14,7 @@ import datetime
 import re
 import os
 import pytz
-from Adafruit_ADS1x15 import ADS1x15
 from globalVars import*		## Global Variables are defined in ALL CAPS for easy identification
-from Occupancy_vars import*
 #<<<<<<< HEAD
 
 #==================================================================
@@ -26,70 +24,12 @@ from Occupancy_vars import*
 ##### Pi name
 nameOfPi = str(PI_NUMBER)
 
-##### Data holders
-value = [0] * NUM_SENSORS
-NUM_TEMP_AND_LIGHT = 0
 ##### Data path
-path = '/home/cjk36/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
+path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
-#==================================================================
-#------------------------INITIALIZE ADC's--------------------------
-#==================================================================
-
-				#Define type
-ADS1115 = 0x01			#16-bit ADC (would be 0x00 for the 12bit ADC)
-
-				#Initialize ADC0: always (Default address 0x48)
-adc0 = ADS1x15(ic = ADS1115)
-				#Initialize ADC1: if there are more than four sensors (address 0x49 - addr pin connected to VDD)
-for i in range(NUM_SENSORS):
-	if ((SENSOR_INFO[i].type == "Temperature") or (SENSOR_INFO[i].type == "Light")):
-		NUM_TEMP_AND_LIGHT += 1
-
-if NUM_TEMP_AND_LIGHT > 4:
-	adc1 = ADS1x15(ic = ADS1115, address = 0x49)
-				#Initialize ADC2: if there are more than eight sensors (address 0x4a - addr pin connected to SDA)
-if NUM_TEMP_AND_LIGHT > 8:
-	adc2 = ADS1x15(ic = ADS1115, address = 0x4A)
-				#Initialize ADC3: if there are more than twelve sensors (address 0x4b - addr pin connected to SDA)
-if NUM_TEMP_AND_LIGHT > 12:
-	adc3 = ADS1x15(ic = ADS1115, address = 0x4B)
-
 #==================================================================
 #------------------------DEFINE FUNCTIONS--------------------------
 #==================================================================
-
-def readVoltage(sensorNumber):	
-	if sensorNumber < 4:
-		value = adc0.readADCSingleEnded(sensorNumber, 4096, 250) / 1000
-	elif sensorNumber < 8:
-		value = adc1.readADCSingleEnded(sensorNumber-4, 4096, 250) / 1000
-	elif sensorNumber < 12:
-		value = adc2.readADCSingleEnded(sensorNumber-8, 4096, 250) / 1000
-	elif sensorNumber < 16:
-		value = adc3.readADCSingleEnded(sensorNumber-12, 4096, 250) /1000
-	return value
-#------------------------------------------------------------------
-
-				#Only read as many as there are sensors
-def readVolts():		
-	for i in range(NUM_TEMP_AND_LIGHT):
-		volts[i] = readVoltage(i)
-
-#------------------------------------------------------------------
-
-def convertVolts():
-	for i in range(NUM_TEMP_AND_LIGHT): 
-		if SENSOR_TYPES[i] == "Light":
-			value[i] = pow(10, volts[i])
-		elif SENSOR_TYPES[i] == "Temperature":
-			value[i] = (100 * volts[i]) - 50
-
-def readOccupancy():
-	for i in range(NUM_OCCUPANCY):
-		value[i+NUM_TEMP_AND_LIGHT] = Occupancy[i]
-
-#------------------------------------------------------------------
 
 def createFilePathSensor(sensor):
 	return (path + 'Sensor' + str(sensor))
@@ -118,11 +58,11 @@ def createFilename(sensor):
 #------------------------------------------------------------------
 
 def createMetadata(sensor):
-	if (SENSOR_TYPES[sensor-1] == "Light"):
+	if (SENSOR_INFO[sensor-1].type == "Light"):
  		sensorKey = "Light[Lux]"
-	elif (SENSOR_TYPES[sensor-1] == "Temperature"):
+	elif (SENSOR_INFO[sensor-1].type == "Temperature"):
 		sensorKey = "Temperature[C]"
-	elif (SENSOR_TYPES[sensor-1] == "Occupancy"):
+	elif (SENSOR_INFO[sensor-1].type == "Occupancy"):
 		sensorKey = "Occupancy[1/0]"
 	return ("#Pi_Number,str(sensor),Descriptive_Sensor_Name,Date/Time_[UTC],Date/Time_[Local]," + sensorKey + '\n')
 
@@ -162,7 +102,8 @@ def dataString(sensor):
 	local_dt = local.localize(naive, is_dst = None)
 	time_local = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
 	time_utc = datetime.datetime.strftime(local_dt.astimezone(pytz.utc), '%Y-%m-%dT%H:%M:%S')
-	return (nameOfPi + ',' + str(sensor) + ',' + SENSOR_NAMES[sensor-1] + ',' + time_utc + ',' + time_local + ',' + "%.2f" %value[sensor-1] + '\n')
+	SENSOR_INFO[sensor-1].set_value()
+	return (nameOfPi + ',' + str(sensor) + ',' + SENSOR_INFO[sensor-1].name + ',' + time_utc + ',' + time_local + ',' + "%.2f" %SENSOR_INFO[sensor-1].value + '\n')
 
 #------------------------------------------------------------------
 
@@ -184,13 +125,10 @@ def outputData(numberOfSensors):
 #---------------------------GET DATA!!-----------------------------
 #==================================================================
 
-readVolts()
-convertVolts()
-readOccupancy()
-outputData(TOTAL_SENSORS)
+outputData(NUM_SENSORS)
 
-for i in range(TOTAL_SENSORS):
-	print SENSOR_TYPES[i] + ": " + str(value[i])
+#for i in range(NUM_SENSORS):
+	#print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
 
 
 
