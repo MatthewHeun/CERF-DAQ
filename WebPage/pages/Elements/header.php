@@ -20,8 +20,8 @@
 	date_modify($prevDay, '-1 day');
 	$next = date_format($nextDay, 'Y-m-d');
 	$prev = date_format($prevDay, 'Y-m-d');
-        $day_file = "Sensor" . $sensor_number . "/" . $year . "/" . $month . "/cjk36_" . $PI_NUMBER . "_" . $sensor_number . "_" . $day . ".csv";
-        $year_file = "Pi_" . $PI_NUMBER . "_" . $sensor_number . "_" . $year_sum . ".csv";
+    $day_file = "Sensor" . $sensor_number . "/" . $year . "/" . $month . "/cjk36_" . $PI_NUMBER . "_" . $sensor_number . "_" . $day . ".csv";
+    $year_file = "Pi_" . $PI_NUMBER . "_" . $sensor_number . "_" . $year_sum . ".csv";
 	$graphnum = 1;
 	$Summary_Base= "../../../Data/Pi_" . $PI_NUMBER . "_Summary/";
 	$Raw_Base= "../../../Data/Pi_" . $PI_NUMBER . "_Raw/";
