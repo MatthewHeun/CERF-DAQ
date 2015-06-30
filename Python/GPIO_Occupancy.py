@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
-from global_vars import *
+from globalVars import *
 
 debug = True
 
@@ -14,40 +14,40 @@ if debug == True:
 
 GPIO.setmode(GPIO.BOARD) 			#Tell the pi to use the board numbering of pins
 
-Occupancy_Value = [0] * 16
-GPIO_pins = [7,8,10,11,12,13,15,16,18,19,21,22,23,24,26,29]
+occupancyData = dict()
 
-for i in range(Number_of_Occupancy_Sensors):
-	GPIO.setup(GPIO_pins[i], GPIO.IN)
+for i in range(NUM_SENSORS):
+	if SENSOR_INFO[i].type == Occupancy:
+		GPIO.setup(SENSOR_INFO[i].pinNumber, GPIO.IN)
+		occupancyData[str(SENSOR_INFO[i].pinNumber)] = 0
+
 
 #==================================================================
 #------------------------------READ DATA---------------------------
 #==================================================================
 
 for x in range(58):
-	for i in range(Number_of_Occupancy_Sensors):
-		Occupancy_Value[i] += GPIO.input(GPIO_pins[i])
+	for key in occupancyData:
+		occupancyData[key] += GPIO.input(key)
 		if debug:
-			print ("Raw: " + str(GPIO.input(GPIO_pins[i])))
-			print ("New Value: " + str(Occupancy_Value[i]))
+			print ("Raw: " + str(GPIO.input(key))
+			print ("New Value: " + str(occupancyData[key]))
 	time.sleep(1)
 
-Occupant = [0] * 16
-
-for i in range(Number_of_Occupancy_Sensors):
-	if Occupancy_Value[i] > 1:
-		Occupant[i] = 1
+for key in occupancyData:
+	if occupancyData[key] > 1:
+		occupancyData[key] = 1
 	else:
-		Occupant[i] = 0
+		occupancyData[key] = 0
 
 f = open('/home/pi/Desktop/CERF-DAQ/Python/Occupancy_vars.py', 'w')
-f.write("Occupancy = [")
+f.write("Occupancy = {")
 
-for i in range(Number_of_Occupancy_Sensors):
-	if i != Number_of_Occupancy_Sensors - 1:
-		f.write(str(Occupant[i]) + ", ")
+for key in sorted(occupancyData.keys()):
+	if key != max(occupancyData.keys():
+		f.write("'" + str(key) + "' :" + str(occupancyData[key]) ", ")
 	else:
 		f.write(str(Occupant[i]))
 
-f.write("]")
+f.write("}")
 f.close()
