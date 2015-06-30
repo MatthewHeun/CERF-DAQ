@@ -87,7 +87,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 					} else {
 						$html_sensor_list .= '<option>Peak</option>' . "\n";
 					}
-					if ($SENSOR_INFO[$i]->analysis == "MinMax"){
+					if ($SENSOR_INFO[$i]->analysis == "Min-Max"){
 						$html_sensor_list .= '<option selected="selected">Min-Max</option>' . "\n";
 					} else {
 						$html_sensor_list .= '<option>Min-Max</option>' . "\n";

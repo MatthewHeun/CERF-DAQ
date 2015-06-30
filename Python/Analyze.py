@@ -6,7 +6,7 @@
 # Started by Derek De Young                                              #
 # Continued by Curtis Kortman						 #
 # Started: 4/25/15                                                       #
-# Last Edited: 6/16/15                                                   #
+# Last Edited: 6/30/15                                                   #
 # ********************************************************************** #
 
 # **************************IMPORTS************************************* #
@@ -38,8 +38,6 @@ year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 #==================================================================
 #------------------------Function Definitions----------------------
 #==================================================================
-
-
 					#createDirectories() creates the folders used to organize the data for easier reference 
 def createDirectories():
 	if not os.path.exists(summary_path + 'Bins/'):
@@ -147,7 +145,7 @@ def extrapolateMinMaxAveData(month, sensor):
 					hour = time[-8:-6]
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
-					day = ((int(hour) > 8) and (int(hour) < 17))
+					day = ((int(hour) > int(sensor.peakStart)) and (int(hour) < int(sensor.peakStop)))
 					if (day and (float(data) > float(maxDay))):
 						maxDay = data
 					elif (day and (float(data) < float(minDay))):
@@ -155,20 +153,20 @@ def extrapolateMinMaxAveData(month, sensor):
 					elif ((not day) and (float(data) > float(maxNight))):
 						maxNight = data
 					elif ((not day) and (float(data) < float(minNight))):
-						minTempNight = data
-					if (day and (float(data) > 20) and (float(data) < 22)):
+						minNight = data
+					if (day and (float(data) > float(sensor.thresholdMin)) and (float(data) < float(sensor.thresholdMax))):
 						minutesInRangeDay += 1
-					elif ((not day) and (float(data) > 20) and (float(data) < 24)):
+					elif ((not day) and (float(data) > float(sensor.thresholdMin)) and (float(data) < float(sensor.thresholdMax))):
 						minutesInRangeNight += 1
 					if day:
 						dayMinutes += 1
 					if not day:
 						nightMinutes += 1				
 			file.close()
-		if minNight == 100:
-			minTempNight = 0
-		if minDay == 100:
-			minTempDay = 0
+		if minNight == 100000:
+			minNight = 0
+		if minDay == 100000:
+			minDay = 0
 		if minutesInRangeDay != 0:
     			percentageInRangeDay = (float(minutesInRangeDay)/dayMinutes)*100
 		else:
@@ -252,7 +250,7 @@ def AnalyzeBins(sensor):
 						data = row[5].replace('\n','')
 						hour = time[-8:-6]
 						day = time[8:10]
-						if ((float(data) > 50.0) and (float(data) < 120.0)):
+						if ((float(data) > float(sensor.thresholdMin)) and (float(data) < float(sensor.thresholdMax))):
 							inRangeNow = True
 						else:
 							inRangeNow = False

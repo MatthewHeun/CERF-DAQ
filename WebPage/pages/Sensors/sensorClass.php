@@ -36,8 +36,8 @@ class sensor {
 	}
 
 	function set_peak($new_peak_start, $new_peak_stop){
-		$this->peakStop = $new_peak_start;
-		$this->peakStart = $new_peak_stop;
+		$this->peakStart = $new_peak_start;
+		$this->peakStop = $new_peak_stop;
 	}
 
 	function set_threshold($new_threshold_min, $new_threshold_max){
