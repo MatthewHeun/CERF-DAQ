@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-<?php  $sensor_number = '1'; ?>  <! change this >
+
+<?php if(isset($_GET['sensorNumber'])){
+		$sensor_number = $_GET['sensorNumber'];
+	} ?>
+<?php include 'Sensors/globalSensorInfo.php'; ?>
 <?php include 'Elements/header.php'; ?>
 <?php include 'Elements/includes.php'; ?>
-<?php include 'Sensors/globalSensorInfo.php'; ?>
 <?php
 	$pageSensor = $SENSOR_INFO[$sensor_number-1]->name;
-	$pageLink = 'sensor' . $sensor_number . '.php';
+	$pageLink = 'sensor.php?sensorNumber=' . $sensor_number;
 	
 ?>
 
@@ -33,11 +36,11 @@
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
                     <?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "on/off-peak") {
+			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
 				include 'Elements/barchartpeak.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "min-max-ave") {
+			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min/Max") {
 				include 'Elements/barchartmin-max-ave.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "bins") {
+			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Bins") {
 				include 'Elements/barchartbins.php';
 			}
 		    ?>
@@ -55,9 +58,9 @@
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "on/off-peak") {
+			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
 				include 'Elements/morisbar.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "min-max-ave") {
+			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min/Max") {
 				include 'Elements/morisdonuttempday.php';
 				include 'Elements/morisdonuttempnight.php';
 			}
