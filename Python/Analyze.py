@@ -52,10 +52,14 @@ def createDirectories():
 #------------------------------------------------------------------
 
 					#initializeSummary() writes the metadata to each file
-def initializeSummary(sensor):
-	filename = (summary_path + str(sensor.analysis) + '/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+def initializeSummary(sensor, analysis):
+	filename = (summary_path + str(analysis) + '/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'w')
+	if summaryfile.closed:
+		raise fileError("file not open")
+		print "FILE IS CLOSED"
 	summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
+	summaryfile.write("HELP")
 	summaryfile.close()
 
 #------------------------------------------------------------------
@@ -181,37 +185,49 @@ def extrapolateMinMaxAveData(month, sensor):
 
 					#AnalyzePeak() performas an on/off-peak analysis of the data
 def AnalyzePeak(sensor):
-    	initializeSummary(sensor)
+    	initializeSummary(sensor, "Peak")
 	filename = (summary_path + 'Peak/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
+	if summaryfile.closed:
+		raise fileError("file not open")
+		print "FILE IS CLOSED"
     	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,On_Peak%,Off_Peak%" + '\n')
  
     	for month in month_list:
 		filestring = extrapolateOnPeakOffPeakData(month, sensor)
-		summaryfile.write(filestring)
-		print(filestring)		
+		summaryfile.write(filestring)	
+
+	summaryfile.close()	
 
 #------------------------------------------------------------------
 
 					#AnalyzeMinMaxAve() performs a min, max, and average analysis on the data
 def AnalyzeMinMaxAve(sensor):
-    	initializeSummary(sensor)
+    	initializeSummary(sensor, "Min-Max")
 	filename = (summary_path + 'Min-Max/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
+	if summaryfile.closed:
+		raise fileError("file not open")
+		print "FILE IS CLOSED"
     	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Max_Day, Max_Night, Min_Day, Min_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
 
 	for month in month_list:
 		filestring = extrapolateMinMaxAveData(month, sensor)
 		summaryfile.write(filestring)
-		print(filestring)		
+		print(filestring)
+	
+	summaryfile.close()		
 
 #------------------------------------------------------------------
 
 					#creates bins of start and stop times for certain data parameters	
 def AnalyzeBins(sensor):
-	initializeSummary(sensor)
+	initializeSummary(sensor, "Bins")
 	filename = (summary_path + 'Bins/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'a')
+	if summaryfile.closed:
+		raise fileError("file not open")
+		print "FILE IS CLOSED"
 	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Start_Time,End_Time" + '\n')
 	full_raw_path = get_full_raw_path(sensor)
 
@@ -269,6 +285,7 @@ def analyzeData():
 
 createDirectories()
 analyzeData()
+
 #AnalyzeBins(str(1), SENSOR_NAMES[0], SENSOR_TYPES[0])
 
 
