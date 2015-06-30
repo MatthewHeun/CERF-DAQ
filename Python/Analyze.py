@@ -59,7 +59,6 @@ def initializeSummary(sensor, analysis):
 		raise fileError("file not open")
 		print "FILE IS CLOSED"
 	summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
-	summaryfile.write("HELP")
 	summaryfile.close()
 
 #------------------------------------------------------------------
