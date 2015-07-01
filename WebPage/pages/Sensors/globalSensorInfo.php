@@ -41,6 +41,25 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	#echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	}	
 
+$formData = new ArrayObject(array());
+for ($i = 1; $i <= $NUM_SENSORS; $i++) {
+	$formData->append("analysis" . $i);
+}
+
+foreach ($formData as $key => $analysis_type) {
+	if(isset($_GET[$analysis_type])){
+		$Analysis = $_GET[$analysis_type];
+		if ($Analysis == 'On/Off Peak Analysis'){
+			$Analysis = "Peak";
+		} elseif ($Analysis == 'Min/Max/Average Analysis') {
+			$Analysis = "Min-Max";
+		} elseif ($Analysis == "Bin Analysis") {
+			$Analysis = "Bins";
+		}
+		$SENSOR_INFO[$key]->set_analysis($Analysis);
+	}
+}
+
 fclose($sensorInfoFile);
 
 ?>

@@ -2,14 +2,14 @@
                     
 <?php
 	$i = 1;
-	while ($i <= $NUM_SENSORS{
+	while ($i <= $NUM_SENSORS){
 		$year_file = "Pi_" . $PI_NUMBER . "_" . $i . "_" . $year_sum . ".csv";
 		$pageSensor = $SENSOR_INFO[$i-1]->name;
-		if ($SENSOR_INFO[$i-1]->analysis == "on/off-peak"){
+		if ($SENSOR_INFO[$i-1]->analysis == "Peak"){
 			include 'Elements/barchartpeak.php'; 
-		} elseif ($SENSOR_INFO[$i-1]->analysis == "min-max-ave"){
+		} elseif ($SENSOR_INFO[$i-1]->analysis == "Min-Max"){
 			include 'Elements/barchartmin-max-ave.php'; 
-		} elseif ($SENSOR_INFO[$i-1]->analysis == "bins"){
+		} elseif ($SENSOR_INFO[$i-1]->analysis == "Bins"){
 			include 'Elements/barchartbins.php';
 		}
 		$i = $i + 1;

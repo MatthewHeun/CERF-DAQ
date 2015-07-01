@@ -61,8 +61,8 @@
 			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
 				include 'Elements/morisbar.php'; 
 			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min-Max") {
-				include 'Elements/morisdonuttempday.php';
-				include 'Elements/morisdonuttempnight.php';
+				include 'Elements/morisdonutday.php';
+				include 'Elements/morisdonutnight.php';
 			}
 		?>
 		<?php 

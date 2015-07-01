@@ -1,7 +1,7 @@
 new Morris.Donut({
 	element: 'donut-night-<?php echo $graphnum ?>',
 	data: 	<?php
-			$filename = $Summary_Base . "min-max-ave" . '/' . $year_file;
+			$filename = $Summary_Base . "Min-Max" . '/' . $year_file;
 			$lines = file($filename);
 			$percentGood = 0;
 			$percentBad = 0;

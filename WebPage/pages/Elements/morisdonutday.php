@@ -1,7 +1,7 @@
 new Morris.Donut({
-	element: 'summary-bar-chart-<?php echo $graphnum ?>',
+	element: 'donut-day-<?php echo $graphnum ?>',
 	data: 	<?php
-			$filename = $Summary_Base . "Temperature" . '/' . $year_file;
+			$filename = $Summary_Base . "Min-Max" . '/' . $year_file;
 			$lines = file($filename);
 			$percentGood = 0;
 			$percentBad = 0;
@@ -13,11 +13,21 @@ new Morris.Donut({
 						if ($time_inRange_day != '0.00'){
 							$time_notinRange_day = 100 - (float) $time_inRange_day;
 							$percentBad += $time_notinRange_day;
-						}
-						$percentGood += $time_inRange_day;
+							$monthCount += 1;
+							$percentGood += $time_inRange_day;
+					}
+						
 				}
 			}
-			$data = '[{label: "' . '% Time in Range (day)", value:' . $percentGood . '}, {label: "% Time not in Range (day)", value:' . $percentBad . '}]';
+			if (($monthCount == 0)){
+				$percentGood = 0;
+				$percentBad = 100;
+			} else {
+				$percentGood = $percentGood / $monthCount;
+				$percentBad = $percentBad / $monthCount;
+			}
+			$data = '[{label: "' . '% Time in Range (day)", value:' . $percentGood . '}, {label: "% Time not in Range (day)", value:' . $percentBad . '}],';
 			echo $data;
 		?>
+	colors: ['#0B62A4','#CCCCCC']
 	});
