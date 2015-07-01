@@ -9,8 +9,8 @@
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
                                         <?php
-						$lines = file($Summary_Base . $ANALYSIS_TYPES[$sensor_number-1] . '/' . $year_file);
-						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>Max Temp (day)</th><th>Max Temp (night)</th><th>Min Temp (day)</th><th>MinTemp (night)</th><th>Time in Range (day)</th><th>Timein Range (night)</th></tr></thead><tbody>';
+						$lines = file($Summary_Base . $SENSOR_INFO[$sensor_number-1]->analysis . '/' . $year_file);
+						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>Max Temp (day)</th><th>Max Temp (night)</th><th>Min Temp (day)</th><th>MinTemp (night)</th><th>Time in Range (day)</th><th>Time in Range (night)</th></tr></thead><tbody>';
 						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){

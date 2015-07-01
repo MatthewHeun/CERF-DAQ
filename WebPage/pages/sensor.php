@@ -38,7 +38,7 @@
                     <?php 
 			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
 				include 'Elements/barchartpeak.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min/Max") {
+			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min-Max") {
 				include 'Elements/barchartmin-max-ave.php';
 			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Bins") {
 				include 'Elements/barchartbins.php';
@@ -60,7 +60,7 @@
 		<?php 
 			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
 				include 'Elements/morisbar.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min/Max") {
+			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min-Max") {
 				include 'Elements/morisdonuttempday.php';
 				include 'Elements/morisdonuttempnight.php';
 			}
