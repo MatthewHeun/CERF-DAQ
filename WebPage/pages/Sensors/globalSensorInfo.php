@@ -1,6 +1,6 @@
 <?php
 
-$numPiFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
+$numPiFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
 
 $PI_NUMBER = fgets($numPiFile);
 
@@ -8,7 +8,7 @@ $PI_NUMBER = intval($PI_NUMBER);
 
 fclose($numPiFile);
 
-$numSensorFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
+$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
 
 $NUM_SENSORS = fgets($numSensorFile);
 
@@ -18,7 +18,7 @@ fclose($numSensorFile);
 
 include 'sensorClass.php';
 
-$sensorInfoFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$sensorInfoFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
 
 $SENSOR_INFO = new ArrayObject(array());
 

@@ -9,6 +9,8 @@ class sensor {
 	public $thresholdMin;
 	public $thresholdMax;
 	public $number;
+	public $i2cAdress;
+	public $pinNumber;
 
 	function __construct($sensor_number) {
 		$this->name = ("sensor" . $sensor_number);
