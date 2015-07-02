@@ -23,7 +23,6 @@
                 <div class="btn-group">
                     <button class="btn btn-primary" type="submit" form="goToNext"><i class="fa fa-chevron-right fa-fw"></i></button>
                 </div>
-                
             </div>
         </div> <!-- col-lg-4 -->
 		<div class="col-lg-4 pull-right">

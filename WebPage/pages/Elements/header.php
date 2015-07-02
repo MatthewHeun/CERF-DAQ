@@ -20,6 +20,10 @@
 	date_modify($prevDay, '-1 day');
 	$next = date_format($nextDay, 'Y-m-d');
 	$prev = date_format($prevDay, 'Y-m-d');
+
+	$nextYear = $year_sum+1;
+	$prevYear = $year_sum-1;
+
     $day_file = "Sensor" . $sensor_number . "/" . $year . "/" . $month . "/Pi_" . $PI_NUMBER . "_" . $sensor_number . "_" . $day . ".csv";
     $year_file = "Pi_" . $PI_NUMBER . "_" . $sensor_number . "_" . $year_sum . ".csv";
 	$graphnum = 1;
