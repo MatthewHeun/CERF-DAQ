@@ -29,7 +29,7 @@ function loadAndAlert(){
 	
 	<div id="page-wrapper">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="margin-top:50px">
                     <h1 class="page-header">Configuration</h1>
                 </div>
                 <!-- /.col-lg-12 -->
