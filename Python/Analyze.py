@@ -21,6 +21,14 @@ from globalVars import*  # Global vars
 #<<<<<<< HEAD
 
 #==================================================================
+#-------------------Tell the website the pi is busy----------------
+#==================================================================
+
+file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file.write("1")
+file.close()
+
+#==================================================================
 #------------------------Initialize Variables----------------------
 #==================================================================
 
@@ -271,6 +279,14 @@ createDirectories()
 analyzeData()
 
 #AnalyzeBins(str(1), SENSOR_NAMES[0], SENSOR_TYPES[0])
+
+#==================================================================
+#-----------------Tell the website the pi is not busy--------------
+#==================================================================
+
+file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file.write("0")
+file.close()
 
 
 

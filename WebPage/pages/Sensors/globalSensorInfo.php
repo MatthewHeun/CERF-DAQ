@@ -16,7 +16,9 @@ $NUM_SENSORS = intval($NUM_SENSORS);
 
 fclose($numSensorFile);
 
-#$analysisStatusFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$analysisStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
+
+$BUSY = trim(fgets($analysisStatusFile));
 
 $CALL_FUNCTION = false;
 
