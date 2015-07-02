@@ -38,6 +38,9 @@
 						<li>
 			    			<a href="configuration.php" onClick="return confirm('Are you sure you want to edit the Pi\'s configuration settings? Incorrectly setting parameters can destroy data.');"><i class="fa fa-gear fa-fw"></i>Configuration Panel</a>
                    		</li>
+                   		<li>
+                   			<a href="analyze.php"><i class="fa fa-line-chart fa-fw"></i>Analyze</a>
+                   		</li>
 
                    		<?php 
                    			
@@ -45,12 +48,12 @@
                    				echo '<li><a> </a></lt>';
                    				echo '<li><a style="color:black">Sensor Characteristics: </a></li>';
                    				echo '<ul style="list-style:none;">';
-                   				echo '<li><a style="color:black"> <i class="fa fa-plug fa-fw"></i> i2c port: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp&nbsp" . '</a></li>';
-                   				echo '<li><a style="color:black"> <i class="fa fa-slack fa-fw"></i> pin number: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp&nbsp" . '</a></li>';
-                   				echo '<li><a style="color:black"> <i class="fa fa-play fa-fw"></i> peak start time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStart . "&nbsp&nbsp" . '</a></li>';
-                   				echo '<li><a style="color:black"> <i class="fa fa-stop fa-fw"></i> peak end time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStop . "&nbsp&nbsp" . '</a></li>';
-                   				echo '<li><a style="color:black"> <i class="fa fa-minus-square fa-fw"></i> min threshold: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->thresholdMin . "&nbsp&nbsp" . '</a></li>';
-                   				echo '<li><a style="color:black"> <i class="fa fa-plus-square fa-fw"></i> max threshold: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->thresholdMax . "&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-plug fa-fw"></i> i2c port: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-slack fa-fw"></i> pin number: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-play fa-fw"></i> peak start time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStart . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-stop fa-fw"></i> peak end time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStop . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-minus-square fa-fw"></i> min threshold: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->thresholdMin . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
+                   				echo '<li><a style="color:black"> <i class="fa fa-plus-square fa-fw"></i> max threshold: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->thresholdMax . "&nbsp&nbsp&nbsp&nbsp&nbsp" . '</a></li>';
                    			}
                    			
                    		?>
