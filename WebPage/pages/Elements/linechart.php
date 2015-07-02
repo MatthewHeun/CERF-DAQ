@@ -2,14 +2,34 @@
     <div class="panel-heading">
         <div class="row">
         <div class="col-lg-4">
-		<a href="<?php echo $pageLink . '&' ?>Day=<?php echo $prev ?>"><h3 style=" margin: 0px; margin-right: 10px; padding: 0px; float: left;"><</h3></a> 
-		<a href="<?php echo $pageLink . '&' ?>Day=<?php echo $next ?>"><h3 style=" margin: 0px; margin-right: 10px; padding: 0px; float: left;"> ></h3></a> 
-            <p style="font-size:large; padding-top:1%;"> <i class="fa fa-bar-chart-o fa-fw"></i><?php echo $pageSensor ?> : <?php echo $day ?> </p>
+            <form action="<?php echo $pageLink?>" id="goToPrev">
+                <input type="hidden" name="sensorNumber" value="<?php echo $sensor_number ?>">
+                <input type="hidden" name="Day" value="<?php echo $prev ?>">
+            </form>
+            <form action="<?php echo $pageLink?>" id="goToNext">
+                <input type="hidden" name="sensorNumber" value="<?php echo $sensor_number ?>">
+                <input type="hidden" name="Day" value="<?php echo $next ?>">
+            </form>
+            <form action="<?php echo $pageLink?>" id="goToSensor">
+                <input type="hidden" name="sensorNumber" value="<?php echo $sensor_number ?>">
+            </form>
+            <div class="btn-group btn-block" role="group">
+                <div class="btn-group">
+                    <button class="btn btn-primary" type="submit" form="goToPrev"><i class="fa fa-chevron-left fa-fw" ></i></button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" style="border-radius: 0px" type="submit" form="goToSensor"><?php echo $pageSensor ?> : <?php echo $day ?></button>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-primary" type="submit" form="goToNext"><i class="fa fa-chevron-right fa-fw"></i></button>
+                </div>
+                
+            </div>
         </div> <!-- col-lg-4 -->
 		<div class="col-lg-4 pull-right">
             <div class="input-group">
                 <span class="input-group-btn">      
-                    <button class="btn btn-default" type="submit" form="submit" >Submit</button>
+                    <button class="btn btn-primary" type="submit" form="submit" >Submit</button>
                 </span>
 					<form action="<?php echo $pageLink?>" id="date">
                         <input type="date" class="form-control" name="Day" placeholder="YYYY-MM-DD" maxlength= 10 value="<?php if(isset($_GET['Day'])){echo date_format($current, 'Y-m-d'); } ?>" >
