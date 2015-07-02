@@ -53,9 +53,6 @@ def createDirectories():
 def initializeSummary(sensor, analysis):
 	filename = (summary_path + str(analysis) + '/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'w')
-	if summaryfile.closed:
-		raise fileError("file not open")
-		print "FILE IS CLOSED"
 	summaryfile.write("#Calvin College CERF PI DATA"+ '\n')
 	summaryfile.close()
 
@@ -89,22 +86,21 @@ def extrapolateOnPeakOffPeakData(month, sensor):
 					hour = time[-8:-6]
 					day = time[8:10]
 					weekday = date(int(year),int(month),int(day)).weekday()
-					peak_hour = int(hour) >= sensor.peakStart and int(hour) < sensor.peakStop
+					peak_hour = int(hour) >= int(sensor.peakStart) and int(hour) < int(sensor.peakStop)
 					peak_day = weekday < 5
 					if (peak_hour and peak_day):
-						if (float(data) > sensor.thresholdMin):
+						if (float(data) > float(sensor.thresholdMin)):
 							total_min_on_peak += 1
 							min_on_peak += 1
 						else:
 							total_min_on_peak += 1
 					else:
-						if (float(data) > sensor.thresholdMin):
+						if (float(data) > float(sensor.thresholdMin)):
 							total_min_off_peak += 1
 							min_off_peak += 1
 						else:
 							total_min_off_peak += 1
 			file.close()
-		print min_on_peak
 		if total_min_on_peak != 0:
     			percentage_on_peak = (float(min_on_peak)/total_min_on_peak)*100
 		else:
@@ -185,9 +181,6 @@ def AnalyzePeak(sensor):
     	initializeSummary(sensor, "Peak")
 	filename = (summary_path + 'Peak/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
-	if summaryfile.closed:
-		raise fileError("file not open")
-		print "FILE IS CLOSED"
     	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,On_Peak%,Off_Peak%" + '\n')
  
     	for month in month_list:
@@ -203,9 +196,6 @@ def AnalyzeMinMaxAve(sensor):
     	initializeSummary(sensor, "Min-Max")
 	filename = (summary_path + 'Min-Max/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
     	summaryfile = open(filename, 'a')
-	if summaryfile.closed:
-		raise fileError("file not open")
-		print "FILE IS CLOSED"
     	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Max_Day, Max_Night, Min_Day, Min_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
 
 	for month in month_list:
@@ -222,9 +212,6 @@ def AnalyzeBins(sensor):
 	initializeSummary(sensor, "Bins")
 	filename = (summary_path + 'Bins/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	summaryfile = open(filename, 'a')
-	if summaryfile.closed:
-		raise fileError("file not open")
-		print "FILE IS CLOSED"
 	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Start_Time,End_Time" + '\n')
 	full_raw_path = get_full_raw_path(sensor)
 
@@ -232,9 +219,9 @@ def AnalyzeBins(sensor):
 	inRangeNow = False
 	close = False
 	time = ""
-	fileList = []
 
 	for month in month_list:
+		fileList = []
 		if not os.path.exists(full_raw_path + month):
 			a = 0
 		else:
