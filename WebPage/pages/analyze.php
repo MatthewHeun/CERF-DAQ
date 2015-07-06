@@ -36,22 +36,20 @@ setTimeout(function(){
 	<div class="panel panel-default">
 		<div class="panel-heading"> Run Analysis... </div>
 		<div class="panel-body">
-			<p> The analysis typically runs every midnight, in normal circumstances this should be sufficient. However, if you have updated parameters
+			<p> The analysis typically runs every midnight, in normal circumstances this should be sufficient. However, if you have recently updated parameters
 				like the thresholds or the peak start and stop times, the data displayed may no longer be accurate. To correct for this you may hit the 
 				"Analyze" button. Be warned, it may take some time! </p>
 			</div> <!-- panel-body -->
 	</div> <!-- panel panel-default -->
 	<?php 
-		echo '<div class="row">';
-			echo '<div class="col-lg-4"></div>';
-			echo '<div class="col-lg-4">';
-				echo '<a><i class="fa fa-refresh fa-5x fa-spin"></i></a>';
-			echo '</div>';
-			echo '<div class="col-lg-4"></div>';
-		echo '</div> <!-- row -->';
+		if ($BUSY == 1){
+			echo '<h1 align="center"><span class="label label-warning"><i class="fa fa-refresh fa-spin"></i> Please be Patient <i class="fa fa-refresh fa-spin"></i></span></h1>';
+		} else {
+			echo '<h1 align="center"><span class="label label-success">The Analysis is not running</span></h1>';
+		}
 		if ($CALL_FUNCTION == true){
 			echo "running function";
-			echo shell_exec('sh /home/cjk36/Desktop/CERF-DAQ/Python/runAnalysis.sh');
+			echo shell_exec('sh /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh');
 		}
 	?>
 			<br>

@@ -1,6 +1,6 @@
 <?php
 
-$numPiFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
+$numPiFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
 
 $PI_NUMBER = fgets($numPiFile);
 
@@ -8,7 +8,7 @@ $PI_NUMBER = intval($PI_NUMBER);
 
 fclose($numPiFile);
 
-$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
+$numSensorFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
 
 $NUM_SENSORS = fgets($numSensorFile);
 
@@ -16,7 +16,9 @@ $NUM_SENSORS = intval($NUM_SENSORS);
 
 fclose($numSensorFile);
 
-#$analysisStatusFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$analysisStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
+
+$BUSY = trim(fgets($analysisStatusFile));
 
 $CALL_FUNCTION = false;
 
@@ -26,7 +28,7 @@ if (isset($_GET['callFunction'])) {
 
 include 'sensorClass.php';
 
-$sensorInfoFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$sensorInfoFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
 
 $SENSOR_INFO = new ArrayObject(array());
 
