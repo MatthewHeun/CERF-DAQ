@@ -11,6 +11,16 @@ class sensor {
 	public $number;
 	public $i2cAdress;
 	public $pinNumber;
+	public $binType;
+	public $fromSensorNumber;
+	public $fromSensorMin;
+	public $fromSensorMax;
+	public $weekdays;
+	public $customStart;
+	public $customStop;
+	public $summaryMethod;
+
+
 
 	function __construct($sensor_number) {
 		$this->name = ("sensor" . $sensor_number);
@@ -23,6 +33,14 @@ class sensor {
 		$this->number = $sensor_number;
 		$this->i2cAddress = 0;
 		$this->pinNumber = 0;
+		$this->binType = "";
+		$this->fromSensorNumber = 0;
+		$this->fromSensorMin = 0;
+		$this->fromSensorMax = 0;
+		$this->weekdays = array(0,1,2,3,4,5,6);
+		$this->customStart = 0;
+		$this->customStop = 0;
+		$this->summaryMethod = 0;
 	}
 
 	function set_name($new_name){
@@ -55,6 +73,47 @@ class sensor {
 		$this->pinNumber = $new_pinNumber;
 	}
 
+	function set_binType($new_binType){
+		$this->binType = $new_binType;
+	}
+
+	function set_fromSensorNumber($new_fromSensorNumber){
+		$this->fromSensorNumber = $new_fromSensorNumber;
+	}
+
+	function set_fromSensorMin($new_fromSensorMin){
+		$this->fromSensorMin = $new_fromSensorMin;
+	}
+
+	function set_fromSensorMax($new_fromSensorMax){
+		$this->fromSensorMax = $new_fromSensorMax;
+	}
+
+	function set_weekdays($new_M, $new_T, $new_W, $new_Th, $new_F, $new_Sa, $new_Su){
+		if ($new_M == "M"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_T == "T"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_W == "W"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_Th == "Th"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_F == "F"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_Sa == "sa"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+		if ($new_Su == "Su"){ $this->weekdays[0] = 1;}
+		else { $this->weekdays[0] = 0; }
+	}
+
+	function set_customStartStop($new_customStart, $new_customStop){
+		$this->customStart = $new_customStart;
+		$this->customSTop = $new_customStop;
+	}
+
+	function set_summaryMethod($new_summaryMethod){
+		$this->summaryMethod = $new_summaryMethod;
+	}
 }
 
 ?>

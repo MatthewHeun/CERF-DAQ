@@ -9,17 +9,6 @@
 <?php include 'Sensors/getNumSensors.php'; ?>
 <?php include 'Sensors/getSensorInfo.php'; ?>
 
-<script language="JavaScript">
-<!-- 
-var Flag = 0;
-
-function loadAndAlert(){
-	alert('After the page refreshes, hit "Display Updates!" to make the changes visible');
-}
-//-->
-</script>
-
-
 </head>
 
 <body>

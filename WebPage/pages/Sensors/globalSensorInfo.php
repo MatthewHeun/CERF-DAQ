@@ -47,6 +47,20 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	#echo $SENSOR_INFO[$i-1]->i2cAddress . " ";
 	$SENSOR_INFO[$i-1]->set_pinNumber(trim(fgets($sensorInfoFile)));
 	#echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
+	$SENSOR_INFO[$i-1]->set_binType(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->binType . "\n";
+	$SENSOR_INFO[$i-1]->set_fromSensorNumber(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->fromSensorNumber . "\n";
+	$SENSOR_INFO[$i-1]->set_fromSensorMin(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->fromSensorMin . "\n";
+	$SENSOR_INFO[$i-1]->set_fromSensorMax(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->fromSensorMax . "\n";
+	$SENSOR_INFO[$i-1]->set_weekdays(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->weekdays . "\n";
+	$SENSOR_INFO[$i-1]->set_customStartStop(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->customStart . " " . $SENSOR_INFO[$i-1]->customStop . "\n";
+	$SENSOR_INFO[$i-1]->set_summaryMethod(trim(fgets($sensorInfoFile)));
+	#echo $SENSOR_INFO[$i-1]->summaryMethod . "\n";
 	}	
 
 $formData = new ArrayObject(array());
