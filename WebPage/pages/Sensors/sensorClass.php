@@ -90,25 +90,18 @@ class sensor {
 	}
 
 	function set_weekdays($new_M, $new_T, $new_W, $new_Th, $new_F, $new_Sa, $new_Su){
-		if ($new_M == "M"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_T == "T"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_W == "W"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_Th == "Th"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_F == "F"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_Sa == "sa"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
-		if ($new_Su == "Su"){ $this->weekdays[0] = 1;}
-		else { $this->weekdays[0] = 0; }
+		$this->weekdays[0] = $new_M;
+		$this->weekdays[1] = $new_T;
+		$this->weekdays[2] = $new_W;
+		$this->weekdays[3] = $new_Th;
+		$this->weekdays[4] = $new_F;
+		$this->weekdays[5] = $new_Sa;
+		$this->weekdays[6] = $new_Su;
 	}
 
 	function set_customStartStop($new_customStart, $new_customStop){
 		$this->customStart = $new_customStart;
-		$this->customSTop = $new_customStop;
+		$this->customStop = $new_customStop;
 	}
 
 	function set_summaryMethod($new_summaryMethod){

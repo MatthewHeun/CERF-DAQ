@@ -8,7 +8,7 @@ $PI_NUMBER = intval($PI_NUMBER);
 
 fclose($numPiFile);
 
-$numSensorFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
+$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
 
 $NUM_SENSORS = fgets($numSensorFile);
 
@@ -16,7 +16,7 @@ $NUM_SENSORS = intval($NUM_SENSORS);
 
 fclose($numSensorFile);
 
-$analysisStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
+$analysisStatusFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
 
 $BUSY = trim(fgets($analysisStatusFile));
 
@@ -28,41 +28,50 @@ if (isset($_GET['callFunction'])) {
 
 include 'sensorClass.php';
 
-$sensorInfoFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$sensorInfoFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
 
 $SENSOR_INFO = new ArrayObject(array());
 
 for ($i=1; $i <= $NUM_SENSORS; $i++) { 
 	$SENSOR_INFO->append(new sensor($i));
-	#echo $SENSOR_INFO[$i-1]->number . " ";
+	// echo "Sensor Number: ";
+	// echo $SENSOR_INFO[$i-1]->number . "\n";
 	$SENSOR_INFO[$i-1]->set_name(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->name . " ";
+	// echo "Sensor Name: ";
+	// echo $SENSOR_INFO[$i-1]->name . "\n";
 	$SENSOR_INFO[$i-1]->set_type(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->type . " ";
+	// echo "Sensor Type: ";
+	// echo $SENSOR_INFO[$i-1]->type . "\n";
 	$SENSOR_INFO[$i-1]->set_analysis(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->analysis . " ";
-	$SENSOR_INFO[$i-1]->set_peak(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->peakStart . " " . $SENSOR_INFO[$i-1]->peakStop . " ";
-	$SENSOR_INFO[$i-1]->set_threshold(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->thresholdMin . " " . $SENSOR_INFO[$i-1]->thresholdMax;
+	// echo "Analysis Type: ";
+	// echo $SENSOR_INFO[$i-1]->analysis . "\n";
 	$SENSOR_INFO[$i-1]->set_i2cAddress(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->i2cAddress . " ";
+	// echo "i2c Adress: ";
+	// echo $SENSOR_INFO[$i-1]->i2cAddress . "\n";
 	$SENSOR_INFO[$i-1]->set_pinNumber(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
+	// echo "Pin Number: ";
+	// echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	$SENSOR_INFO[$i-1]->set_binType(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->binType . "\n";
+	// echo "Bin Type: ";
+	// echo $SENSOR_INFO[$i-1]->binType . "\n";
 	$SENSOR_INFO[$i-1]->set_fromSensorNumber(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->fromSensorNumber . "\n";
+	// echo "From Sensor Number: ";
+	// echo $SENSOR_INFO[$i-1]->fromSensorNumber . "\n";
 	$SENSOR_INFO[$i-1]->set_fromSensorMin(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->fromSensorMin . "\n";
+	// echo "From Sensor Min: ";
+	// echo $SENSOR_INFO[$i-1]->fromSensorMin . "\n";
 	$SENSOR_INFO[$i-1]->set_fromSensorMax(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->fromSensorMax . "\n";
-	$SENSOR_INFO[$i-1]->set_weekdays(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->weekdays . "\n";
+	// echo "From Sensor Max: ";
+	// echo $SENSOR_INFO[$i-1]->fromSensorMax . "\n";
+	$SENSOR_INFO[$i-1]->set_weekdays(trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)));
+	// echo "Weekdays: ";
+	// echo $SENSOR_INFO[$i-1]->weekdays[0] . "\n";
 	$SENSOR_INFO[$i-1]->set_customStartStop(trim(fgets($sensorInfoFile)), trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->customStart . " " . $SENSOR_INFO[$i-1]->customStop . "\n";
+	// echo "Custom Start and Stop ";
+	// echo $SENSOR_INFO[$i-1]->customStart . " " . $SENSOR_INFO[$i-1]->customStop . "\n";
 	$SENSOR_INFO[$i-1]->set_summaryMethod(trim(fgets($sensorInfoFile)));
-	#echo $SENSOR_INFO[$i-1]->summaryMethod . "\n";
+	// echo "Summary Method: ";
+	// echo $SENSOR_INFO[$i-1]->summaryMethod . "\n";
 	}	
 
 $formData = new ArrayObject(array());

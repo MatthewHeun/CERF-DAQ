@@ -176,7 +176,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 								$options = "";
 								$i2 = 1;
 								while ($i2 < $NUM_SENSORS) {
-									if ($i2 == $SENSOR_INFO->fromSensorNumber) {
+									if ($i2 == $SENSOR_INFO[$i]->fromSensorNumber) {
 										$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
 									}
 									else {
@@ -194,10 +194,10 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 							//---------------------------From Sensor Threshold Min and Max-------------------------//
 
 							$html_sensor_list .= '<p style="font-weight:bold;"> Threshold Min </p>' . "\n";
-							$html_sensor_list .= '<input type="text" class="form-control" name="fromSensorMin' . ($i+1) . '" placeholder="min" value="' . $SENSOR_INFO[$i]->thresholdMin .'">' . "\n";
+							$html_sensor_list .= '<input type="text" class="form-control" name="fromSensorMin' . ($i+1) . '" placeholder="min" value="' . $SENSOR_INFO[$i]->fromSensorMin .'">' . "\n";
 							$html_sensor_list .= '<br>' . "\n";
 							$html_sensor_list .= '<p style="font-weight:bold;"> Threshold Max </p>' . "\n";
-							$html_sensor_list .= '<input type="text" class="form-control" name="fromSensorMax' . ($i+1) . '" placeholder="max" value="' . $SENSOR_INFO[$i]->thresholdMax . '">' . "\n";
+							$html_sensor_list .= '<input type="text" class="form-control" name="fromSensorMax' . ($i+1) . '" placeholder="max" value="' . $SENSOR_INFO[$i]->fromSensorMax . '">' . "\n";
 						
 
 						$html_sensor_list .= '</div> <!-- col-lg-5 -->' . "\n";
@@ -205,122 +205,119 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 					$html_sensor_list .= '</div> <!-- margin-left:5% -->' . "\n";
 					$html_sensor_list .= '<br>' . "\n";
 					$html_sensor_list .= '</div> <!-- row -->' . "\n";
-			$html_sensor_list .= '</div> <!-- col-lg-5 -->' . "\n";
+				$html_sensor_list .= '</div> <!-- col-lg-5 -->' . "\n";
 				$html_sensor_list .= '<div class="col-lg-4">' . "\n";
 					$html_sensor_list .= '<div class="row">' . "\n";
 					$html_sensor_list .= '<p style="font-weight:bold; margin:0px 0px 0px;"> Custom Time: </p>' . "\n";
+					$html_sensor_list .= '<div class="col-lg-6">' . "\n";
+
+						//--------------------------Custom Time Peak Hour Start and Stop------------------------//
+						$html_sensor_list .= '<p style="font-weight:bold; margin:10px 0px;"> Start Hour </p>' . "\n";
+						$html_sensor_list .= '<select class="form-control" name="customStart' . ($i+1) .'">' . "\n";
+						$html_sensor_list .= '<br>' . "\n";
+
+						$options = "";
+							$i2 = 0;
+							while ($i2 < 24) {
+								if ($i2 == $SENSOR_INFO[$i]->customStart) {
+									$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
+								} 
+								else { 
+									$options .= ("<option>" . $i2 . "</option>" . "\n");
+								}
+								$i2 += 1;
+							}
+						$html_sensor_list .=  $options;
+
+						$html_sensor_list .= ' . $options . ' . "\n";
+						$html_sensor_list .= '</select>' . "\n";
+						$html_sensor_list .= '<br>' . "\n";
+						$html_sensor_list .= '<p style="font-weight:bold;"> Stop Hour </p>' . "\n";
+						$html_sensor_list .= '<select class="form-control" name="customStop' . ($i+1) .'">' . "\n";
+						$html_sensor_list .= '<br>' . "\n";
+
+						$options = "";
+							$i2 = 0;
+							while ($i2 < 24) {
+								if ($i2 == $SENSOR_INFO[$i]->customStop) {
+									$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
+								} 
+								else { 
+									$options .= ("<option>" . $i2 . "</option>" . "\n");
+								}
+								$i2 += 1;
+							}
+						$html_sensor_list .=  $options;
+						$html_sensor_list .= ' . $options . ' . "\n";
+						$html_sensor_list .= '</select>' . "\n";
+						$html_sensor_list .= '</div> <!-- col-lg-6 -->' . "\n";
 						$html_sensor_list .= '<div class="col-lg-6">' . "\n";
 
-							//--------------------------Custom Time Peak Hour Start and Stop------------------------//
-							$html_sensor_list .= '<p style="font-weight:bold; margin:10px 0px;"> Start Hour </p>' . "\n";
-							$html_sensor_list .= '<select class="form-control" name="customStart' . ($i+1) .'">' . "\n";
-							$html_sensor_list .= '<br>' . "\n";
+						//--------------------------Custom Time Days-----------------------------//
 
-							$options = "";
-								$i2 = 0;
-								while ($i2 < 24) {
-									if ($i2 == $SENSOR_INFO[$i]->customStart) {
-										$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
-									} 
-									else { 
-										$options .= ("<option>" . $i2 . "</option>" . "\n");
-									}
-									$i2 += 1;
-								}
-							$html_sensor_list .=  $options;
-
-							$html_sensor_list .= ' . $options . ' . "\n";
-							$html_sensor_list .= '</select>' . "\n";
-							$html_sensor_list .= '<br>' . "\n";
-							$html_sensor_list .= '<p style="font-weight:bold;"> Stop Hour </p>' . "\n";
-							$html_sensor_list .= '<select class="form-control" name="customStop' . ($i+1) .'">' . "\n";
-							$html_sensor_list .= '<br>' . "\n";
-
-							$options = "";
-								$i2 = 0;
-								while ($i2 < 24) {
-									if ($i2 == $SENSOR_INFO[$i]->customStop) {
-										$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
-									} 
-									else { 
-										$options .= ("<option>" . $i2 . "</option>" . "\n");
-									}
-									$i2 += 1;
-								}
-							$html_sensor_list .=  $options;
-							$html_sensor_list .= ' . $options . ' . "\n";
-							$html_sensor_list .= '</select>' . "\n";
-							$html_sensor_list .= '</div> <!-- col-lg-6 -->' . "\n";
-							$html_sensor_list .= '<div class="col-lg-6">' . "\n";
-
-							//--------------------------Custom Time Days-----------------------------//
-
-							$html_sensor_list .= '<p style="font-weight:bold;"> Days: </p>' . "\n";
-							$html_sensor_list .= '<div class="container">' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="M' . ($i+1) . '" value="M"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> M<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="T' . ($i+1) . '" value="T"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> T<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="W' . ($i+1) . '" value="W"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> W<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="Th' . ($i+1) . '" value="Th"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> Th<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="F' . ($i+1) . '" value="F"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> F<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="Sa' . ($i+1) . '" value="Sa"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> Sa<br>' . "\n";
-							$html_sensor_list .= '<input type="checkbox" name="Su' . ($i+1) . '" value="Su" style="margin:4px 0px 14px;"';
-							if ($SENSOR_INFO[$i]->M == "M"){ $html_sensor_list .= ' tabindex="checked"'; }
-							$html_sensor_list .= '> Su<br>' . "\n";
-							$html_sensor_list .= '</div> <!-- container -->' . "\n";
+						$html_sensor_list .= '<p style="font-weight:bold;"> Days: </p>' . "\n";
+						$html_sensor_list .= '<div class="container">' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="M' . ($i+1) . '" value="M"';
+						if ($SENSOR_INFO[$i]->weekdays[0] == "M"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> M<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="T' . ($i+1) . '" value="T"';
+						if ($SENSOR_INFO[$i]->weekdays[1] == "T"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> T<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="W' . ($i+1) . '" value="W"';
+						if ($SENSOR_INFO[$i]->weekdays[2] == "W"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> W<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="Th' . ($i+1) . '" value="Th"';
+						if ($SENSOR_INFO[$i]->weekdays[3] == "Th"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> Th<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="F' . ($i+1) . '" value="F"';
+						if ($SENSOR_INFO[$i]->weekdays[4] == "F"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> F<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="Sa' . ($i+1) . '" value="Sa"';
+						if ($SENSOR_INFO[$i]->weekdays[5] == "Sa"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> Sa<br>' . "\n";
+						$html_sensor_list .= '<input type="checkbox" name="Su' . ($i+1) . '" value="Su" style="margin:4px 0px 14px;"';
+						if ($SENSOR_INFO[$i]->weekdays[6] == "Su"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '> Su<br>' . "\n";
+						$html_sensor_list .= '</div> <!-- container -->' . "\n";
 
 
-						$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
+					$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 				$html_sensor_list .= '</div> <!-- row -->' . "\n";
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 			$html_sensor_list .= '<div class="col-lg-3">' . "\n";
 				$html_sensor_list .= '<div class="row">' . "\n";
+					$html_sensor_list .= '<div class="col-lg-10">' . "\n";
 
 
 					//----------------------------Summary Method----------------------------//
 
-					$html_sensor_list .= '<p style="font-weight:bold;"> Summary Format: </p>' . "\n";
-					$html_sensor_list .= '<select class="form-control" name="summaryFormat' . ($i+1) . '">' . "\n";
-					$html_sensor_list .= '<br>' . "\n";
-					if ($SENSOR_INFO[$i]->binType == "Year"){
-						$html_sensor_list .= '<option selected="selected">Year</option>' . "\n";
-					} else {
-						$html_sensor_list .= '<option>Year</option>' . "\n";
-					}
-					if ($SENSOR_INFO[$i]->binType == "Month"){
-						$html_sensor_list .= '<option selected="selected">Month</option>' . "\n";
-					} else {
-						$html_sensor_list .= '<option>Month</option>' . "\n";
-					}
-					if ($SENSOR_INFO[$i]->binType == "Day"){
-						$html_sensor_list .= '<option selected="selected">Day</option>' . "\n";
-					} else {
-						$html_sensor_list .= '<option>Day</option>' . "\n";
-					}
-					if ($SENSOR_INFO[$i]->binType == "From Sensor"){
-						$html_sensor_list .= '<option selected="selected">From Sensor</option>' . "\n";
-					} else {
-						$html_sensor_list .= '<option>From Sensor</option>' . "\n";
-					}
-					if ($SENSOR_INFO[$i]->binType == "Custom Time"){
-						$html_sensor_list .= '<option selected="selected">Custom Time</option>' . "\n";
-					} else {
-						$html_sensor_list .= '<option>Custom Time</option>' . "\n";
-					}
-					$html_sensor_list .= '</select>' . "\n";
-					$html_sensor_list .= '<br>' . "\n";
-						
+						$html_sensor_list .= '<p style="font-weight:bold;"> Summary Format: </p>' . "\n";
+						$html_sensor_list .= '<select class="form-control" name="summaryFormat' . ($i+1) . '">' . "\n";
+						$html_sensor_list .= '<br>' . "\n";
+						if ($SENSOR_INFO[$i]->summaryMethod == "Year"){
+							$html_sensor_list .= '<option selected="selected">Year</option>' . "\n";
+						} else {
+							$html_sensor_list .= '<option>Year</option>' . "\n";
+						}
+						if ($SENSOR_INFO[$i]->summaryMethod == "Month"){
+							$html_sensor_list .= '<option selected="selected">Month</option>' . "\n";
+						} else {
+							$html_sensor_list .= '<option>Month</option>' . "\n";
+						}
+						if ($SENSOR_INFO[$i]->summaryMethod == "Day"){
+							$html_sensor_list .= '<option selected="selected">Day</option>' . "\n";
+						} else {
+							$html_sensor_list .= '<option>Day</option>' . "\n";
+						}
+						if ($SENSOR_INFO[$i]->summaryMethod == "None"){
+							$html_sensor_list .= '<option selected="selected">None</option>' . "\n";
+						} else {
+							$html_sensor_list .= '<option>None</option>' . "\n";
+						}
+						$html_sensor_list .= '</select>' . "\n";
+						$html_sensor_list .= '<br>' . "\n";
+
+					$html_sensor_list .= '</div> <!-- col-lg-10 -->' . "\n";
 				$html_sensor_list .= '</div> <!-- row -->' . "\n";
 			$html_sensor_list .= '</div> <!-- col-lg-3>' . "\n";
 		$html_sensor_list .= '</div> <!-- row -->' . "\n";

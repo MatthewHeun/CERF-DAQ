@@ -49,10 +49,10 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$fromSensorNumberStrings->append("fromSensorNumber" . $i);
 	$fromSensorMinStrings->append("fromSensorMin" . $i);
 	$fromSensorMaxStrings->append("fromSensorMax" . $i);
-	$weekdaysStrings->append(array("M" . $i, "T" . $i, "W" . $i, "Th" . $i, "F" . $i, "Sa" . $i, "Su" . $i));
+	$weekdaysStrings[] = (array("M" . $i, "T" . $i, "W" . $i, "Th" . $i, "F" . $i, "Sa" . $i, "Su" . $i));
 	$customStartStrings->append("customStart" . $i);
 	$customStopStrings->append("customStop" . $i);
-	$summaryMethodStrings->append(array("summaryFormat" . $i));
+	$summaryMethodStrings->append("summaryFormat" . $i);
 }
 
 if(isset($_GET["sensorInfo"])){
@@ -66,9 +66,7 @@ if(isset($_GET["sensorInfo"])){
 			$fromSensorNumberArray->append($_GET[$fromSensorNumberStrings[$i-1]]);
 			$fromSensorMinArray->append($_GET[$fromSensorMinStrings[$i-1]]);
 			$fromSensorMaxArray->append($_GET[$fromSensorMaxStrings[$i-1]]);
-			$weekdaysArray->append($_GET[$weekdaysStrings[$i-1]]);
-			echo $_GET[$weekdaysStrings[$i-1]];
-			echo $weekdaysStrings[$i-1];
+			$weekdaysArray[] = (array($_GET[$weekdaysStrings[$i-1][0]],$_GET[$weekdaysStrings[$i-1][1]],$_GET[$weekdaysStrings[$i-1][2]],$_GET[$weekdaysStrings[$i-1][3]],$_GET[$weekdaysStrings[$i-1][4]],$_GET[$weekdaysStrings[$i-1][5]],$_GET[$weekdaysStrings[$i-1][6]]));
 			$customStartArray->append($_GET[$customStartStrings[$i-1]]);
 			$customStopArray->append($_GET[$customStopStrings[$i-1]]);
 			$summaryMethodArray->append($_GET[$summaryMethodStrings[$i-1]]);
@@ -85,13 +83,13 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $fromSensorNumberArray[$i-1] . "\n");
 		fwrite($infoFile, $fromSensorMinArray[$i-1] . "\n");
 		fwrite($infoFile, $fromSensorMaxArray[$i-1] . "\n");
-		fwrite($infoFile, $weekdaysArray[$i-1] . "\n");
+		for ($i2 = 0; $i2 < 7; $i2++) {
+			fwrite($infoFile, $weekdaysArray[$i-1][$i2] . "\n");
+		}
 		fwrite($infoFile, $customStartArray[$i-1] . "\n");
 		fwrite($infoFile, $customStopArray[$i-1] . "\n");
 		fwrite($infoFile, $summaryMethodArray[$i-1] . "\n");
 	}
-	echo $weekdaysArray[$i-1];
-	echo "CHECK HERE";
 }
 
 ?>
