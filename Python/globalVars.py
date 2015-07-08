@@ -27,6 +27,7 @@ for i in range(NUM_SENSORS):
 	SENSOR_INFO[i].set_name(f.readline().rstrip())
 	SENSOR_INFO[i].set_type(f.readline().rstrip())
 	SENSOR_INFO[i].set_analysis(f.readline().rstrip())
+	SENSOR_INFO[i].set_threshold(f.readline().rstrip(),f.readline().rstrip())
 	SENSOR_INFO[i].set_i2cAddress(f.readline().rstrip())
 	SENSOR_INFO[i].set_pinNumber(f.readline().rstrip())
 	SENSOR_INFO[i].set_binType(f.readline().rstrip())

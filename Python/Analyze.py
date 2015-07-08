@@ -17,6 +17,7 @@ import smbus
 import re
 import os
 import re  #line delimiter
+from binClass import*
 from datetime import date
 from globalVars import*  # Global vars
 #<<<<<<< HEAD
@@ -58,8 +59,8 @@ def createDirectories():
 #------------------------------------------------------------------
 
 					#initializeSummary() writes the metadata to each file
-def initializeFile(sensor, folder):
-	filename = (summary_path + folder + '/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+def initializeSummary(sensor):
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
 	newfile = open(filename, 'w')
 	newfile.write("#Calvin College CERF PI DATA"+ '\n')
 	newfile.close()
@@ -86,6 +87,28 @@ def addMonth(originalDate):
 					#finds the difference in months between two dates
 def monthsDiff(date1, date2):
 	return ((date1.year - date2.year)*12 + date1.month - date2.month)
+
+#------------------------------------------------------------------
+					
+					#returns the date in a datetime format from a filename
+def getDateFromFile(filename):
+	datestring = ((filename.split('_')[3]).split('.')[0])
+	return datetime.datetime.strptime(datestring, '%Y-%m-%d')
+
+#------------------------------------------------------------------
+					
+					#returns the date in a datetime format from a datestring
+def getDateFromDataString(datastring):
+	return datetime.datetime.strptime(datastring, '%Y-%m-%d %H:%M:%S')
+
+#------------------------------------------------------------------
+					
+					#returns true if the check date is within date1 and date2 (date 2 should be later than date 1)
+def dateInRange(checkDate, date1, date2):
+	if ((checkDate > date1) and (checkDate < date2)):
+		return True
+	else:
+		return False
 
 #------------------------------------------------------------------
 					
@@ -122,16 +145,12 @@ def getFirstDate(sensor):
 	firstYear = getFirstYear(sensor)
 	firstMonth = getFirstMonth(sensor, firstYear)
 	firstDay = getFirstDay(sensor, firstYear, firstMonth)
-	return datetime.datetime.strptime("firstYear + ' ' + firstMonth + ' ' + firstDay", "%Y %m %d")
+	return datetime.datetime.strptime(firstYear + ' ' + firstMonth + ' ' + firstDay, "%Y %m %d")
 
 #------------------------------------------------------------------
 					
 					#creates a list of start and stop times divided by years
 def createYearBins(sensor):
-	filename = initializeFile(sensor, "Bins")
-	binFile = open(filename, 'a')
-	binFile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start_Time,End_Time" + '\n')
-
 	firstYear = int(getFirstYear(sensor))
 	today = datetime.datetime.today()
 	endYear = int(today.year)
@@ -140,20 +159,15 @@ def createYearBins(sensor):
 	endHour = datetime.datetime.strptime("23 59 59", "%H %M %S").time()
 
 	for x in range(endYear-firstYear+1):
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(firstYear) + '-' + "01" + '-' + "01" + ' ' + str(startHour))
-		filestring += (',' + str(firstYear) + '-' + "12" + '-' + str(calendar.monthrange(int(firstYear), 12)[1])+ ' ' + str(endHour) + '\n')
-		binFile.write(filestring)
+		startTime = (str(firstYear) + '-' + "01" + '-' + "01" + ' ' + str(startHour))
+		stopTime = (str(firstYear) + '-' + "12" + '-' + str(calendar.monthrange(int(firstYear), 12)[1])+ ' ' + str(endHour))
+		binArray[sensor.number-1].addBin(startTime, stopTime)
 		firstYear += 1
-		print filestring
 
 #------------------------------------------------------------------
 
 					#creates a list of start and stop times divided by months
 def createMonthBins(sensor):
-	filename = initializeFile(sensor, "Bins")
-	binFile = open(filename, 'a')
-	binFile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start_Time,End_Time" + '\n')
-
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
 
@@ -161,22 +175,15 @@ def createMonthBins(sensor):
 	endHour = datetime.datetime.strptime("23 59 59", "%H %M %S").time()
 
 	for x in range(monthsDiff(today, firstDate)+1):
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + "01" + ' ' + str(startHour))
-		filestring += (',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + str((calendar.monthrange(int(firstDate.year), int(firstDate.month)))[1]) + ' ' + str(endHour) + '\n')
-		binFile.write(filestring)
+		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + "01" + ' ' + str(startHour))
+		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str((calendar.monthrange(int(firstDate.year), int(firstDate.month)))[1]) + ' ' + str(endHour))
+		binArray[sensor.number-1].addBin(startTime, stopTime)
 		firstDate = addMonth(firstDate)
-		print filestring
-
-	binFile.close()
 
 #------------------------------------------------------------------
 					
 					#creates a list of start and stop times divided by months
 def createDayBins(sensor):
-	filename = initializeFile(sensor, "Bins")
-	binFile = open(filename, 'a')
-	binFile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start_Time,End_Time" + '\n')
-
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
 
@@ -184,21 +191,15 @@ def createDayBins(sensor):
 	endHour = datetime.datetime.strptime("23 59 59", "%H %M %S").time()
 
 	for x in range(int((today-firstDate).days)):
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
-		filestring += (',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour) + '\n')
-		binFile.write(filestring)
+		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
+		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour))
+		binArray[sensor.number-1].addBin(startTime, stopTime)
 		firstDate += datetime.timedelta(days=1)
-		print filestring
-
-	binFile.close()
 
 #------------------------------------------------------------------
 					
 					#creates a list of start and stop times based on the data of a sensor
 def createCustomBins(sensor):
-	filename = initializeFile(sensor, "Bins")
-	binFile = open(filename, 'a')
-	binFile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start_Time,End_Time" + '\n')
 
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
@@ -207,67 +208,76 @@ def createCustomBins(sensor):
 
 	if startHour < 10:
 		startHour = '0' + str(startHour)
-	if endHour <10:
+	if endHour < 10:
 		endHour = '0' + str(endHour)
 
 	startHour = datetime.datetime.strptime(str(startHour), "%H").time()
 	endHour = datetime.datetime.strptime(str(endHour), "%H").time()
 
 	for x in range(int((today-firstDate).days)):
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
-		filestring += (',' + str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour) + '\n')
-		binFile.write(filestring)
+		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
+		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour))
+		for day in sensor.weekdays:
+			if str(day) == str(firstDate.weekday()):
+				binArray[sensor.number-1].addBin(startTime, stopTime)
 		firstDate += datetime.timedelta(days=1)
-		print filestring
-
-	binFile.close()
 
 #------------------------------------------------------------------
 					#creates a list of start and stop times based on the data of a sensor
 
 def createSensorBins(sensor):
-	filename = initializeFile(sensor, "Bins")
-	binFile = open(filename, 'a')
-	binFile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Start_Time,End_Time" + '\n')
-	full_raw_path = get_full_raw_path(sensor)
+	firstYear = int(getFirstYear(sensor))
+	today = datetime.datetime.today()
+	endYear = int(today.year)
 
 	inRangeBefore = False
 	inRangeNow = False
-	close = False
+	end = False
 	time = ""
-	for month in month_list:
-		fileList = []
-		if os.path.exists(full_raw_path + month):
-			for file in os.listdir(full_raw_path + month):
-				fileList.append(file)
-			fileList.sort()
-			for file in fileList:
-				file = open(full_raw_path + month + '/' + file)
-				for line in file:
-					if line[0] != "#":
-						row = re.split(',',line)
-						time = row[4]
-						data = row[5].replace('\n','')
-						hour = time[-8:-6]
-						day = time[8:10]
-						if ((float(data) > float(sensor.fromSensorMin)) and (float(data) < float(sensor.fromSensorMax))):
-							inRangeNow = True
-						else:
-							inRangeNow = False
-						if ((inRangeNow == True) and (inRangeBefore == False)):
-							binFile.write(nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + time)
-							print(nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + time),
-							close = False
-						if ((inRangeNow == False) and (inRangeBefore == True)):
-							binFile.write(',' + time + '\n')
-							print(',' + time + '\n')
-							close = True
-						inRangeBefore = inRangeNow
-	if close != True:
-		binFile.write(',' + time + '\n')
-		print(',' + time + '\n')
+	startTime = ""
+	endTime = ""
+	oldTime = ""
 
-	binFile.close()
+	yearList = []
+	for x in range(endYear - firstYear + 1):
+		yearList.append(str(firstYear))
+		firstYear += 1
+
+	for year in yearList:
+		for month in month_list:
+			filepath = raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/' + month
+			fileList = []
+			if os.path.exists(filepath):
+				for file in os.listdir(filepath):
+					fileList.append(file)
+				fileList.sort()
+				for file in fileList:
+					file = open(filepath + '/' + file)
+					for line in file:
+						if line[0] != "#":
+							row = re.split(',',line)
+							time = row[4]
+							data = row[5].replace('\n','')
+							if ((float(data) > float(sensor.fromSensorMin)) and (float(data) < float(sensor.fromSensorMax))):
+								inRangeNow = True
+							else:
+								inRangeNow = False
+							if ((inRangeNow == True) and (inRangeBefore == False)):
+								if str(oldTime) == "":
+									binArray[sensor.number-1].addStartTime(time)
+								else:
+									binArray[sensor.number-1].addStartTime(oldTime)
+								end = False
+							if ((inRangeNow == False) and (inRangeBefore == True)):
+								if str(oldTime) == "":
+									binArray[sensor.number-1].addStopTime(time)
+								else:
+									binArray[sensor.number-1].addStopTime(oldTime)
+								end = True
+							inRangeBefore = inRangeNow
+							oldTime = time
+		if end != True:
+			binArray[sensor.number-1].addstopTime(time)
 
 #------------------------------------------------------------------
 					#creates a list of start and stop times based on configuration data
@@ -283,163 +293,221 @@ def createBins(sensor):
 		createCustomBins(sensor)
 	elif sensor.binType == "Year":
 		createYearBins(sensor)
+
 #------------------------------------------------------------------
 
 					#extrapolateOnPeakOffPeakData() determines if the data was high during on peak, or high during off peak
-def extrapolateOnPeakOffPeakData(month, sensor):
-	full_raw_path = get_full_raw_path(sensor)
-	total_min_off_peak = 0
-	total_min_on_peak = 0
-	min_on_peak = 0
-	min_off_peak = 0
-	if not os.path.exists(full_raw_path + month):
-		filestring = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',0.00,0.00\n'
-	else:
-		for file in os.listdir(full_raw_path + month):
-			file = open(full_raw_path + month + '/' + file)
-			for line in file:
-				if line[0] != "#":
-					row = re.split(',',line)
-					time = row[4]
-					data = row[5].replace('\n','')
-					if 'e' in data:
-						data = '0'
-					hour = time[-8:-6]
-					day = time[8:10]
-					weekday = date(int(year),int(month),int(day)).weekday()
-					peak_hour = int(hour) >= int(sensor.peakStart) and int(hour) < int(sensor.peakStop)
-					peak_day = weekday < 5
-					if (peak_hour and peak_day):
+def onPeakOffPeakAnalysis(sensor):
+	initializeSummary(sensor)
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	summaryfile = open(filename, 'a')
+	summaryString = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,On%,In/Out of Range" + '\n'
+	summaryfile.write(summaryString)
+
+	firstDate = getFirstDate(sensor)
+	today = datetime.datetime.today()
+
+	minutesOn = 0
+	minutesOff = 0
+	totalMinutes = 0
+	binIndex = 0
+
+	inRangeBefore = False
+	inRangeNow = False
+	end = False
+	firstTimeThrough = True
+
+	startYear = int(firstDate.year)
+	startMonth = int(firstDate.month)
+
+	for x in range(monthsDiff(today, firstDate)+1):
+		if int(startMonth) < 10:
+			startMonth = "0" + str(startMonth)
+
+		filePath = raw_path + 'Sensor' + str(sensor.number) + '/' + str(startYear) + '/' + str(startMonth) + '/'
+
+		if os.path.exists(filePath):
+			for file in os.listdir(filePath):
+				fileDate = getDateFromFile(file)
+				file = open(filePath + file)
+				for line in file:
+					if line[0] != '#':
+						row = re.split(',',line)
+						time = row[4]
+						data = row[5].replace('\n','')
+						time = getDateFromDataString(time)
+						if firstTimeThrough:
+							lastTime = time;
+						if dateInRange(time, binArray[sensor.number-1].timeArray[binIndex][0], binArray[sensor.number-1].timeArray[binIndex][1]):
+							inRangeNow = True
+						else:	
+							inRangeNow = False
+						
 						if (float(data) > float(sensor.thresholdMin)):
-							total_min_on_peak += 1
-							min_on_peak += 1
+							minutesOn += 1
+							totalMinutes += 1
 						else:
-							total_min_on_peak += 1
-					else:
-						if (float(data) > float(sensor.thresholdMin)):
-							total_min_off_peak += 1
-							min_off_peak += 1
-						else:
-							total_min_off_peak += 1
-			file.close()
-		if total_min_on_peak != 0:
-    			percentage_on_peak = (float(min_on_peak)/total_min_on_peak)*100
-		else:
-			percentage_on_peak = 0
-		if total_min_off_peak != 0:
-			percentage_off_peak = (float(min_off_peak)/total_min_off_peak)*100
-		else:
-			percentage_off_peak = 0
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + "%.2f" %percentage_on_peak +','+ "%.2f" %percentage_off_peak +'\n')
-	return filestring
+							minutesOff += 1
+							totalMinutes += 1
 
+						if ((inRangeNow == True) and (False == inRangeBefore) and (not firstTimeThrough)):
+							percentOn = (float(minutesOn) / float(totalMinutes))
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ",Not in Range" + '\n'
+							summaryfile.write(summaryString)
+							minutesOn = 0
+							minutesOff = 0
+							totalMinutes = 0
+							lastTime = time
+
+						if ((inRangeNow == False) and (True == inRangeBefore)):
+							percentOn = (float(minutesOn) / float(totalMinutes))
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ",In Range" + '\n'
+							summaryfile.write(summaryString)
+							binIndex += 1
+							minutesOn = 0
+							minutesOff = 0
+							totalMinutes = 0
+							lastTime = time
+
+						inRangeBefore = inRangeNow
+						firstTimeThrough = False
+
+		startMonth  = int(startMonth) + 1
+		if startMonth > 12:
+			startMonth = 1
+			startYear += 1
+
+	if not end:
+		inRangeString = ""
+		if inRangeNow:
+			inRangeString = "In Range"
+		else:
+			inRangeString = "Out of Range"
+		percentOn = (float(minutesOn) / float(totalMinutes))
+		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ',' + inRangeString + '\n'
+		summaryfile.write(summaryString)
 #------------------------------------------------------------------
 
-def extrapolateMinMaxAveData(month, sensor):
-	full_raw_path = get_full_raw_path(sensor)
-	maxDay = 0.0
-	maxNight = 0.0
-	minDay = 100000.0
-	minNight = 100000.0
-	minutesInRangeDay = 0
-	minutesInRangeNight = 0
-	dayMinutes = 0
-	nightMinutes = 0
-	total_min_off_peak = 0
-	total_min_on_peak = 0
-	min_on_peak = 0
-	min_off_peak = 0
-	if not os.path.exists(full_raw_path + month):
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',0.00,0.00,0.00,0.00,0.00,0.00\n')
-	else:
-		for file in os.listdir(full_raw_path + month):
-			file = open(full_raw_path + month + '/' + file)
-			for line in file:
-				if line[0] != "#":
-					row = re.split(',',line)
-					time = row[4]
-					data = row[5].replace('\n','')
-					hour = time[-8:-6]
-					day = time[8:10]
-					weekday = date(int(year),int(month),int(day)).weekday()
-					day = ((int(hour) > int(sensor.peakStart)) and (int(hour) < int(sensor.peakStop)))
-					if (day and (float(data) > float(maxDay))):
-						maxDay = data
-					elif (day and (float(data) < float(minDay))):
-						minDay = data
-					elif ((not day) and (float(data) > float(maxNight))):
-						maxNight = data
-					elif ((not day) and (float(data) < float(minNight))):
-						minNight = data
-					if (day and (float(data) > float(sensor.thresholdMin)) and (float(data) < float(sensor.thresholdMax))):
-						minutesInRangeDay += 1
-					elif ((not day) and (float(data) > float(sensor.thresholdMin)) and (float(data) < float(sensor.thresholdMax))):
-						minutesInRangeNight += 1
-					if day:
-						dayMinutes += 1
-					if not day:
-						nightMinutes += 1				
-			file.close()
-		if minNight == 100000:
-			minNight = 0
-		if minDay == 100000:
-			minDay = 0
-		if minutesInRangeDay != 0:
-    			percentageInRangeDay = (float(minutesInRangeDay)/dayMinutes)*100
-		else:
-			percentageInRangeDay = 0
-		if minutesInRangeNight != 0:
-    			percentageInRangeNight = (float(minutesInRangeNight)/nightMinutes)*100
-		else:
-			percentageInRangeNight = 0
-		filestring = (nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + year + ',' + month + ',' + str(maxDay) + ',' + str(maxNight) + ',' + str(minDay) + ',' + str(minNight) + ',' + "%.2f" %percentageInRangeDay +','+ "%.2f" %percentageInRangeNight +'\n')
-	return filestring
+						#determines the min and max the user defined in range, and out of range hours
+def minMaxAnalysis(sensor):
+	initializeSummary(sensor)
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	summaryfile = open(filename, 'a')
+	summaryString = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,Max,Min,Ave,In/Out of Range" + '\n'
+	summaryfile.write(summaryString)
 
-#------------------------------------------------------------------
+	firstDate = getFirstDate(sensor)
+	today = datetime.datetime.today()
 
-					#AnalyzePeak() performas an on/off-peak analysis of the data
-def AnalyzePeak(sensor):
-    	initializeSummary(sensor, "Peak")
-	filename = (summary_path + 'Peak/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
-    	summaryfile = open(filename, 'a')
-    	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,On_Peak%,Off_Peak%" + '\n')
- 
-    	for month in month_list:
-		filestring = extrapolateOnPeakOffPeakData(month, sensor)
-		summaryfile.write(filestring)	
-
-	summaryfile.close()	
-
-#------------------------------------------------------------------
-
-					#AnalyzeMinMaxAve() performs a min, max, and average analysis on the data
-def AnalyzeMinMaxAve(sensor):
-    	initializeSummary(sensor, "Min-Max")
-	filename = (summary_path + 'Min-Max/Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
-    	summaryfile = open(filename, 'a')
-    	summaryfile.write("#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,Max_Day, Max_Night, Min_Day, Min_Night, Time_in_Range_Day, Time_in_Range_Night" + '\n')
-
-	for month in month_list:
-		filestring = extrapolateMinMaxAveData(month, sensor)
-		summaryfile.write(filestring)
-		print(filestring)
+	maximum = 0.0
+	minimum = 100000.0
+	average = 0.0
+	totalMinutes = 0
+	binIndex = 0
 	
-	summaryfile.close()		
+	inRangeBefore = False
+	inRangeNow = False
+	end = False
+	firstTimeThrough = True
+
+	startYear = int(firstDate.year)
+	startMonth = int(firstDate.month)
+
+	for x in range(monthsDiff(today, firstDate)+1):
+		if int(startMonth) < 10:
+			startMonth = "0" + str(startMonth)
+
+		filePath = raw_path + 'Sensor' + str(sensor.number) + '/' + str(startYear) + '/' + str(startMonth) + '/'
+
+		if os.path.exists(filePath):
+			for file in os.listdir(filePath):
+				fileDate = getDateFromFile(file)
+				file = open(filePath + file)
+				for line in file:
+					if line[0] != '#':
+						row = re.split(',',line)
+						time = row[4]
+						data = row[5].replace('\n','')
+						time = getDateFromDataString(time)
+						if firstTimeThrough:
+							lastTime = time;
+						if dateInRange(time, binArray[sensor.number-1].timeArray[binIndex][0], binArray[sensor.number-1].timeArray[binIndex][1]):
+							inRangeNow = True
+						else:	
+							inRangeNow = False
+						
+						if (float(data) > float(maximum)):
+							maximum = float(data)
+						if (float(data) < float(minimum)):
+							minimum = float(data)
+
+						average += float(data)
+						totalMinutes += 1
+
+						if ((inRangeNow == True) and (False == inRangeBefore) and (not firstTimeThrough)):
+							average = (float(average) / float(totalMinutes))
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%2f" %minimum + ',' + "%2f" %average + ",Out of Range" + '\n'
+							summaryfile.write(summaryString)
+							maximum = 0.0
+							minimum = 100000.0
+							average = 0.0
+							totalMinutes = 0.0
+							lastTime = time
+							end = True
+
+						if ((inRangeNow == False) and (True == inRangeBefore)):
+							average = float((float(average) / float(totalMinutes)))
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%2f" %minimum + ',' + "%2f" %average + ",In Range" + '\n'
+							summaryfile.write(summaryString)
+							binIndex += 1
+							maximum = 0.0
+							minimum = 100000.0
+							average = 0.0
+							totalMinutes = 0.0
+							lastTime = time
+							end = True
+
+						inRangeBefore = inRangeNow
+						firstTimeThrough = False
+
+		startMonth  = int(startMonth) + 1
+		if startMonth > 12:
+			startMonth = 1
+			startYear += 1	
+	if not end:
+		inRangeString = ""
+		if inRangeNow:
+			inRangeString = "In Range"
+		else:
+			inRangeString = "Out of Range"
+		average = float((float(average) / float(totalMinutes)))
+		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%2f" %minimum + ',' + "%2f" %average + ',' + inRangeString + '\n'
+		summaryfile.write(summaryString)
 
 #------------------------------------------------------------------
 
 					#analyzeData() calls the functions to output for each of the sensors
 def analyzeData():      
 	for i in range(NUM_SENSORS):
-    		AnalyzePeak(SENSOR_INFO[i])
-		AnalyzeMinMaxAve(SENSOR_INFO[i])
-		AnalyzeBins(SENSOR_INFO[i])
+		createBins(SENSOR_INFO[i])
+
+		if SENSOR_INFO[i].analysis == "On-Peak Off-Peak %":
+			onPeakOffPeakAnalysis(SENSOR_INFO[i])
+
+		elif SENSOR_INFO[i].analysis == "Min-Max":
+			minMaxAnalysis(SENSOR_INFO[i])
+
 
 #==================================================================
 #-------------------------MAIN APPLICATION-------------------------
 #==================================================================
 
-createBins(SENSOR_INFO[0])
+binArray = []
+
+for i in range(NUM_SENSORS):
+	binArray.append(Bins(i))
+
+analyzeData()
 
 #==================================================================
 #-----------------Tell the website the pi is not busy--------------

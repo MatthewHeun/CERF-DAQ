@@ -41,6 +41,8 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$nameStrings->append("name" . $i);
 	$typeStrings->append("sensor" . $i . "type");
 	$analysisStrings->append("analysis" . $i . "type");
+	$minStrings->append("min" . $i);
+	$maxStrings->append("max" . $i);
 	$i2cStrings->append("i2c" . $i);
 	$pinStrings->append("pin" . $i);
 	$peakStartStrings->append("peakStart" . $i);
@@ -60,6 +62,8 @@ if(isset($_GET["sensorInfo"])){
 			$nameArray->append($_GET[$nameStrings[$i-1]]);
 			$typeArray->append($_GET[$typeStrings[$i-1]]);
 			$analysisArray->append($_GET[$analysisStrings[$i-1]]);
+			$minArray->append($_GET[$minStrings[$i-1]]);
+			$maxArray->append($_GET[$maxStrings[$i-1]]);
 			$i2cArray->append($_GET[$i2cStrings[$i-1]]);
 			$pinArray->append($_GET[$pinStrings[$i-1]]);
 			$binTypeArray->append($_GET[$binTypeStrings[$i-1]]);
@@ -77,6 +81,8 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $nameArray[$i-1] . "\n");
 		fwrite($infoFile, $typeArray[$i-1] . "\n");
 		fwrite($infoFile, $analysisArray[$i-1] . "\n");
+		fwrite($infoFile, $minArray[$i-1] . "\n");
+		fwrite($infoFile, $maxArray[$i-1] . "\n");
 		fwrite($infoFile, $i2cArray[$i-1] . "\n");
 		fwrite($infoFile, $pinArray[$i-1] . "\n");
 		fwrite($infoFile, $binTypeArray[$i-1] . "\n");
@@ -89,6 +95,7 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $customStartArray[$i-1] . "\n");
 		fwrite($infoFile, $customStopArray[$i-1] . "\n");
 		fwrite($infoFile, $summaryMethodArray[$i-1] . "\n");
+		fwrite($infoFile, $summary);
 	}
 }
 

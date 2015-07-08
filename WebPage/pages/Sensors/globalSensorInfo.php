@@ -45,6 +45,9 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	$SENSOR_INFO[$i-1]->set_analysis(trim(fgets($sensorInfoFile)));
 	// echo "Analysis Type: ";
 	// echo $SENSOR_INFO[$i-1]->analysis . "\n";
+	$SENSOR_INFO[$i-1]->set_threshold(trim(fgets($sensorInfoFile)),trim(fgets($sensorInfoFile)));
+	// echo "Threshold min and max: ";
+	// echo $SENSOR_INFO[$i-1]->thresholdMin . " " . $SENSOR_INFO[$i-1]->thresholdMax . "\n";
 	$SENSOR_INFO[$i-1]->set_i2cAddress(trim(fgets($sensorInfoFile)));
 	// echo "i2c Adress: ";
 	// echo $SENSOR_INFO[$i-1]->i2cAddress . "\n";

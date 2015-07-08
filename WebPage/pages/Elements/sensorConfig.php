@@ -99,24 +99,28 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 				$html_sensor_list .= '<p style="font-weight:bold;"> Analysis Type </p>' . "\n";
 				$html_sensor_list .= '<select class="form-control" name="analysis' . ($i+1) .'type">' . "\n";
 				$html_sensor_list .= '<br>' . "\n";
-				if ($SENSOR_INFO[$i]->analysis == "Peak"){
-					$html_sensor_list .= '<option selected="selected">Peak</option>' . "\n";
+				if ($SENSOR_INFO[$i]->analysis == "On-Peak Off-Peak %"){
+					$html_sensor_list .= '<option selected="selected">On-Peak Off-Peak %</option>' . "\n";
 				} else {
-					$html_sensor_list .= '<option>Peak</option>' . "\n";
+					$html_sensor_list .= '<option>On-Peak Off-Peak %</option>' . "\n";
 				}
 				if ($SENSOR_INFO[$i]->analysis == "Min-Max"){
 					$html_sensor_list .= '<option selected="selected">Min-Max</option>' . "\n";
 				} else {
 					$html_sensor_list .= '<option>Min-Max</option>' . "\n";
 				}
-				if ($SENSOR_INFO[$i]->analysis == "Bins"){
-					$html_sensor_list .= '<option selected="selected">Bins</option>' . "\n";
+				if ($SENSOR_INFO[$i]->analysis == "kWh"){
+					$html_sensor_list .= '<option selected="selected">kWh</option>' . "\n";
 				} else {
-					$html_sensor_list .= '<option>Bins</option>' . "\n";
+					$html_sensor_list .= '<option>kWh</option>' . "\n";
 				}
 				$html_sensor_list .= '</select>' . "\n";
 				$html_sensor_list .= '<br>' . "\n";
+				$html_sensor_list .= '<p style="font-weight:bold;"> Threshold Min </p>' . "\n";
+				$html_sensor_list .= '<input type="text" class="form-control" name="min' . ($i+1) . '" placeholder="min" value="' . $SENSOR_INFO[$i]->thresholdMin .'">' . "\n";
 				$html_sensor_list .= '<br>' . "\n";
+				$html_sensor_list .= '<p style="font-weight:bold;"> Threshold Max </p>' . "\n";
+				$html_sensor_list .= '<input type="text" class="form-control" name="max' . ($i+1) . '" placeholder="max" value="' . $SENSOR_INFO[$i]->thresholdMax . '">' . "\n";
 
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
@@ -257,26 +261,26 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 
 						$html_sensor_list .= '<p style="font-weight:bold;"> Days: </p>' . "\n";
 						$html_sensor_list .= '<div class="container">' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="M' . ($i+1) . '" value="M"';
-						if ($SENSOR_INFO[$i]->weekdays[0] == "M"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="M' . ($i+1) . '" value="0"';
+						if ($SENSOR_INFO[$i]->weekdays[0] == "0"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> M<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="T' . ($i+1) . '" value="T"';
-						if ($SENSOR_INFO[$i]->weekdays[1] == "T"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="T' . ($i+1) . '" value="1"';
+						if ($SENSOR_INFO[$i]->weekdays[1] == "1"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> T<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="W' . ($i+1) . '" value="W"';
-						if ($SENSOR_INFO[$i]->weekdays[2] == "W"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="W' . ($i+1) . '" value="2"';
+						if ($SENSOR_INFO[$i]->weekdays[2] == "2"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> W<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="Th' . ($i+1) . '" value="Th"';
-						if ($SENSOR_INFO[$i]->weekdays[3] == "Th"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="Th' . ($i+1) . '" value="3"';
+						if ($SENSOR_INFO[$i]->weekdays[3] == "3"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> Th<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="F' . ($i+1) . '" value="F"';
-						if ($SENSOR_INFO[$i]->weekdays[4] == "F"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="F' . ($i+1) . '" value="4"';
+						if ($SENSOR_INFO[$i]->weekdays[4] == "4"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> F<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="Sa' . ($i+1) . '" value="Sa"';
-						if ($SENSOR_INFO[$i]->weekdays[5] == "Sa"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="Sa' . ($i+1) . '" value="5"';
+						if ($SENSOR_INFO[$i]->weekdays[5] == "5"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> Sa<br>' . "\n";
-						$html_sensor_list .= '<input type="checkbox" name="Su' . ($i+1) . '" value="Su" style="margin:4px 0px 14px;"';
-						if ($SENSOR_INFO[$i]->weekdays[6] == "Su"){ $html_sensor_list .= ' checked="checked"'; }
+						$html_sensor_list .= '<input type="checkbox" name="Su' . ($i+1) . '" value="6" style="margin:4px 0px 14px;"';
+						if ($SENSOR_INFO[$i]->weekdays[6] == "6"){ $html_sensor_list .= ' checked="checked"'; }
 						$html_sensor_list .= '> Su<br>' . "\n";
 						$html_sensor_list .= '</div> <!-- container -->' . "\n";
 
