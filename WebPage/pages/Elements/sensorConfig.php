@@ -99,6 +99,11 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 				$html_sensor_list .= '<p style="font-weight:bold;"> Analysis Type </p>' . "\n";
 				$html_sensor_list .= '<select class="form-control" name="analysis' . ($i+1) .'type">' . "\n";
 				$html_sensor_list .= '<br>' . "\n";
+				if ($SENSOR_INFO[$i]->analysis == "Range Analysis"){
+					$html_sensor_list .= '<option selected="selected">Range Analysis</option>' . "\n";
+				} else {
+					$html_sensor_list .= '<option>Range Analysis</option>' . "\n";
+				}
 				if ($SENSOR_INFO[$i]->analysis == "On-Peak Off-Peak %"){
 					$html_sensor_list .= '<option selected="selected">On-Peak Off-Peak %</option>' . "\n";
 				} else {
@@ -308,11 +313,6 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 						} else {
 							$html_sensor_list .= '<option>Month</option>' . "\n";
 						}
-						if ($SENSOR_INFO[$i]->summaryMethod == "Day"){
-							$html_sensor_list .= '<option selected="selected">Day</option>' . "\n";
-						} else {
-							$html_sensor_list .= '<option>Day</option>' . "\n";
-						}
 						if ($SENSOR_INFO[$i]->summaryMethod == "None"){
 							$html_sensor_list .= '<option selected="selected">None</option>' . "\n";
 						} else {
@@ -328,10 +328,10 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 		$html_sensor_list .= '</div> <!-- panel-body -->' . "\n";
 		$html_sensor_list .= '</div> <!-- panel heading -->' . "\n";
 	$html_sensor_list .= '</div> <!-- panel panel-default -->' . "\n";
+	$html_sensor_list .= '<button onclick="loadAndAlert()" style="margin-left:auto; margin-right:auto;" type="submit" form="sensorSpecifics" class="btn btn-primary btn-block" name= "sensorInfo">Submit</button>' . "\n";
+	$html_sensor_list .= '<br>' . "\n";
 }
 $html_sensor_list .= '</form>' . "\n";
-$html_sensor_list .= '<button onclick="loadAndAlert()" style="margin-left:auto; margin-right:auto;" type="submit" form="sensorSpecifics" class="btn btn-primary btn-block" name= "sensorInfo">Submit</button>' . "\n";
-$html_sensor_list .= '<br>' . "\n";
 $html_sensor_list .= '<button type="button" onclick="window.location.href=window.location.href" class="btn btn-primary btn-block">Display Updates!</button>' . "\n";
 echo $html_sensor_list;
 

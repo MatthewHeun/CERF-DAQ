@@ -1,6 +1,6 @@
 <?php
 
-$numPiFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
+$numPiFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
 
 $PI_NUMBER = fgets($numPiFile);
 

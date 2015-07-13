@@ -36,12 +36,10 @@
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
                     <?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
+			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
 				include 'Elements/barchartpeak.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min-Max") {
-				include 'Elements/barchartmin-max-ave.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Bins") {
-				include 'Elements/barchartbins.php';
+			} else {
+				include 'Elements/barchart.php';
 			}
 		    ?>
                     <!-- /.panel -->
@@ -58,11 +56,8 @@
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "Peak") {
+			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
 				include 'Elements/morisbar.php'; 
-			} elseif ($SENSOR_INFO[$sensor_number-1]->analysis == "Min-Max") {
-				include 'Elements/morisdonutday.php';
-				include 'Elements/morisdonutnight.php';
 			}
 		?>
 		<?php 

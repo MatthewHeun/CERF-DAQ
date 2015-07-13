@@ -27,12 +27,12 @@
 
 <div class="col-lg-4 pull-right">
 	<div class="input-group">
-		<span class="input-group-btn">		
-			<button class="btn btn-primary" type="submit" form="submit" >Submit</button>
-		</span>
 		<form action="<?php echo $pageLink?>" method="get" id="submit">
 			<input type="text" class="form-control" name="Year" placeholder="Enter Year" maxlength= 4 value="<?php if(isset($_GET['Year'])){ $year_sum = $_GET['Year']; echo $year_sum; } ?>">
 			<input type="hidden" name="sensorNumber" value="<?php echo($sensor_number)?>">
+            <span class="input-group-btn">      
+                <button class="btn btn-primary" type="submit" form="submit" >Submit</button>
+            </span>
 		</form>
 	</div> <!-- input-group -->
 </div> <!-- col-lg-4 pull-right -->

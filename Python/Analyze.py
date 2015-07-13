@@ -1,12 +1,12 @@
 # ********************************************************************** #
 # CERF PI LUX CENSOR Analysis                                            #
 #                                                                        #
-# Analyziz readings from lux sensors for summary data                    #
+# Analysis readings from lux sensors for summary data                    #
 #                                                                        #
 # Started by Derek De Young                                              #
-# Continued by Curtis Kortman						 #
+# Continued by Curtis Kortman											 #
 # Started: 4/25/15                                                       #
-# Last Edited: 6/30/15                                                   #
+# Last Edited: 7/13/15                                                   #
 # ********************************************************************** #
 
 # **************************IMPORTS************************************* #
@@ -60,7 +60,7 @@ def createDirectories():
 
 					#initializeSummary() writes the metadata to each file
 def initializeSummary(sensor):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	newfile = open(filename, 'w')
 	newfile.write("#Calvin College CERF PI DATA"+ '\n')
 	newfile.close()
@@ -172,7 +172,7 @@ def createMonthBins(sensor):
 	today = datetime.datetime.today()
 
 	startHour = datetime.datetime.strptime("00 00", "%H %M").time()
-	endHour = datetime.datetime.strptime("23 59 59", "%H %M %S").time()
+	endHour = datetime.datetime.strptime("23 58 59", "%H %M %S").time()
 
 	for x in range(monthsDiff(today, firstDate)+1):
 		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + "01" + ' ' + str(startHour))
@@ -188,12 +188,13 @@ def createDayBins(sensor):
 	today = datetime.datetime.today()
 
 	startHour = datetime.datetime.strptime("00 00", "%H %M").time()
-	endHour = datetime.datetime.strptime("23 59 59", "%H %M %S").time()
+	endHour = datetime.datetime.strptime("23 58 59", "%H %M %S").time()
 
 	for x in range(int((today-firstDate).days)):
 		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
 		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour))
 		binArray[sensor.number-1].addBin(startTime, stopTime)
+		print "Start: " + str(startTime) + " Stop: " + str(stopTime)
 		firstDate += datetime.timedelta(days=1)
 
 #------------------------------------------------------------------
@@ -298,10 +299,10 @@ def createBins(sensor):
 		createYearBins(sensor)
 
 #------------------------------------------------------------------
-					#takes the data from "from sensor" or "custom time" and summarizes it by month/day/year
+					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateMinMaxData(sensor):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'r')
 	lastStart = ""
 	lastEnd = ""
@@ -392,15 +393,18 @@ def aggregateMinMaxData(sensor):
 
 
 	initializeSummary(sensor)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'a')
 	summarystringHeader = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,Max,Min,Ave,In/Out of Range" + '\n'
 	summaryfile.write(summarystringHeader)
 	summaryfile.write(summarystring)
 	summaryfile.close()
 
-def aggregateOnPeakOffPeakData(sensor):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+#------------------------------------------------------------------
+					#takes the data from "from sensor" or "custom time" and seummarizes it by month or year
+
+def aggregateRangeData(sensor):
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'r')
 	lastStart = ""
 	lastEnd = ""
@@ -497,7 +501,7 @@ def aggregateOnPeakOffPeakData(sensor):
 
 
 	initializeSummary(sensor)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'a')
 	summarystringHeader = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,On Percentage,In/Out of Range" + '\n'
 	summaryfile.write(summarystringHeader)
@@ -508,7 +512,77 @@ def aggregateOnPeakOffPeakData(sensor):
 					# determines if the data was high during set hours, or high during off set hours
 def onPeakOffPeakAnalysis(sensor):
 	initializeSummary(sensor)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
+	summaryfile = open(filename, 'a')
+	summaryString = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Year,Month,On-Peak %,Off-Peak %" + '\n'
+	summaryfile.write(summaryString)
+
+	firstDate = getFirstDate(sensor)
+	today = datetime.datetime.today()
+
+	minutesOn_Peak = 0
+	minutesOn_OffPeak = 0
+	totalMinutes_Peak = 0
+	totalMinutes_OffPeak = 0
+
+	startYear = int(firstDate.year)
+	startMonth = int(firstDate.month)
+
+	summaryString = ""
+
+	for x in range(monthsDiff(today, firstDate)+1):
+		if int(startMonth) < 10:
+			startMonth = "0" + str(startMonth)
+
+		filePath = raw_path + 'Sensor' + str(sensor.number) + '/' + str(startYear) + '/' + str(startMonth) + '/'
+
+		if os.path.exists(filePath):
+			fileList = []
+			for file in os.listdir(filePath):
+				fileList.append(file)
+			fileList.sort()
+			for file in fileList:
+				file = open(filePath + file)
+				for line in file:
+					if line[0] != '#':
+						row = re.split(',',line)
+						time = row[4]
+						data = row[5].replace('\n','')
+						time = getDateFromDataString(time)
+
+						if (time.hour > 11 and time.hour < 17):
+							if (float(data) > float(sensor.thresholdMin)):
+								minutesOn_Peak += 1
+								totalMinutes_Peak += 1
+							else:
+								totalMinutes_Peak += 1
+						else:
+							if (float(data) > float(sensor.thresholdMin)):
+								minutesOn_OffPeak += 1
+								totalMinutes_OffPeak += 1
+							else:
+								totalMinutes_OffPeak += 1
+
+		onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
+		offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
+		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
+		summaryfile.write(summaryString)
+
+		minutesOn_Peak = 0
+		minutesOn_OffPeak = 0
+		totalMinutes_Peak = 0
+		totalMinutes_OffPeak = 0
+
+		startMonth  = int(startMonth) + 1
+		if startMonth > 12:
+			startMonth = 1
+			startYear += 1
+
+#-----------------------------------------------------------------------
+							#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
+def rangeAnalysis(sensor):
+	initializeSummary(sensor)
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'a')
 	summaryString = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,On%,In/Out of Range" + '\n'
 	summaryfile.write(summaryString)
@@ -583,7 +657,7 @@ def onPeakOffPeakAnalysis(sensor):
 								end = False
 							minutesOn = 0
 							minutesOff = 0
-							totalMinutes = 0
+							totalMinutes = 0 
 							lastTime = time + datetime.timedelta(0,60)
 
 						inRangeBefore = inRangeNow
@@ -605,15 +679,16 @@ def onPeakOffPeakAnalysis(sensor):
 		summaryfile.write(summaryString)
 	summaryfile.close()
 
-	if sensor.binType == "Custom" or sensor.binType == "From Sensor":
-		aggregateOnPeakOffPeakData(sensor)
+	if (sensor.binType == "Custom Time" and sensor.summaryMethod != "None"):
+		aggregateRangeData(sensor)
+
 
 #------------------------------------------------------------------
 
 						#determines the min and max the user defined in range, and out of range hours
 def minMaxAnalysis(sensor):
 	initializeSummary(sensor)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '_' + year + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
 	summaryfile = open(filename, 'a')
 	summaryString = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,Max,Min,Ave,In/Out of Range" + '\n'
 	summaryfile.write(summaryString)
@@ -728,11 +803,14 @@ def analyzeData():
 	for i in range(NUM_SENSORS):
 		createBins(SENSOR_INFO[i])
 
-		if SENSOR_INFO[i].analysis == "On-Peak Off-Peak %":
-			onPeakOffPeakAnalysis(SENSOR_INFO[i])
+		# if SENSOR_INFO[i].analysis == "On-Peak Off-Peak %":
+		# 	onPeakOffPeakAnalysis(SENSOR_INFO[i])
 
-		elif SENSOR_INFO[i].analysis == "Min-Max":
-			minMaxAnalysis(SENSOR_INFO[i])
+		# elif SENSOR_INFO[i].analysis == "Range Analysis":
+		# 	rangeAnalysis(SENSOR_INFO[i])
+
+		# elif SENSOR_INFO[i].analysis == "Min-Max":
+		# 	minMaxAnalysis(SENSOR_INFO[i])
 
 
 #==================================================================
@@ -746,8 +824,10 @@ for i in range(NUM_SENSORS):
 
 analyzeData()
 
-#for x in range(len(binArray[2].timeArray)):
-	#print "Start: " + str(binArray[2].timeArray[x][0]) + " Stop: " + str(binArray[2].timeArray[x][1])
+rangeAnalysis(SENSOR_INFO[2])
+
+# for x in range(len(binArray[2].timeArray)):
+# 	print "Start: " + str(binArray[2].timeArray[x][0]) + " Stop: " + str(binArray[2].timeArray[x][1])
 
 #==================================================================
 #-----------------Tell the website the pi is not busy--------------
