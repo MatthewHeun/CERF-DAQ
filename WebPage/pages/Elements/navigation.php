@@ -53,7 +53,7 @@
                    				echo '<li><a style="color:black"> <i class="fa fa-plug fa-fw"></i> i2c port: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                    				echo '<li><a style="color:black"> <i class="fa fa-slack fa-fw"></i> pin number: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                           if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
-                   				   echo '<li><a style="color:black"> <i class="fa fa-play fa-fw"></i> Analysis Type: </a> <a class="pull-right" style="color:black">Peak %\'s' . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+                   				   echo '<li><a style="color:black"> <i class="fa fa-play fa-fw"></i> Analysis Type: </a> <a class="pull-right" style="color:black">Peak %\'s' . $SENSOR_INFO[$sensor_number-1]->analysis . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                              echo '<li><a style="color:black"> <i class="fa fa-play fa-fw"></i> peak start time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStart . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                    				   echo '<li><a style="color:black"> <i class="fa fa-stop fa-fw"></i> peak end time: </a> <a class="pull-right" style="color:black">' . $SENSOR_INFO[$sensor_number-1]->peakStop . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                           } else {

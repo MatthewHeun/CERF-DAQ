@@ -37,18 +37,18 @@ for i in range(NUM_SENSORS):
 	SENSOR_INFO[i].set_weekdays(f.readline().rstrip(),f.readline().rstrip(),f.readline().rstrip(),f.readline().rstrip(),f.readline().rstrip(),f.readline().rstrip(),f.readline().rstrip())
 	SENSOR_INFO[i].set_customStartStop(f.readline().rstrip(),f.readline().rstrip())
 	SENSOR_INFO[i].set_summaryMethod(f.readline().rstrip())
-	if i > 1 and i < 3:
-		print "Name: " + SENSOR_INFO[i].name
-		print "Type: " + SENSOR_INFO[i].type
-		print "Analysis: " + SENSOR_INFO[i].analysis
-		print "i2c Address: " + SENSOR_INFO[i].i2cAddress
-		print "Pin Number: " + SENSOR_INFO[i].pinNumber
-		print "Bin Type: " + SENSOR_INFO[i].binType
-		print "From Sensor Number: " + SENSOR_INFO[i].fromSensorNumber
-		print "From Sensor Min: " + SENSOR_INFO[i].fromSensorMin
-		print "From Sensor Max: " + SENSOR_INFO[i].fromSensorMax
-		print "Weekdays: " + SENSOR_INFO[i].weekdays[0] + " " + SENSOR_INFO[i].weekdays[1] + " " + SENSOR_INFO[i].weekdays[2] + " " + SENSOR_INFO[i].weekdays[3] + " " + SENSOR_INFO[i].weekdays[4] + " " + SENSOR_INFO[i].weekdays[5] + " " + SENSOR_INFO[i].weekdays[6]
-		print "Custom Start/Stop: " + SENSOR_INFO[i].customStart + " " + SENSOR_INFO[i].customStop
-		print "Summary Method: " + SENSOR_INFO[i].summaryMethod
+	# if i > 1 and i < 3:
+		# print "Name: " + SENSOR_INFO[i].name
+		# print "Type: " + SENSOR_INFO[i].type
+		# print "Analysis: " + SENSOR_INFO[i].analysis
+		# print "i2c Address: " + SENSOR_INFO[i].i2cAddress
+		# print "Pin Number: " + SENSOR_INFO[i].pinNumber
+		# print "Bin Type: " + SENSOR_INFO[i].binType
+		# print "From Sensor Number: " + SENSOR_INFO[i].fromSensorNumber
+		# print "From Sensor Min: " + SENSOR_INFO[i].fromSensorMin
+		# print "From Sensor Max: " + SENSOR_INFO[i].fromSensorMax
+		# print "Weekdays: " + SENSOR_INFO[i].weekdays[0] + " " + SENSOR_INFO[i].weekdays[1] + " " + SENSOR_INFO[i].weekdays[2] + " " + SENSOR_INFO[i].weekdays[3] + " " + SENSOR_INFO[i].weekdays[4] + " " + SENSOR_INFO[i].weekdays[5] + " " + SENSOR_INFO[i].weekdays[6]
+		# print "Custom Start/Stop: " + SENSOR_INFO[i].customStart + " " + SENSOR_INFO[i].customStop
+		# print "Summary Method: " + SENSOR_INFO[i].summaryMethod
 
 f.close()

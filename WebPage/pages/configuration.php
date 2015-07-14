@@ -8,12 +8,14 @@
 <?php include 'Elements/includes.php'; ?>
 <?php include 'Sensors/getNumSensors.php'; ?>
 <?php include 'Sensors/getSensorInfo.php'; ?>
+<?php include 'Configuration_Page/createJavascript.php'; ?>
 <script language="JavaScript">
-<!-- 
+
 function loadAndAlert(){
 	alert('After the page refreshes, hit "Display Updates!" to make the changes visible');
 }
-//-->
+
+var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
 </script>
 </head>
 
@@ -65,9 +67,10 @@ function loadAndAlert(){
 	</div> <!-- panel panel-default -->
 	<button type="button" onclick="window.location.href=window.location.href" class="btn btn-primary btn-block">Display Updates!</button>
 	<br>
-		<?php include 'Elements/sensorConfig.php'; ?>
+		<?php include 'Configuration_Page/sensorConfig.php'; ?>
   	<br><br>
 	</div>  <!-- page-wrapper -->
 	</div>	<!-- wrapper -->
+		<?php include 'Elements/scriptincludes.php'; ?>
 </body>
 	
