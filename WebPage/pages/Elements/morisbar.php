@@ -8,9 +8,11 @@ new Morris.Bar({
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                                                	list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
+                            list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
-							$data .= "{y: '$monthstring', a: $on, b: $off},";
+							if ($summary_year == $year_sum){
+								$data .= "{y: '$monthstring', a: $on, b: $off},";
+							}
 						}
 					}
 					$data = rtrim($data, ',');

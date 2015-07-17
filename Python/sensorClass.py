@@ -42,23 +42,23 @@ class Sensor:
 	def __init__(self, sensorNumber):
 		self.name = ""
 		self.type = ""
-		self.analysis = ""
-		self.peakStart = 0
-		self.peakStop = 0
-		self.thresholdMin = 0
-		self.thresholdMax = 0
-		self.number = sensorNumber
 		self.i2cAddress = 0
 		self.pinNumber = 0
-		self.value = 0
-		self.binType = ""
-		self.fromSensorNumber = 0
-		self.fromSensorMin = 0
-		self.fromSensorMax = 0
-		self.weekdays = [0,0,0,0,0,0,0]
-		self.customStart = 0
-		self.customStop = 0
-		self.summaryMethod = ""
+		self.numberOfAnalysis = 0
+		self.analysis = ["","",""]
+		self.thresholdMin = [0,0,0]
+		self.thresholdMax = [0,0,0]
+		self.number = sensorNumber
+		self.value = [0,0,0]
+		self.binType = ["","",""]
+		self.fromSensorNumber = [0,0,0]
+		self.fromSensorMin = [0,0,0]
+		self.fromSensorMax = [0,0,0]
+		self.weekdays = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
+		self.customStart = [0,0,0]
+		self.customStop = [0,0,0]
+		self.summaryMethod = ["","",""]
+		self.numberOfAnalysis
 
 	def set_name(self, new_name):
 		self.name = new_name
@@ -66,22 +66,25 @@ class Sensor:
 	def set_type(self, new_type):
 		self.type = new_type
 
-	def set_analysis(self, new_analysis):
-		self.analysis = new_analysis
-
-	def set_peak(self, new_peak_start, new_peak_stop):
-		self.peakStart = new_peak_start
-		self.peakStop = new_peak_stop
-
-	def set_threshold(self, new_threshold_min, new_threshold_max):
-		self.thresholdMin = new_threshold_min
-		self.thresholdMax = new_threshold_max
-
 	def set_i2cAddress(self, new_address):
 		self.i2cAddress = new_address
 
 	def set_pinNumber(self, new_pinNumber):
 		self.pinNumber = new_pinNumber
+
+	def set_numberOfAnalysis(self, new_number):
+		self.numberOfAnalysis = new_number
+
+	def set_analysis(self, new_analysis, index):
+		self.analysis[index] = new_analysis
+
+	def set_peak(self, new_peak_start, new_peak_stop, index):
+		self.peakStart[index] = new_peak_start
+		self.peakStop[index] = new_peak_stop
+
+	def set_threshold(self, new_threshold_min, new_threshold_max, index):
+		self.thresholdMin[index] = new_threshold_min
+		self.thresholdMax[index] = new_threshold_max
 
 	def set_value(self):
 		reading = 0
@@ -93,32 +96,32 @@ class Sensor:
 			reading = getOccupancy(self.pinNumber)
 		self.value = reading
 
-	def set_binType(self, new_binType):
-		self.binType = new_binType
+	def set_binType(self, new_binType, index):
+		self.binType[index] = new_binType
 
-	def set_fromSensorNumber(self, new_fromSensorNumber):
-		self.fromSensorNumber = new_fromSensorNumber
+	def set_fromSensorNumber(self, new_fromSensorNumber, index):
+		self.fromSensorNumber[index] = new_fromSensorNumber
 
-	def set_fromSensorMin(self, new_fromSensorMin):
-		self.fromSensorMin = new_fromSensorMin
+	def set_fromSensorMin(self, new_fromSensorMin, index):
+		self.fromSensorMin[index] = new_fromSensorMin
 
-	def set_fromSensorMax(self, new_fromSensorMax):
-		self.fromSensorMax = new_fromSensorMax
+	def set_fromSensorMax(self, new_fromSensorMax, index):
+		self.fromSensorMax[index] = new_fromSensorMax
 
-	def set_weekdays(self, new_M, new_T, new_W, new_Th, new_F, new_Sa, new_Su):
-		self.weekdays[0] = new_M
-		self.weekdays[1] = new_T
-		self.weekdays[2] = new_W
-		self.weekdays[3] = new_Th
-		self.weekdays[4] = new_F
-		self.weekdays[5] = new_Sa
-		self.weekdays[6] = new_Su
+	def set_weekdays(self, new_M, new_T, new_W, new_Th, new_F, new_Sa, new_Su, index):
+		self.weekdays[index][0] = new_M
+		self.weekdays[index][1] = new_T
+		self.weekdays[index][2] = new_W
+		self.weekdays[index][3] = new_Th
+		self.weekdays[index][4] = new_F
+		self.weekdays[index][5] = new_Sa
+		self.weekdays[index][6] = new_Su
 
-	def set_customStartStop(self, new_customStart, new_customStop):
-		self.customStart = new_customStart
-		self.customStop = new_customStop
+	def set_customStartStop(self, new_customStart, new_customStop, index):
+		self.customStart[index] = new_customStart
+		self.customStop[index] = new_customStop
 
-	def set_summaryMethod(self, new_summaryMethod):
-		self.summaryMethod = new_summaryMethod
+	def set_summaryMethod(self, new_summaryMethod, index):
+		self.summaryMethod[index] = new_summaryMethod
 	
 

@@ -40,6 +40,5 @@
                         </div>
                         <!-- /.panel-body -->
 			<div class="panel-heading">
-				<?php include 'Elements/barFooter.php' ?>
 			</div>
                     </div>

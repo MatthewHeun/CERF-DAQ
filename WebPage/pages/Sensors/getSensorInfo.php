@@ -3,13 +3,12 @@ include 'globalSensorInfo.php';
 
 $nameStrings = new ArrayObject(array());
 $typeStrings = new ArrayObject(array());
-$analysisStrings = new ArrayObject(array());
-$peakStartStrings = new ArrayObject(array());
-$peakStopStrings = new ArrayObject(array());
-$minStrings = new ArrayObject(array());
-$maxStrings = new ArrayObject(array());
 $i2cStrings = new ArrayObject(array());
 $pinStrings = new ArrayObject(array());
+$numberOfAnalysisStrings = new ArrayObject(array());
+$analysisStrings = new ArrayObject(array());
+$minStrings = new ArrayObject(array());
+$maxStrings = new ArrayObject(array());
 $binTypeStrings = new ArrayObject(array());
 $fromSensorNumberStrings = new ArrayObject(array());
 $fromSensorMinStrings = new ArrayObject(array());
@@ -19,15 +18,15 @@ $customStartStrings = new ArrayObject(array());
 $customStopStrings = new ArrayObject(array());
 $summaryMethodStrings = new ArrayObject(array());
 
+
 $nameArray = new ArrayObject(array());
 $typeArray = new ArrayObject(array());
-$analysisArray = new ArrayObject(array());
-$peakStartArray = new ArrayObject(array());
-$peakStopArray = new ArrayObject(array());
-$minArray = new ArrayObject(array());
-$maxArray = new ArrayObject(array());
 $i2cArray = new ArrayObject(array());
 $pinArray = new ArrayObject(array());
+$numberOfAnalysisArray = new ArrayObject(array());
+$analysisArray = new ArrayObject(array());
+$minArray = new ArrayObject(array());
+$maxArray = new ArrayObject(array());
 $binTypeArray = new ArrayObject(array());
 $fromSensorNumberArray = new ArrayObject(array());
 $fromSensorMinArray = new ArrayObject(array());
@@ -37,65 +36,100 @@ $customStartArray = new ArrayObject(array());
 $customStopArray = new ArrayObject(array());
 $summaryMethodArray = new ArrayObject(array());
 
+
 for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$nameStrings->append("name" . $i);
 	$typeStrings->append("sensor" . $i . "type");
-	$analysisStrings->append("analysis" . $i . "type");
-	$minStrings->append("min" . $i);
-	$maxStrings->append("max" . $i);
 	$i2cStrings->append("i2c" . $i);
 	$pinStrings->append("pin" . $i);
-	$peakStartStrings->append("peakStart" . $i);
-	$peakStopStrings->append("peakStop" . $i);
-	$binTypeStrings->append("binType" . $i);
-	$fromSensorNumberStrings->append("fromSensorNumber" . $i);
-	$fromSensorMinStrings->append("fromSensorMin" . $i);
-	$fromSensorMaxStrings->append("fromSensorMax" . $i);
-	$weekdaysStrings[] = (array("M" . $i, "T" . $i, "W" . $i, "Th" . $i, "F" . $i, "Sa" . $i, "Su" . $i));
-	$customStartStrings->append("customStart" . $i);
-	$customStopStrings->append("customStop" . $i);
-	$summaryMethodStrings->append("summaryFormat" . $i);
+	$numberOfAnalysisStrings->append("numberOfAnalysis" . $i);
+	
+	$analysisStrings->append(array("","",""));
+	$minStrings->append(array("", "", ""));
+	$maxStrings->append(array("", "", ""));
+	$binTypeStrings->append(array("", "", ""));
+	$fromSensorNumberStrings->append(array("", "", ""));
+	$fromSensorMinStrings->append(array("", "", ""));
+	$fromSensorMaxStrings->append(array("", "", ""));
+	$weekdaysStrings->append(array(array(), array(), array()));
+	$customStartStrings->append(array("", "", ""));
+	$customStopStrings->append(array("", "", ""));
+	$summaryMethodStrings->append(array("", "", ""));
+	for ($i4 = 0; $i4 < 3; $i4 ++){
+		$analysisStrings[$i-1][$i4] = ("analysis" . ($i4+1) . $i . "type");
+		$minStrings[$i-1][$i4] = ("min" . ($i4+1) . $i);
+		$maxStrings[$i-1][$i4] = ("max" . ($i4+1) . $i);
+		$binTypeStrings[$i-1][$i4] = ("binType" . ($i4+1) . $i);
+		$fromSensorNumberStrings[$i-1][$i4] = ("fromSensorNumber" . ($i4+1) . $i);
+		$fromSensorMinStrings[$i-1][$i4] = ("fromSensorMin" . ($i4+1) . $i);
+		$fromSensorMaxStrings[$i-1][$i4] = ("fromSensorMax" . ($i4+1) . $i);
+		$weekdaysStrings[$i-1][$i4] = (array("M" . ($i4+1) . $i, "T" . ($i4+1) . $i, "W" . ($i4+1) . $i, "Th" . ($i4+1) . $i, "F" . ($i4+1) . $i, "Sa" . ($i4+1) . $i, "Su" . ($i4+1) . $i));
+		$customStartStrings[$i-1][$i4] = ("customStart" . ($i4+1) . $i);
+		$customStopStrings[$i-1][$i4] = ("customStop" . ($i4+1) . $i);
+		$summaryMethodStrings[$i-1][$i4] = ("summaryFormat" . ($i4+1) . $i);	
+	}
 }
 
 if(isset($_GET["sensorInfo"])){
 	for ($i = 1; $i <= $NUM_SENSORS; $i++) {
-			$nameArray->append($_GET[$nameStrings[$i-1]]);
-			$typeArray->append($_GET[$typeStrings[$i-1]]);
-			$analysisArray->append($_GET[$analysisStrings[$i-1]]);
-			$minArray->append($_GET[$minStrings[$i-1]]);
-			$maxArray->append($_GET[$maxStrings[$i-1]]);
-			$i2cArray->append($_GET[$i2cStrings[$i-1]]);
-			$pinArray->append($_GET[$pinStrings[$i-1]]);
-			$binTypeArray->append($_GET[$binTypeStrings[$i-1]]);
-			$fromSensorNumberArray->append($_GET[$fromSensorNumberStrings[$i-1]]);
-			$fromSensorMinArray->append($_GET[$fromSensorMinStrings[$i-1]]);
-			$fromSensorMaxArray->append($_GET[$fromSensorMaxStrings[$i-1]]);
-			$weekdaysArray[] = (array($_GET[$weekdaysStrings[$i-1][0]],$_GET[$weekdaysStrings[$i-1][1]],$_GET[$weekdaysStrings[$i-1][2]],$_GET[$weekdaysStrings[$i-1][3]],$_GET[$weekdaysStrings[$i-1][4]],$_GET[$weekdaysStrings[$i-1][5]],$_GET[$weekdaysStrings[$i-1][6]]));
-			$customStartArray->append($_GET[$customStartStrings[$i-1]]);
-			$customStopArray->append($_GET[$customStopStrings[$i-1]]);
-			$summaryMethodArray->append($_GET[$summaryMethodStrings[$i-1]]);
+		$nameArray->append($_GET[$nameStrings[$i-1]]);
+		$typeArray->append($_GET[$typeStrings[$i-1]]);
+		$i2cArray->append($_GET[$i2cStrings[$i-1]]);
+		$pinArray->append($_GET[$pinStrings[$i-1]]);
+		$numberOfAnalysisArray->append($_GET[$numberOfAnalysisStrings[$i-1]]);
+		$analysisStrings->append(array("","",""));
+		$minArray->append(array("", "", ""));
+		$maxArray->append(array("", "", ""));
+		$binTypeArray->append(array("", "", ""));
+		$fromSensorNumberArray->append(array("", "", ""));
+		$fromSensorMinArray->append(array("", "", ""));
+		$fromSensorMaxArray->append(array("", "", ""));
+		$weekdaysArray->append(array(array(), array(), array()));
+		$customStartArray->append(array("", "", ""));
+		$customStopArray->append(array("", "", ""));
+		$summaryMethodArray->append(array("", "", ""));
+		for ($i4 = 0; $i4 < 3; $i4 ++){
+			for ($i4 = 0; $i4 < 3; $i4++) {
+				$analysisArray[$i-1][$i4] = ($_GET[$analysisStrings[$i-1][$i4]]);
+				// print $analysisArray[$i-1][$i4];
+				// print "LOOK HERE";
+				$minArray[$i-1][$i4] = ($_GET[$minStrings[$i-1][$i4]]);
+				$maxArray[$i-1][$i4] = ($_GET[$maxStrings[$i-1][$i4]]);
+				$binTypeArray[$i-1][$i4] = ($_GET[$binTypeStrings[$i-1][$i4]]);
+				$fromSensorNumberArray[$i-1][$i4] = ($_GET[$fromSensorNumberStrings[$i-1][$i4]]);
+				$fromSensorMinArray[$i-1][$i4] = ($_GET[$fromSensorMinStrings[$i-1][$i4]]);
+				$fromSensorMaxArray[$i-1][$i4] = ($_GET[$fromSensorMaxStrings[$i-1][$i4]]);
+				$weekdaysArray[$i-1][$i4] = (array($_GET[$weekdaysStrings[$i-1][$i4][0]],$_GET[$weekdaysStrings[$i-1][$i4][1]],$_GET[$weekdaysStrings[$i-1][$i4][2]],$_GET[$weekdaysStrings[$i-1][$i4][3]],$_GET[$weekdaysStrings[$i-1][$i4][4]],$_GET[$weekdaysStrings[$i-1][$i4][5]],$_GET[$weekdaysStrings[$i-1][$i4][6]]));
+				$customStartArray[$i-1][$i4] = ($_GET[$customStartStrings[$i-1][$i4]]);
+				$customStopArray[$i-1][$i4] = ($_GET[$customStopStrings[$i-1][$i4]]);
+				$summaryMethodArray[$i-1][$i4] = ($_GET[$summaryMethodStrings[$i-1][$i4]]);
+			}
+		}
 	}
 
 	$infoFile = fopen("sensorInfo.txt", "w");
 	for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 		fwrite($infoFile, $nameArray[$i-1] . "\n");
 		fwrite($infoFile, $typeArray[$i-1] . "\n");
-		fwrite($infoFile, $analysisArray[$i-1] . "\n");
-		fwrite($infoFile, $minArray[$i-1] . "\n");
-		fwrite($infoFile, $maxArray[$i-1] . "\n");
 		fwrite($infoFile, $i2cArray[$i-1] . "\n");
 		fwrite($infoFile, $pinArray[$i-1] . "\n");
-		fwrite($infoFile, $binTypeArray[$i-1] . "\n");
-		fwrite($infoFile, $fromSensorNumberArray[$i-1] . "\n");
-		fwrite($infoFile, $fromSensorMinArray[$i-1] . "\n");
-		fwrite($infoFile, $fromSensorMaxArray[$i-1] . "\n");
-		for ($i2 = 0; $i2 < 7; $i2++) {
-			fwrite($infoFile, $weekdaysArray[$i-1][$i2] . "\n");
+		fwrite($infoFile, $numberOfAnalysisArray[$i-1] . "\n");
+		for ($i4 = 0; $i4 < 3; $i4++) {
+			fwrite($infoFile, $analysisArray[$i-1][$i4] . "\n");
+			// print ($i-1);
+			fwrite($infoFile, $minArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $maxArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $binTypeArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $fromSensorNumberArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $fromSensorMinArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $fromSensorMaxArray[$i-1][$i4] . "\n");
+			for ($i2 = 0; $i2 < 7; $i2++) {
+				fwrite($infoFile, $weekdaysArray[$i-1][$i4][$i2] . "\n");
+			}
+			fwrite($infoFile, $customStartArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $customStopArray[$i-1][$i4] . "\n");
+			fwrite($infoFile, $summaryMethodArray[$i-1][$i4] . "\n");
 		}
-		fwrite($infoFile, $customStartArray[$i-1] . "\n");
-		fwrite($infoFile, $customStopArray[$i-1] . "\n");
-		fwrite($infoFile, $summaryMethodArray[$i-1] . "\n");
-		fwrite($infoFile, $summary);
 	}
 }
 

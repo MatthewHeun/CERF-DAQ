@@ -60,7 +60,7 @@
 			$i = 1;
 			$graphnum = 1;
 			while ($i <= $NUM_SENSORS){
-				if ($SENSOR_INFO[$i-1]->analysis == "Peak") {
+				if ($SENSOR_INFO[$i-1]->analysis == "On-Peak Off-Peak %") {
 					$year_file = "Pi_" . $PI_NUMBER . "_" . $i . "_" . $year_sum . ".csv";
 					$sensor_number = $i;
 					include 'Elements/morisbar.php'; 
