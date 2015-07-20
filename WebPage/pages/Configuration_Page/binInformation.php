@@ -29,6 +29,8 @@
 
 			$html_sensor_list .= '</div> <!--col-lg-4-->' . "\n";
 
+			include 'threshold.php';
+
 		//---------------Shift Down---------------------//
 
 		$html_sensor_list .= '</div> <!--row-->' . "\n";
@@ -116,16 +118,12 @@
 
 								//------------------------Threshold-------------------------//
 
-				$html_sensor_list .= '<div class="col-lg-10">' . "\n";
-
-					include 'threshold.php';
-
-				$html_sensor_list .= '</div> <!-- col-lg-10 -->' . "\n";
-
 				$html_sensor_list .= '</div> <!-- row -->' . "\n";
-			$html_sensor_list .= '</div> <!-- col-lg-3 -->' . "\n";
+			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 			$html_sensor_list .= '</div> <!-- Custom Time Block -->' . "\n";
+
 		$html_sensor_list .= '</div> <!-- row -->' . "\n";
+
 		$html_sensor_list .= '</div> <!-- analysisInformation -->' . "\n";
 
 ?>

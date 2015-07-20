@@ -36,12 +36,14 @@
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
                     <?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
-				include 'Elements/barchartpeak.php'; 
-			} else {
-				include 'Elements/barchart.php';
-			}
-		    ?>
+                 	for ($k = 0; $k < $SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k ++){
+	                 	if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "On-Peak Off-Peak %") {
+							include 'Elements/barchartpeak.php'; 
+						} else {
+							include 'Elements/barchart.php';
+						}
+                 	}
+				    ?>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
@@ -56,8 +58,10 @@
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
+			for ($k = 0; $k < $SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k ++){
+	            if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "On-Peak Off-Peak %") {
 				include 'Elements/morisbar.php'; 
+				}
 			}
 		?>
 		<?php 

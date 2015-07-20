@@ -60,7 +60,7 @@ def createDirectories():
 
 					#initializeSummary() writes the metadata to each file
 def initializeSummary(sensor, analysisNumber):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	newfile = open(filename, 'w')
 	newfile.write("#Calvin College CERF PI DATA"+ '\n')
 	newfile.close()
@@ -314,7 +314,7 @@ def createBins(sensor, analysisNumber):
 					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateMinMaxData(sensor, analysisNumber):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	summaryfile = open(filename, 'r')
 	lastStart = ""
 	lastEnd = ""
@@ -404,7 +404,7 @@ def aggregateMinMaxData(sensor, analysisNumber):
 	summaryfile.close()
 
 	initializeSummary(sensor, analysisNumber)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	summaryfile = open(filename, 'a')
 	summarystringHeader = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,Max,Min,Ave,In/Out of Range" + '\n'
 	summaryfile.write(summarystringHeader)
@@ -415,7 +415,7 @@ def aggregateMinMaxData(sensor, analysisNumber):
 					#takes the data from "from sensor" or "custom time" and seummarizes it by month or year
 
 def aggregateRangeData(sensor, analysisNumber):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	summaryfile = open(filename, 'r')
 	lastStart = ""
 	lastEnd = ""
@@ -512,7 +512,7 @@ def aggregateRangeData(sensor, analysisNumber):
 
 
 	initializeSummary(sensor, analysisNumber)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
 	summarystringHeader = "#Pi_Number,Sensor_Number," + str(sensor.name) + ",Start Time,End Time,On Percentage,In/Out of Range" + '\n'
 	summaryfile.write(summarystringHeader)
@@ -523,7 +523,7 @@ def aggregateRangeData(sensor, analysisNumber):
 					# determines if the data was high during set hours, or high during off set hours
 def onPeakOffPeakAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
 	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,On-Peak %,Off-Peak %" + '\n'
 	summaryfile.write(summaryString)
@@ -592,7 +592,7 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 							#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
 def rangeAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
 	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Start Time,End Time,On%,In/Out of Range" + '\n'
 	summaryfile.write(summaryString)
@@ -711,7 +711,7 @@ def rangeAnalysis(sensor, analysisNumber):
 						#determines the min and max the user defined in range, and out of range hours
 def minMaxAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + '.' + str(analysisNumber) + '.csv')
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
 	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Start Time,End Time,Max,Min,Ave,In/Out of Range" + '\n'
 	summaryfile.write(summaryString)

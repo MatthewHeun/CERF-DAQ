@@ -17,3 +17,6 @@
 
     <!-- For Data Handling -->
     <script src="../js/submit_javascript.js"></script>
+
+    <!-- For Navigation Viewing -->
+    <script src="../js/navigation_javascript.js"></script>

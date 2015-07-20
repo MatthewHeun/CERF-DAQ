@@ -1,5 +1,5 @@
 <?php
-	$html_sensor_list .= '<p style="font-weight:bold;"> Analysis Type </p>' . "\n";
+	$html_sensor_list .= '<p style="font-weight:bold;"> Analysis ' . ($i3) . ' Type </p>' . "\n";
 	$html_sensor_list .= '<select class="form-control" name="analysis' . ($i3) . ($i+1) .'type" id="analysis' . ($i3) . ($i+1) . '">' . "\n";
 	$html_sensor_list .= '<br>' . "\n";
 	if ($SENSOR_INFO[$i]->analysis[$i3-1] == "Range Analysis"){
