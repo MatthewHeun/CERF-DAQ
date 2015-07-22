@@ -48,8 +48,8 @@ setTimeout(function(){
 			echo '<h1 align="center"><span class="label label-success">The Analysis is not running</span></h1>';
 		}
 		if ($CALL_FUNCTION == true){
-			echo "running function";
-			echo shell_exec('sh /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh');
+			echo "starting...";
+			echo shell_exec('sh /home/cjk36/Desktop/CERF-DAQ/Python/runAnalysis.sh');
 		}
 	?>
 			<br>

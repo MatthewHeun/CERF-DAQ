@@ -36,12 +36,14 @@
                     <?php include 'Elements/linechart.php'; ?>
                     <!-- /.YEAR SENSOR 3 panel -->
                     <?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
-				include 'Elements/barchartpeak.php'; 
-			} else {
-				include 'Elements/barchart.php';
-			}
-		    ?>
+                 	for ($k = 0; $k < $SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k ++){
+	                 	if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "On-Peak Off-Peak %") {
+							include 'Elements/barchartpeak.php'; 
+						} else {
+							include 'Elements/barchart.php';
+						}
+                 	}
+				    ?>
                     <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
@@ -56,18 +58,16 @@
     <?php include 'Elements/scriptincludes.php'; ?>
 	<script>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->analysis == "On-Peak Off-Peak %") {
-				include 'Elements/morisbar.php'; 
+			for ($k = 0; $k < $SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k ++){
+	            if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "On-Peak Off-Peak %") {
+					include 'Elements/morisbar.php'; 
+				}
 			}
 		?>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->type == "Light") {
-				include 'Elements/morisline.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Temperature") {
-				include 'Elements/morislinetemp.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy") {
-				include 'Elements/morislineocc.php';
-			}
+
+			include 'Elements/morisline.php';
+	
 		?>
 	</script>
 

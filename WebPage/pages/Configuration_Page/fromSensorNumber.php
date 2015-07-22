@@ -1,11 +1,11 @@
 <?php 
 
 	$html_sensor_list .= '<p style="font-weight:bold;"> Sensor Number </p>' . "\n";
-	$html_sensor_list .= '<select class="form-control" name="fromSensorNumber' . ($i+1) . '">' . "\n";
+	$html_sensor_list .= '<select class="form-control" name="fromSensorNumber' . ($i3) . ($i+1) . '">' . "\n";
 		$options = "";
 		$i2 = 1;
 		while ($i2 < $NUM_SENSORS+1) {
-			if ($i2 == $SENSOR_INFO[$i]->fromSensorNumber) {
+			if ($i2 == $SENSOR_INFO[$i]->fromSensorNumber[$i3-1]) {
 				$options .= ('<option selected="selected">' . $i2 . "</option>" . "\n");
 			}
 			else {
