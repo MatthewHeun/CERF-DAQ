@@ -57,17 +57,17 @@ echo "	+Done"
 #===============================
 #===Getting necessary stuff=====
 #===============================
-#echo "Installing packages"
-#sudo apt-get update
-#sudo apt-get install zip
-#sudo apt-get install apache2 -y
-#sudo apt-get install php5 libapache2-mod-php5 -y
-#sudo apt-get install i2c-tools
-#sudo apt-get install python-pip
-#sudo apt-get install xrdp
-#sudo easy_install pytz
-#sudo easy_install smbus 
-#sudo adduser pi i2c 
+echo "Installing packages"
+sudo apt-get update
+sudo apt-get install zip
+sudo apt-get install apache2 -y
+sudo apt-get install php5 libapache2-mod-php5 -y
+sudo apt-get install i2c-tools
+sudo apt-get install python-pip
+sudo apt-get install xrdp
+sudo easy_install pytz
+sudo easy_install smbus 
+sudo adduser pi i2c 
 #==============================
 #====Creating Global Vars =====
 #==============================
@@ -83,24 +83,13 @@ else
 	echo "export PATH" >> /etc/profile
 fi
 
-chmod u+x /home/pi/Desktop/CERF-DAQ/initialize-global-vars
-
-echo "Initializing the global variables"
-
-
-if [ -f "/home/pi/Desktop/CERF-DAQ/Python/user_input.py" ]; then 
-	sudo rm /home/pi/Desktop/CERF-DAQ/Python/user_input.py
-fi
-
-./Desktop/CERF-DAQ/initialize-global-vars
-
 #===============================
 #=====Editing Sensor Names =====
 #===============================
 
 #moved to the website
 #sudo nano /home/pi/Desktop/CERF-DAQ/Python/user_input.py
-sudo python /home/pi/Desktop/CERF-DAQ/Python/global_vars_to_php.py
+#sudo python /home/pi/Desktop/CERF-DAQ/Python/global_vars_to_php.py
 
 #===============================
 #==moving git web to webserver =
