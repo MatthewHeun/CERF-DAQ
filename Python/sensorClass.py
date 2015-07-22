@@ -30,7 +30,7 @@ ADS1115 = 0x01								#16-bit ADC defined (would be 0x00 for the 12bit ADC)
 
 # def getOccupancy(pinNumber):
 # 	print "pinNumber: " + str(pinNumber)
-# 	value = Occupancy[str(pinNumber)]
+# 	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. 
 # 	return value
 
 

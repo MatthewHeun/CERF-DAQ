@@ -26,7 +26,7 @@ class Bins:
 	def addStopTime(self, stopTime):
 		stopTime = datetime.datetime.strptime(stopTime, "%Y-%m-%d %H:%M:%S")
 		index = len(self.timeArray)-1
-		print len(self.timeArray)
-		print index
+		# print len(self.timeArray)
+		# print index
 		self.timeArray[index][1] = stopTime
 		# print self.timeArray

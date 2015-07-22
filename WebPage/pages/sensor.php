@@ -60,18 +60,14 @@
 		<?php 
 			for ($k = 0; $k < $SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k ++){
 	            if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "On-Peak Off-Peak %") {
-				include 'Elements/morisbar.php'; 
+					include 'Elements/morisbar.php'; 
 				}
 			}
 		?>
 		<?php 
-			if ($SENSOR_INFO[$sensor_number-1]->type == "Light") {
-				include 'Elements/morisline.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Temperature") {
-				include 'Elements/morislinetemp.php';
-			} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy") {
-				include 'Elements/morislineocc.php';
-			}
+
+			include 'Elements/morisline.php';
+	
 		?>
 	</script>
 

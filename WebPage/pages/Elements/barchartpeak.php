@@ -9,7 +9,6 @@
                                     <div class="table-responsive">
                                         <?php
 						$lines = file($Summary_Base . $summary_file . 'a' . ($k+1) . '.csv');
-                        echo $lines;
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
 						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){

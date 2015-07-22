@@ -18,6 +18,9 @@ f.close()
 
 sensorInfoFile = "/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
 
+#The data in this file is in order of the way the properties of the sensor are read in below. If the order of either of these are changed
+#They would have to be changed in the same fashion or this file would stop reading in the sensor properites correctly. 
+
 f = open(sensorInfoFile)
 
 SENSOR_INFO = []

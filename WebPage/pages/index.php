@@ -60,12 +60,12 @@
 			$i = 1;
 			$graphnum = 1;
 			while ($i <= $NUM_SENSORS){
-				for ($k=0; $k < 3; $k++){
+				for ($k=0; $k < $SENSOR_INFO[$i-1]->numberOfAnalysis; $k++){
 					if ($SENSOR_INFO[$i-1]->analysis[$k] == "On-Peak Off-Peak %") {
-					$summary_file = "Pi_" . $PI_NUMBER . "_" . $i;
-					$year_file = "Pi_" . $PI_NUMBER . "_" . $i . "_" . $year_sum . ".csv";
-					$sensor_number = $i;
-					include 'Elements/morisbar.php'; 
+						$summary_file = "Pi_" . $PI_NUMBER . "_" . $i;
+						$year_file = "Pi_" . $PI_NUMBER . "_" . $i . "_" . $year_sum . ".csv";
+						$sensor_number = $i;
+						include 'Elements/morisbar.php'; 
 					}	
 				}
 				$i = $i + 1;
