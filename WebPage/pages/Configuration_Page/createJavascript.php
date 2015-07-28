@@ -1,10 +1,9 @@
 <?php
 
-$javaFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/js/submit_javascript.js", "w");
+$javaFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/js/submit_javascript.js", "w");
 
 for ($i = 0; $i < $NUM_SENSORS; $i++){
 		$fileString = 'function toggleDisplay' . ($i+1) . '() {' . "\n";
-		$fileString .= 'console.log("HELLO");' . "\n";;
 		$fileString .= 'if (document.getElementById("panelBody' . ($i+1) . '").style.display == "none") {' . "\n";
 		$fileString .= 'document.getElementById("panelBody' . ($i+1) . '").style.display = "block";' . "\n";
 		$fileString .= 'document.getElementById("submit' . ($i+1) . '").style.display = "block";' . "\n";
@@ -13,6 +12,24 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 		$fileString .= 'document.getElementById("submit' . ($i+1) . '").style.display = "none";' . "\n";
 		$fileString .= '}' . "\n";
 		$fileString .= '}' . "\n" . "\n";
+		fwrite($javaFile, $fileString);
+}
+
+for ($i = 0; $i < $NUM_SENSORS; $i++){
+		fwrite($javaFile, '$("#sensorType');
+		$fileString = ($i+1) . '").change(function() {' . "\n";
+		$fileString .= 'var sensorType = ';
+		fwrite($javaFile, $fileString);
+		fwrite($javaFile, '$("#sensorType');
+			$fileString =  ($i+1) . '").val();' . "\n";
+			$fileString .= 'console.log(sensorType);' . "\n";
+			$fileString .= 'console.log("sensor type");' . "\n";
+			$fileString .= 'if (sensorType == \'Occupancy\'){' . "\n";
+				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
+			$fileString .= '} else {' . "\n";
+				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "block";' . "\n";
+			$fileString .= '}' . "\n";
+		$fileString .= '} );' . "\n" . "\n";
 		fwrite($javaFile, $fileString);
 }
 

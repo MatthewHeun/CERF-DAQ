@@ -1,7 +1,7 @@
 <?php
 
 	$html_sensor_list .= '<p style="font-weight:bold;"> Sensor Type </p>' . "\n";
-	$html_sensor_list .= '<select class="form-control" name="sensor' . ($i+1) .'type">' . "\n";
+	$html_sensor_list .= '<select class="form-control" name="sensor' . ($i+1) .'type" id="sensorType' . ($i+1) . '">' . "\n";
 	$html_sensor_list .= '<br>' . "\n";
 	if ($SENSOR_INFO[$i]->type == "Light"){
 		$html_sensor_list .= '<option selected="selected">Light</option>' . "\n";

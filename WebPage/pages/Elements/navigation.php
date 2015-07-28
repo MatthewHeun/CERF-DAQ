@@ -43,6 +43,9 @@
                    		<li>
                    			<a href="analyze.php"><i class="fa fa-line-chart fa-fw"></i> Analyze</a>
                    		</li>
+				<li>
+                   			<a href="admin.php"><i class="fa fa-user fa-fw"></i> Admin</a>
+                   		</li>
 
                    		<?php 
                    			

@@ -20,8 +20,16 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 				
 				//------------------i2c address-------------------//
+			
+			$displayString = '';
+				//echo "CHECK HERE";
+				//echo $SENSOR_INFO[$i]->type;
+				if ($SENSOR_INFO[$i]->type == "Occupancy"){
+					//echo "Changing Display";
+					$displayString = ' style="display:none;"';
+				}
 
-			$html_sensor_list .= '<div class="col-lg-4">' . "\n";
+			$html_sensor_list .= '<div class="col-lg-4" id="i2cAddress' . ($i+1) . '"' . $displayString . '>' . "\n";
 
 				include 'i2cAddress.php';
 

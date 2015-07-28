@@ -5,7 +5,7 @@
 #                                                                        #
 # Created by Curtis Kortman                                              #
 # Started: 3/15/15                                                       #
-# Last Edited: 09/06/15                                                  #
+# Last Edited: 07/28/15                                                  #
 # ********************************************************************** #
 
 # **************************IMPORTS************************************* #
@@ -14,6 +14,8 @@ import datetime
 import re
 import os
 import pytz
+import stat
+import shutil
 from globalVars import*		## Global Variables are defined in ALL CAPS for easy identification
 #<<<<<<< HEAD
 
@@ -112,6 +114,7 @@ def writeData(sensor):
 	fullpath = createFilePathMonth(sensor)
 	os.chdir(fullpath)
 	filename = createFilename(sensor)
+	os.chmod(filename, stat.S_IWOTH | stat.S_IROTH)
 	file = open(filename, 'a')
 	file.write(dataString(sensor))		# write all time and sensor data to the file
 
@@ -124,15 +127,47 @@ def outputData(numberOfSensors):
 #==================================================================
 #---------------------------GET DATA!!-----------------------------
 #==================================================================
+if RESET == 1:
+	shutil.rmtree(path)
+	resetPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt'
+	file = open(resetPath, 'w')
+	file.write('0')
+	file.close()
 
-outputData(NUM_SENSORS)
+if DATA_COLLECTION_SET == 1:
+	outputData(NUM_SENSORS)
 
-#for i in range(NUM_SENSORS):
-	#print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
+	# for i in range(NUM_SENSORS):
+	#	print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
 
 
+#==================================================================
+#------------TELL THE WEBSITE DATA COLLECTION STATUS---------------
+#==================================================================
 
+if DATA_COLLECTION_SET == 0:
+	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	file = open(indicatorPath, 'w')
+	file.write('0')
+	file.close()
 
+if DATA_COLLECTION_SET == 1:
+	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	file = open(indicatorPath, 'w')
+	file.write('1')
+	file.close()
+
+#==================================================================
+#------------KEEP THESE LINES FOR THE STATUS LOG-------------------
+#==================================================================
+
+if DATA_COLLECTION_SET == 1:
+	print "Data collection succeeded:" +  str(datetime.datetime.now())
+
+if DATA_COLLECTION_SET == 0:
+	print "Data collection paused:" + str(datetime.datetime.now())
+
+# The status log is found in /dev/GetDataCron.log
 
 
 

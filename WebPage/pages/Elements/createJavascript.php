@@ -1,6 +1,6 @@
 <?php
 
-$javaFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/js/navigation_javascript.js", "w");
+$javaFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/js/navigation_javascript.js", "w");
 
 for ($i5 = 0; $i5 < 3; $i5++){
 	fwrite($javaFile, 'function analysisSelection' . ($i5+1) . '() {' .  "\n");

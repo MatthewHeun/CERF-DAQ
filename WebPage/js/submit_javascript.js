@@ -1,5 +1,4 @@
 function toggleDisplay1() {
-console.log("HELLO");
 if (document.getElementById("panelBody1").style.display == "none") {
 document.getElementById("panelBody1").style.display = "block";
 document.getElementById("submit1").style.display = "block";
@@ -10,7 +9,6 @@ document.getElementById("submit1").style.display = "none";
 }
 
 function toggleDisplay2() {
-console.log("HELLO");
 if (document.getElementById("panelBody2").style.display == "none") {
 document.getElementById("panelBody2").style.display = "block";
 document.getElementById("submit2").style.display = "block";
@@ -21,7 +19,6 @@ document.getElementById("submit2").style.display = "none";
 }
 
 function toggleDisplay3() {
-console.log("HELLO");
 if (document.getElementById("panelBody3").style.display == "none") {
 document.getElementById("panelBody3").style.display = "block";
 document.getElementById("submit3").style.display = "block";
@@ -32,7 +29,6 @@ document.getElementById("submit3").style.display = "none";
 }
 
 function toggleDisplay4() {
-console.log("HELLO");
 if (document.getElementById("panelBody4").style.display == "none") {
 document.getElementById("panelBody4").style.display = "block";
 document.getElementById("submit4").style.display = "block";
@@ -43,7 +39,6 @@ document.getElementById("submit4").style.display = "none";
 }
 
 function toggleDisplay5() {
-console.log("HELLO");
 if (document.getElementById("panelBody5").style.display == "none") {
 document.getElementById("panelBody5").style.display = "block";
 document.getElementById("submit5").style.display = "block";
@@ -54,7 +49,6 @@ document.getElementById("submit5").style.display = "none";
 }
 
 function toggleDisplay6() {
-console.log("HELLO");
 if (document.getElementById("panelBody6").style.display == "none") {
 document.getElementById("panelBody6").style.display = "block";
 document.getElementById("submit6").style.display = "block";
@@ -65,7 +59,6 @@ document.getElementById("submit6").style.display = "none";
 }
 
 function toggleDisplay7() {
-console.log("HELLO");
 if (document.getElementById("panelBody7").style.display == "none") {
 document.getElementById("panelBody7").style.display = "block";
 document.getElementById("submit7").style.display = "block";
@@ -76,7 +69,6 @@ document.getElementById("submit7").style.display = "none";
 }
 
 function toggleDisplay8() {
-console.log("HELLO");
 if (document.getElementById("panelBody8").style.display == "none") {
 document.getElementById("panelBody8").style.display = "block";
 document.getElementById("submit8").style.display = "block";
@@ -85,6 +77,178 @@ document.getElementById("panelBody8").style.display = "none";
 document.getElementById("submit8").style.display = "none";
 }
 }
+
+function toggleDisplay9() {
+if (document.getElementById("panelBody9").style.display == "none") {
+document.getElementById("panelBody9").style.display = "block";
+document.getElementById("submit9").style.display = "block";
+} else {
+document.getElementById("panelBody9").style.display = "none";
+document.getElementById("submit9").style.display = "none";
+}
+}
+
+function toggleDisplay10() {
+if (document.getElementById("panelBody10").style.display == "none") {
+document.getElementById("panelBody10").style.display = "block";
+document.getElementById("submit10").style.display = "block";
+} else {
+document.getElementById("panelBody10").style.display = "none";
+document.getElementById("submit10").style.display = "none";
+}
+}
+
+function toggleDisplay11() {
+if (document.getElementById("panelBody11").style.display == "none") {
+document.getElementById("panelBody11").style.display = "block";
+document.getElementById("submit11").style.display = "block";
+} else {
+document.getElementById("panelBody11").style.display = "none";
+document.getElementById("submit11").style.display = "none";
+}
+}
+
+function toggleDisplay12() {
+if (document.getElementById("panelBody12").style.display == "none") {
+document.getElementById("panelBody12").style.display = "block";
+document.getElementById("submit12").style.display = "block";
+} else {
+document.getElementById("panelBody12").style.display = "none";
+document.getElementById("submit12").style.display = "none";
+}
+}
+
+$("#sensorType1").change(function() {
+var sensorType = $("#sensorType1").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress1").style.display = "none";
+} else {
+document.getElementById("i2cAddress1").style.display = "block";
+}
+} );
+
+$("#sensorType2").change(function() {
+var sensorType = $("#sensorType2").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress2").style.display = "none";
+} else {
+document.getElementById("i2cAddress2").style.display = "block";
+}
+} );
+
+$("#sensorType3").change(function() {
+var sensorType = $("#sensorType3").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress3").style.display = "none";
+} else {
+document.getElementById("i2cAddress3").style.display = "block";
+}
+} );
+
+$("#sensorType4").change(function() {
+var sensorType = $("#sensorType4").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress4").style.display = "none";
+} else {
+document.getElementById("i2cAddress4").style.display = "block";
+}
+} );
+
+$("#sensorType5").change(function() {
+var sensorType = $("#sensorType5").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress5").style.display = "none";
+} else {
+document.getElementById("i2cAddress5").style.display = "block";
+}
+} );
+
+$("#sensorType6").change(function() {
+var sensorType = $("#sensorType6").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress6").style.display = "none";
+} else {
+document.getElementById("i2cAddress6").style.display = "block";
+}
+} );
+
+$("#sensorType7").change(function() {
+var sensorType = $("#sensorType7").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress7").style.display = "none";
+} else {
+document.getElementById("i2cAddress7").style.display = "block";
+}
+} );
+
+$("#sensorType8").change(function() {
+var sensorType = $("#sensorType8").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress8").style.display = "none";
+} else {
+document.getElementById("i2cAddress8").style.display = "block";
+}
+} );
+
+$("#sensorType9").change(function() {
+var sensorType = $("#sensorType9").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress9").style.display = "none";
+} else {
+document.getElementById("i2cAddress9").style.display = "block";
+}
+} );
+
+$("#sensorType10").change(function() {
+var sensorType = $("#sensorType10").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress10").style.display = "none";
+} else {
+document.getElementById("i2cAddress10").style.display = "block";
+}
+} );
+
+$("#sensorType11").change(function() {
+var sensorType = $("#sensorType11").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress11").style.display = "none";
+} else {
+document.getElementById("i2cAddress11").style.display = "block";
+}
+} );
+
+$("#sensorType12").change(function() {
+var sensorType = $("#sensorType12").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress12").style.display = "none";
+} else {
+document.getElementById("i2cAddress12").style.display = "block";
+}
+} );
 
 $("#numAnalysis1").change(function() {
 var numberOfAnalysis = $("#numAnalysis1").val();
@@ -347,6 +511,138 @@ if (parseInt(numberOfAnalysis) > 2){
 document.getElementById("analysisInformation38").style.display = "block";
 } else {
 document.getElementById("analysisInformation38").style.display = "none";
+}
+} );
+
+$("#numAnalysis9").change(function() {
+var numberOfAnalysis = $("#numAnalysis9").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation19").style.display = "block";
+} else {
+document.getElementById("analysisInformation19").style.display = "none";
+}
+} );
+
+$("#numAnalysis9").change(function() {
+var numberOfAnalysis = $("#numAnalysis9").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation29").style.display = "block";
+} else {
+document.getElementById("analysisInformation29").style.display = "none";
+}
+} );
+
+$("#numAnalysis9").change(function() {
+var numberOfAnalysis = $("#numAnalysis9").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation39").style.display = "block";
+} else {
+document.getElementById("analysisInformation39").style.display = "none";
+}
+} );
+
+$("#numAnalysis10").change(function() {
+var numberOfAnalysis = $("#numAnalysis10").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation110").style.display = "block";
+} else {
+document.getElementById("analysisInformation110").style.display = "none";
+}
+} );
+
+$("#numAnalysis10").change(function() {
+var numberOfAnalysis = $("#numAnalysis10").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation210").style.display = "block";
+} else {
+document.getElementById("analysisInformation210").style.display = "none";
+}
+} );
+
+$("#numAnalysis10").change(function() {
+var numberOfAnalysis = $("#numAnalysis10").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation310").style.display = "block";
+} else {
+document.getElementById("analysisInformation310").style.display = "none";
+}
+} );
+
+$("#numAnalysis11").change(function() {
+var numberOfAnalysis = $("#numAnalysis11").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation111").style.display = "block";
+} else {
+document.getElementById("analysisInformation111").style.display = "none";
+}
+} );
+
+$("#numAnalysis11").change(function() {
+var numberOfAnalysis = $("#numAnalysis11").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation211").style.display = "block";
+} else {
+document.getElementById("analysisInformation211").style.display = "none";
+}
+} );
+
+$("#numAnalysis11").change(function() {
+var numberOfAnalysis = $("#numAnalysis11").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation311").style.display = "block";
+} else {
+document.getElementById("analysisInformation311").style.display = "none";
+}
+} );
+
+$("#numAnalysis12").change(function() {
+var numberOfAnalysis = $("#numAnalysis12").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation112").style.display = "block";
+} else {
+document.getElementById("analysisInformation112").style.display = "none";
+}
+} );
+
+$("#numAnalysis12").change(function() {
+var numberOfAnalysis = $("#numAnalysis12").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation212").style.display = "block";
+} else {
+document.getElementById("analysisInformation212").style.display = "none";
+}
+} );
+
+$("#numAnalysis12").change(function() {
+var numberOfAnalysis = $("#numAnalysis12").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation312").style.display = "block";
+} else {
+document.getElementById("analysisInformation312").style.display = "none";
 }
 } );
 
@@ -710,6 +1006,186 @@ document.getElementById("binSpecifics38").style.display = "block";
 }
 } );
 
+$("#analysis19").change(function() {
+var analysis = $("#analysis19").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation19").style.display = "none";
+document.getElementById("binSpecifics19").style.display = "none";
+console.log("19");
+} else {
+document.getElementById("binInformation19").style.display = "block";
+document.getElementById("binSpecifics19").style.display = "block";
+}
+} );
+
+$("#analysis29").change(function() {
+var analysis = $("#analysis29").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation29").style.display = "none";
+document.getElementById("binSpecifics29").style.display = "none";
+console.log("29");
+} else {
+document.getElementById("binInformation29").style.display = "block";
+document.getElementById("binSpecifics29").style.display = "block";
+}
+} );
+
+$("#analysis39").change(function() {
+var analysis = $("#analysis39").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation39").style.display = "none";
+document.getElementById("binSpecifics39").style.display = "none";
+console.log("39");
+} else {
+document.getElementById("binInformation39").style.display = "block";
+document.getElementById("binSpecifics39").style.display = "block";
+}
+} );
+
+$("#analysis20").change(function() {
+var analysis = $("#analysis20").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation110").style.display = "none";
+document.getElementById("binSpecifics110").style.display = "none";
+console.log("110");
+} else {
+document.getElementById("binInformation110").style.display = "block";
+document.getElementById("binSpecifics110").style.display = "block";
+}
+} );
+
+$("#analysis30").change(function() {
+var analysis = $("#analysis30").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation210").style.display = "none";
+document.getElementById("binSpecifics210").style.display = "none";
+console.log("210");
+} else {
+document.getElementById("binInformation210").style.display = "block";
+document.getElementById("binSpecifics210").style.display = "block";
+}
+} );
+
+$("#analysis40").change(function() {
+var analysis = $("#analysis40").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation310").style.display = "none";
+document.getElementById("binSpecifics310").style.display = "none";
+console.log("310");
+} else {
+document.getElementById("binInformation310").style.display = "block";
+document.getElementById("binSpecifics310").style.display = "block";
+}
+} );
+
+$("#analysis111").change(function() {
+var analysis = $("#analysis111").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation111").style.display = "none";
+document.getElementById("binSpecifics111").style.display = "none";
+console.log("111");
+} else {
+document.getElementById("binInformation111").style.display = "block";
+document.getElementById("binSpecifics111").style.display = "block";
+}
+} );
+
+$("#analysis211").change(function() {
+var analysis = $("#analysis211").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation211").style.display = "none";
+document.getElementById("binSpecifics211").style.display = "none";
+console.log("211");
+} else {
+document.getElementById("binInformation211").style.display = "block";
+document.getElementById("binSpecifics211").style.display = "block";
+}
+} );
+
+$("#analysis311").change(function() {
+var analysis = $("#analysis311").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation311").style.display = "none";
+document.getElementById("binSpecifics311").style.display = "none";
+console.log("311");
+} else {
+document.getElementById("binInformation311").style.display = "block";
+document.getElementById("binSpecifics311").style.display = "block";
+}
+} );
+
+$("#analysis112").change(function() {
+var analysis = $("#analysis112").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation112").style.display = "none";
+document.getElementById("binSpecifics112").style.display = "none";
+console.log("112");
+} else {
+document.getElementById("binInformation112").style.display = "block";
+document.getElementById("binSpecifics112").style.display = "block";
+}
+} );
+
+$("#analysis212").change(function() {
+var analysis = $("#analysis212").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation212").style.display = "none";
+document.getElementById("binSpecifics212").style.display = "none";
+console.log("212");
+} else {
+document.getElementById("binInformation212").style.display = "block";
+document.getElementById("binSpecifics212").style.display = "block";
+}
+} );
+
+$("#analysis312").change(function() {
+var analysis = $("#analysis312").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation312").style.display = "none";
+document.getElementById("binSpecifics312").style.display = "none";
+console.log("312");
+} else {
+document.getElementById("binInformation312").style.display = "block";
+document.getElementById("binSpecifics312").style.display = "block";
+}
+} );
+
 $("#binChoice11").change(function() {
 var bins = $("#binChoice11").val();
 console.log(bins);
@@ -1067,6 +1543,186 @@ document.getElementById("fromSensorBlock38").style.display = "none";
 } else {
 document.getElementById("customTimeBlock38").style.display = "none";
 document.getElementById("fromSensorBlock38").style.display = "none";
+}
+} );
+
+$("#binChoice19").change(function() {
+var bins = $("#binChoice19").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock19").style.display = "none";
+document.getElementById("fromSensorBlock19").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock19").style.display = "block";
+document.getElementById("fromSensorBlock19").style.display = "none";
+} else {
+document.getElementById("customTimeBlock19").style.display = "none";
+document.getElementById("fromSensorBlock19").style.display = "none";
+}
+} );
+
+$("#binChoice29").change(function() {
+var bins = $("#binChoice29").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock29").style.display = "none";
+document.getElementById("fromSensorBlock29").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock29").style.display = "block";
+document.getElementById("fromSensorBlock29").style.display = "none";
+} else {
+document.getElementById("customTimeBlock29").style.display = "none";
+document.getElementById("fromSensorBlock29").style.display = "none";
+}
+} );
+
+$("#binChoice39").change(function() {
+var bins = $("#binChoice39").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock39").style.display = "none";
+document.getElementById("fromSensorBlock39").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock39").style.display = "block";
+document.getElementById("fromSensorBlock39").style.display = "none";
+} else {
+document.getElementById("customTimeBlock39").style.display = "none";
+document.getElementById("fromSensorBlock39").style.display = "none";
+}
+} );
+
+$("#binChoice20").change(function() {
+var bins = $("#binChoice20").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock110").style.display = "none";
+document.getElementById("fromSensorBlock110").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock110").style.display = "block";
+document.getElementById("fromSensorBlock110").style.display = "none";
+} else {
+document.getElementById("customTimeBlock110").style.display = "none";
+document.getElementById("fromSensorBlock110").style.display = "none";
+}
+} );
+
+$("#binChoice30").change(function() {
+var bins = $("#binChoice30").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock210").style.display = "none";
+document.getElementById("fromSensorBlock210").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock210").style.display = "block";
+document.getElementById("fromSensorBlock210").style.display = "none";
+} else {
+document.getElementById("customTimeBlock210").style.display = "none";
+document.getElementById("fromSensorBlock210").style.display = "none";
+}
+} );
+
+$("#binChoice40").change(function() {
+var bins = $("#binChoice40").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock310").style.display = "none";
+document.getElementById("fromSensorBlock310").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock310").style.display = "block";
+document.getElementById("fromSensorBlock310").style.display = "none";
+} else {
+document.getElementById("customTimeBlock310").style.display = "none";
+document.getElementById("fromSensorBlock310").style.display = "none";
+}
+} );
+
+$("#binChoice111").change(function() {
+var bins = $("#binChoice111").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock111").style.display = "none";
+document.getElementById("fromSensorBlock111").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock111").style.display = "block";
+document.getElementById("fromSensorBlock111").style.display = "none";
+} else {
+document.getElementById("customTimeBlock111").style.display = "none";
+document.getElementById("fromSensorBlock111").style.display = "none";
+}
+} );
+
+$("#binChoice211").change(function() {
+var bins = $("#binChoice211").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock211").style.display = "none";
+document.getElementById("fromSensorBlock211").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock211").style.display = "block";
+document.getElementById("fromSensorBlock211").style.display = "none";
+} else {
+document.getElementById("customTimeBlock211").style.display = "none";
+document.getElementById("fromSensorBlock211").style.display = "none";
+}
+} );
+
+$("#binChoice311").change(function() {
+var bins = $("#binChoice311").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock311").style.display = "none";
+document.getElementById("fromSensorBlock311").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock311").style.display = "block";
+document.getElementById("fromSensorBlock311").style.display = "none";
+} else {
+document.getElementById("customTimeBlock311").style.display = "none";
+document.getElementById("fromSensorBlock311").style.display = "none";
+}
+} );
+
+$("#binChoice112").change(function() {
+var bins = $("#binChoice112").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock112").style.display = "none";
+document.getElementById("fromSensorBlock112").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock112").style.display = "block";
+document.getElementById("fromSensorBlock112").style.display = "none";
+} else {
+document.getElementById("customTimeBlock112").style.display = "none";
+document.getElementById("fromSensorBlock112").style.display = "none";
+}
+} );
+
+$("#binChoice212").change(function() {
+var bins = $("#binChoice212").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock212").style.display = "none";
+document.getElementById("fromSensorBlock212").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock212").style.display = "block";
+document.getElementById("fromSensorBlock212").style.display = "none";
+} else {
+document.getElementById("customTimeBlock212").style.display = "none";
+document.getElementById("fromSensorBlock212").style.display = "none";
+}
+} );
+
+$("#binChoice312").change(function() {
+var bins = $("#binChoice312").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock312").style.display = "none";
+document.getElementById("fromSensorBlock312").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock312").style.display = "block";
+document.getElementById("fromSensorBlock312").style.display = "none";
+} else {
+document.getElementById("customTimeBlock312").style.display = "none";
+document.getElementById("fromSensorBlock312").style.display = "none";
 }
 } );
 

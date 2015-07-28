@@ -12,7 +12,7 @@
 							$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Start Time</th><th>End Time</th><th>Within Bounds %</th><th>In Time Range</th></tr></thead><tbody>';
 						}
 						elseif ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "Min-Max") {
-							$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Start Time</th><th>End Time</th><th>Maximum</th><th>Minimum</th><th>Average</th><th>In Time Range</th></tr></thead><tbody>';
+							$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Start Time</th><th>End Time</th><th>Minimum</th><th>Maximum</th><th>Average</th><th>In Time Range</th></tr></thead><tbody>';
 						}
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
@@ -25,10 +25,10 @@
 									}
 								}
 								elseif ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "Min-Max"){
-									list($pi_id, $sensor_id, $sensor_name, $start_time, $end_time, $max, $min, $ave, $in_time_range) = explode(',', $line);
+									list($pi_id, $sensor_id, $sensor_name, $start_time, $end_time, $min, $max, $ave, $in_time_range) = explode(',', $line);
 									$year = explode('-', $start_time);
 									if ($year[0] == $year_sum) {
-										$table .= "<tr><td>$start_time</td><td>$end_time</td><td>$max</td><td>$min</td><td>$ave</td><td>$in_time_range</td></tr>";
+										$table .= "<tr><td>$start_time</td><td>$end_time</td><td>$min</td><td>$max</td><td>$ave</td><td>$in_time_range</td></tr>";
 									}
 								}								
 							}

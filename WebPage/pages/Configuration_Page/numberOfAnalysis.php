@@ -2,7 +2,7 @@
 	$html_sensor_list .= '<p style="font-weight:bold;"> Number Of Analysis </p>' . "\n";
 	$html_sensor_list .= '<select class="form-control" name="numberOfAnalysis' . ($i+1) .'" id="numAnalysis' . ($i+1) . '">' . "\n";
 	$html_sensor_list .= '<br>' . "\n";
-	if ($SENSOR_INFO[$i]->numberOfAnalysis == "1"){
+	if ($SENSOR_INFO[$i]->numberOfAnalysis == "1" or $SENSOR_INFO[$i]->numberOfAnalysis == ""){
 		$html_sensor_list .= '<option selected="selected">1</option>' . "\n";
 	} else {
 		$html_sensor_list .= '<option>1</option>' . "\n";

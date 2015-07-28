@@ -4,7 +4,7 @@
 # Analysis readings from lux sensors for summary data                    #
 #                                                                        #
 # Started by Derek De Young                                              #
-# Continued by Curtis Kortman											 #
+# Continued by Curtis Kortman						 #
 # Started: 4/25/15                                                       #
 # Last Edited: 7/13/15                                                   #
 # ********************************************************************** #
@@ -26,7 +26,7 @@ from globalVars import*  # Global vars (also includes the sensor class) [anythin
 #-------------------Tell the website the pi is busy----------------
 #==================================================================
 
-file = open('/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
 file.write("1")
 file.close()
 
@@ -39,9 +39,9 @@ debug = False # used for helping in development of code, turn to false for norma
 nameOfPi = str(PI_NUMBER) # From Global Vars 
 month_list= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 #Base directory leading to the summary
-summary_path = '/home/cjk36/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
+summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
 #Base directory leading to the raw
-raw_path = '/home/cjk36/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
+raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 
@@ -54,7 +54,7 @@ year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 					#initializeSummary() writes the metadata to each file
 def initializeSummary(sensor, analysisNumber):
-	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv') 
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	newfile = open(filename, 'w')
 	newfile.write("#Calvin College CERF PI DATA"+ '\n')
 	newfile.close()
@@ -99,7 +99,7 @@ def getDateFromDataString(datastring):
 					
 					#returns true if the check date is within date1 and date2 (date 2 should be later than date 1)
 def dateInRange(checkDate, date1, date2):
-	if ((checkDate > date1) and (checkDate < date2)):
+	if ((checkDate >= date1) and (checkDate < date2)):
 		return True
 	else:
 		return False
@@ -130,7 +130,7 @@ def getFirstDay(sensor, year, month):
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/' + month + '/'):
 		days.append(name)
 	days = ((min(days).split('-')[2]).split('.')[0]) 	#the date format looks like YY-MM-DD.otherstuff so it splits it into an array of [YY][MM][DD.otherstuff] 
-	return createDayBins 								#and takes index 2 aka [DD.otherstuff] and then performs the same process to remove the .otherstuff
+	return days	 					#and takes index 2 aka [DD.otherstuff] and then performs the same process to remove the .otherstuff
 
 #------------------------------------------------------------------
 					
@@ -189,17 +189,16 @@ def createDayBins(sensor, analysisNumber):
 		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour))
 		binArray[analysisNumber][sensor.number-1].addBin(startTime, stopTime)
 		firstDate += datetime.timedelta(days=1)
-		# print "Start time: " + startTime + " Stop Time: " + stopTime
+		#print "Start time: " + startTime + " Stop Time: " + stopTime
 
 #------------------------------------------------------------------
 					
 					#creates a list of start and stop times based on the user input on the webpage
 def createCustomBins(sensor, analysisNumber):
-
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
-	startHour = int(sensor.customStart)
-	endHour = int(sensor.customStop)
+	startHour = int(sensor.customStart[analysisNumber])
+	endHour = int(sensor.customStop[analysisNumber])
 
 	if startHour < 10:
 		startHour = '0' + str(startHour) # the datetime strings only work with numbers in 01, 02, 03.... format
@@ -209,10 +208,10 @@ def createCustomBins(sensor, analysisNumber):
 	startHour = datetime.datetime.strptime(str(startHour), "%H").time()
 	endHour = datetime.datetime.strptime(str(endHour), "%H").time()
 
-	for x in range(int((today-firstDate).days)):
+	for x in range(int((today-firstDate).days+1)):
 		startTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(startHour))
 		stopTime = (str(firstDate.year) + '-' + str(firstDate.month) + '-' + str(firstDate.day) + ' ' + str(endHour))
-		for day in sensor.weekdays:
+		for day in sensor.weekdays[analysisNumber]:
 			if str(day) == str(firstDate.weekday()):
 				binArray[analysisNumber][sensor.number-1].addBin(startTime, stopTime)
 		firstDate += datetime.timedelta(days=1)
@@ -241,7 +240,7 @@ def createSensorBins(sensor, analysisNumber):
 
 	for year in yearList:
 		for month in month_list: 					#probides the number of month folders that have to be opened
-			filepath = raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/' + month
+			filepath = raw_path + 'Sensor' + str(sensor.fromSensorNumber[analysisNumber]) + '/' + year + '/' + month
 			fileList = []
 			if os.path.exists(filepath):
 				for file in os.listdir(filepath):
@@ -253,18 +252,18 @@ def createSensorBins(sensor, analysisNumber):
 						if line[0] != "#":			#ignore the metadata
 							row = re.split(',',line)		#turn the line into an array of data, based on its csv delimeters
 							time = row[4]					#the time the data is recorded was saved in the 5th column
-							data = row[5].replace('\n','')	#the data was saved in the fifth, but it also contains the invisible new line delimeter
-
-							if sensor.fromSensorMin == "":	#if the user has not declared a minimum - treat it as 0
+							data = row[5].replace('\n','')	#the data was saved in the 6th column, but it also contains the invisible new line delimeter
+							
+							if sensor.fromSensorMin[analysisNumber] == "":	#if the user has not declared a minimum - treat it as 0
 								Min = 0
 							else:
-								Min = sensor.fromSensorMin
+								Min = sensor.fromSensorMin[analysisNumber]
 
-							if sensor.fromSensorMax == "":
+							if sensor.fromSensorMax[analysisNumber] == "":
 								Max = 0
 							else:
-								Max = sensor.fromSensorMax
-							if ((float(data) > float(Min)) and (float(data) < float(Max))):
+								Max = sensor.fromSensorMax[analysisNumber]
+							if ((float(data) >= float(Min)) and (float(data) < float(Max))):
 								inRangeNow = True
 							else:
 								inRangeNow = False
@@ -293,15 +292,15 @@ def createSensorBins(sensor, analysisNumber):
 
 def createBins(sensor, analysisNumber):
 	if sensor.analysis != "On-Peak Off-Peak %":
-		if sensor.binType == "From Sensor":
+		if sensor.binType[analysisNumber] == "From Sensor":
 			createSensorBins(sensor, analysisNumber)
-		elif sensor.binType == "Day":
+		elif sensor.binType[analysisNumber] == "Day":
 			createDayBins(sensor, analysisNumber)
-		elif sensor.binType == "Month":
+		elif sensor.binType[analysisNumber] == "Month":
 			createMonthBins(sensor, analysisNumber)
-		elif sensor.binType == "Custom Time":
+		elif sensor.binType[analysisNumber] == "Custom Time":
 			createCustomBins(sensor, analysisNumber)
-		elif sensor.binType == "Year":
+		elif sensor.binType[analysisNumber] == "Year":
 			createYearBins(sensor, analysisNumber)
 
 #------------------------------------------------------------------
@@ -318,83 +317,134 @@ def aggregateMinMaxData(sensor, analysisNumber):
 	maximumInRange = 0
 	minimumInRange = 0
 	averageInRange = 0
+	durationInRange = []
 	minArrayOutOfRange= []
 	maxArrayOutOfRange= []
 	aveArrayOutOfRange= []
 	maximumOutOfRange= 0
 	minimumOutOfRange= 0
 	averageOutOfRange= 0
+	durationOutOfRange = []
 	summarystring = ""
 	end = False
 
 	for line in summaryfile:
 		if line[0] != '#':								#ignore the metadata
 			row = re.split(',',line)					#turn csv into array
+			startTime = getDateFromDataString(row[3])
+			endTime = getDateFromDataString(row[4])
+			timeLapse = endTime - startTime
 			if row[8].replace('\n','') == "In Range":	#if the data was in the time range, add it to in range counters
-				maxArrayInRange.append(float(row[5]))
-				minArrayInRange.append(float(row[6]))
+				minArrayInRange.append(float(row[5]))
+				maxArrayInRange.append(float(row[6]))
 				aveArrayInRange.append(float(row[7]))
+				durationInRange.append((divmod(timeLapse.days * 86400 + timeLapse.seconds, 60))[0]) # calculates the number of minutes between the two datapoints
 			else:
-				maxArrayOutOfRange.append(float(row[5]))	#if the data was out of the time range, add it to out of range counters
-				minArrayOutOfRange.append(float(row[6]))
+				minArrayOutOfRange.append(float(row[5]))	#if the data was out of the time range, add it to out of range counters
+				maxArrayOutOfRange.append(float(row[6]))
 				aveArrayOutOfRange.append(float(row[7]))
+				durationOutOfRange.append((divmod(timeLapse.days * 86400 + timeLapse.seconds, 60))[0])
 			startTime = getDateFromDataString(row[3])
 			endTime = getDateFromDataString(row[4])
 			
 			end = False
 
-			if sensor.summaryMethod == "Month":
+			if sensor.summaryMethod[analysisNumber] == "Month":
 				if lastStart != "":
 					if lastStart.month != startTime.month: #if the data has moved from one month to the next then...
+						totalInRange = 0
+						totalOutOfRange = 0
+						durationInRangeTotal = 0
+						durationOutOfRangeTotal = 0 
+						for x in range(len(durationInRange)):	#create a weighted average based on how much time elapsed between each bin
+							totalInRange += durationInRange[x] * aveArrayInRange[x]
+							durationInRangeTotal += durationInRange[x]
+						for x in range(len(durationOutOfRange)):
+							totalOutOfRange += durationOutOfRange[x] * aveArrayOutOfRange[x]
+							durationOutOfRangeTotal += durationOutOfRange[x]
 						maximumInRange = max(maxArrayInRange)
 						minimumInRange = min(minArrayInRange)
-						averageInRange = float(float(sum(aveArrayInRange))/float(len(aveArrayInRange)))
+						averageInRange = float(totalInRange)/float(durationInRangeTotal)
 						maximumOutOfRange = max(maxArrayOutOfRange)
 						minimumOutOfRange = min(minArrayOutOfRange)
-						averageOutOfRange = float(float(sum(aveArrayOutOfRange))/float(len(aveArrayOutOfRange))) 	#calculate the mins, and maxes
-						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
-						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
+						averageOutOfRange = float(totalOutOfRange)/float(durationOutOfRangeTotal) 	#calculate the mins, and maxes
+						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
+						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
 						maxArrayInRange = []		#^^ and write that data to the summary file
 						minArrayInRange = []
 						aveArrayInRange = []		#Now clear the counters so they are ready to keep track of the next month
 						maxArrayOutOfRange = []
 						minArrayOutOfRange = []
 						aveArrayOutOfRange = []
+						durationInRange = []
+						durationOutOfRange = []
 						end = True
 
-			if sensor.summaryMethod == "Year":
+			if sensor.summaryMethod[analysisNumber] == "Year":
 				if lastStart != "":
 					if lastStart.year != startTime.year:	#if the data has moved to the next year...
+						totalInRange = 0
+						totalOutOfRange = 0
+						durationInRangeTotal = 0
+						durationOutOfRangeTotal = 0 
+						for x in range(len(durationInRange)):	#create a weighted average based on how much time elapsed between each bin
+							totalInRange += durationInRange[x] * aveArrayInRange[x]
+							durationInRangeTotal += durationInRange[x]
+						for x in range(len(durationOutOfRange)):
+							totalOutOfRange += durationOutOfRange[x] * aveArrayOutOfRange[x]
+							durationOutOfRangeTotal += durationOutOfRange[x]
 						maximumInRange = max(maxArrayInRange)
 						minimumInRange = min(minArrayInRange)
-						averageInRange = float(float(sum(aveArrayInRange))/float(len(aveArrayInRange)))
+						averageInRange = float(totalInRange)/float(durationInRangeTotal)
 						maximumOutOfRange = max(maxArrayOutOfRange)
 						minimumOutOfRange = min(minArrayOutOfRange)
-						averageOutOfRange = float(float(sum(aveArrayOutOfRange))/float(len(aveArrayOutOfRange)))	#calculate the mins, and maxes
-						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
-						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
+						averageOutOfRange = float(totalOutOfRange)/float(durationOutOfRangeTotal)	#calculate the mins, and maxes
+						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
+						summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
 						maxArrayInRange = []		#^^ and write that data to the summary file
 						minArrayInRange = []
 						aveArrayInRange = []		#Now clear the counters so they are ready to keep track of the next year
 						maxArrayOutOfRange = []
 						minArrayOutOfRange = []
 						aveArrayOutOfRange = []
+						durationInRange = []
+						durationOutOfRange = []
 						end = True
 
 			lastStart = startTime
 	if not end:
-		maximumInRange = max(maxArrayInRange) 	#if the summary didn't finish off with a whole month, or a whole year, write the data output for the partial timeframe
-		minimumInRange = min(minArrayInRange)
-		averageInRange = float(float(sum(aveArrayInRange))/float(len(aveArrayInRange)))
+		totalInRange = 0
+		totalOutOfRange = 0
+		durationInRangeTotal = 0
+		durationOutOfRangeTotal = 0 
+		for x in range(len(durationInRange)):	#create a weighted average based on how much time elapsed between each bin
+			totalInRange += durationInRange[x] * aveArrayInRange[x]
+			durationInRangeTotal += durationInRange[x]
+		for x in range(len(durationOutOfRange)):
+			totalOutOfRange += durationOutOfRange[x] * aveArrayOutOfRange[x]
+			durationOutOfRangeTotal += durationOutOfRange[x]
+	
+		if len(maxArrayInRange) != 0: 
+			maximumInRange = max(maxArrayInRange)
+		else: 
+			maximumInRange = 8888888.88
+		if len(minArrayInRange) != 0:
+			minimumInRange = min(minArrayInRange)
+		else:
+			minimumInRange = -8888888.88
+		if durationInRangeTotal == 0:
+			durationInRangeTotal = 1
+		
+		averageInRange = float(totalInRange)/float(durationInRangeTotal)
 		maximumOutOfRange = max(maxArrayOutOfRange)
 		minimumOutOfRange = min(minArrayOutOfRange)
-		averageOutOfRange = float(float(sum(aveArrayOutOfRange))/float(len(aveArrayOutOfRange)))
-	if sensor.summaryMethod == "Month":
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
-	if sensor.summaryMethod == "Year":
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
+		averageOutOfRange = float(totalOutOfRange)/float(durationOutOfRangeTotal)	#calculate the mins, and maxes
+		if sensor.summaryMethod[analysisNumber] == "Month":
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
+		if sensor.summaryMethod[analysisNumber] == "Year":
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %minimumInRange + ',' + "%.2f" %maximumInRange + ',' + "%.2f" %averageInRange + ",In Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %minimumOutOfRange + ',' + "%.2f" %maximumOutOfRange + ',' + "%.2f" %averageOutOfRange + ",Out of Range" + '\n'
 	summaryfile.close()
 
 	initializeSummary(sensor, analysisNumber)		#since it is going to write over the same file it is reading from, up until this point the new file info has been saved in a string
@@ -436,7 +486,7 @@ def aggregateRangeData(sensor, analysisNumber):
 				durationOutOfRange.append((divmod(timeLapse.days * 86400 + timeLapse.seconds, 60))[0])
 			end = False
 
-			if sensor.summaryMethod == "Month":
+			if sensor.summaryMethod[analysisNumber] == "Month":
 				if lastStart != "":
 					if lastStart.month != startTime.month:		#if the month has changed 
 						totalInRange = 0
@@ -459,7 +509,7 @@ def aggregateRangeData(sensor, analysisNumber):
 						durationOutOfRange = []
 						end = True
 
-			if sensor.summaryMethod == "Year":
+			if sensor.summaryMethod[analysisNumber] == "Year":
 				if lastStart != "":
 					if lastStart.year != startTime.year: 		#if the year has changed 
 						totalInRange = 0
@@ -497,12 +547,12 @@ def aggregateRangeData(sensor, analysisNumber):
 			durationOutOfRangeTotal += durationOutOfRange[x]
 		onPercentageInRange = float(float(totalInRange) / float(durationInRangeTotal))
 		onPercentageOutOfRange = float(float(totalOutOfRange) / float(durationOutOfRangeTotal))
-	if sensor.summaryMethod == "Month":
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
-	if sensor.summaryMethod == "Year":
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
-		summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
+		if sensor.summaryMethod[analysisNumber] == "Month":
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
+		if sensor.summaryMethod[analysisNumber] == "Year":
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
 	summaryfile.close()
 
 
@@ -752,7 +802,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 						time = getDateFromDataString(time)
 						if firstTimeThrough:		
 							lastTime = time;
-						if ((len(binArray[analysisNumber][sensor.number-1].timeArray)) > 1 and dateInRange(time, binArray[analysisNumber][sensor.number-1].timeArray[binIndex][0], binArray[analysisNumber][sensor.number-1].timeArray[binIndex][1])): #if the bin range isn't empty check if the time is in or out of the bin range 
+						if ((len(binArray[analysisNumber][sensor.number-1].timeArray)) > 0 and dateInRange(time, binArray[analysisNumber][sensor.number-1].timeArray[binIndex][0], binArray[analysisNumber][sensor.number-1].timeArray[binIndex][1])): #if the bin range isn't empty check if the time is in or out of the bin range 
 							inRangeNow = True
 						else:	
 							inRangeNow = False
@@ -768,7 +818,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 
 						if ((inRangeNow == True) and (False == inRangeBefore) and (not firstTimeThrough)): #if the time moves into a valid bin range, print the out of bin range analyzed data
 							average = (float(average) / float(totalMinutes))
-							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%.2f" %minimum + ',' + "%.2f" %average + ",Out of Range" + '\n'
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %minimum + ',' + "%.2f" %maximum + ',' + "%.2f" %average + ",Out of Range" + '\n'
 							summaryDataOutOfRange.append([maximum, minimum, average])
 							if (sensor.binType != "Day" and sensor.binType != "Month"):
 								summaryfile.write(summaryString)
@@ -778,16 +828,17 @@ def minMaxAnalysis(sensor, analysisNumber):
 							totalMinutes = 0.0
 							lastTime = time + datetime.timedelta(0,60)
 							end = True
+							print "Writing to file"
 							if (sensor.binType == "Day" or sensor.binType == "Month"): # correction so that consecutive bin ranges (no gaps in between) move seemlessly from one bin range to the next
 								average += float(data)
 								totalMinutes += 1
 
 						if ((inRangeNow == False) and (True == inRangeBefore)):	#if the time moves out of a valid bin range, print the in bin range analyzed data
 							average = float((float(average) / float(totalMinutes)))
-							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%.2f" %minimum + ',' + "%.2f" %average + ",In Range" + '\n'
+							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %minimum + ',' + "%.2f" %maximum + ',' + "%.2f" %average + ",In Range" + '\n'
 							summaryDataInRange.append([maximum, minimum, average])
 							summaryfile.write(summaryString)
-							if binIndex < (len(binArray[sensor.number-1].timeArray)-1):
+							if binIndex < (len(binArray[analysisNumber][sensor.number-1].timeArray)-1):
 								binIndex += 1
 							maximum = 0.0 		#re -initialize counters
 							minimum = 100000.0
@@ -811,30 +862,54 @@ def minMaxAnalysis(sensor, analysisNumber):
 		else:
 			inRangeString = "Out of Range"
 		average = float((float(average) / float(totalMinutes)))
-		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %maximum + ',' + "%.2f" %minimum + ',' + "%.2f" %average + ',' + inRangeString + '\n'
+		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %minimum + ',' + "%.2f" %maximum + ',' + "%.2f" %average + ',' + inRangeString + '\n'
 		summaryfile.write(summaryString)
 	summaryfile.close()
 
-	if sensor.binType == "Custom" or sensor.binType == "From Sensor":
-		aggregateMinMaxData(sensor)
+	if sensor.binType[analysisNumber] == "Custom Time" or sensor.binType[analysisNumber] == "From Sensor":
+		if sensor.summaryMethod[analysisNumber] != "None":
+			aggregateMinMaxData(sensor, analysisNumber)
 
 #------------------------------------------------------------------
 
 					#analyzeData() calls the functions to output for each of the sensors
 def analyzeData():
+
+	percentComplete = "0%"
+	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	#print percentComplete
+	file.write(str(percentComplete))
+	file.close()
+
 	for c in range(3):
 		for i in range(NUM_SENSORS):
-			if SENSOR_INFO[i].numberOfAnalysis >= c:
+			if int(SENSOR_INFO[i].numberOfAnalysis) > c:
+				#time.sleep(2)
+				#print str(SENSOR_INFO[i].numberOfAnalysis) + ' ' + str(c)
 				createBins(SENSOR_INFO[i], c)
 				if SENSOR_INFO[i].analysis[c] == "On-Peak Off-Peak %":
 					onPeakOffPeakAnalysis(SENSOR_INFO[i], c)
-					print 'Performing Peak Percent Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
+					#print 'Performing Peak Percent Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
 				elif SENSOR_INFO[i].analysis[c] == "Range Analysis":
 					rangeAnalysis(SENSOR_INFO[i], c)
-					print 'Performing Range Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
+					#print 'Performing Range Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
 				elif SENSOR_INFO[i].analysis[c] == "Min-Max":
 					minMaxAnalysis(SENSOR_INFO[i], c)
-					print 'Perfromings Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
+					#print 'Performing Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
+				
+				file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+				percentComplete = (float((c+1)*(i+1))/(3*NUM_SENSORS))*100
+				percentComplete = "%.2f" %percentComplete + '%'
+				#print percentComplete
+				file.write(str(percentComplete))
+				file.close()
+	
+	percentComplete = "100%"
+	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	#print percentComplete
+	file.write(str(percentComplete))
+	file.close()
+	time.sleep(2)
 
 
 #==================================================================
@@ -849,16 +924,24 @@ for c in range(3):
 
 analyzeData()
 
-# for x in range(len(binArray[2].timeArray)):
-# 	print "Start: " + str(binArray[2].timeArray[x][0]) + " Stop: " + str(binArray[2].timeArray[x][1])
+#print len(binArray[0][0].timeArray)
+
+#for x in range(len(binArray[0][0].timeArray)):
+	#print "Start: " + str(binArray[0][0].timeArray[x][0]) + " Stop: " + str(binArray[0][0].timeArray[x][1])
 
 #==================================================================
 #-----------------Tell the website the pi is not busy--------------
 #==================================================================
 
-file = open('/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
 file.write("0")
 file.close()
+
+#==================================================================
+#--------------KEEP THIS LINE FOR THE STATUS LOG-------------------
+#==================================================================
+
+print "Data Analysis succeeded:" +  str(datetime.datetime.now())
 
 
 

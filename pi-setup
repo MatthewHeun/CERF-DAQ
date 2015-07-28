@@ -21,7 +21,20 @@ echo
 export PI_NUMBER
 
 echo $PI_NUMBER > /home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt
-echo 0 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/numLightSensors.txt
+echo 0 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt
+echo 0 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt
+chmod ugo+rwx /home/pi/Desktop/CERF-DAQ/ -R
+
+echo "Starting i2c...."
+echo snd-bcm2835 > /etc/modules
+echo i2c-bcm2708 >> /etc/modules
+echo i2c-dev >> /etc/modules
+echo "i2c initialized"
+
+echo "Starting cron logging..."
+sudo php startCronLog.php
+/etc/init.d/rsyslog restart
+echo "Cron logging begun"
 
 echo "Proceeding...\n"
 #===============================
@@ -54,6 +67,9 @@ mkdir "/home/pi/Desktop/Data"
 mkdir "/home/pi/Desktop/Data/$RawDir"
 mkdir "/home/pi/Desktop/Data/$SummaryDir"
 echo "	+Done"
+
+chmod ugo+rwx /home/pi/Desktop/Data -R
+
 #===============================
 #===Getting necessary stuff=====
 #===============================
@@ -66,7 +82,7 @@ sudo apt-get install i2c-tools
 sudo apt-get install python-pip
 sudo apt-get install xrdp
 sudo easy_install pytz
-sudo easy_install smbus 
+sudo apt-get install python-smbus 
 sudo adduser pi i2c 
 #==============================
 #====Creating Global Vars =====
@@ -103,10 +119,10 @@ sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 #==============================
 echo "Creating Cron Jobs"
 echo "#m h dom mon dow  command" > mycron
-echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/cronlog.log 2>&1" >> mycron
-echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/cronlog.log 2>&1" >> mycron
-echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip_raw.sh >> /dev/cronlogzip.log 2>&1" >> mycron
-echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi >> /dev/cronlogzip.log 2>&1" >> mycron
+echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/GetDataCron.log 2>&1" >> mycron
+echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/AnalysisCron.log 2>&1" >> mycron
+echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip-data.sh >> /dev/ZipCron.log 2>&1" >> mycron
+echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi.sh >> /dev/UpdatePiCron.log 2>&1" >> mycron
 sudo crontab mycron 
 sudo rm mycron
 sudo /etc/init.d/cron restart

@@ -14,7 +14,7 @@
 
 setTimeout(function(){
 	window.location=window.location.href.split("?")[0];
-}, 1000);
+}, 2000);
 
 </script>
 
@@ -44,19 +44,27 @@ setTimeout(function(){
 	<?php 
 		if ($BUSY == 1){
 			echo '<h1 align="center"><span class="label label-warning"><i class="fa fa-refresh fa-spin"></i> Please be Patient <i class="fa fa-refresh fa-spin"></i></span></h1>';
+			echo '<br>';
+			echo '<div class="progress">';
+			echo '<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="background-color:#5BC0DE; width:' . $PROGRESS . '">';
+			echo '<span>' . $PROGRESS . '</span>';
+			echo '</div>';
+			echo '</div>';
 		} else {
 			echo '<h1 align="center"><span class="label label-success">The Analysis is not running</span></h1>';
+			
 		}
+		
 		if ($CALL_FUNCTION == true){
 			echo "starting...";
-			echo shell_exec('sh /home/cjk36/Desktop/CERF-DAQ/Python/runAnalysis.sh');
+			shell_exec('sh /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh');
 		}
 	?>
 			<br>
 	<form action="analyze.php" method="get" id="runAnalysis">
 		<input type="hidden" name="callFunction" value="DO IT!">
 	</form>
-	<button type="submit" class="btn btn-primary btn-block" form="runAnalysis">Analyze!</button>
+	<button type="submit" class="btn-lg btn-primary btn-block" form="runAnalysis">Analyze!</button>
 	</div>  <!-- page-wrapper -->
 	</div>	<!-- wrapper -->
 </body>

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python /home/cjk36/Desktop/CERF-DAQ/Python/Analyze.py
+python /home/pi/Desktop/CERF-DAQ/Python/Analyze.py

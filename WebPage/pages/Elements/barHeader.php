@@ -28,14 +28,14 @@
     <div style="width:90%; margin-left:5%; text-align:center; padding:6px 12px; background-color:#5BC0DE; border-color:#2E6DA4; border-radius:4px; border:1px solid transparent; color:#FFF"> <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </div>
 </div>
 <div class="col-lg-4">
-	<div class="input-group" style="width:68%; margin-left:5%">
+	<div class="input-group" style="width:90%; margin-left:5%">
 		<form action="<?php echo $pageLink?>" method="get" id="submit">
 			<input type="text" class="form-control" name="Year" placeholder="Enter Year" maxlength= 4 value="<?php if(isset($_GET['Year'])){ $year_sum = $_GET['Year']; echo $year_sum; } ?>">
 			<input type="hidden" name="sensorNumber" value="<?php echo($sensor_number)?>">
-            <span class="input-group-btn">      
-                <button class="btn btn-primary" type="submit" form="submit" >Submit</button>
-            </span>
 		</form>
+		<span class="input-group-btn">      
+                	<button class="btn btn-primary" type="submit" form="submit" >Submit</button>
+            	</span>
 	</div> <!-- input-group -->
 </div> <!-- col-lg-4 pull-right -->
 

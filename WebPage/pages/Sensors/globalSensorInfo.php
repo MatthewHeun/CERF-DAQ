@@ -1,6 +1,6 @@
 <?php
 
-$numPiFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
+$numPiFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt", "r");
 
 $PI_NUMBER = fgets($numPiFile);
 
@@ -8,7 +8,7 @@ $PI_NUMBER = intval($PI_NUMBER);
 
 fclose($numPiFile);
 
-$numSensorFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
+$numSensorFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt", "r");
 
 $NUM_SENSORS = fgets($numSensorFile);
 
@@ -16,19 +16,89 @@ $NUM_SENSORS = intval($NUM_SENSORS);
 
 fclose($numSensorFile);
 
-$analysisStatusFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
+
+//this is to check if the analysis is running or not
+
+$analysisStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt", "r");
 
 $BUSY = trim(fgets($analysisStatusFile));
 
+
+//this is to check if cron is running or not
+
+$RUNNING = trim(exec('/etc/init.d/cron status'));
+
+if ($RUNNING == "cron is running.") {
+	$RUNNING = true;
+} else {
+	$RUNNING = false;
+}
+
+
+//this is to check if the data collection is set to run or not
+
+$dataCollectionSetFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionSet.txt", "r");
+
+$DATA_COLLECTION_SET = trim(fgets($dataCollectionSetFile));
+
+
+//this is to check if the data collection python script has actually run 
+
+$dataCollectionStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt", "r");
+
+$DATA_COLLECTION_STATUS = trim(fgets($dataCollectionStatusFile));
+
+
+//this is to initiate the reset python script (within the Analysis.py script) 
+
+$resetFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt", "r");
+
+$RESET_PI = trim(fgets($resetFile));
+
+
+//this is to initiate the reset python script (within the Analysis.py script) 
+
+$resetFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt", "r");
+
+$RESET_PI = trim(fgets($resetFile));
+
+
+//this is to get the analysis progress
+
+$progressFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt", "r");
+
+$PROGRESS = trim(fgets($progressFile));
+
+
 $CALL_FUNCTION = false;
+$START_PI = false;
+$PAUSE_PI = false;
+$RESET_PI = false;
+$ZIP_PI = false;
 
 if (isset($_GET['callFunction'])) {
 	$CALL_FUNCTION = true;
 }
 
+if (isset($_GET['start-pi'])) {
+	$START_PI = true;
+}
+
+if (isset($_GET['pause-pi'])) {
+	$PAUSE_PI = true;
+}
+
+if (isset($_GET['reset-pi'])) {
+	$RESET_PI = true;
+}
+
+if (isset($_GET['zip-pi'])) {
+	$ZIP_PI = true;
+}
+
 include 'sensorClass.php';
 
-$sensorInfoFile = fopen("/home/cjk36/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
+$sensorInfoFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt", "r");
 
 $SENSOR_INFO = new ArrayObject(array());
 
@@ -49,8 +119,15 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	// echo "Pin Number: ";
 	// echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	$SENSOR_INFO[$i-1]->set_numberOfAnalysis(trim(fgets($sensorInfoFile)));
+	
+	if (($SENSOR_INFO[$i-1]->numberOfAnalysis != "1") or ($SENSOR_INFO[$i-1]->numberOfAnalysis != "2") or ($SENSOR_INFO[$i-1]->numberOfAnalysis != "3")) {
+		$SENSOR_INFO[$i-1]->set_numberOfAnalysis("1");
+	}
+
 	// echo "Number Of Analysis: ";
 	// echo $SENSOR_INFO[$i-1]->numberOfAnalysis . "\n";
+
+	
 	
 	for ($i4 = 0; $i4 < 3; $i4++){
 		$SENSOR_INFO[$i-1]->set_analysis(trim(fgets($sensorInfoFile)), $i4);
