@@ -34,6 +34,12 @@ if ($RUNNING == "cron is running.") {
 	$RUNNING = false;
 }
 
+$CALL_FUNCTION = false;
+$START_PI = false;
+$PAUSE_PI = false;
+$RESET_PI = false;
+$ZIP_PI = false;
+
 
 //this is to check if the data collection is set to run or not
 
@@ -56,13 +62,6 @@ $resetFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt", "r");
 $RESET_PI = trim(fgets($resetFile));
 
 
-//this is to initiate the reset python script (within the Analysis.py script) 
-
-$resetFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt", "r");
-
-$RESET_PI = trim(fgets($resetFile));
-
-
 //this is to get the analysis progress
 
 $progressFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt", "r");
@@ -70,11 +69,29 @@ $progressFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentag
 $PROGRESS = trim(fgets($progressFile));
 
 
-$CALL_FUNCTION = false;
-$START_PI = false;
-$PAUSE_PI = false;
-$RESET_PI = false;
-$ZIP_PI = false;
+//this is to check to see if the zip data command has finished 
+
+$zipStatusFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/zipStatus.txt", "r");
+
+$ZIP_STATUS = trim(fgets($zipStatus));
+
+
+//this is to get the zip health
+
+$zipHealthFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/zipHealth.txt", "r");
+
+$ZIP_HEALTH = trim(fgets($zipHealthFile));
+
+
+//this is to get the update health
+
+$updateHealthFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/updateHealth.txt", "r");
+
+$UPDATE_HEALTH = trim(fgets($updateHealthFile));
+
+echo $UPDATE_HEALTH;
+echo "CHECK HERE";
+
 
 if (isset($_GET['callFunction'])) {
 	$CALL_FUNCTION = true;
@@ -120,10 +137,9 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	// echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	$SENSOR_INFO[$i-1]->set_numberOfAnalysis(trim(fgets($sensorInfoFile)));
 	
-	if (($SENSOR_INFO[$i-1]->numberOfAnalysis != "1") or ($SENSOR_INFO[$i-1]->numberOfAnalysis != "2") or ($SENSOR_INFO[$i-1]->numberOfAnalysis != "3")) {
+	if (($SENSOR_INFO[$i-1]->numberOfAnalysis != "1") and ($SENSOR_INFO[$i-1]->numberOfAnalysis != "2") and ($SENSOR_INFO[$i-1]->numberOfAnalysis != "3")) {
 		$SENSOR_INFO[$i-1]->set_numberOfAnalysis("1");
 	}
-
 	// echo "Number Of Analysis: ";
 	// echo $SENSOR_INFO[$i-1]->numberOfAnalysis . "\n";
 

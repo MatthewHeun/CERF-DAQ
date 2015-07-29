@@ -251,7 +251,7 @@ def createSensorBins(sensor, analysisNumber):
 					for line in file:				#reads every line in each year^ and month^ folder
 						if line[0] != "#":			#ignore the metadata
 							row = re.split(',',line)		#turn the line into an array of data, based on its csv delimeters
-							time = row[4]					#the time the data is recorded was saved in the 5th column
+							time = getDateFromDataString(row[4])	#the time the data is recorded was saved in the 5th column
 							data = row[5].replace('\n','')	#the data was saved in the 6th column, but it also contains the invisible new line delimeter
 							
 							if sensor.fromSensorMin[analysisNumber] == "":	#if the user has not declared a minimum - treat it as 0
@@ -269,15 +269,15 @@ def createSensorBins(sensor, analysisNumber):
 								inRangeNow = False
 							if ((inRangeNow == True) and (inRangeBefore == False)):	#if the data wasn't in the threshold before, and it is now. Mark it down as a start time
 								if str(oldTime) == "":
-									binArray[analysisNumber][sensor.number-1].addStartTime(time)
+									binArray[analysisNumber][sensor.number-1].addStartTime(str(time))
 								else:
-									binArray[analysisNumber][sensor.number-1].addStartTime(olderTime)
+									binArray[analysisNumber][sensor.number-1].addStartTime(str(oldTime-datetime.timedelta(seconds = 15)))
 								end = False
 							if ((inRangeNow == False) and (inRangeBefore == True)): #if the data was in range before, and it isn't now. Mark it down as a stop time. 
 								if str(oldTime) == "":
-									binArray[analysisNumber][sensor.number-1].addStopTime(time)
+									binArray[analysisNumber][sensor.number-1].addStopTime(str(time))
 								else:
-									binArray[analysisNumber][sensor.number-1].addStopTime(oldTime)
+									binArray[analysisNumber][sensor.number-1].addStopTime(str(olderTime+datetime.timedelta(seconds = 15)))
 								end = True
 							inRangeBefore = inRangeNow
 							olderTime = oldTime
@@ -285,7 +285,7 @@ def createSensorBins(sensor, analysisNumber):
 
 	if end != True:		#mark the last data point as a stop time
 		if len(binArray[analysisNumber][sensor.number-1].timeArray) != 0:
-			binArray[analysisNumber][sensor.number-1].addStopTime(time)
+			binArray[analysisNumber][sensor.number-1].addStopTime(str(time))
 
 #------------------------------------------------------------------
 					#creates a list of start and stop times based on configuration data
@@ -545,11 +545,15 @@ def aggregateRangeData(sensor, analysisNumber):
 		for x in range(len(durationOutOfRange)):
 			totalOutOfRange += durationOutOfRange[x] * onPercentArrayOutOfRange[x]
 			durationOutOfRangeTotal += durationOutOfRange[x]
+		if (durationInRangeTotal == 0):
+			durationInRangeTotal = 1
+		if (durationOutOfRangeTotal == 0):
+			durationOutOfRange = 1
 		onPercentageInRange = float(float(totalInRange) / float(durationInRangeTotal))
 		onPercentageOutOfRange = float(float(totalOutOfRange) / float(durationOutOfRangeTotal))
 		if sensor.summaryMethod[analysisNumber] == "Month":
-			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
-			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=1, hour=23, minute=59, second=59, microsecond=0)-datetime.timedelta(days = 1))) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=calendar.monthrange(startTime.year, startTime.month)[1], hour=23, minute=59, second=59, microsecond=0))) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
+			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastStart.replace(day=1, hour=0, minute=0, second=0, microsecond=0)) + ',' + str((startTime.replace(day=calendar.monthrange(startTime.year, startTime.month)[1], hour=23, minute=59, second=59, microsecond=0))) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
 		if sensor.summaryMethod[analysisNumber] == "Year":
 			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageInRange + ",In Range" + '\n'
 			summarystring += str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(datetime.datetime.strptime(str(startTime.year), "%Y")) + ',' + str(datetime.datetime.strptime(str(startTime.year) + " 12 31 23 59 59", "%Y %m %d %H %M %S")) + ',' + "%.2f" %onPercentageOutOfRange + ",Out of Range" + '\n'
@@ -720,7 +724,7 @@ def rangeAnalysis(sensor, analysisNumber):
 							percentOn = (float(minutesOn) / float(totalMinutes))*100
 							summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ",In Range" + '\n'
 							summaryfile.write(summaryString)
-							if binIndex < (len(binArray[sensor.number-1].timeArray)-1):
+							if binIndex < (len(binArray[analysisNumber][sensor.number-1].timeArray)-1):
 								binIndex += 1
 							minutesOn = 0
 							minutesOff = 0
@@ -746,9 +750,10 @@ def rangeAnalysis(sensor, analysisNumber):
 		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ',' + inRangeString + '\n'
 		summaryfile.write(summaryString)
 	summaryfile.close()
+	
+	if ((sensor.binType[analysisNumber] == "Custom Time" or sensor.binType[analysisNumber] == "From Sensor") and sensor.summaryMethod[analysisNumber] != "None"):
 
-	if (sensor.binType == "Custom Time" and sensor.summaryMethod != "None"):
-		aggregateRangeData(sensor)
+		aggregateRangeData(sensor, analysisNumber)
 
 
 #------------------------------------------------------------------
@@ -926,8 +931,8 @@ analyzeData()
 
 #print len(binArray[0][0].timeArray)
 
-#for x in range(len(binArray[0][0].timeArray)):
-	#print "Start: " + str(binArray[0][0].timeArray[x][0]) + " Stop: " + str(binArray[0][0].timeArray[x][1])
+for x in range(len(binArray[0][0].timeArray)):
+	print "Start: " + str(binArray[0][0].timeArray[x][0]) + " Stop: " + str(binArray[0][0].timeArray[x][1])
 
 #==================================================================
 #-----------------Tell the website the pi is not busy--------------

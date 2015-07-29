@@ -106,12 +106,15 @@ setTimeout(function(){
 		<div class="panel-heading"> Pi Health Status: </div>
 		<div class="panel-body">
 
-			<p>Cron Health: <?php if ($RUNNING == 1){echo '<i class="fa fa-play" style="color:#5cb85c;"></i> RUNNING';} else {echo '<i class="fa fa-stop" style="color:#D9534F;"></i> NOT RUNNING';}?><p>
-			<p>Data Collection Confirmation: <?php if ($DATA_COLLECTION_STATUS == 1){echo '<i class="fa fa-play" style="color:#5cb85c;"></i> RUNNING';} else {echo '<i class="fa fa-stop" style="color:#D9534F;"></i> NOT RUNNING';}?><p>
-
+			<p>Cron Health: <?php if ($RUNNING == 1){echo '<i class="fa fa-check" style="color:#5cb85c;"></i> OK';} else {echo '<i class="fa fa-exclamation-triangle" style="color:#D9534F;"></i> NOT RUNNING';}?><p>
+			<p>Data Collection Confirmation: <?php if ($DATA_COLLECTION_STATUS == 1){echo '<i class="fa fa-check" style="color:#5cb85c;"></i> OK';} else {echo '<i class="fa fa-exclamation-triangle" style="color:#D9534F;"></i> NOT RUNNING';}?><p>
+			<p>Zip Health: <?php if ($ZIP_HEALTH == 1){echo '<i class="fa fa-check" style="color:#5cb85c;"></i> OK';} else {echo '<i class="fa fa-exclamation-triangle" style="color:#D9534F;"></i> NOT RUNNING';}?><p>
+			<p>Update Health: <?php if ($UPDATE_HEALTH == 1){echo '<i class="fa fa-check" style="color:#5cb85c;"></i> OK';} else {echo '<i class="fa fa-exclamation-triangle" style="color:#D9534F;"></i> ERROR';}?><p>
 
 	</div> <!-- panel-body -->
 	</div> <!-- panel panel-default -->
+	<br>
+	<br>
 	</div> <!-- page-wrapper -->
 	</div> <!-- wrapper -->
 </body>

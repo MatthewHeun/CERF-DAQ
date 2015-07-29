@@ -654,10 +654,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation11").style.display = "none";
 document.getElementById("binSpecifics11").style.display = "none";
+document.getElementById("threshold11").style.display = "none";
 console.log("11");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation11").style.display = "block";
+document.getElementById("binSpecifics11").style.display = "block";
+document.getElementById("threshold11").style.display = "none";
 } else {
 document.getElementById("binInformation11").style.display = "block";
 document.getElementById("binSpecifics11").style.display = "block";
+document.getElementById("threshold11").style.display = "block";
 }
 } );
 
@@ -669,10 +675,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation21").style.display = "none";
 document.getElementById("binSpecifics21").style.display = "none";
+document.getElementById("threshold21").style.display = "none";
 console.log("21");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation21").style.display = "block";
+document.getElementById("binSpecifics21").style.display = "block";
+document.getElementById("threshold21").style.display = "none";
 } else {
 document.getElementById("binInformation21").style.display = "block";
 document.getElementById("binSpecifics21").style.display = "block";
+document.getElementById("threshold21").style.display = "block";
 }
 } );
 
@@ -684,10 +696,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation31").style.display = "none";
 document.getElementById("binSpecifics31").style.display = "none";
+document.getElementById("threshold31").style.display = "none";
 console.log("31");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation31").style.display = "block";
+document.getElementById("binSpecifics31").style.display = "block";
+document.getElementById("threshold31").style.display = "none";
 } else {
 document.getElementById("binInformation31").style.display = "block";
 document.getElementById("binSpecifics31").style.display = "block";
+document.getElementById("threshold31").style.display = "block";
 }
 } );
 
@@ -699,10 +717,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation12").style.display = "none";
 document.getElementById("binSpecifics12").style.display = "none";
+document.getElementById("threshold12").style.display = "none";
 console.log("12");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation12").style.display = "block";
+document.getElementById("binSpecifics12").style.display = "block";
+document.getElementById("threshold12").style.display = "none";
 } else {
 document.getElementById("binInformation12").style.display = "block";
 document.getElementById("binSpecifics12").style.display = "block";
+document.getElementById("threshold12").style.display = "block";
 }
 } );
 
@@ -714,10 +738,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation22").style.display = "none";
 document.getElementById("binSpecifics22").style.display = "none";
+document.getElementById("threshold22").style.display = "none";
 console.log("22");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation22").style.display = "block";
+document.getElementById("binSpecifics22").style.display = "block";
+document.getElementById("threshold22").style.display = "none";
 } else {
 document.getElementById("binInformation22").style.display = "block";
 document.getElementById("binSpecifics22").style.display = "block";
+document.getElementById("threshold22").style.display = "block";
 }
 } );
 
@@ -729,10 +759,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation32").style.display = "none";
 document.getElementById("binSpecifics32").style.display = "none";
+document.getElementById("threshold32").style.display = "none";
 console.log("32");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation32").style.display = "block";
+document.getElementById("binSpecifics32").style.display = "block";
+document.getElementById("threshold32").style.display = "none";
 } else {
 document.getElementById("binInformation32").style.display = "block";
 document.getElementById("binSpecifics32").style.display = "block";
+document.getElementById("threshold32").style.display = "block";
 }
 } );
 
@@ -744,10 +780,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation13").style.display = "none";
 document.getElementById("binSpecifics13").style.display = "none";
+document.getElementById("threshold13").style.display = "none";
 console.log("13");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation13").style.display = "block";
+document.getElementById("binSpecifics13").style.display = "block";
+document.getElementById("threshold13").style.display = "none";
 } else {
 document.getElementById("binInformation13").style.display = "block";
 document.getElementById("binSpecifics13").style.display = "block";
+document.getElementById("threshold13").style.display = "block";
 }
 } );
 
@@ -759,10 +801,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation23").style.display = "none";
 document.getElementById("binSpecifics23").style.display = "none";
+document.getElementById("threshold23").style.display = "none";
 console.log("23");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation23").style.display = "block";
+document.getElementById("binSpecifics23").style.display = "block";
+document.getElementById("threshold23").style.display = "none";
 } else {
 document.getElementById("binInformation23").style.display = "block";
 document.getElementById("binSpecifics23").style.display = "block";
+document.getElementById("threshold23").style.display = "block";
 }
 } );
 
@@ -774,10 +822,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation33").style.display = "none";
 document.getElementById("binSpecifics33").style.display = "none";
+document.getElementById("threshold33").style.display = "none";
 console.log("33");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation33").style.display = "block";
+document.getElementById("binSpecifics33").style.display = "block";
+document.getElementById("threshold33").style.display = "none";
 } else {
 document.getElementById("binInformation33").style.display = "block";
 document.getElementById("binSpecifics33").style.display = "block";
+document.getElementById("threshold33").style.display = "block";
 }
 } );
 
@@ -789,10 +843,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation14").style.display = "none";
 document.getElementById("binSpecifics14").style.display = "none";
+document.getElementById("threshold14").style.display = "none";
 console.log("14");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation14").style.display = "block";
+document.getElementById("binSpecifics14").style.display = "block";
+document.getElementById("threshold14").style.display = "none";
 } else {
 document.getElementById("binInformation14").style.display = "block";
 document.getElementById("binSpecifics14").style.display = "block";
+document.getElementById("threshold14").style.display = "block";
 }
 } );
 
@@ -804,10 +864,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation24").style.display = "none";
 document.getElementById("binSpecifics24").style.display = "none";
+document.getElementById("threshold24").style.display = "none";
 console.log("24");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation24").style.display = "block";
+document.getElementById("binSpecifics24").style.display = "block";
+document.getElementById("threshold24").style.display = "none";
 } else {
 document.getElementById("binInformation24").style.display = "block";
 document.getElementById("binSpecifics24").style.display = "block";
+document.getElementById("threshold24").style.display = "block";
 }
 } );
 
@@ -819,10 +885,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation34").style.display = "none";
 document.getElementById("binSpecifics34").style.display = "none";
+document.getElementById("threshold34").style.display = "none";
 console.log("34");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation34").style.display = "block";
+document.getElementById("binSpecifics34").style.display = "block";
+document.getElementById("threshold34").style.display = "none";
 } else {
 document.getElementById("binInformation34").style.display = "block";
 document.getElementById("binSpecifics34").style.display = "block";
+document.getElementById("threshold34").style.display = "block";
 }
 } );
 
@@ -834,10 +906,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation15").style.display = "none";
 document.getElementById("binSpecifics15").style.display = "none";
+document.getElementById("threshold15").style.display = "none";
 console.log("15");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation15").style.display = "block";
+document.getElementById("binSpecifics15").style.display = "block";
+document.getElementById("threshold15").style.display = "none";
 } else {
 document.getElementById("binInformation15").style.display = "block";
 document.getElementById("binSpecifics15").style.display = "block";
+document.getElementById("threshold15").style.display = "block";
 }
 } );
 
@@ -849,10 +927,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation25").style.display = "none";
 document.getElementById("binSpecifics25").style.display = "none";
+document.getElementById("threshold25").style.display = "none";
 console.log("25");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation25").style.display = "block";
+document.getElementById("binSpecifics25").style.display = "block";
+document.getElementById("threshold25").style.display = "none";
 } else {
 document.getElementById("binInformation25").style.display = "block";
 document.getElementById("binSpecifics25").style.display = "block";
+document.getElementById("threshold25").style.display = "block";
 }
 } );
 
@@ -864,10 +948,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation35").style.display = "none";
 document.getElementById("binSpecifics35").style.display = "none";
+document.getElementById("threshold35").style.display = "none";
 console.log("35");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation35").style.display = "block";
+document.getElementById("binSpecifics35").style.display = "block";
+document.getElementById("threshold35").style.display = "none";
 } else {
 document.getElementById("binInformation35").style.display = "block";
 document.getElementById("binSpecifics35").style.display = "block";
+document.getElementById("threshold35").style.display = "block";
 }
 } );
 
@@ -879,10 +969,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation16").style.display = "none";
 document.getElementById("binSpecifics16").style.display = "none";
+document.getElementById("threshold16").style.display = "none";
 console.log("16");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation16").style.display = "block";
+document.getElementById("binSpecifics16").style.display = "block";
+document.getElementById("threshold16").style.display = "none";
 } else {
 document.getElementById("binInformation16").style.display = "block";
 document.getElementById("binSpecifics16").style.display = "block";
+document.getElementById("threshold16").style.display = "block";
 }
 } );
 
@@ -894,10 +990,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation26").style.display = "none";
 document.getElementById("binSpecifics26").style.display = "none";
+document.getElementById("threshold26").style.display = "none";
 console.log("26");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation26").style.display = "block";
+document.getElementById("binSpecifics26").style.display = "block";
+document.getElementById("threshold26").style.display = "none";
 } else {
 document.getElementById("binInformation26").style.display = "block";
 document.getElementById("binSpecifics26").style.display = "block";
+document.getElementById("threshold26").style.display = "block";
 }
 } );
 
@@ -909,10 +1011,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation36").style.display = "none";
 document.getElementById("binSpecifics36").style.display = "none";
+document.getElementById("threshold36").style.display = "none";
 console.log("36");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation36").style.display = "block";
+document.getElementById("binSpecifics36").style.display = "block";
+document.getElementById("threshold36").style.display = "none";
 } else {
 document.getElementById("binInformation36").style.display = "block";
 document.getElementById("binSpecifics36").style.display = "block";
+document.getElementById("threshold36").style.display = "block";
 }
 } );
 
@@ -924,10 +1032,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation17").style.display = "none";
 document.getElementById("binSpecifics17").style.display = "none";
+document.getElementById("threshold17").style.display = "none";
 console.log("17");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation17").style.display = "block";
+document.getElementById("binSpecifics17").style.display = "block";
+document.getElementById("threshold17").style.display = "none";
 } else {
 document.getElementById("binInformation17").style.display = "block";
 document.getElementById("binSpecifics17").style.display = "block";
+document.getElementById("threshold17").style.display = "block";
 }
 } );
 
@@ -939,10 +1053,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation27").style.display = "none";
 document.getElementById("binSpecifics27").style.display = "none";
+document.getElementById("threshold27").style.display = "none";
 console.log("27");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation27").style.display = "block";
+document.getElementById("binSpecifics27").style.display = "block";
+document.getElementById("threshold27").style.display = "none";
 } else {
 document.getElementById("binInformation27").style.display = "block";
 document.getElementById("binSpecifics27").style.display = "block";
+document.getElementById("threshold27").style.display = "block";
 }
 } );
 
@@ -954,10 +1074,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation37").style.display = "none";
 document.getElementById("binSpecifics37").style.display = "none";
+document.getElementById("threshold37").style.display = "none";
 console.log("37");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation37").style.display = "block";
+document.getElementById("binSpecifics37").style.display = "block";
+document.getElementById("threshold37").style.display = "none";
 } else {
 document.getElementById("binInformation37").style.display = "block";
 document.getElementById("binSpecifics37").style.display = "block";
+document.getElementById("threshold37").style.display = "block";
 }
 } );
 
@@ -969,10 +1095,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation18").style.display = "none";
 document.getElementById("binSpecifics18").style.display = "none";
+document.getElementById("threshold18").style.display = "none";
 console.log("18");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation18").style.display = "block";
+document.getElementById("binSpecifics18").style.display = "block";
+document.getElementById("threshold18").style.display = "none";
 } else {
 document.getElementById("binInformation18").style.display = "block";
 document.getElementById("binSpecifics18").style.display = "block";
+document.getElementById("threshold18").style.display = "block";
 }
 } );
 
@@ -984,10 +1116,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation28").style.display = "none";
 document.getElementById("binSpecifics28").style.display = "none";
+document.getElementById("threshold28").style.display = "none";
 console.log("28");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation28").style.display = "block";
+document.getElementById("binSpecifics28").style.display = "block";
+document.getElementById("threshold28").style.display = "none";
 } else {
 document.getElementById("binInformation28").style.display = "block";
 document.getElementById("binSpecifics28").style.display = "block";
+document.getElementById("threshold28").style.display = "block";
 }
 } );
 
@@ -999,10 +1137,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation38").style.display = "none";
 document.getElementById("binSpecifics38").style.display = "none";
+document.getElementById("threshold38").style.display = "none";
 console.log("38");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation38").style.display = "block";
+document.getElementById("binSpecifics38").style.display = "block";
+document.getElementById("threshold38").style.display = "none";
 } else {
 document.getElementById("binInformation38").style.display = "block";
 document.getElementById("binSpecifics38").style.display = "block";
+document.getElementById("threshold38").style.display = "block";
 }
 } );
 
@@ -1014,10 +1158,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation19").style.display = "none";
 document.getElementById("binSpecifics19").style.display = "none";
+document.getElementById("threshold19").style.display = "none";
 console.log("19");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation19").style.display = "block";
+document.getElementById("binSpecifics19").style.display = "block";
+document.getElementById("threshold19").style.display = "none";
 } else {
 document.getElementById("binInformation19").style.display = "block";
 document.getElementById("binSpecifics19").style.display = "block";
+document.getElementById("threshold19").style.display = "block";
 }
 } );
 
@@ -1029,10 +1179,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation29").style.display = "none";
 document.getElementById("binSpecifics29").style.display = "none";
+document.getElementById("threshold29").style.display = "none";
 console.log("29");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation29").style.display = "block";
+document.getElementById("binSpecifics29").style.display = "block";
+document.getElementById("threshold29").style.display = "none";
 } else {
 document.getElementById("binInformation29").style.display = "block";
 document.getElementById("binSpecifics29").style.display = "block";
+document.getElementById("threshold29").style.display = "block";
 }
 } );
 
@@ -1044,10 +1200,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation39").style.display = "none";
 document.getElementById("binSpecifics39").style.display = "none";
+document.getElementById("threshold39").style.display = "none";
 console.log("39");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation39").style.display = "block";
+document.getElementById("binSpecifics39").style.display = "block";
+document.getElementById("threshold39").style.display = "none";
 } else {
 document.getElementById("binInformation39").style.display = "block";
 document.getElementById("binSpecifics39").style.display = "block";
+document.getElementById("threshold39").style.display = "block";
 }
 } );
 
@@ -1059,10 +1221,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation110").style.display = "none";
 document.getElementById("binSpecifics110").style.display = "none";
+document.getElementById("threshold110").style.display = "none";
 console.log("110");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation110").style.display = "block";
+document.getElementById("binSpecifics110").style.display = "block";
+document.getElementById("threshold110").style.display = "none";
 } else {
 document.getElementById("binInformation110").style.display = "block";
 document.getElementById("binSpecifics110").style.display = "block";
+document.getElementById("threshold110").style.display = "block";
 }
 } );
 
@@ -1074,10 +1242,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation210").style.display = "none";
 document.getElementById("binSpecifics210").style.display = "none";
+document.getElementById("threshold210").style.display = "none";
 console.log("210");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation210").style.display = "block";
+document.getElementById("binSpecifics210").style.display = "block";
+document.getElementById("threshold210").style.display = "none";
 } else {
 document.getElementById("binInformation210").style.display = "block";
 document.getElementById("binSpecifics210").style.display = "block";
+document.getElementById("threshold210").style.display = "block";
 }
 } );
 
@@ -1089,10 +1263,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation310").style.display = "none";
 document.getElementById("binSpecifics310").style.display = "none";
+document.getElementById("threshold310").style.display = "none";
 console.log("310");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation310").style.display = "block";
+document.getElementById("binSpecifics310").style.display = "block";
+document.getElementById("threshold310").style.display = "none";
 } else {
 document.getElementById("binInformation310").style.display = "block";
 document.getElementById("binSpecifics310").style.display = "block";
+document.getElementById("threshold310").style.display = "block";
 }
 } );
 
@@ -1104,10 +1284,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation111").style.display = "none";
 document.getElementById("binSpecifics111").style.display = "none";
+document.getElementById("threshold111").style.display = "none";
 console.log("111");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation111").style.display = "block";
+document.getElementById("binSpecifics111").style.display = "block";
+document.getElementById("threshold111").style.display = "none";
 } else {
 document.getElementById("binInformation111").style.display = "block";
 document.getElementById("binSpecifics111").style.display = "block";
+document.getElementById("threshold111").style.display = "block";
 }
 } );
 
@@ -1119,10 +1305,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation211").style.display = "none";
 document.getElementById("binSpecifics211").style.display = "none";
+document.getElementById("threshold211").style.display = "none";
 console.log("211");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation211").style.display = "block";
+document.getElementById("binSpecifics211").style.display = "block";
+document.getElementById("threshold211").style.display = "none";
 } else {
 document.getElementById("binInformation211").style.display = "block";
 document.getElementById("binSpecifics211").style.display = "block";
+document.getElementById("threshold211").style.display = "block";
 }
 } );
 
@@ -1134,10 +1326,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation311").style.display = "none";
 document.getElementById("binSpecifics311").style.display = "none";
+document.getElementById("threshold311").style.display = "none";
 console.log("311");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation311").style.display = "block";
+document.getElementById("binSpecifics311").style.display = "block";
+document.getElementById("threshold311").style.display = "none";
 } else {
 document.getElementById("binInformation311").style.display = "block";
 document.getElementById("binSpecifics311").style.display = "block";
+document.getElementById("threshold311").style.display = "block";
 }
 } );
 
@@ -1149,10 +1347,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation112").style.display = "none";
 document.getElementById("binSpecifics112").style.display = "none";
+document.getElementById("threshold112").style.display = "none";
 console.log("112");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation112").style.display = "block";
+document.getElementById("binSpecifics112").style.display = "block";
+document.getElementById("threshold112").style.display = "none";
 } else {
 document.getElementById("binInformation112").style.display = "block";
 document.getElementById("binSpecifics112").style.display = "block";
+document.getElementById("threshold112").style.display = "block";
 }
 } );
 
@@ -1164,10 +1368,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation212").style.display = "none";
 document.getElementById("binSpecifics212").style.display = "none";
+document.getElementById("threshold212").style.display = "none";
 console.log("212");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation212").style.display = "block";
+document.getElementById("binSpecifics212").style.display = "block";
+document.getElementById("threshold212").style.display = "none";
 } else {
 document.getElementById("binInformation212").style.display = "block";
 document.getElementById("binSpecifics212").style.display = "block";
+document.getElementById("threshold212").style.display = "block";
 }
 } );
 
@@ -1179,10 +1389,16 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation312").style.display = "none";
 document.getElementById("binSpecifics312").style.display = "none";
+document.getElementById("threshold312").style.display = "none";
 console.log("312");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation312").style.display = "block";
+document.getElementById("binSpecifics312").style.display = "block";
+document.getElementById("threshold312").style.display = "none";
 } else {
 document.getElementById("binInformation312").style.display = "block";
 document.getElementById("binSpecifics312").style.display = "block";
+document.getElementById("threshold312").style.display = "block";
 }
 } );
 
@@ -1192,12 +1408,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock11").style.display = "none";
 document.getElementById("fromSensorBlock11").style.display = "block";
+document.getElementById("summaryMethod11").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock11").style.display = "block";
 document.getElementById("fromSensorBlock11").style.display = "none";
+document.getElementById("summaryMethod11").style.display = "block";
 } else {
 document.getElementById("customTimeBlock11").style.display = "none";
 document.getElementById("fromSensorBlock11").style.display = "none";
+document.getElementById("summaryMethod11").style.display = "none";
 }
 } );
 
@@ -1207,12 +1426,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock21").style.display = "none";
 document.getElementById("fromSensorBlock21").style.display = "block";
+document.getElementById("summaryMethod21").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock21").style.display = "block";
 document.getElementById("fromSensorBlock21").style.display = "none";
+document.getElementById("summaryMethod21").style.display = "block";
 } else {
 document.getElementById("customTimeBlock21").style.display = "none";
 document.getElementById("fromSensorBlock21").style.display = "none";
+document.getElementById("summaryMethod21").style.display = "none";
 }
 } );
 
@@ -1222,12 +1444,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock31").style.display = "none";
 document.getElementById("fromSensorBlock31").style.display = "block";
+document.getElementById("summaryMethod31").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock31").style.display = "block";
 document.getElementById("fromSensorBlock31").style.display = "none";
+document.getElementById("summaryMethod31").style.display = "block";
 } else {
 document.getElementById("customTimeBlock31").style.display = "none";
 document.getElementById("fromSensorBlock31").style.display = "none";
+document.getElementById("summaryMethod31").style.display = "none";
 }
 } );
 
@@ -1237,12 +1462,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock12").style.display = "none";
 document.getElementById("fromSensorBlock12").style.display = "block";
+document.getElementById("summaryMethod12").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock12").style.display = "block";
 document.getElementById("fromSensorBlock12").style.display = "none";
+document.getElementById("summaryMethod12").style.display = "block";
 } else {
 document.getElementById("customTimeBlock12").style.display = "none";
 document.getElementById("fromSensorBlock12").style.display = "none";
+document.getElementById("summaryMethod12").style.display = "none";
 }
 } );
 
@@ -1252,12 +1480,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock22").style.display = "none";
 document.getElementById("fromSensorBlock22").style.display = "block";
+document.getElementById("summaryMethod22").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock22").style.display = "block";
 document.getElementById("fromSensorBlock22").style.display = "none";
+document.getElementById("summaryMethod22").style.display = "block";
 } else {
 document.getElementById("customTimeBlock22").style.display = "none";
 document.getElementById("fromSensorBlock22").style.display = "none";
+document.getElementById("summaryMethod22").style.display = "none";
 }
 } );
 
@@ -1267,12 +1498,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock32").style.display = "none";
 document.getElementById("fromSensorBlock32").style.display = "block";
+document.getElementById("summaryMethod32").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock32").style.display = "block";
 document.getElementById("fromSensorBlock32").style.display = "none";
+document.getElementById("summaryMethod32").style.display = "block";
 } else {
 document.getElementById("customTimeBlock32").style.display = "none";
 document.getElementById("fromSensorBlock32").style.display = "none";
+document.getElementById("summaryMethod32").style.display = "none";
 }
 } );
 
@@ -1282,12 +1516,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock13").style.display = "none";
 document.getElementById("fromSensorBlock13").style.display = "block";
+document.getElementById("summaryMethod13").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock13").style.display = "block";
 document.getElementById("fromSensorBlock13").style.display = "none";
+document.getElementById("summaryMethod13").style.display = "block";
 } else {
 document.getElementById("customTimeBlock13").style.display = "none";
 document.getElementById("fromSensorBlock13").style.display = "none";
+document.getElementById("summaryMethod13").style.display = "none";
 }
 } );
 
@@ -1297,12 +1534,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock23").style.display = "none";
 document.getElementById("fromSensorBlock23").style.display = "block";
+document.getElementById("summaryMethod23").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock23").style.display = "block";
 document.getElementById("fromSensorBlock23").style.display = "none";
+document.getElementById("summaryMethod23").style.display = "block";
 } else {
 document.getElementById("customTimeBlock23").style.display = "none";
 document.getElementById("fromSensorBlock23").style.display = "none";
+document.getElementById("summaryMethod23").style.display = "none";
 }
 } );
 
@@ -1312,12 +1552,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock33").style.display = "none";
 document.getElementById("fromSensorBlock33").style.display = "block";
+document.getElementById("summaryMethod33").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock33").style.display = "block";
 document.getElementById("fromSensorBlock33").style.display = "none";
+document.getElementById("summaryMethod33").style.display = "block";
 } else {
 document.getElementById("customTimeBlock33").style.display = "none";
 document.getElementById("fromSensorBlock33").style.display = "none";
+document.getElementById("summaryMethod33").style.display = "none";
 }
 } );
 
@@ -1327,12 +1570,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock14").style.display = "none";
 document.getElementById("fromSensorBlock14").style.display = "block";
+document.getElementById("summaryMethod14").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock14").style.display = "block";
 document.getElementById("fromSensorBlock14").style.display = "none";
+document.getElementById("summaryMethod14").style.display = "block";
 } else {
 document.getElementById("customTimeBlock14").style.display = "none";
 document.getElementById("fromSensorBlock14").style.display = "none";
+document.getElementById("summaryMethod14").style.display = "none";
 }
 } );
 
@@ -1342,12 +1588,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock24").style.display = "none";
 document.getElementById("fromSensorBlock24").style.display = "block";
+document.getElementById("summaryMethod24").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock24").style.display = "block";
 document.getElementById("fromSensorBlock24").style.display = "none";
+document.getElementById("summaryMethod24").style.display = "block";
 } else {
 document.getElementById("customTimeBlock24").style.display = "none";
 document.getElementById("fromSensorBlock24").style.display = "none";
+document.getElementById("summaryMethod24").style.display = "none";
 }
 } );
 
@@ -1357,12 +1606,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock34").style.display = "none";
 document.getElementById("fromSensorBlock34").style.display = "block";
+document.getElementById("summaryMethod34").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock34").style.display = "block";
 document.getElementById("fromSensorBlock34").style.display = "none";
+document.getElementById("summaryMethod34").style.display = "block";
 } else {
 document.getElementById("customTimeBlock34").style.display = "none";
 document.getElementById("fromSensorBlock34").style.display = "none";
+document.getElementById("summaryMethod34").style.display = "none";
 }
 } );
 
@@ -1372,12 +1624,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock15").style.display = "none";
 document.getElementById("fromSensorBlock15").style.display = "block";
+document.getElementById("summaryMethod15").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock15").style.display = "block";
 document.getElementById("fromSensorBlock15").style.display = "none";
+document.getElementById("summaryMethod15").style.display = "block";
 } else {
 document.getElementById("customTimeBlock15").style.display = "none";
 document.getElementById("fromSensorBlock15").style.display = "none";
+document.getElementById("summaryMethod15").style.display = "none";
 }
 } );
 
@@ -1387,12 +1642,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock25").style.display = "none";
 document.getElementById("fromSensorBlock25").style.display = "block";
+document.getElementById("summaryMethod25").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock25").style.display = "block";
 document.getElementById("fromSensorBlock25").style.display = "none";
+document.getElementById("summaryMethod25").style.display = "block";
 } else {
 document.getElementById("customTimeBlock25").style.display = "none";
 document.getElementById("fromSensorBlock25").style.display = "none";
+document.getElementById("summaryMethod25").style.display = "none";
 }
 } );
 
@@ -1402,12 +1660,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock35").style.display = "none";
 document.getElementById("fromSensorBlock35").style.display = "block";
+document.getElementById("summaryMethod35").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock35").style.display = "block";
 document.getElementById("fromSensorBlock35").style.display = "none";
+document.getElementById("summaryMethod35").style.display = "block";
 } else {
 document.getElementById("customTimeBlock35").style.display = "none";
 document.getElementById("fromSensorBlock35").style.display = "none";
+document.getElementById("summaryMethod35").style.display = "none";
 }
 } );
 
@@ -1417,12 +1678,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock16").style.display = "none";
 document.getElementById("fromSensorBlock16").style.display = "block";
+document.getElementById("summaryMethod16").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock16").style.display = "block";
 document.getElementById("fromSensorBlock16").style.display = "none";
+document.getElementById("summaryMethod16").style.display = "block";
 } else {
 document.getElementById("customTimeBlock16").style.display = "none";
 document.getElementById("fromSensorBlock16").style.display = "none";
+document.getElementById("summaryMethod16").style.display = "none";
 }
 } );
 
@@ -1432,12 +1696,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock26").style.display = "none";
 document.getElementById("fromSensorBlock26").style.display = "block";
+document.getElementById("summaryMethod26").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock26").style.display = "block";
 document.getElementById("fromSensorBlock26").style.display = "none";
+document.getElementById("summaryMethod26").style.display = "block";
 } else {
 document.getElementById("customTimeBlock26").style.display = "none";
 document.getElementById("fromSensorBlock26").style.display = "none";
+document.getElementById("summaryMethod26").style.display = "none";
 }
 } );
 
@@ -1447,12 +1714,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock36").style.display = "none";
 document.getElementById("fromSensorBlock36").style.display = "block";
+document.getElementById("summaryMethod36").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock36").style.display = "block";
 document.getElementById("fromSensorBlock36").style.display = "none";
+document.getElementById("summaryMethod36").style.display = "block";
 } else {
 document.getElementById("customTimeBlock36").style.display = "none";
 document.getElementById("fromSensorBlock36").style.display = "none";
+document.getElementById("summaryMethod36").style.display = "none";
 }
 } );
 
@@ -1462,12 +1732,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock17").style.display = "none";
 document.getElementById("fromSensorBlock17").style.display = "block";
+document.getElementById("summaryMethod17").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock17").style.display = "block";
 document.getElementById("fromSensorBlock17").style.display = "none";
+document.getElementById("summaryMethod17").style.display = "block";
 } else {
 document.getElementById("customTimeBlock17").style.display = "none";
 document.getElementById("fromSensorBlock17").style.display = "none";
+document.getElementById("summaryMethod17").style.display = "none";
 }
 } );
 
@@ -1477,12 +1750,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock27").style.display = "none";
 document.getElementById("fromSensorBlock27").style.display = "block";
+document.getElementById("summaryMethod27").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock27").style.display = "block";
 document.getElementById("fromSensorBlock27").style.display = "none";
+document.getElementById("summaryMethod27").style.display = "block";
 } else {
 document.getElementById("customTimeBlock27").style.display = "none";
 document.getElementById("fromSensorBlock27").style.display = "none";
+document.getElementById("summaryMethod27").style.display = "none";
 }
 } );
 
@@ -1492,12 +1768,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock37").style.display = "none";
 document.getElementById("fromSensorBlock37").style.display = "block";
+document.getElementById("summaryMethod37").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock37").style.display = "block";
 document.getElementById("fromSensorBlock37").style.display = "none";
+document.getElementById("summaryMethod37").style.display = "block";
 } else {
 document.getElementById("customTimeBlock37").style.display = "none";
 document.getElementById("fromSensorBlock37").style.display = "none";
+document.getElementById("summaryMethod37").style.display = "none";
 }
 } );
 
@@ -1507,12 +1786,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock18").style.display = "none";
 document.getElementById("fromSensorBlock18").style.display = "block";
+document.getElementById("summaryMethod18").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock18").style.display = "block";
 document.getElementById("fromSensorBlock18").style.display = "none";
+document.getElementById("summaryMethod18").style.display = "block";
 } else {
 document.getElementById("customTimeBlock18").style.display = "none";
 document.getElementById("fromSensorBlock18").style.display = "none";
+document.getElementById("summaryMethod18").style.display = "none";
 }
 } );
 
@@ -1522,12 +1804,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock28").style.display = "none";
 document.getElementById("fromSensorBlock28").style.display = "block";
+document.getElementById("summaryMethod28").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock28").style.display = "block";
 document.getElementById("fromSensorBlock28").style.display = "none";
+document.getElementById("summaryMethod28").style.display = "block";
 } else {
 document.getElementById("customTimeBlock28").style.display = "none";
 document.getElementById("fromSensorBlock28").style.display = "none";
+document.getElementById("summaryMethod28").style.display = "none";
 }
 } );
 
@@ -1537,12 +1822,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock38").style.display = "none";
 document.getElementById("fromSensorBlock38").style.display = "block";
+document.getElementById("summaryMethod38").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock38").style.display = "block";
 document.getElementById("fromSensorBlock38").style.display = "none";
+document.getElementById("summaryMethod38").style.display = "block";
 } else {
 document.getElementById("customTimeBlock38").style.display = "none";
 document.getElementById("fromSensorBlock38").style.display = "none";
+document.getElementById("summaryMethod38").style.display = "none";
 }
 } );
 
@@ -1552,12 +1840,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock19").style.display = "none";
 document.getElementById("fromSensorBlock19").style.display = "block";
+document.getElementById("summaryMethod19").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock19").style.display = "block";
 document.getElementById("fromSensorBlock19").style.display = "none";
+document.getElementById("summaryMethod19").style.display = "block";
 } else {
 document.getElementById("customTimeBlock19").style.display = "none";
 document.getElementById("fromSensorBlock19").style.display = "none";
+document.getElementById("summaryMethod19").style.display = "none";
 }
 } );
 
@@ -1567,12 +1858,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock29").style.display = "none";
 document.getElementById("fromSensorBlock29").style.display = "block";
+document.getElementById("summaryMethod29").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock29").style.display = "block";
 document.getElementById("fromSensorBlock29").style.display = "none";
+document.getElementById("summaryMethod29").style.display = "block";
 } else {
 document.getElementById("customTimeBlock29").style.display = "none";
 document.getElementById("fromSensorBlock29").style.display = "none";
+document.getElementById("summaryMethod29").style.display = "none";
 }
 } );
 
@@ -1582,12 +1876,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock39").style.display = "none";
 document.getElementById("fromSensorBlock39").style.display = "block";
+document.getElementById("summaryMethod39").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock39").style.display = "block";
 document.getElementById("fromSensorBlock39").style.display = "none";
+document.getElementById("summaryMethod39").style.display = "block";
 } else {
 document.getElementById("customTimeBlock39").style.display = "none";
 document.getElementById("fromSensorBlock39").style.display = "none";
+document.getElementById("summaryMethod39").style.display = "none";
 }
 } );
 
@@ -1597,12 +1894,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock110").style.display = "none";
 document.getElementById("fromSensorBlock110").style.display = "block";
+document.getElementById("summaryMethod110").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock110").style.display = "block";
 document.getElementById("fromSensorBlock110").style.display = "none";
+document.getElementById("summaryMethod110").style.display = "block";
 } else {
 document.getElementById("customTimeBlock110").style.display = "none";
 document.getElementById("fromSensorBlock110").style.display = "none";
+document.getElementById("summaryMethod110").style.display = "none";
 }
 } );
 
@@ -1612,12 +1912,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock210").style.display = "none";
 document.getElementById("fromSensorBlock210").style.display = "block";
+document.getElementById("summaryMethod210").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock210").style.display = "block";
 document.getElementById("fromSensorBlock210").style.display = "none";
+document.getElementById("summaryMethod210").style.display = "block";
 } else {
 document.getElementById("customTimeBlock210").style.display = "none";
 document.getElementById("fromSensorBlock210").style.display = "none";
+document.getElementById("summaryMethod210").style.display = "none";
 }
 } );
 
@@ -1627,12 +1930,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock310").style.display = "none";
 document.getElementById("fromSensorBlock310").style.display = "block";
+document.getElementById("summaryMethod310").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock310").style.display = "block";
 document.getElementById("fromSensorBlock310").style.display = "none";
+document.getElementById("summaryMethod310").style.display = "block";
 } else {
 document.getElementById("customTimeBlock310").style.display = "none";
 document.getElementById("fromSensorBlock310").style.display = "none";
+document.getElementById("summaryMethod310").style.display = "none";
 }
 } );
 
@@ -1642,12 +1948,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock111").style.display = "none";
 document.getElementById("fromSensorBlock111").style.display = "block";
+document.getElementById("summaryMethod111").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock111").style.display = "block";
 document.getElementById("fromSensorBlock111").style.display = "none";
+document.getElementById("summaryMethod111").style.display = "block";
 } else {
 document.getElementById("customTimeBlock111").style.display = "none";
 document.getElementById("fromSensorBlock111").style.display = "none";
+document.getElementById("summaryMethod111").style.display = "none";
 }
 } );
 
@@ -1657,12 +1966,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock211").style.display = "none";
 document.getElementById("fromSensorBlock211").style.display = "block";
+document.getElementById("summaryMethod211").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock211").style.display = "block";
 document.getElementById("fromSensorBlock211").style.display = "none";
+document.getElementById("summaryMethod211").style.display = "block";
 } else {
 document.getElementById("customTimeBlock211").style.display = "none";
 document.getElementById("fromSensorBlock211").style.display = "none";
+document.getElementById("summaryMethod211").style.display = "none";
 }
 } );
 
@@ -1672,12 +1984,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock311").style.display = "none";
 document.getElementById("fromSensorBlock311").style.display = "block";
+document.getElementById("summaryMethod311").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock311").style.display = "block";
 document.getElementById("fromSensorBlock311").style.display = "none";
+document.getElementById("summaryMethod311").style.display = "block";
 } else {
 document.getElementById("customTimeBlock311").style.display = "none";
 document.getElementById("fromSensorBlock311").style.display = "none";
+document.getElementById("summaryMethod311").style.display = "none";
 }
 } );
 
@@ -1687,12 +2002,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock112").style.display = "none";
 document.getElementById("fromSensorBlock112").style.display = "block";
+document.getElementById("summaryMethod112").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock112").style.display = "block";
 document.getElementById("fromSensorBlock112").style.display = "none";
+document.getElementById("summaryMethod112").style.display = "block";
 } else {
 document.getElementById("customTimeBlock112").style.display = "none";
 document.getElementById("fromSensorBlock112").style.display = "none";
+document.getElementById("summaryMethod112").style.display = "none";
 }
 } );
 
@@ -1702,12 +2020,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock212").style.display = "none";
 document.getElementById("fromSensorBlock212").style.display = "block";
+document.getElementById("summaryMethod212").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock212").style.display = "block";
 document.getElementById("fromSensorBlock212").style.display = "none";
+document.getElementById("summaryMethod212").style.display = "block";
 } else {
 document.getElementById("customTimeBlock212").style.display = "none";
 document.getElementById("fromSensorBlock212").style.display = "none";
+document.getElementById("summaryMethod212").style.display = "none";
 }
 } );
 
@@ -1717,12 +2038,15 @@ console.log(bins);
 if (bins == "From Sensor"){
 document.getElementById("customTimeBlock312").style.display = "none";
 document.getElementById("fromSensorBlock312").style.display = "block";
+document.getElementById("summaryMethod312").style.display = "block";
 } else if (bins == "Custom Time"){
 document.getElementById("customTimeBlock312").style.display = "block";
 document.getElementById("fromSensorBlock312").style.display = "none";
+document.getElementById("summaryMethod312").style.display = "block";
 } else {
 document.getElementById("customTimeBlock312").style.display = "none";
 document.getElementById("fromSensorBlock312").style.display = "none";
+document.getElementById("summaryMethod312").style.display = "none";
 }
 } );
 

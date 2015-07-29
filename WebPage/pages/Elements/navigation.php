@@ -56,13 +56,6 @@
                    				echo '<li><a style="color:black; Text-decoration:none;" > <span class="fa-stack fa-fw"><i class="fa fa-plug fa-stack-1x"></i></span> i2c port: </a> <a class="pull-right" style="color:black; Text-decoration:none; vertical-align:middle; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                    				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-slack fa-stack-1x"></i></span> pin number: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                           echo '</ul>';
-                          echo '<li>';
-                          echo '<div class="btn-group-sm" role="group" style="margin:auto; padding:2%;">';
-                          for ($k=0; $k<$SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k++){
-                             echo '<button onClick="analysisSelection' . ($k+1) . '()" type="button" class="btn btn-primary">Analysis' . ($k+1) . '</button>';
-                          }
-                          echo '</div>';
-                          echo '</li>';
                           echo '<ul style="list-style:none; padding-left:10px">';
 
                           for ($k=0; $k<$SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k++) {
@@ -78,30 +71,66 @@
                             elseif ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "Range Analysis") {
                               echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-search fa-stack-1x"></i></span> analysis type: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">Range' . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                               echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-archive fa-stack-1x"></i></span> bin type: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->binType[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
-                            }
+                              echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-minus-square fa-ffa-stack-1x"></i></span>min: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->thresholdMin[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+                              echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-plus-square fa-stack-1x"></i></span>max: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->thresholdMax[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+			    }
                             elseif ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "Min-Max") {
                               echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-search fa-stack-1x"></i></span> analysis type: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">Min-Max' . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                               echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-archive fa-stack-1x"></i></span> bin type: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->binType[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                             }
-                              echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-minus-square fa-ffa-stack-1x"></i></span>min: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->thresholdMin[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
-                                echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-plus-square fa-stack-1x"></i></span>max: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->thresholdMax[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+			
+			$checkmarks = new ArrayObject(array());
+			$intConversion = new ArrayObject(array());
+			for ($d=0; $d<7; $d++){
+				if ($SENSOR_INFO[$sensor_number-1]->weekdays[$k][$d] != ""){
+					$intConversion->append($d);
+				} else {
+					$intConversion->append(10);
+				}
+				if ($intConversion[$d] == $d){
+					$checkmarks->append('<span class="fa-stack fa-fw"><i class="fa fa-check fa-stack-1x"></i></span>');
+				} else {
+					$checkmarks->append("");
+				}
+			}
+
+
+		                              
                             if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] != "On-Peak Off-Peak %") {
                               if ($SENSOR_INFO[$sensor_number-1]->binType[$k] == "From Sensor") {
                                 echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-sort-numeric-asc fa-stack-1x"></i></span> from sensor number: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->fromSensorNumber[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                                 echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-minus-square-o fa-ffa-stack-1x"></i></span> from sensor min: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->fromSensorMin[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                                 echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-plus-square-o fa-stack-1x"></i></span> from sensor max: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->fromSensorMax[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                               }
+
                               if ($SENSOR_INFO[$sensor_number-1]->binType[$k] == "Custom Time") {
                                 echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-play fa-stack-1x" style="font-size:1.5em;"></i><i class="fa fa-clock-o fa-inverse fa-stack-1x" style="font-size:1em;"></i></span> start hour: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->customStart[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
                                 echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-stop fa-stack-1x" style="font-size:1.5em;"></i><i class="fa fa-clock-o fa-inverse fa-stack-1x" style="font-size:1em;"></i></span> stop hour: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->customStop[$k] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
-                              }
+ 				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> sunday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[0] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> monday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[1] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> tuesday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[2] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> wednesday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[3] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> thursday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[4] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> friday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[5] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+				echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-calendar-o fa-stack-1x"></i></span> saturday: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $checkmarks[6] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+                             }
                             }
                             echo '</div>';
                           }
                           echo '</ul>';
                    			}
-                   			
-                   		?>
+
+			  echo '<li>';
+			  echo '<div id="buttons">';
+                          echo '<div class="btn-group-sm" role="group" style="margin:auto; width:97%;">';
+                          for ($k=0; $k<$SENSOR_INFO[$sensor_number-1]->numberOfAnalysis; $k++){
+                             echo '<button onClick="analysisSelection' . ($k+1) . '()" type="button" class="btn btn-primary" style="width:33%;">Analysis' . ($k+1) . '</button>';
+                          }
+                          echo '</div>';
+			  echo '</div>';
+                          echo '</li>';
+
+                  		?>
 
                     </ul>
                 </div>

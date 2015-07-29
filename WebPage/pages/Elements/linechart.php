@@ -28,14 +28,14 @@
         <div class="col-lg-4">
         </div> <!-- col-lg-4 -->
 		<div class="col-lg-4">
-            <div class="input-group" style="width:68%; margin-left:5%">
+            <div class="input-group" style="width:90%; margin-left:5%">
                 <form action="<?php echo $pageLink?>" id="date">
                     <input type="date" class="form-control" name="Day" placeholder="YYYY-MM-DD" maxlength= 10 value="<?php if(isset($_GET['Day'])){echo date_format($current, 'Y-m-d'); } ?>" >
                     <input type="hidden" name="sensorNumber" value="<?php echo $sensor_number ?>">
-                    <span class="input-group-btn">      
+		</form>
+		<span class="input-group-btn">      
                         <button class="btn btn-primary" type="submit" form="date" >Submit</button>
-                    </span>
-				</form>
+                </span>
             </div> <!-- input group -->
         </div> <!-- col-lg-4 pull-right -->
         </div> <!-- row -->

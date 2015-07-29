@@ -29,7 +29,17 @@
 
 			$html_sensor_list .= '</div> <!--col-lg-4-->' . "\n";
 
+
+			$displayString = '';
+				if ($SENSOR_INFO[$i]->analysis[$i3-1] == "Min-Max"){
+					$displayString = ' style="display:none;"';
+				}
+
+			$html_sensor_list .= '<div id="threshold' . ($i3) . ($i+1) . '" ' . $displayString . '>' . "\n";
+
 			include 'threshold.php';
+
+			$html_sensor_list .= '</div> <!-- threshold -->' . "\n";
 
 		//---------------Shift Down---------------------//
 
@@ -105,22 +115,24 @@
 
 				$html_sensor_list .= '</div> <!-- row -->' . "\n";
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
-			$html_sensor_list .= '<div class="col-lg-3">' . "\n";
-				$html_sensor_list .= '<div class="row">' . "\n";
-					
+			$html_sensor_list .= '</div> <!-- Custom Time Block -->' . "\n";
+			
 					//----------------------------Summary Method----------------------------//
 
-					$html_sensor_list .= '<div class="col-lg-10">' . "\n";
+					$displayString = "";
+					if ($SENSOR_INFO[$i]->binType[$i3-1] != "Custom Time" and $SENSOR_INFO[$i]->binType[$i3-1] != "From Sensor"){
+						$displayString = 'style="display:none;"';
+					}
+					$html_sensor_list .= '<div class="col-lg-3" id="summaryMethod' . ($i3) . ($i+1) . '" ' . $displayString . '>';
+					$html_sensor_list .= '<br>' . "\n";
+					$html_sensor_list .= '<br>' . "\n";
+					$html_sensor_list .= '<br>' . "\n";
 
 						include 'summaryMethod.php';
 
-					$html_sensor_list .= '</div> <!-- col-lg-10 -->' . "\n";
+					$html_sensor_list .= '</div> <!-- col-lg-3 -->' . "\n";
 
-								//------------------------Threshold-------------------------//
-
-				$html_sensor_list .= '</div> <!-- row -->' . "\n";
-			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
-			$html_sensor_list .= '</div> <!-- Custom Time Block -->' . "\n";
+								//------------------------Threshold-------------------------//			
 
 		$html_sensor_list .= '</div> <!-- row -->' . "\n";
 
