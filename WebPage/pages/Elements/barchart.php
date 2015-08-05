@@ -5,6 +5,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">
+		<h2 style="margin-top:0px; margin-left:5%; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </h1>
                 <div class="table-responsive">
                     <?php
 						$lines = file($Summary_Base . $summary_file . 'a' . ($k+1) . '.csv');

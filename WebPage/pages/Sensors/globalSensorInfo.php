@@ -16,6 +16,30 @@ $NUM_SENSORS = intval($NUM_SENSORS);
 
 fclose($numSensorFile);
 
+$onPeakOffPeakTimeFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/onPeakOffPeakTime.txt", "r");
+
+$PEAK_START = trim(fgets($onPeakOffPeakTimeFile));
+
+$PEAK_STOP = trim(fgets($onPeakOffPeakTimeFile));
+
+$PEAK_WEEKDAY = new ArrayObject(array());
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+$PEAK_WEEKDAY->append(trim(fgets($onPeakOffPeakTimeFile)));
+
+fclose($onPeakOffPeakTimeFile);
+
 
 //this is to check if the analysis is running or not
 
@@ -88,9 +112,6 @@ $ZIP_HEALTH = trim(fgets($zipHealthFile));
 $updateHealthFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/pages/updateHealth.txt", "r");
 
 $UPDATE_HEALTH = trim(fgets($updateHealthFile));
-
-echo $UPDATE_HEALTH;
-echo "CHECK HERE";
 
 
 if (isset($_GET['callFunction'])) {

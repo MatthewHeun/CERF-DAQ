@@ -613,7 +613,10 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 							Min = 0
 						else:
 							Min = sensor.thresholdMin[analysisNumber]
-						if (time.hour > 11 and time.hour < 17 and time.weekday() < 5): 	#if above the threshold during peak hours add to minutes on peak
+						peakDay = False
+						if time.weekday() in PEAK_WEEKDAY:
+							peakDay = True
+						if (time.hour >= START_TIME and time.hour < STOP_TIME and peakDay): 	#if above the threshold during peak hours add to minutes on peak
 							totalMinutes_Peak += 1
 							if (float(data) > float(Min)):
 								minutesOn_Peak += 1
@@ -621,7 +624,10 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 							totalMinutes_OffPeak += 1
 							if (float(data) > float(Min)):
 								minutesOn_OffPeak += 1
-
+		if totalMinutes_Peak == 0:
+			totalMinutes_Peak = 1
+		if totalMinutes_OffPeak == 0:
+			totalMinutes_OffPeak = 1
 		onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
 		offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
 		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
@@ -886,6 +892,7 @@ def analyzeData():
 	file.write(str(percentComplete))
 	file.close()
 
+	percentIndex = 1
 	for c in range(3):
 		for i in range(NUM_SENSORS):
 			if int(SENSOR_INFO[i].numberOfAnalysis) > c:
@@ -900,14 +907,14 @@ def analyzeData():
 					#print 'Performing Range Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
 				elif SENSOR_INFO[i].analysis[c] == "Min-Max":
 					minMaxAnalysis(SENSOR_INFO[i], c)
-					#print 'Performing Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
-				
-				file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
-				percentComplete = (float((c+1)*(i+1))/(3*NUM_SENSORS))*100
-				percentComplete = "%.2f" %percentComplete + '%'
-				#print percentComplete
-				file.write(str(percentComplete))
-				file.close()
+					#print 'Performing Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)			
+			file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+			percentComplete = float(float(percentIndex)/float((3)*(NUM_SENSORS)))*100
+			percentComplete = "%.2f" %percentComplete + '%'
+			#print percentComplete
+			file.write(str(percentComplete))
+			file.close()
+			percentIndex += 1;
 	
 	percentComplete = "100%"
 	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
@@ -931,8 +938,8 @@ analyzeData()
 
 #print len(binArray[0][0].timeArray)
 
-for x in range(len(binArray[0][0].timeArray)):
-	print "Start: " + str(binArray[0][0].timeArray[x][0]) + " Stop: " + str(binArray[0][0].timeArray[x][1])
+#for x in range(len(binArray[0][0].timeArray)):
+	#print "Start: " + str(binArray[0][0].timeArray[x][0]) + " Stop: " + str(binArray[0][0].timeArray[x][1])
 
 #==================================================================
 #-----------------Tell the website the pi is not busy--------------

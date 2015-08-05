@@ -5,8 +5,13 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="table-responsive">
+				<div class="col-lg-6">
+					<h2 style="margin-top:0px; margin-left:5%; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </h1>
+				</div> <!-- col-lg-6 -->
+			    </div> <!-- row -->
+			    <div class="row">
+				<div class="col-lg-4">
+                                    <div class="table-responsive" style="height:100%; margin:auto;">
                                         <?php
 						$lines = file($Summary_Base . $summary_file . 'a' . ($k+1) . '.csv');
 						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';

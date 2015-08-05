@@ -5,7 +5,7 @@ $html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" metho
 for ($i=0; $i < $NUM_SENSORS; $i++){
 	$html_sensor_list .= '<div class="panel panel-default">' . "\n";
 		$html_sensor_list .= '<div class="panel-heading">' . "\n";
-		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ' Specifics </button></div>' . "\n";
+		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . '</button></div>' . "\n";
 		$html_sensor_list .= '<div class="panel-body" style="display:none;" id=panelBody'. ($i+1) . '>' . "\n";
 		$html_sensor_list .= '<div class="row">' . "\n";
 
@@ -14,7 +14,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$html_sensor_list .= '<div class="col-lg-4">' . "\n";
 
 					$html_sensor_list .= '<p style="font-weight:bold;"> Sensor Name </p>' . "\n";
-					$html_sensor_list .= '<input type="text" class="form-control" name="name' . ($i+1) . '" placeholder="Name" value="' . $SENSOR_INFO[$i]->name . '">' . "\n";
+					$html_sensor_list .= '<input type="text" class="form-control" maxlength=14; name="name' . ($i+1) . '" placeholder="Name" value="' . $SENSOR_INFO[$i]->name . '">' . "\n";
 				$html_sensor_list .= '<br>' . "\n";
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";

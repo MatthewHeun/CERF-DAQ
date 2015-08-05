@@ -18,14 +18,14 @@
 <!-- <body>
 <?php
 
-	// $size = 0;
-	// foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($Raw_Base)) as $file){
-	// 	$size+=$file->getSize();
-	// }
-	// $size /= 1000000;
-	// $size = number_format($size, 1, '.', ',');
-	// $free_space = disk_free_space ('/')/1000000000;
-	// $free_space = number_format($free_space, 1, '.', ',');
+	$size = 0;
+	foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($Raw_Base)) as $file){
+		$size+=$file->getSize();
+	}
+	$size /= 1000000;
+	$size = number_format($size, 1, '.', ',');
+	$free_space = disk_free_space ('/')/1000000000;
+	$free_space = number_format($free_space, 1, '.', ',');
 ?>  -->
     <div id="wrapper">
 

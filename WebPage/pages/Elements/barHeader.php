@@ -25,8 +25,7 @@
             </div>
         </div> <!-- col-lg-4 -->
 <div class="col-lg-4">
-    <div style="width:90%; margin-left:5%; text-align:center; padding:6px 12px; background-color:#5BC0DE; border-color:#2E6DA4; border-radius:4px; border:1px solid transparent; color:#FFF"> <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </div>
-</div>
+</div> <!-- col-lg-4 -->
 <div class="col-lg-4">
 	<div class="input-group" style="width:90%; margin-left:5%">
 		<form action="<?php echo $pageLink?>" method="get" id="submit">

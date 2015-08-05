@@ -32,6 +32,35 @@ RESET = int(f.readline())
 
 f.close()
 
+onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/onPeakOffPeakTime.txt"
+
+f = open(onPeakOffPeakTimeFile)
+
+START_TIME = int(f.readline().strip())
+
+STOP_TIME = int(f.readline().strip())
+
+PEAK_WEEKDAY = []
+
+for w in range(7):
+	PEAK_WEEKDAY.append(f.readline().strip())
+	if len(PEAK_WEEKDAY[w]) != 0:
+		PEAK_WEEKDAY[w] = int(PEAK_WEEKDAY[w])
+
+print START_TIME
+print STOP_TIME
+print PEAK_WEEKDAY[0]
+print PEAK_WEEKDAY[1]
+print PEAK_WEEKDAY[2]
+print PEAK_WEEKDAY[3]
+print PEAK_WEEKDAY[4]
+print PEAK_WEEKDAY[5]
+print PEAK_WEEKDAY[6]
+
+
+
+f.close()
+
 sensorInfoFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
 
 #The data in this file is in order of the way the properties of the sensor are read in below. If the order of either of these are changed
