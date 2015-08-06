@@ -1,0 +1,51 @@
+#!/bin/bash
+
+PASSWORD1=1
+PASSWORD2=2
+COUNTER=1
+
+echo 'Please enter your Calvin email:'
+read USERNAME
+
+while [ $PASSWORD1 != $PASSWORD2 ]; do
+	if [ $COUNTER != 1 ]; then 
+		echo $'\nThe passwords do not match!'
+	fi
+	echo 'Please enter your password:'
+	read -s PASSWORD1
+	echo "Please re-enter your password:"
+	read -s PASSWORD2
+	COUNTER=$-1
+done 
+
+echo 'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev' > /etc/wpa_supplicant/wpa_supplicant.conf
+echo 'update_config=1' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo 'network={' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        ssid="eduroam"' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        proto=RSN' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        key_mgmt=WPA-EAP' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        pairwise=CCMP' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        auth_alg=OPEN' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        eap=PEAP' >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+usernameLine='\tidentity="'
+usernameLine+=$USERNAME
+usernameLine+='"'
+echo -e $usernameLine >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+passwordLine='\tpassword="'
+passwordLine+=$PASSWORD1
+passwordLine+='"'
+echo -e $passwordLine >> /etc/wpa_supplicant/wpa_supplicant.conf
+
+echo '        ca_cert="/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA.crt"' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '}' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo 'network={' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        ssid="wireless_setup_instructions"' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        key_mgmt=NONE' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        auth_alg=OPEN' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        disabled=1' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '}' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
