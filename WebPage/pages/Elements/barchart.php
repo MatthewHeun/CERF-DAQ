@@ -5,8 +5,24 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-12">
-		<h2 style="margin-top:0px; margin-left:5%; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </h1>
-                <div class="table-responsive">
+
+	<?php
+		$Picture = "";
+		if ($SENSOR_INFO[$sensor_number-1]->type == "Light"){
+			$Picture = '<i class="fa fa-lightbulb-o fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Temperature"){
+			$Picture = '<i class="fa fa-tasks fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy"){
+			$Picture = '<i class="fa fa-child fa-fw"></i>';
+		}
+	?>
+
+		<h2 style="margin-top:0px; margin-bottom:15px; text-align:center; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; echo $Picture?> </h1>
+            </div> <!-- col-lg-12 -->
+	</div> <!-- row -->
+	<div class="row">
+	    <div class="col-lg-12">
+		<div class="table-responsive">
                     <?php
 						$lines = file($Summary_Base . $summary_file . 'a' . ($k+1) . '.csv');
 						if ($SENSOR_INFO[$sensor_number-1]->analysis[$k] == "Range Analysis") {
@@ -39,16 +55,6 @@
 					?>
                 </div> <!-- /.table-responsive -->
             </div> <!-- /.col-lg-12 (nested) -->
-        </div>
-		<div class="panel-body">
-			<div class="row">
-    			<div class="col-lg-4 col-lg-offset-2">
-                    <div id="donut-day-<?php echo $graphnum ?>" style="height: 100%;"></div> <!-- /.col-lg-4 pull-right -->
-		    	</div>
-		    	<div class="col-lg-4">
-                    <div id="donut-night-<?php echo $graphnum ?>" style="height: 100%;"></div> <!-- /.col-lg-4 (nested) -->
-		    	</div> <!-- col-lg-4 -->
-			</div> <!-- /.row -->
-	    </div> <!-- panel-body -->
-    </div> <!-- /.panel-body -->
+        </div> <!-- row -->
+    </div> <!-- panel-body -->
 </div>

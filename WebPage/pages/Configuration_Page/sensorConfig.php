@@ -5,7 +5,17 @@ $html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" metho
 for ($i=0; $i < $NUM_SENSORS; $i++){
 	$html_sensor_list .= '<div class="panel panel-default">' . "\n";
 		$html_sensor_list .= '<div class="panel-heading">' . "\n";
-		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . '</button></div>' . "\n";
+
+		$Picture = "";
+		if ($SENSOR_INFO[$i]->type == "Light"){
+			$Picture = '<i class="fa fa-lightbulb-o fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$i]->type == "Temperature"){
+			$Picture = '<i class="fa fa-tasks fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$i]->type == "Occupancy"){
+			$Picture = '<i class="fa fa-child fa-fw"></i>';
+		}
+
+		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . ' ' . $Picture . '</button></div>' . "\n";
 		$html_sensor_list .= '<div class="panel-body" style="display:none;" id=panelBody'. ($i+1) . '>' . "\n";
 		$html_sensor_list .= '<div class="row">' . "\n";
 

@@ -609,20 +609,27 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 						time = row[4]
 						data = row[5].replace('\n','')
 						time = getDateFromDataString(time)
+						
 						if sensor.thresholdMin[analysisNumber] == "":	#if the user did not imput a min - assume 0
 							Min = 0
 						else:
 							Min = sensor.thresholdMin[analysisNumber]
+						
+						if sensor.thresholdMax[analysisNumber] == "":	#if the user did not imput a max - assume 0
+							Max = 0
+						else:
+							Max = sensor.thresholdMax[analysisNumber]
+
 						peakDay = False
 						if time.weekday() in PEAK_WEEKDAY:
 							peakDay = True
 						if (time.hour >= START_TIME and time.hour < STOP_TIME and peakDay): 	#if above the threshold during peak hours add to minutes on peak
 							totalMinutes_Peak += 1
-							if (float(data) > float(Min)):
+							if (float(data) > float(Min)) and (float(data) < float(Max)):
 								minutesOn_Peak += 1
 						else:															#otherwise add to minutes off peak
 							totalMinutes_OffPeak += 1
-							if (float(data) > float(Min)):
+							if (float(data) > float(Min)) and (float(data) < float(Max)):
 								minutesOn_OffPeak += 1
 		if totalMinutes_Peak == 0:
 			totalMinutes_Peak = 1
@@ -699,7 +706,12 @@ def rangeAnalysis(sensor, analysisNumber):
 						else:
 							Min = sensor.thresholdMin[analysisNumber]
 
-						if (float(data) > float(Min)): 
+						if sensor.thresholdMax[analysisNumber] == "":		#if the user didn't enter a threshold treat it as 0
+							Max = 0
+						else:
+							Max = sensor.thresholdMax[analysisNumber]
+
+						if (float(data) > float(Min)) and (float(data) < float(Max)): 
 							minutesOn += 1
 						else:
 							minutesOff += 1

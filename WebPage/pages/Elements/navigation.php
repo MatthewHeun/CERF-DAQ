@@ -22,7 +22,7 @@
 						<?php
 							$i = 1;
 							while ($i <= $NUM_SENSORS){
-								$Picture = ".";
+								$Picture = "";
 								if ($SENSOR_INFO[$i-1]->type == "Light"){
 									$Picture = '<i class="fa fa-lightbulb-o fa-fw pull-right"></i>';
 								} elseif ($SENSOR_INFO[$i-1]->type == "Temperature"){

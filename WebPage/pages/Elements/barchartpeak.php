@@ -5,9 +5,20 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="row">
-				<div class="col-lg-6">
-					<h2 style="margin-top:0px; margin-left:5%; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; ?> </h1>
-				</div> <!-- col-lg-6 -->
+				<div class="col-lg-12">
+
+			<?php
+				$Picture = "";
+				if ($SENSOR_INFO[$sensor_number-1]->type == "Light"){
+					$Picture = '<i class="fa fa-lightbulb-o fa-fw"></i>';
+				} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Temperature"){
+					$Picture = '<i class="fa fa-tasks fa-fw"></i>';
+				} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy"){
+					$Picture = '<i class="fa fa-child fa-fw"></i>';
+				}
+			?>
+					<h2 style="text-align:center; margin-top:0px; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; echo $Picture?> </h1>
+				</div> <!-- col-lg-12 -->
 			    </div> <!-- row -->
 			    <div class="row">
 				<div class="col-lg-4">
@@ -44,6 +55,4 @@
                             <!-- /.row -->
                         </div>
                         <!-- /.panel-body -->
-			<div class="panel-heading">
-			</div>
                     </div>
