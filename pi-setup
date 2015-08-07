@@ -67,9 +67,8 @@ SummaryDir='Pi_'$PI_NUMBER'_Summary'
 #mkdir "/home/pi/Desktop/Data"
 #mkdir "/home/pi/Desktop/Data/$RawDir"
 #mkdir "/home/pi/Desktop/Data/$SummaryDir"
-echo "	+Done"
-
 chmod ugo+rwx /home/pi/Desktop/Data -R
+echo "	+Done"
 
 
 #===============================
@@ -86,6 +85,7 @@ sudo apt-get install xrdp
 sudo easy_install pytz
 sudo apt-get install python-smbus 
 sudo adduser pi i2c 
+echo "	+Done"
 
 
 #==============================
@@ -102,6 +102,7 @@ else
 	echo "PATH=""$""PATH:/home/pi/Desktop/CERF-DAQ/Python" >> /etc/profile
 	echo "export PATH" >> /etc/profile
 fi
+echo "	+Done"
 
 
 #===============================
@@ -111,6 +112,7 @@ echo "Creating the Web Server"
 sudo rm -r /var/www
 sudo mkdir "/var/www"
 sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
+echo "	+Done"
 
 
 #==============================
@@ -125,12 +127,16 @@ echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi.sh >> /dev/UpdateP
 sudo crontab mycron 
 sudo rm mycron
 sudo /etc/init.d/cron restart
+echo "	+Done"
 
 
 #==============================
-#========Restarting Pi=========
+#======Configuring Wifi========
 #==============================
+echo -e '\n\n'
+echo "Configuring the Wifi"
 /bin/bash /home/pi/Desktop/CERF-DAQ/writeSupplicant
+echo "	+Done"
 
 
 #==============================

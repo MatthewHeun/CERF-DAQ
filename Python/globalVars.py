@@ -47,18 +47,6 @@ for w in range(7):
 	if len(PEAK_WEEKDAY[w]) != 0:
 		PEAK_WEEKDAY[w] = int(PEAK_WEEKDAY[w])
 
-print START_TIME
-print STOP_TIME
-print PEAK_WEEKDAY[0]
-print PEAK_WEEKDAY[1]
-print PEAK_WEEKDAY[2]
-print PEAK_WEEKDAY[3]
-print PEAK_WEEKDAY[4]
-print PEAK_WEEKDAY[5]
-print PEAK_WEEKDAY[6]
-
-
-
 f.close()
 
 sensorInfoFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
