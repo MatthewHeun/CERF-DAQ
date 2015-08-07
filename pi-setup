@@ -12,7 +12,7 @@ echo "This number will be used for the identification of the Pi and its data."
 echo $'Example: 2 (Please only enter a number)\n'
 echo -n "Pi Number >"
 read PI_NUMBER
-echo $'\nYou entered: $PI_NUMBER'
+echo -e "\nYou entered: $PI_NUMBER"
 read -p "Would you like to continue?(y/n): " REPLY
 if [ "$REPLY" != "y" ]; then
 	exit
@@ -61,12 +61,12 @@ echo "proceeding"
 echo "Creating directories"
 RawDir='Pi_'$PI_NUMBER'_Raw'
 SummaryDir='Pi_'$PI_NUMBER'_Summary'
-#if [ -d "/home/pi/Desktop/Data" ]; then
-#	sudo rm -r /home/pi/Desktop/Data
-#fi
-#mkdir "/home/pi/Desktop/Data"
-#mkdir "/home/pi/Desktop/Data/$RawDir"
-#mkdir "/home/pi/Desktop/Data/$SummaryDir"
+if [ -d "/home/pi/Desktop/Data" ]; then
+	sudo rm -r /home/pi/Desktop/Data
+fi
+mkdir "/home/pi/Desktop/Data"
+mkdir "/home/pi/Desktop/Data/$RawDir"
+mkdir "/home/pi/Desktop/Data/$SummaryDir"
 chmod ugo+rwx /home/pi/Desktop/Data -R
 echo "	+Done"
 
@@ -136,6 +136,16 @@ echo "	+Done"
 echo -e '\n\n'
 echo "Configuring the Wifi"
 /bin/bash /home/pi/Desktop/CERF-DAQ/writeSupplicant
+echo "	+Done"
+
+
+#==============================
+#=====Updating Pi Kernel=======
+#==============================
+echo "Updating the Pi Kernel Version"
+echo "The current version is:"
+uname -a
+sudo apt-get upgrade
 echo "	+Done"
 
 
