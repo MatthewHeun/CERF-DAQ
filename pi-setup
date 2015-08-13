@@ -140,6 +140,13 @@ echo "	+Done"
 
 
 #==============================
+#========Upgrading Pi==========
+#==============================
+echo "Upgrading the pi to the latest kernel version"
+sudo apt-get upgrade
+echo "	+Done"
+
+#==============================
 #========Restarting Pi=========
 #==============================
 echo "Setup is completed" 

@@ -67,7 +67,7 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 			$fileString .= 'if (analysis == "On-Peak Off-Peak %"){' . "\n";
 				$fileString .= 'document.getElementById("binInformation' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
 				$fileString .= 'document.getElementById("binSpecifics' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
-				$fileString .= 'document.getElementById("threshold' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("threshold' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'console.log("' . ($i5+1) . ($i+1) . '");' . "\n";
 			$fileString .= '} else if (analysis == "Min-Max"){' . "\n";
 				$fileString .= 'document.getElementById("binInformation' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";

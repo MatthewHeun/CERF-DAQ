@@ -654,7 +654,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation11").style.display = "none";
 document.getElementById("binSpecifics11").style.display = "none";
-document.getElementById("threshold11").style.display = "none";
+document.getElementById("threshold11").style.display = "block";
 console.log("11");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation11").style.display = "block";
@@ -675,7 +675,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation21").style.display = "none";
 document.getElementById("binSpecifics21").style.display = "none";
-document.getElementById("threshold21").style.display = "none";
+document.getElementById("threshold21").style.display = "block";
 console.log("21");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation21").style.display = "block";
@@ -696,7 +696,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation31").style.display = "none";
 document.getElementById("binSpecifics31").style.display = "none";
-document.getElementById("threshold31").style.display = "none";
+document.getElementById("threshold31").style.display = "block";
 console.log("31");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation31").style.display = "block";
@@ -717,7 +717,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation12").style.display = "none";
 document.getElementById("binSpecifics12").style.display = "none";
-document.getElementById("threshold12").style.display = "none";
+document.getElementById("threshold12").style.display = "block";
 console.log("12");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation12").style.display = "block";
@@ -738,7 +738,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation22").style.display = "none";
 document.getElementById("binSpecifics22").style.display = "none";
-document.getElementById("threshold22").style.display = "none";
+document.getElementById("threshold22").style.display = "block";
 console.log("22");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation22").style.display = "block";
@@ -759,7 +759,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation32").style.display = "none";
 document.getElementById("binSpecifics32").style.display = "none";
-document.getElementById("threshold32").style.display = "none";
+document.getElementById("threshold32").style.display = "block";
 console.log("32");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation32").style.display = "block";
@@ -780,7 +780,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation13").style.display = "none";
 document.getElementById("binSpecifics13").style.display = "none";
-document.getElementById("threshold13").style.display = "none";
+document.getElementById("threshold13").style.display = "block";
 console.log("13");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation13").style.display = "block";
@@ -801,7 +801,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation23").style.display = "none";
 document.getElementById("binSpecifics23").style.display = "none";
-document.getElementById("threshold23").style.display = "none";
+document.getElementById("threshold23").style.display = "block";
 console.log("23");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation23").style.display = "block";
@@ -822,7 +822,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation33").style.display = "none";
 document.getElementById("binSpecifics33").style.display = "none";
-document.getElementById("threshold33").style.display = "none";
+document.getElementById("threshold33").style.display = "block";
 console.log("33");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation33").style.display = "block";
@@ -843,7 +843,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation14").style.display = "none";
 document.getElementById("binSpecifics14").style.display = "none";
-document.getElementById("threshold14").style.display = "none";
+document.getElementById("threshold14").style.display = "block";
 console.log("14");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation14").style.display = "block";
@@ -864,7 +864,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation24").style.display = "none";
 document.getElementById("binSpecifics24").style.display = "none";
-document.getElementById("threshold24").style.display = "none";
+document.getElementById("threshold24").style.display = "block";
 console.log("24");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation24").style.display = "block";
@@ -885,7 +885,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation34").style.display = "none";
 document.getElementById("binSpecifics34").style.display = "none";
-document.getElementById("threshold34").style.display = "none";
+document.getElementById("threshold34").style.display = "block";
 console.log("34");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation34").style.display = "block";
@@ -906,7 +906,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation15").style.display = "none";
 document.getElementById("binSpecifics15").style.display = "none";
-document.getElementById("threshold15").style.display = "none";
+document.getElementById("threshold15").style.display = "block";
 console.log("15");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation15").style.display = "block";
@@ -927,7 +927,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation25").style.display = "none";
 document.getElementById("binSpecifics25").style.display = "none";
-document.getElementById("threshold25").style.display = "none";
+document.getElementById("threshold25").style.display = "block";
 console.log("25");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation25").style.display = "block";
@@ -948,7 +948,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation35").style.display = "none";
 document.getElementById("binSpecifics35").style.display = "none";
-document.getElementById("threshold35").style.display = "none";
+document.getElementById("threshold35").style.display = "block";
 console.log("35");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation35").style.display = "block";
@@ -969,7 +969,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation16").style.display = "none";
 document.getElementById("binSpecifics16").style.display = "none";
-document.getElementById("threshold16").style.display = "none";
+document.getElementById("threshold16").style.display = "block";
 console.log("16");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation16").style.display = "block";
@@ -990,7 +990,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation26").style.display = "none";
 document.getElementById("binSpecifics26").style.display = "none";
-document.getElementById("threshold26").style.display = "none";
+document.getElementById("threshold26").style.display = "block";
 console.log("26");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation26").style.display = "block";
@@ -1011,7 +1011,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation36").style.display = "none";
 document.getElementById("binSpecifics36").style.display = "none";
-document.getElementById("threshold36").style.display = "none";
+document.getElementById("threshold36").style.display = "block";
 console.log("36");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation36").style.display = "block";
@@ -1032,7 +1032,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation17").style.display = "none";
 document.getElementById("binSpecifics17").style.display = "none";
-document.getElementById("threshold17").style.display = "none";
+document.getElementById("threshold17").style.display = "block";
 console.log("17");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation17").style.display = "block";
@@ -1053,7 +1053,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation27").style.display = "none";
 document.getElementById("binSpecifics27").style.display = "none";
-document.getElementById("threshold27").style.display = "none";
+document.getElementById("threshold27").style.display = "block";
 console.log("27");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation27").style.display = "block";
@@ -1074,7 +1074,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation37").style.display = "none";
 document.getElementById("binSpecifics37").style.display = "none";
-document.getElementById("threshold37").style.display = "none";
+document.getElementById("threshold37").style.display = "block";
 console.log("37");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation37").style.display = "block";
@@ -1095,7 +1095,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation18").style.display = "none";
 document.getElementById("binSpecifics18").style.display = "none";
-document.getElementById("threshold18").style.display = "none";
+document.getElementById("threshold18").style.display = "block";
 console.log("18");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation18").style.display = "block";
@@ -1116,7 +1116,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation28").style.display = "none";
 document.getElementById("binSpecifics28").style.display = "none";
-document.getElementById("threshold28").style.display = "none";
+document.getElementById("threshold28").style.display = "block";
 console.log("28");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation28").style.display = "block";
@@ -1137,7 +1137,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation38").style.display = "none";
 document.getElementById("binSpecifics38").style.display = "none";
-document.getElementById("threshold38").style.display = "none";
+document.getElementById("threshold38").style.display = "block";
 console.log("38");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation38").style.display = "block";
@@ -1158,7 +1158,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation19").style.display = "none";
 document.getElementById("binSpecifics19").style.display = "none";
-document.getElementById("threshold19").style.display = "none";
+document.getElementById("threshold19").style.display = "block";
 console.log("19");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation19").style.display = "block";
@@ -1179,7 +1179,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation29").style.display = "none";
 document.getElementById("binSpecifics29").style.display = "none";
-document.getElementById("threshold29").style.display = "none";
+document.getElementById("threshold29").style.display = "block";
 console.log("29");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation29").style.display = "block";
@@ -1200,7 +1200,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation39").style.display = "none";
 document.getElementById("binSpecifics39").style.display = "none";
-document.getElementById("threshold39").style.display = "none";
+document.getElementById("threshold39").style.display = "block";
 console.log("39");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation39").style.display = "block";
@@ -1221,7 +1221,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation110").style.display = "none";
 document.getElementById("binSpecifics110").style.display = "none";
-document.getElementById("threshold110").style.display = "none";
+document.getElementById("threshold110").style.display = "block";
 console.log("110");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation110").style.display = "block";
@@ -1242,7 +1242,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation210").style.display = "none";
 document.getElementById("binSpecifics210").style.display = "none";
-document.getElementById("threshold210").style.display = "none";
+document.getElementById("threshold210").style.display = "block";
 console.log("210");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation210").style.display = "block";
@@ -1263,7 +1263,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation310").style.display = "none";
 document.getElementById("binSpecifics310").style.display = "none";
-document.getElementById("threshold310").style.display = "none";
+document.getElementById("threshold310").style.display = "block";
 console.log("310");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation310").style.display = "block";
@@ -1284,7 +1284,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation111").style.display = "none";
 document.getElementById("binSpecifics111").style.display = "none";
-document.getElementById("threshold111").style.display = "none";
+document.getElementById("threshold111").style.display = "block";
 console.log("111");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation111").style.display = "block";
@@ -1305,7 +1305,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation211").style.display = "none";
 document.getElementById("binSpecifics211").style.display = "none";
-document.getElementById("threshold211").style.display = "none";
+document.getElementById("threshold211").style.display = "block";
 console.log("211");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation211").style.display = "block";
@@ -1326,7 +1326,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation311").style.display = "none";
 document.getElementById("binSpecifics311").style.display = "none";
-document.getElementById("threshold311").style.display = "none";
+document.getElementById("threshold311").style.display = "block";
 console.log("311");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation311").style.display = "block";
@@ -1347,7 +1347,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation112").style.display = "none";
 document.getElementById("binSpecifics112").style.display = "none";
-document.getElementById("threshold112").style.display = "none";
+document.getElementById("threshold112").style.display = "block";
 console.log("112");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation112").style.display = "block";
@@ -1368,7 +1368,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation212").style.display = "none";
 document.getElementById("binSpecifics212").style.display = "none";
-document.getElementById("threshold212").style.display = "none";
+document.getElementById("threshold212").style.display = "block";
 console.log("212");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation212").style.display = "block";
@@ -1389,7 +1389,7 @@ console.log(analysis=="On-Peak Off-Peak %");
 if (analysis == "On-Peak Off-Peak %"){
 document.getElementById("binInformation312").style.display = "none";
 document.getElementById("binSpecifics312").style.display = "none";
-document.getElementById("threshold312").style.display = "none";
+document.getElementById("threshold312").style.display = "block";
 console.log("312");
 } else if (analysis == "Min-Max"){
 document.getElementById("binInformation312").style.display = "block";
