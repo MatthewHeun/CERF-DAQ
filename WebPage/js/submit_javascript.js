@@ -88,36 +88,6 @@ document.getElementById("submit9").style.display = "none";
 }
 }
 
-function toggleDisplay10() {
-if (document.getElementById("panelBody10").style.display == "none") {
-document.getElementById("panelBody10").style.display = "block";
-document.getElementById("submit10").style.display = "block";
-} else {
-document.getElementById("panelBody10").style.display = "none";
-document.getElementById("submit10").style.display = "none";
-}
-}
-
-function toggleDisplay11() {
-if (document.getElementById("panelBody11").style.display == "none") {
-document.getElementById("panelBody11").style.display = "block";
-document.getElementById("submit11").style.display = "block";
-} else {
-document.getElementById("panelBody11").style.display = "none";
-document.getElementById("submit11").style.display = "none";
-}
-}
-
-function toggleDisplay12() {
-if (document.getElementById("panelBody12").style.display == "none") {
-document.getElementById("panelBody12").style.display = "block";
-document.getElementById("submit12").style.display = "block";
-} else {
-document.getElementById("panelBody12").style.display = "none";
-document.getElementById("submit12").style.display = "none";
-}
-}
-
 $("#sensorType1").change(function() {
 var sensorType = $("#sensorType1").val();
 console.log(sensorType);
@@ -214,39 +184,6 @@ if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress9").style.display = "none";
 } else {
 document.getElementById("i2cAddress9").style.display = "block";
-}
-} );
-
-$("#sensorType10").change(function() {
-var sensorType = $("#sensorType10").val();
-console.log(sensorType);
-console.log("sensor type");
-if (sensorType == 'Occupancy'){
-document.getElementById("i2cAddress10").style.display = "none";
-} else {
-document.getElementById("i2cAddress10").style.display = "block";
-}
-} );
-
-$("#sensorType11").change(function() {
-var sensorType = $("#sensorType11").val();
-console.log(sensorType);
-console.log("sensor type");
-if (sensorType == 'Occupancy'){
-document.getElementById("i2cAddress11").style.display = "none";
-} else {
-document.getElementById("i2cAddress11").style.display = "block";
-}
-} );
-
-$("#sensorType12").change(function() {
-var sensorType = $("#sensorType12").val();
-console.log(sensorType);
-console.log("sensor type");
-if (sensorType == 'Occupancy'){
-document.getElementById("i2cAddress12").style.display = "none";
-} else {
-document.getElementById("i2cAddress12").style.display = "block";
 }
 } );
 
@@ -544,105 +481,6 @@ if (parseInt(numberOfAnalysis) > 2){
 document.getElementById("analysisInformation39").style.display = "block";
 } else {
 document.getElementById("analysisInformation39").style.display = "none";
-}
-} );
-
-$("#numAnalysis10").change(function() {
-var numberOfAnalysis = $("#numAnalysis10").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 0){
-document.getElementById("analysisInformation110").style.display = "block";
-} else {
-document.getElementById("analysisInformation110").style.display = "none";
-}
-} );
-
-$("#numAnalysis10").change(function() {
-var numberOfAnalysis = $("#numAnalysis10").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 1){
-document.getElementById("analysisInformation210").style.display = "block";
-} else {
-document.getElementById("analysisInformation210").style.display = "none";
-}
-} );
-
-$("#numAnalysis10").change(function() {
-var numberOfAnalysis = $("#numAnalysis10").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 2){
-document.getElementById("analysisInformation310").style.display = "block";
-} else {
-document.getElementById("analysisInformation310").style.display = "none";
-}
-} );
-
-$("#numAnalysis11").change(function() {
-var numberOfAnalysis = $("#numAnalysis11").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 0){
-document.getElementById("analysisInformation111").style.display = "block";
-} else {
-document.getElementById("analysisInformation111").style.display = "none";
-}
-} );
-
-$("#numAnalysis11").change(function() {
-var numberOfAnalysis = $("#numAnalysis11").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 1){
-document.getElementById("analysisInformation211").style.display = "block";
-} else {
-document.getElementById("analysisInformation211").style.display = "none";
-}
-} );
-
-$("#numAnalysis11").change(function() {
-var numberOfAnalysis = $("#numAnalysis11").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 2){
-document.getElementById("analysisInformation311").style.display = "block";
-} else {
-document.getElementById("analysisInformation311").style.display = "none";
-}
-} );
-
-$("#numAnalysis12").change(function() {
-var numberOfAnalysis = $("#numAnalysis12").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 0){
-document.getElementById("analysisInformation112").style.display = "block";
-} else {
-document.getElementById("analysisInformation112").style.display = "none";
-}
-} );
-
-$("#numAnalysis12").change(function() {
-var numberOfAnalysis = $("#numAnalysis12").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 1){
-document.getElementById("analysisInformation212").style.display = "block";
-} else {
-document.getElementById("analysisInformation212").style.display = "none";
-}
-} );
-
-$("#numAnalysis12").change(function() {
-var numberOfAnalysis = $("#numAnalysis12").val();
-console.log(numberOfAnalysis);
-console.log("number of analysis");
-if (parseInt(numberOfAnalysis) > 2){
-document.getElementById("analysisInformation312").style.display = "block";
-} else {
-document.getElementById("analysisInformation312").style.display = "none";
 }
 } );
 
@@ -1213,6 +1051,7 @@ document.getElementById("threshold39").style.display = "block";
 }
 } );
 
+<<<<<<< HEAD
 $("#analysis20").change(function() {
 var analysis = $("#analysis20").val();
 console.log(analysis);
@@ -1402,6 +1241,8 @@ document.getElementById("threshold312").style.display = "block";
 }
 } );
 
+=======
+>>>>>>> be2651ebe783a5160506f40837ebad7c48760fd7
 $("#binChoice11").change(function() {
 var bins = $("#binChoice11").val();
 console.log(bins);
@@ -1885,168 +1726,6 @@ document.getElementById("summaryMethod39").style.display = "block";
 document.getElementById("customTimeBlock39").style.display = "none";
 document.getElementById("fromSensorBlock39").style.display = "none";
 document.getElementById("summaryMethod39").style.display = "none";
-}
-} );
-
-$("#binChoice20").change(function() {
-var bins = $("#binChoice20").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock110").style.display = "none";
-document.getElementById("fromSensorBlock110").style.display = "block";
-document.getElementById("summaryMethod110").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock110").style.display = "block";
-document.getElementById("fromSensorBlock110").style.display = "none";
-document.getElementById("summaryMethod110").style.display = "block";
-} else {
-document.getElementById("customTimeBlock110").style.display = "none";
-document.getElementById("fromSensorBlock110").style.display = "none";
-document.getElementById("summaryMethod110").style.display = "none";
-}
-} );
-
-$("#binChoice30").change(function() {
-var bins = $("#binChoice30").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock210").style.display = "none";
-document.getElementById("fromSensorBlock210").style.display = "block";
-document.getElementById("summaryMethod210").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock210").style.display = "block";
-document.getElementById("fromSensorBlock210").style.display = "none";
-document.getElementById("summaryMethod210").style.display = "block";
-} else {
-document.getElementById("customTimeBlock210").style.display = "none";
-document.getElementById("fromSensorBlock210").style.display = "none";
-document.getElementById("summaryMethod210").style.display = "none";
-}
-} );
-
-$("#binChoice40").change(function() {
-var bins = $("#binChoice40").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock310").style.display = "none";
-document.getElementById("fromSensorBlock310").style.display = "block";
-document.getElementById("summaryMethod310").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock310").style.display = "block";
-document.getElementById("fromSensorBlock310").style.display = "none";
-document.getElementById("summaryMethod310").style.display = "block";
-} else {
-document.getElementById("customTimeBlock310").style.display = "none";
-document.getElementById("fromSensorBlock310").style.display = "none";
-document.getElementById("summaryMethod310").style.display = "none";
-}
-} );
-
-$("#binChoice111").change(function() {
-var bins = $("#binChoice111").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock111").style.display = "none";
-document.getElementById("fromSensorBlock111").style.display = "block";
-document.getElementById("summaryMethod111").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock111").style.display = "block";
-document.getElementById("fromSensorBlock111").style.display = "none";
-document.getElementById("summaryMethod111").style.display = "block";
-} else {
-document.getElementById("customTimeBlock111").style.display = "none";
-document.getElementById("fromSensorBlock111").style.display = "none";
-document.getElementById("summaryMethod111").style.display = "none";
-}
-} );
-
-$("#binChoice211").change(function() {
-var bins = $("#binChoice211").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock211").style.display = "none";
-document.getElementById("fromSensorBlock211").style.display = "block";
-document.getElementById("summaryMethod211").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock211").style.display = "block";
-document.getElementById("fromSensorBlock211").style.display = "none";
-document.getElementById("summaryMethod211").style.display = "block";
-} else {
-document.getElementById("customTimeBlock211").style.display = "none";
-document.getElementById("fromSensorBlock211").style.display = "none";
-document.getElementById("summaryMethod211").style.display = "none";
-}
-} );
-
-$("#binChoice311").change(function() {
-var bins = $("#binChoice311").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock311").style.display = "none";
-document.getElementById("fromSensorBlock311").style.display = "block";
-document.getElementById("summaryMethod311").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock311").style.display = "block";
-document.getElementById("fromSensorBlock311").style.display = "none";
-document.getElementById("summaryMethod311").style.display = "block";
-} else {
-document.getElementById("customTimeBlock311").style.display = "none";
-document.getElementById("fromSensorBlock311").style.display = "none";
-document.getElementById("summaryMethod311").style.display = "none";
-}
-} );
-
-$("#binChoice112").change(function() {
-var bins = $("#binChoice112").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock112").style.display = "none";
-document.getElementById("fromSensorBlock112").style.display = "block";
-document.getElementById("summaryMethod112").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock112").style.display = "block";
-document.getElementById("fromSensorBlock112").style.display = "none";
-document.getElementById("summaryMethod112").style.display = "block";
-} else {
-document.getElementById("customTimeBlock112").style.display = "none";
-document.getElementById("fromSensorBlock112").style.display = "none";
-document.getElementById("summaryMethod112").style.display = "none";
-}
-} );
-
-$("#binChoice212").change(function() {
-var bins = $("#binChoice212").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock212").style.display = "none";
-document.getElementById("fromSensorBlock212").style.display = "block";
-document.getElementById("summaryMethod212").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock212").style.display = "block";
-document.getElementById("fromSensorBlock212").style.display = "none";
-document.getElementById("summaryMethod212").style.display = "block";
-} else {
-document.getElementById("customTimeBlock212").style.display = "none";
-document.getElementById("fromSensorBlock212").style.display = "none";
-document.getElementById("summaryMethod212").style.display = "none";
-}
-} );
-
-$("#binChoice312").change(function() {
-var bins = $("#binChoice312").val();
-console.log(bins);
-if (bins == "From Sensor"){
-document.getElementById("customTimeBlock312").style.display = "none";
-document.getElementById("fromSensorBlock312").style.display = "block";
-document.getElementById("summaryMethod312").style.display = "block";
-} else if (bins == "Custom Time"){
-document.getElementById("customTimeBlock312").style.display = "block";
-document.getElementById("fromSensorBlock312").style.display = "none";
-document.getElementById("summaryMethod312").style.display = "block";
-} else {
-document.getElementById("customTimeBlock312").style.display = "none";
-document.getElementById("fromSensorBlock312").style.display = "none";
-document.getElementById("summaryMethod312").style.display = "none";
 }
 } );
 

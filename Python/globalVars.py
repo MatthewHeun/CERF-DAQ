@@ -36,9 +36,13 @@ onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/onPeakOffPeakTi
 
 f = open(onPeakOffPeakTimeFile)
 
-START_TIME = int(f.readline().strip())
+START_TIME = f.readline().strip()
+if (len(START_TIME) != 0):
+	START_TIME = int(START_TIME)
 
-STOP_TIME = int(f.readline().strip())
+STOP_TIME = f.readline().strip()
+if (len(STOP_TIME) != 0):
+	STOP_TIME = int(STOP_TIME)
 
 PEAK_WEEKDAY = []
 
