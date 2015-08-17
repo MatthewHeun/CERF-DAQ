@@ -99,6 +99,8 @@ def getDateFromDataString(datastring):
 					
 					#returns true if the check date is within date1 and date2 (date 2 should be later than date 1)
 def dateInRange(checkDate, date1, date2):
+	#print str(date1) + ' ' + str(checkDate) + ' ' + str(date2)
+	#print (checkDate >= date1) and (checkDate < date2)
 	if ((checkDate >= date1) and (checkDate < date2)):
 		return True
 	else:
@@ -247,9 +249,11 @@ def createSensorBins(sensor, analysisNumber):
 					fileList.append(file)
 				fileList.sort()						#if the files are not sorted, bins can strech randomly for days or skip whole days as the dates are not appearing on chronological order
 				for file in fileList:
+					#print file
 					file = open(filepath + '/' + file)
 					for line in file:				#reads every line in each year^ and month^ folder
-						if line[0] != "#":			#ignore the metadata
+						#print line
+						if line[0].isdigit():				#ignore the metadata
 							row = re.split(',',line)		#turn the line into an array of data, based on its csv delimeters
 							time = getDateFromDataString(row[4])	#the time the data is recorded was saved in the 5th column
 							data = row[5].replace('\n','')	#the data was saved in the 6th column, but it also contains the invisible new line delimeter
@@ -329,7 +333,7 @@ def aggregateMinMaxData(sensor, analysisNumber):
 	end = False
 
 	for line in summaryfile:
-		if line[0] != '#':								#ignore the metadata
+		if line[0].isdigit():							#ignore the metadata
 			row = re.split(',',line)					#turn csv into array
 			startTime = getDateFromDataString(row[3])
 			endTime = getDateFromDataString(row[4])
@@ -473,7 +477,7 @@ def aggregateRangeData(sensor, analysisNumber):
 	end = False
 
 	for line in summaryfile:
-		if line[0] != '#':									#ignore the metadata
+		if line[0].isdigit():								#ignore the metadata
 			row = re.split(',',line)						#create an array out of the csv
 			startTime = getDateFromDataString(row[3])
 			endTime = getDateFromDataString(row[4])
@@ -548,7 +552,7 @@ def aggregateRangeData(sensor, analysisNumber):
 		if (durationInRangeTotal == 0):
 			durationInRangeTotal = 1
 		if (durationOutOfRangeTotal == 0):
-			durationOutOfRange = 1
+			durationOutOfRangeTotal = 1
 		onPercentageInRange = float(float(totalInRange) / float(durationInRangeTotal))
 		onPercentageOutOfRange = float(float(totalOutOfRange) / float(durationOutOfRangeTotal))
 		if sensor.summaryMethod[analysisNumber] == "Month":
@@ -604,7 +608,7 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 			for file in fileList:
 				file = open(filePath + file)
 				for line in file:
-					if line[0] != '#':				#ignore the metadata
+					if line[0].isdigit():	#ignore the metadata
 						row = re.split(',',line)	#convert the csv line to an array
 						time = row[4]
 						data = row[5].replace('\n','')
@@ -660,6 +664,8 @@ def rangeAnalysis(sensor, analysisNumber):
 	summaryfile.write(summaryString)
 
 	firstDate = getFirstDate(sensor)
+	lastTime = firstDate
+	time = firstDate
 	today = datetime.datetime.today()
 
 	minutesOn = 0
@@ -687,18 +693,22 @@ def rangeAnalysis(sensor, analysisNumber):
 				fileList.append(file)
 			fileList.sort()
 			for file in fileList:
+				#print file
 				fileDate = getDateFromFile(file)
 				file = open(filePath + file)
 				for line in file:
-					if line[0] != '#':				#ignore the metadata
+					if line[0].isdigit():				#ignore the metadata
 						row = re.split(',',line)	#turn the csv lines into an array.
 						time = row[4]
 						data = row[5].replace('\n','')
 						time = getDateFromDataString(time)	#get the time the data was taken from the string
 						if firstTimeThrough:
 							lastTime = time;
+						#if sensor.number == 1:
+							#print time
 						if ((len(binArray[analysisNumber][sensor.number-1].timeArray)) > 1 and (dateInRange(time, binArray[analysisNumber][sensor.number-1].timeArray[binIndex][0], binArray[analysisNumber][sensor.number-1].timeArray[binIndex][1]))):
 							inRangeNow = True 				#if the time is within the range bin, inrange = true 			
+							#print "Hello"
 						else:	
 							inRangeNow = False 				#else false
 						if sensor.thresholdMin[analysisNumber] == "":		#if the user didn't enter a threshold treat it as 0
@@ -764,6 +774,8 @@ def rangeAnalysis(sensor, analysisNumber):
 			inRangeString = "In Range"
 		else:
 			inRangeString = "Out of Range"
+		if totalMinutes == 0:
+			totalMinutes = 1
 		percentOn = (float(minutesOn) / float(totalMinutes))*100
 		summaryString = str(PI_NUMBER) + ',' + str(sensor.number) + ',' + str(sensor.name) + ',' + str(lastTime) + ',' + str(time) + ',' + "%.2f" %percentOn + ',' + inRangeString + '\n'
 		summaryfile.write(summaryString)
@@ -818,7 +830,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 				fileDate = getDateFromFile(file)
 				file = open(filePath + file)
 				for line in file:					#check each data point in each file
-					if line[0] != '#':
+					if line[0].isdigit():
 						row = re.split(',',line)	#turn csv line into an array
 						time = row[4]
 						data = row[5].replace('\n','')
@@ -851,7 +863,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 							totalMinutes = 0.0
 							lastTime = time + datetime.timedelta(0,60)
 							end = True
-							print "Writing to file"
+							#print "Writing to file"
 							if (sensor.binType == "Day" or sensor.binType == "Month"): # correction so that consecutive bin ranges (no gaps in between) move seemlessly from one bin range to the next
 								average += float(data)
 								totalMinutes += 1

@@ -95,7 +95,6 @@ setTimeout(function(){
 	</form>
 	<button type="submit" class="btn-lg btn-info btn-block" form="zip-pi">Zip Data <?php if ($ZIP_PI == true) {echo '<i class="fa fa-refresh fa-spin"></i>';} ?></button>
 
-
 	</div> <!-- col-lg-6 -->
 	</div> <!-- row -->
 	</div> <!-- panel-body -->

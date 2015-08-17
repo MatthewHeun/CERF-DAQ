@@ -31,7 +31,7 @@
 									$Picture = '<i class="fa fa-child fa-fw pull-right"></i>';
 								}
 								echo '<li>';
-                            	echo '<a href="sensor.php?sensorNumber=' . $i . '"><i class="fa fa-dashboard fa-fw"></i>  ' . $SENSOR_INFO[$i-1]->name . $Picture . '</a>' . "\n";
+                            	echo '<a href="sensor.php?sensorNumber=' . $i . '"><i class="fa fa-dashboard fa-fw"></i>  ' . $i . ' ' . $SENSOR_INFO[$i-1]->name . $Picture . '</a>' . "\n";
                         		echo '</li>';
 								$i = $i + 1;
 							}
