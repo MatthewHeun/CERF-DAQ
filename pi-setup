@@ -126,8 +126,8 @@ echo "	+Done"
 echo "Creating Cron Jobs"
 echo "#m h dom mon dow  command" > mycron
 echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/GetDataCron.log 2>&1" >> mycron
-echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/AnalysisCron.log 2>&1" >> mycron
-echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip-data.sh >> /dev/ZipCron.log 2>&1" >> mycron
+echo "00 00 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/AnalysisCron.log 2>&1" >> mycron
+echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip-data.sh >> /dev/ZipCron.log 2>&1" >> mycron
 echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi.sh >> /dev/UpdatePiCron.log 2>&1" >> mycron
 sudo crontab mycron 
 sudo rm mycron

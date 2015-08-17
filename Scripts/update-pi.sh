@@ -6,3 +6,5 @@ yes | sudo apt-get update
 yes | sudo apt-get upgrade
 
 echo '1' > "/home/pi/Desktop/CERF-DAQ/WebPage/pages/updateHealth.txt"
+
+sudo reboot
