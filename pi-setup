@@ -151,17 +151,6 @@ echo "	+Done"
 echo -e '\n\n'
 echo "Configuring the Wifi"
 /bin/bash /home/pi/Desktop/CERF-DAQ/writeSupplicant
-echo "Go to the following website: https://www.raspberrypi.org/forums/viewtopic.php?t=62371"
-echo "And find the correct datestring for the corresponding linux kernel version"
-uname -a
-echo "Enter the datestring here in the following format:"
-echo "YYYYMMDD (No spaces, dashes, and slashes)"
-read datestring
-wget https://dl.dropboxusercontent.com/u/80256631/8188eu-v7-$datestring.tar.gz
-tar xzf /home/pi/Desktop/CERF-DAQ/8188eu-v7-$datestring.tar.gz
-/home/pi/Desktop/CERF-DAQ/install.sh
-echo "	+Done"
-
 
 #==============================
 #========Upgrading Pi==========
