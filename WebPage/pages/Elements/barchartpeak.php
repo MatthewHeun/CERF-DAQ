@@ -15,6 +15,8 @@
 					$Picture = '<i class="fa fa-tasks fa-fw"></i>';
 				} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy"){
 					$Picture = '<i class="fa fa-child fa-fw"></i>';
+				} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Current"){
+					$Picture = '<i class="fa fa-bolt fa-fw"></i>';
 				}
 			?>
 					<h2 style="text-align:center; margin-top:0px; margin-bottom:15px; background-color:transparent; border-radius:4px; border-color:#337ab7; color:#2e6da4"> Analysis: <?php echo $SENSOR_INFO[$sensor_number-1]->analysis[$k]; echo $Picture?> </h1>

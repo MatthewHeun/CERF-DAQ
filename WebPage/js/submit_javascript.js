@@ -124,8 +124,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress1").style.display = "none";
+document.getElementById("wattage1").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage1").style.display = "block";
+document.getElementById("i2cAddress1").style.display = "none";
 } else {
 document.getElementById("i2cAddress1").style.display = "block";
+document.getElementById("wattage1").style.display = "none";
 }
 } );
 
@@ -135,8 +140,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress2").style.display = "none";
+document.getElementById("wattage2").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage2").style.display = "block";
+document.getElementById("i2cAddress2").style.display = "none";
 } else {
 document.getElementById("i2cAddress2").style.display = "block";
+document.getElementById("wattage2").style.display = "none";
 }
 } );
 
@@ -146,8 +156,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress3").style.display = "none";
+document.getElementById("wattage3").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage3").style.display = "block";
+document.getElementById("i2cAddress3").style.display = "none";
 } else {
 document.getElementById("i2cAddress3").style.display = "block";
+document.getElementById("wattage3").style.display = "none";
 }
 } );
 
@@ -157,8 +172,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress4").style.display = "none";
+document.getElementById("wattage4").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage4").style.display = "block";
+document.getElementById("i2cAddress4").style.display = "none";
 } else {
 document.getElementById("i2cAddress4").style.display = "block";
+document.getElementById("wattage4").style.display = "none";
 }
 } );
 
@@ -168,8 +188,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress5").style.display = "none";
+document.getElementById("wattage5").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage5").style.display = "block";
+document.getElementById("i2cAddress5").style.display = "none";
 } else {
 document.getElementById("i2cAddress5").style.display = "block";
+document.getElementById("wattage5").style.display = "none";
 }
 } );
 
@@ -179,8 +204,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress6").style.display = "none";
+document.getElementById("wattage6").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage6").style.display = "block";
+document.getElementById("i2cAddress6").style.display = "none";
 } else {
 document.getElementById("i2cAddress6").style.display = "block";
+document.getElementById("wattage6").style.display = "none";
 }
 } );
 
@@ -190,8 +220,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress7").style.display = "none";
+document.getElementById("wattage7").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage7").style.display = "block";
+document.getElementById("i2cAddress7").style.display = "none";
 } else {
 document.getElementById("i2cAddress7").style.display = "block";
+document.getElementById("wattage7").style.display = "none";
 }
 } );
 
@@ -201,8 +236,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress8").style.display = "none";
+document.getElementById("wattage8").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage8").style.display = "block";
+document.getElementById("i2cAddress8").style.display = "none";
 } else {
 document.getElementById("i2cAddress8").style.display = "block";
+document.getElementById("wattage8").style.display = "none";
 }
 } );
 
@@ -212,8 +252,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress9").style.display = "none";
+document.getElementById("wattage9").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage9").style.display = "block";
+document.getElementById("i2cAddress9").style.display = "none";
 } else {
 document.getElementById("i2cAddress9").style.display = "block";
+document.getElementById("wattage9").style.display = "none";
 }
 } );
 
@@ -223,8 +268,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress10").style.display = "none";
+document.getElementById("wattage10").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage10").style.display = "block";
+document.getElementById("i2cAddress10").style.display = "none";
 } else {
 document.getElementById("i2cAddress10").style.display = "block";
+document.getElementById("wattage10").style.display = "none";
 }
 } );
 
@@ -234,8 +284,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress11").style.display = "none";
+document.getElementById("wattage11").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage11").style.display = "block";
+document.getElementById("i2cAddress11").style.display = "none";
 } else {
 document.getElementById("i2cAddress11").style.display = "block";
+document.getElementById("wattage11").style.display = "none";
 }
 } );
 
@@ -245,8 +300,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress12").style.display = "none";
+document.getElementById("wattage12").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("wattage12").style.display = "block";
+document.getElementById("i2cAddress12").style.display = "none";
 } else {
 document.getElementById("i2cAddress12").style.display = "block";
+document.getElementById("wattage12").style.display = "none";
 }
 } );
 
@@ -660,7 +720,11 @@ console.log("11");
 document.getElementById("binInformation11").style.display = "block";
 document.getElementById("binSpecifics11").style.display = "block";
 document.getElementById("threshold11").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation11").style.display = "none";
+document.getElementById("binSpecifics11").style.display = "none";
+document.getElementById("threshold11").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation11").style.display = "block";
 document.getElementById("binSpecifics11").style.display = "block";
 document.getElementById("threshold11").style.display = "block";
@@ -681,7 +745,11 @@ console.log("21");
 document.getElementById("binInformation21").style.display = "block";
 document.getElementById("binSpecifics21").style.display = "block";
 document.getElementById("threshold21").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation21").style.display = "none";
+document.getElementById("binSpecifics21").style.display = "none";
+document.getElementById("threshold21").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation21").style.display = "block";
 document.getElementById("binSpecifics21").style.display = "block";
 document.getElementById("threshold21").style.display = "block";
@@ -702,7 +770,11 @@ console.log("31");
 document.getElementById("binInformation31").style.display = "block";
 document.getElementById("binSpecifics31").style.display = "block";
 document.getElementById("threshold31").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation31").style.display = "none";
+document.getElementById("binSpecifics31").style.display = "none";
+document.getElementById("threshold31").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation31").style.display = "block";
 document.getElementById("binSpecifics31").style.display = "block";
 document.getElementById("threshold31").style.display = "block";
@@ -723,7 +795,11 @@ console.log("12");
 document.getElementById("binInformation12").style.display = "block";
 document.getElementById("binSpecifics12").style.display = "block";
 document.getElementById("threshold12").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation12").style.display = "none";
+document.getElementById("binSpecifics12").style.display = "none";
+document.getElementById("threshold12").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation12").style.display = "block";
 document.getElementById("binSpecifics12").style.display = "block";
 document.getElementById("threshold12").style.display = "block";
@@ -744,7 +820,11 @@ console.log("22");
 document.getElementById("binInformation22").style.display = "block";
 document.getElementById("binSpecifics22").style.display = "block";
 document.getElementById("threshold22").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation22").style.display = "none";
+document.getElementById("binSpecifics22").style.display = "none";
+document.getElementById("threshold22").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation22").style.display = "block";
 document.getElementById("binSpecifics22").style.display = "block";
 document.getElementById("threshold22").style.display = "block";
@@ -765,7 +845,11 @@ console.log("32");
 document.getElementById("binInformation32").style.display = "block";
 document.getElementById("binSpecifics32").style.display = "block";
 document.getElementById("threshold32").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation32").style.display = "none";
+document.getElementById("binSpecifics32").style.display = "none";
+document.getElementById("threshold32").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation32").style.display = "block";
 document.getElementById("binSpecifics32").style.display = "block";
 document.getElementById("threshold32").style.display = "block";
@@ -786,7 +870,11 @@ console.log("13");
 document.getElementById("binInformation13").style.display = "block";
 document.getElementById("binSpecifics13").style.display = "block";
 document.getElementById("threshold13").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation13").style.display = "none";
+document.getElementById("binSpecifics13").style.display = "none";
+document.getElementById("threshold13").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation13").style.display = "block";
 document.getElementById("binSpecifics13").style.display = "block";
 document.getElementById("threshold13").style.display = "block";
@@ -807,7 +895,11 @@ console.log("23");
 document.getElementById("binInformation23").style.display = "block";
 document.getElementById("binSpecifics23").style.display = "block";
 document.getElementById("threshold23").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation23").style.display = "none";
+document.getElementById("binSpecifics23").style.display = "none";
+document.getElementById("threshold23").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation23").style.display = "block";
 document.getElementById("binSpecifics23").style.display = "block";
 document.getElementById("threshold23").style.display = "block";
@@ -828,7 +920,11 @@ console.log("33");
 document.getElementById("binInformation33").style.display = "block";
 document.getElementById("binSpecifics33").style.display = "block";
 document.getElementById("threshold33").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation33").style.display = "none";
+document.getElementById("binSpecifics33").style.display = "none";
+document.getElementById("threshold33").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation33").style.display = "block";
 document.getElementById("binSpecifics33").style.display = "block";
 document.getElementById("threshold33").style.display = "block";
@@ -849,7 +945,11 @@ console.log("14");
 document.getElementById("binInformation14").style.display = "block";
 document.getElementById("binSpecifics14").style.display = "block";
 document.getElementById("threshold14").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation14").style.display = "none";
+document.getElementById("binSpecifics14").style.display = "none";
+document.getElementById("threshold14").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation14").style.display = "block";
 document.getElementById("binSpecifics14").style.display = "block";
 document.getElementById("threshold14").style.display = "block";
@@ -870,7 +970,11 @@ console.log("24");
 document.getElementById("binInformation24").style.display = "block";
 document.getElementById("binSpecifics24").style.display = "block";
 document.getElementById("threshold24").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation24").style.display = "none";
+document.getElementById("binSpecifics24").style.display = "none";
+document.getElementById("threshold24").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation24").style.display = "block";
 document.getElementById("binSpecifics24").style.display = "block";
 document.getElementById("threshold24").style.display = "block";
@@ -891,7 +995,11 @@ console.log("34");
 document.getElementById("binInformation34").style.display = "block";
 document.getElementById("binSpecifics34").style.display = "block";
 document.getElementById("threshold34").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation34").style.display = "none";
+document.getElementById("binSpecifics34").style.display = "none";
+document.getElementById("threshold34").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation34").style.display = "block";
 document.getElementById("binSpecifics34").style.display = "block";
 document.getElementById("threshold34").style.display = "block";
@@ -912,7 +1020,11 @@ console.log("15");
 document.getElementById("binInformation15").style.display = "block";
 document.getElementById("binSpecifics15").style.display = "block";
 document.getElementById("threshold15").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation15").style.display = "none";
+document.getElementById("binSpecifics15").style.display = "none";
+document.getElementById("threshold15").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation15").style.display = "block";
 document.getElementById("binSpecifics15").style.display = "block";
 document.getElementById("threshold15").style.display = "block";
@@ -933,7 +1045,11 @@ console.log("25");
 document.getElementById("binInformation25").style.display = "block";
 document.getElementById("binSpecifics25").style.display = "block";
 document.getElementById("threshold25").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation25").style.display = "none";
+document.getElementById("binSpecifics25").style.display = "none";
+document.getElementById("threshold25").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation25").style.display = "block";
 document.getElementById("binSpecifics25").style.display = "block";
 document.getElementById("threshold25").style.display = "block";
@@ -954,7 +1070,11 @@ console.log("35");
 document.getElementById("binInformation35").style.display = "block";
 document.getElementById("binSpecifics35").style.display = "block";
 document.getElementById("threshold35").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation35").style.display = "none";
+document.getElementById("binSpecifics35").style.display = "none";
+document.getElementById("threshold35").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation35").style.display = "block";
 document.getElementById("binSpecifics35").style.display = "block";
 document.getElementById("threshold35").style.display = "block";
@@ -975,7 +1095,11 @@ console.log("16");
 document.getElementById("binInformation16").style.display = "block";
 document.getElementById("binSpecifics16").style.display = "block";
 document.getElementById("threshold16").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation16").style.display = "none";
+document.getElementById("binSpecifics16").style.display = "none";
+document.getElementById("threshold16").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation16").style.display = "block";
 document.getElementById("binSpecifics16").style.display = "block";
 document.getElementById("threshold16").style.display = "block";
@@ -996,7 +1120,11 @@ console.log("26");
 document.getElementById("binInformation26").style.display = "block";
 document.getElementById("binSpecifics26").style.display = "block";
 document.getElementById("threshold26").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation26").style.display = "none";
+document.getElementById("binSpecifics26").style.display = "none";
+document.getElementById("threshold26").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation26").style.display = "block";
 document.getElementById("binSpecifics26").style.display = "block";
 document.getElementById("threshold26").style.display = "block";
@@ -1017,7 +1145,11 @@ console.log("36");
 document.getElementById("binInformation36").style.display = "block";
 document.getElementById("binSpecifics36").style.display = "block";
 document.getElementById("threshold36").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation36").style.display = "none";
+document.getElementById("binSpecifics36").style.display = "none";
+document.getElementById("threshold36").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation36").style.display = "block";
 document.getElementById("binSpecifics36").style.display = "block";
 document.getElementById("threshold36").style.display = "block";
@@ -1038,7 +1170,11 @@ console.log("17");
 document.getElementById("binInformation17").style.display = "block";
 document.getElementById("binSpecifics17").style.display = "block";
 document.getElementById("threshold17").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation17").style.display = "none";
+document.getElementById("binSpecifics17").style.display = "none";
+document.getElementById("threshold17").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation17").style.display = "block";
 document.getElementById("binSpecifics17").style.display = "block";
 document.getElementById("threshold17").style.display = "block";
@@ -1059,7 +1195,11 @@ console.log("27");
 document.getElementById("binInformation27").style.display = "block";
 document.getElementById("binSpecifics27").style.display = "block";
 document.getElementById("threshold27").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation27").style.display = "none";
+document.getElementById("binSpecifics27").style.display = "none";
+document.getElementById("threshold27").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation27").style.display = "block";
 document.getElementById("binSpecifics27").style.display = "block";
 document.getElementById("threshold27").style.display = "block";
@@ -1080,7 +1220,11 @@ console.log("37");
 document.getElementById("binInformation37").style.display = "block";
 document.getElementById("binSpecifics37").style.display = "block";
 document.getElementById("threshold37").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation37").style.display = "none";
+document.getElementById("binSpecifics37").style.display = "none";
+document.getElementById("threshold37").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation37").style.display = "block";
 document.getElementById("binSpecifics37").style.display = "block";
 document.getElementById("threshold37").style.display = "block";
@@ -1101,7 +1245,11 @@ console.log("18");
 document.getElementById("binInformation18").style.display = "block";
 document.getElementById("binSpecifics18").style.display = "block";
 document.getElementById("threshold18").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation18").style.display = "none";
+document.getElementById("binSpecifics18").style.display = "none";
+document.getElementById("threshold18").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation18").style.display = "block";
 document.getElementById("binSpecifics18").style.display = "block";
 document.getElementById("threshold18").style.display = "block";
@@ -1122,7 +1270,11 @@ console.log("28");
 document.getElementById("binInformation28").style.display = "block";
 document.getElementById("binSpecifics28").style.display = "block";
 document.getElementById("threshold28").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation28").style.display = "none";
+document.getElementById("binSpecifics28").style.display = "none";
+document.getElementById("threshold28").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation28").style.display = "block";
 document.getElementById("binSpecifics28").style.display = "block";
 document.getElementById("threshold28").style.display = "block";
@@ -1143,7 +1295,11 @@ console.log("38");
 document.getElementById("binInformation38").style.display = "block";
 document.getElementById("binSpecifics38").style.display = "block";
 document.getElementById("threshold38").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation38").style.display = "none";
+document.getElementById("binSpecifics38").style.display = "none";
+document.getElementById("threshold38").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation38").style.display = "block";
 document.getElementById("binSpecifics38").style.display = "block";
 document.getElementById("threshold38").style.display = "block";
@@ -1164,7 +1320,11 @@ console.log("19");
 document.getElementById("binInformation19").style.display = "block";
 document.getElementById("binSpecifics19").style.display = "block";
 document.getElementById("threshold19").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation19").style.display = "none";
+document.getElementById("binSpecifics19").style.display = "none";
+document.getElementById("threshold19").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation19").style.display = "block";
 document.getElementById("binSpecifics19").style.display = "block";
 document.getElementById("threshold19").style.display = "block";
@@ -1185,7 +1345,11 @@ console.log("29");
 document.getElementById("binInformation29").style.display = "block";
 document.getElementById("binSpecifics29").style.display = "block";
 document.getElementById("threshold29").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation29").style.display = "none";
+document.getElementById("binSpecifics29").style.display = "none";
+document.getElementById("threshold29").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation29").style.display = "block";
 document.getElementById("binSpecifics29").style.display = "block";
 document.getElementById("threshold29").style.display = "block";
@@ -1206,7 +1370,11 @@ console.log("39");
 document.getElementById("binInformation39").style.display = "block";
 document.getElementById("binSpecifics39").style.display = "block";
 document.getElementById("threshold39").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation39").style.display = "none";
+document.getElementById("binSpecifics39").style.display = "none";
+document.getElementById("threshold39").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation39").style.display = "block";
 document.getElementById("binSpecifics39").style.display = "block";
 document.getElementById("threshold39").style.display = "block";
@@ -1227,7 +1395,11 @@ console.log("110");
 document.getElementById("binInformation110").style.display = "block";
 document.getElementById("binSpecifics110").style.display = "block";
 document.getElementById("threshold110").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation110").style.display = "none";
+document.getElementById("binSpecifics110").style.display = "none";
+document.getElementById("threshold110").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation110").style.display = "block";
 document.getElementById("binSpecifics110").style.display = "block";
 document.getElementById("threshold110").style.display = "block";
@@ -1248,7 +1420,11 @@ console.log("210");
 document.getElementById("binInformation210").style.display = "block";
 document.getElementById("binSpecifics210").style.display = "block";
 document.getElementById("threshold210").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation210").style.display = "none";
+document.getElementById("binSpecifics210").style.display = "none";
+document.getElementById("threshold210").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation210").style.display = "block";
 document.getElementById("binSpecifics210").style.display = "block";
 document.getElementById("threshold210").style.display = "block";
@@ -1269,7 +1445,11 @@ console.log("310");
 document.getElementById("binInformation310").style.display = "block";
 document.getElementById("binSpecifics310").style.display = "block";
 document.getElementById("threshold310").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation310").style.display = "none";
+document.getElementById("binSpecifics310").style.display = "none";
+document.getElementById("threshold310").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation310").style.display = "block";
 document.getElementById("binSpecifics310").style.display = "block";
 document.getElementById("threshold310").style.display = "block";
@@ -1290,7 +1470,11 @@ console.log("111");
 document.getElementById("binInformation111").style.display = "block";
 document.getElementById("binSpecifics111").style.display = "block";
 document.getElementById("threshold111").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation111").style.display = "none";
+document.getElementById("binSpecifics111").style.display = "none";
+document.getElementById("threshold111").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation111").style.display = "block";
 document.getElementById("binSpecifics111").style.display = "block";
 document.getElementById("threshold111").style.display = "block";
@@ -1311,7 +1495,11 @@ console.log("211");
 document.getElementById("binInformation211").style.display = "block";
 document.getElementById("binSpecifics211").style.display = "block";
 document.getElementById("threshold211").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation211").style.display = "none";
+document.getElementById("binSpecifics211").style.display = "none";
+document.getElementById("threshold211").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation211").style.display = "block";
 document.getElementById("binSpecifics211").style.display = "block";
 document.getElementById("threshold211").style.display = "block";
@@ -1332,7 +1520,11 @@ console.log("311");
 document.getElementById("binInformation311").style.display = "block";
 document.getElementById("binSpecifics311").style.display = "block";
 document.getElementById("threshold311").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation311").style.display = "none";
+document.getElementById("binSpecifics311").style.display = "none";
+document.getElementById("threshold311").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation311").style.display = "block";
 document.getElementById("binSpecifics311").style.display = "block";
 document.getElementById("threshold311").style.display = "block";
@@ -1353,7 +1545,11 @@ console.log("112");
 document.getElementById("binInformation112").style.display = "block";
 document.getElementById("binSpecifics112").style.display = "block";
 document.getElementById("threshold112").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation112").style.display = "none";
+document.getElementById("binSpecifics112").style.display = "none";
+document.getElementById("threshold112").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation112").style.display = "block";
 document.getElementById("binSpecifics112").style.display = "block";
 document.getElementById("threshold112").style.display = "block";
@@ -1374,7 +1570,11 @@ console.log("212");
 document.getElementById("binInformation212").style.display = "block";
 document.getElementById("binSpecifics212").style.display = "block";
 document.getElementById("threshold212").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation212").style.display = "none";
+document.getElementById("binSpecifics212").style.display = "none";
+document.getElementById("threshold212").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation212").style.display = "block";
 document.getElementById("binSpecifics212").style.display = "block";
 document.getElementById("threshold212").style.display = "block";
@@ -1395,7 +1595,11 @@ console.log("312");
 document.getElementById("binInformation312").style.display = "block";
 document.getElementById("binSpecifics312").style.display = "block";
 document.getElementById("threshold312").style.display = "none";
-} else {
+} else if (analysis == "kWh"){
+document.getElementById("binInformation312").style.display = "none";
+document.getElementById("binSpecifics312").style.display = "none";
+document.getElementById("threshold312").style.display = "none";
+} else if (analysis == "Range Analysis"){
 document.getElementById("binInformation312").style.display = "block";
 document.getElementById("binSpecifics312").style.display = "block";
 document.getElementById("threshold312").style.display = "block";

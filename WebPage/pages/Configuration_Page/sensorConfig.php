@@ -13,6 +13,8 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$Picture = '<i class="fa fa-tasks fa-fw"></i>';
 		} elseif ($SENSOR_INFO[$i]->type == "Occupancy"){
 			$Picture = '<i class="fa fa-child fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$i]->type == "Current"){
+			$Picture = '<i class="fa fa-bolt fa-fw"></i>';
 		}
 
 		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . ' ' . $Picture . '</button></div>' . "\n";
@@ -34,7 +36,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$displayString = '';
 				//echo "CHECK HERE";
 				//echo $SENSOR_INFO[$i]->type;
-				if ($SENSOR_INFO[$i]->type == "Occupancy"){
+				if ($SENSOR_INFO[$i]->type == "Occupancy" || $SENSOR_INFO[$i]->type == "Current"){
 					//echo "Changing Display";
 					$displayString = ' style="display:none;"';
 				}
@@ -69,6 +71,21 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$html_sensor_list .= '<div class="col-lg-4">' . "\n";
 				
 				include 'numberOfAnalysis.php';
+
+			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
+			
+			//-------------------------Wattage Level-----------------------//
+			
+			$displayString = '';
+				//echo "CHECK HERE";
+				//echo $SENSOR_INFO[$i]->type;
+				if ($SENSOR_INFO[$i]->type != "Current"){
+					//echo "Changing Display";
+					$displayString = ' style="display:none;"';
+				}
+			$html_sensor_list .= '<div class="col-lg-4" id="wattage' . ($i+1) . '"' . $displayString . '>' . "\n";
+
+				include 'wattage.php';
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 

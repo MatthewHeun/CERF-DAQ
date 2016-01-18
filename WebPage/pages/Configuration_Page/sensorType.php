@@ -18,6 +18,11 @@
 	} else {
 		$html_sensor_list .= '<option>Occupancy</option>' . "\n";
 	}
+	if ($SENSOR_INFO[$i]->type == "Current"){
+		$html_sensor_list .= '<option selected="selected">Current</option>' . "\n";
+	} else {
+		$html_sensor_list .= '<option>Current</option>' . "\n";
+	}
 	$html_sensor_list .= '</select>' . "\n";
 	$html_sensor_list .= '<br>' . "\n";
 

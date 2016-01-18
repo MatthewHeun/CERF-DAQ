@@ -29,6 +29,8 @@
 									$Picture = '<i class="fa fa-tasks fa-fw pull-right"></i>';
 								} elseif ($SENSOR_INFO[$i-1]->type == "Occupancy"){
 									$Picture = '<i class="fa fa-child fa-fw pull-right"></i>';
+								} elseif ($SENSOR_INFO[$i-1]->type == "Current"){
+									$Picture = '<i class="fa fa-bolt fa-fw pull-right"></i>';
 								}
 								echo '<li>';
                             	echo '<a href="sensor.php?sensorNumber=' . $i . '"><i class="fa fa-dashboard fa-fw"></i>  ' . $i . ' ' . $SENSOR_INFO[$i-1]->name . $Picture . '</a>' . "\n";

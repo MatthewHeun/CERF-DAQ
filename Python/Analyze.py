@@ -655,6 +655,65 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 			startYear += 1
 
 #-----------------------------------------------------------------------
+
+def kWhAnalysis(sensor, analysisNumber):
+	initializeSummary(sensor, analysisNumber)
+	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
+	summaryfile = open(filename, 'a')
+	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,kWh On-Peak,kWh Off-Peak" + '\n'
+	summaryfile.write(summaryString)
+
+	firstDate = getFirstDate(sensor)		#get the first datapoint time
+	today = datetime.datetime.today()		#get the time of today
+
+	kWhOn_Peak = 0
+	kWhOn_OffPeak = 0
+
+	startYear = int(firstDate.year)			
+	startMonth = int(firstDate.month)
+
+	summaryString = ""
+
+	for x in range(monthsDiff(today, firstDate)+1):		#for the number of months between the first datapoint and today...
+		if int(startMonth) < 10:
+			startMonth = "0" + str(startMonth)
+
+		filePath = raw_path + 'Sensor' + str(sensor.number) + '/' + str(startYear) + '/' + str(startMonth) + '/'	#navigate to the correct month folder
+
+		if os.path.exists(filePath):
+			fileList = []
+			for file in os.listdir(filePath):
+				fileList.append(file)
+			fileList.sort()
+			for file in fileList:
+				file = open(filePath + file)
+				for line in file:
+					if line[0].isdigit():	#ignore the metadata
+						row = re.split(',',line)	#convert the csv line to an array
+						time = row[4]
+						data = row[5].replace('\n','')
+						time = getDateFromDataString(time)
+
+						peakDay = False
+						if time.weekday() in PEAK_WEEKDAY:
+							peakDay = True
+						if (time.hour >= START_TIME and time.hour < STOP_TIME and peakDay): 	#if during peak hours add to kWh on peak
+							kWhOn_Peak += float(data) / 60.0
+						else:															#otherwise add to minutes off peak
+							kWhOn_OffPeak += float(data) / 60.0
+
+		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %kWhOn_Peak + ',' + "%.2f" %kWhOn_OffPeak + "\n"
+		summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
+
+		kWhOn_Peak = 0
+		kWhOn_OffPeak = 0
+
+		startMonth  = int(startMonth) + 1
+		if startMonth > 12:
+			startMonth = 1
+			startYear += 1
+
+#-----------------------------------------------------------------------
 							#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
 def rangeAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
@@ -931,7 +990,10 @@ def analyzeData():
 					#print 'Performing Range Analysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
 				elif SENSOR_INFO[i].analysis[c] == "Min-Max":
 					minMaxAnalysis(SENSOR_INFO[i], c)
-					#print 'Performing Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)			
+					#print 'Performing Min-Max Anlysis: ' + 'Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)
+				elif SENSOR_INFO[i].analysis[c] == "kWh":
+					kWhAnalysis(SENSOR_INFO[i], c)
+					#print 'Permorming kWh Analysis: ' + Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)			
 			file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
 			percentComplete = float(float(percentIndex)/float((3)*(NUM_SENSORS)))*100
 			percentComplete = "%.2f" %percentComplete + '%'

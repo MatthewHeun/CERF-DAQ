@@ -3,14 +3,13 @@ import time
 import os
 from Adafruit_ADS1x15 import ADS1x15
 from Occupancy_vars import *
+import RPi.GPIO as GPIO
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
 #==================================================================
-
 									#Define the type of ADC to be used
 ADS1115 = 0x01								#16-bit ADC defined (would be 0x00 for the 12bit ADC)
-
 
 #==================================================================
 #----------------------FUNCTION DEFINITIONS------------------------
@@ -30,7 +29,14 @@ def getTemperature(i2cAddress, pinNumber):
 
 def getOccupancy(pinNumber):
 	#print "pinNumber: " + str(pinNumber)
-	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. 
+	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
+	return value
+
+def getWattage(pinNumber):
+	#print "pinNumber: " + str(pinNumber)
+	GPIO.setmode(GPIO.BOARD)
+	GPIO.setup(int(self.pinNumber), GPIO.IN)
+	value = GPIO.input(pinNumber) * wattage
 	return value
 
 
@@ -58,7 +64,8 @@ class Sensor:
 		self.customStart = [0,0,0]
 		self.customStop = [0,0,0]
 		self.summaryMethod = ["","",""]
-		self.numberOfAnalysis
+		self.numberOfAnalysis = 0
+		self.wattage = 0
 
 	def set_name(self, new_name):
 		self.name = new_name
@@ -94,6 +101,8 @@ class Sensor:
 			reading = getTemperature(self.i2cAddress, self.pinNumber)
 		elif (self.type == "Occupancy"):
 			reading = getOccupancy(self.pinNumber)
+		elif (self.type == "Wattage"):
+			reading = getWattage(self.pinNumber)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):
@@ -123,5 +132,8 @@ class Sensor:
 
 	def set_summaryMethod(self, new_summaryMethod, index):
 		self.summaryMethod[index] = new_summaryMethod
+
+	def set_wattage(self, new_wattage):
+		self.wattage = new_wattage
 	
 

@@ -66,6 +66,8 @@ def createMetadata(sensor):
 		sensorKey = "Temperature[C]"
 	elif (SENSOR_INFO[sensor-1].type == "Occupancy"):
 		sensorKey = "Occupancy[1/0]"
+	elif (SENSOR_INFO[sensor-1].type == "Current"):
+		sensorKey = "Power[W]"
 	return ("#Pi_Number,str(sensor),Descriptive_Sensor_Name,Date/Time_[UTC],Date/Time_[Local]," + sensorKey + '\n')
 
 #------------------------------------------------------------------

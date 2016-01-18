@@ -22,6 +22,7 @@ class sensor {
 	public $customStop;
 	public $summaryMethod;
 	public $numberOfAnalysis;
+	public $wattage;
 
 
 
@@ -31,6 +32,7 @@ class sensor {
 		$this->i2cAddress = 0;
 		$this->pinNumber = 0;
 		$this->numberOfAnalysis = 0;
+		$this->wattage = 0;
 		$this->analysis = array("","","");
 		$this->thresholdMin = array(0,0,0);
 		$this->thresholdMax = array(0,0,0);
@@ -63,6 +65,10 @@ class sensor {
 
 	function set_numberOfAnalysis($new_number){
 		$this->numberOfAnalysis =$new_number;
+	}
+
+	function set_wattage($new_wattage){
+		$this->wattage = $new_wattage;
 	}
 
 	function set_analysis($new_analysis, $index){

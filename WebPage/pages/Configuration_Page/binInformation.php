@@ -19,7 +19,7 @@
 			//--------------------------Bin Type------------------------//
 
 			$displayString = '';
-				if ($SENSOR_INFO[$i]->analysis[$i3-1] == "On-Peak Off-Peak %"){
+				if ($SENSOR_INFO[$i]->analysis[$i3-1] == "On-Peak Off-Peak %" || $SENSOR_INFO[$i]->analysis[$i3-1] == "kWh"){
 					$displayString = ' style="display:none;"';
 				}
 
@@ -31,7 +31,7 @@
 
 
 			$displayString = '';
-				if ($SENSOR_INFO[$i]->analysis[$i3-1] == "Min-Max"){
+				if ($SENSOR_INFO[$i]->analysis[$i3-1] == "Min-Max" || $SENSOR_INFO[$i]->analysis[$i3-1] == "kWh"){
 					$displayString = ' style="display:none;"';
 				}
 
@@ -46,7 +46,7 @@
 		$html_sensor_list .= '</div> <!--row-->' . "\n";
 
 		$displayString = '';
-		if ($SENSOR_INFO[$i]->analysis[$i3-1] == "On-Peak Off-Peak %"){
+		if ($SENSOR_INFO[$i]->analysis[$i3-1] == "On-Peak Off-Peak %" || $SENSOR_INFO[$i]->analysis[$i3-1] == "kWh"){
 			$displayString = ' style="display:none;"';
 		}
 

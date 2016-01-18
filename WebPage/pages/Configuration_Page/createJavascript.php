@@ -26,8 +26,13 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 			$fileString .= 'console.log("sensor type");' . "\n";
 			$fileString .= 'if (sensorType == \'Occupancy\'){' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "none";' . "\n";
+			$fileString .= '} else if (sensorType == \'Current\'){' . "\n";
+				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "block";' . "\n";
+				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '} else {' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "block";' . "\n";
+				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '}' . "\n";
 		$fileString .= '} );' . "\n" . "\n";
 		fwrite($javaFile, $fileString);
@@ -73,7 +78,11 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 				$fileString .= 'document.getElementById("binInformation' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("binSpecifics' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("threshold' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
-			$fileString .= '} else {' . "\n";
+			$fileString .= '} else if (analysis == "kWh"){' . "\n";
+				$fileString .= 'document.getElementById("binInformation' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("binSpecifics' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("threshold' . ($i5+1) . ($i+1) . '").style.display = "none";' . "\n";
+			$fileString .= '} else if (analysis == "Range Analysis"){' . "\n";
 				$fileString .= 'document.getElementById("binInformation' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("binSpecifics' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("threshold' . ($i5+1) . ($i+1) . '").style.display = "block";' . "\n";

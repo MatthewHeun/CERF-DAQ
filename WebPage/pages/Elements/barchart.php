@@ -14,6 +14,8 @@
 			$Picture = '<i class="fa fa-tasks fa-fw"></i>';
 		} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy"){
 			$Picture = '<i class="fa fa-child fa-fw"></i>';
+		} elseif ($SENSOR_INFO[$sensor_number-1]->type == "Current"){
+					$Picture = '<i class="fa fa-bolt fa-fw"></i>';
 		}
 	?>
 

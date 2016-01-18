@@ -12,7 +12,7 @@
 			} elseif ($SENSOR_INFO[$i-1]->analysis[$k] == "Min-Max" or $SENSOR_INFO[$i-1]->analysis[$k] == "Range Analysis"){
 				include 'Elements/barchart.php'; 
 			} elseif ($SENSOR_INFO[$i-1]->analysis[$k] == "kWh"){
-				include 'Elements/barchartbins.php';
+				include 'Elements/barchartkWh.php';
 			}
 		}
 		$i = $i + 1;
