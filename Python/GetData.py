@@ -107,7 +107,7 @@ def dataString(sensor):
 	time_local = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
 	time_utc = datetime.datetime.strftime(local_dt.astimezone(pytz.utc), '%Y-%m-%dT%H:%M:%S')
 	SENSOR_INFO[sensor-1].set_value()
-	return (nameOfPi + ',' + str(sensor) + ',' + SENSOR_INFO[sensor-1].name + ',' + time_utc + ',' + time_local + ',' + "%.2f" %SENSOR_INFO[sensor-1].value + '\n')
+	return (nameOfPi + ',' + str(sensor) + ',' + SENSOR_INFO[sensor-1].name + ',' + time_utc + ',' + time_local + ',' + "%.2f" %float(SENSOR_INFO[sensor-1].value) + '\n')
 
 #------------------------------------------------------------------
 

@@ -37,7 +37,9 @@ new Morris.Area({
             echo 'labels: [\'Temp Value [C]\']';
           } elseif ($SENSOR_INFO[$sensor_number-1]->type == "Occupancy") {
             echo 'labels: [\'Occupancy[1=Yes 0=No]\']';
-          }
+          } elseif ($SENSOR_INFO[$sensor_number-1]->type == "Current") {
+            echo 'labels: [\'Wattage [W]\']';
+	  }
 
         ?>
 		});

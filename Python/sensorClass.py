@@ -32,11 +32,15 @@ def getOccupancy(pinNumber):
 	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
 	return value
 
-def getWattage(pinNumber):
-	#print "pinNumber: " + str(pinNumber)
+def getWattage(self):
+	#print "pinNumber: " + str(self.pinNumber)
 	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(int(self.pinNumber), GPIO.IN)
-	value = GPIO.input(pinNumber) * wattage
+	GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+	#print(self.pinNumber)
+	#print(GPIO.input(int(self.pinNumber)))
+	#print(self.wattage)
+	value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
+	#print(value)
 	return value
 
 
@@ -101,8 +105,8 @@ class Sensor:
 			reading = getTemperature(self.i2cAddress, self.pinNumber)
 		elif (self.type == "Occupancy"):
 			reading = getOccupancy(self.pinNumber)
-		elif (self.type == "Wattage"):
-			reading = getWattage(self.pinNumber)
+		elif (self.type == "Current"):
+			reading = getWattage(self)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):
@@ -135,5 +139,9 @@ class Sensor:
 
 	def set_wattage(self, new_wattage):
 		self.wattage = new_wattage
-	
+
+#testSensor = Sensor(8)
+#testSensor.set_type("Wattage")
+#testSensor.set_pinNumber(8)
+#testSensor.set_value()	
 
