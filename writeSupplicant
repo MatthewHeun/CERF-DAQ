@@ -18,16 +18,14 @@ while [ $PASSWORD1 != $PASSWORD2 ]; do
 	COUNTER=$-1
 done 
 
-echo 'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev' > /etc/wpa_supplicant/wpa_supplicant.conf
+echo 'country=US' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo 'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo 'update_config=1' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo 'network={' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '        ssid="eduroam"' >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo '        proto=RSN' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '        key_mgmt=WPA-EAP' >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo '        pairwise=CCMP' >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo '        auth_alg=OPEN' >> /etc/wpa_supplicant/wpa_supplicant.conf
-echo '        eap=PEAP' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        eap=TTLS' >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 usernameLine='\tidentity="'
 usernameLine+=$USERNAME
@@ -39,7 +37,7 @@ passwordLine+=$PASSWORD1
 passwordLine+='"'
 echo -e $passwordLine >> /etc/wpa_supplicant/wpa_supplicant.conf
 
-echo '        ca_cert="/usr/share/ca-certificates/mozilla/GlobalSign_Root_CA.crt"' >> /etc/wpa_supplicant/wpa_supplicant.conf
+echo '        phase2="auth=MSCHAPv2"' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '}' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo 'network={' >> /etc/wpa_supplicant/wpa_supplicant.conf
@@ -50,13 +48,4 @@ echo '        disabled=1' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '}' >> /etc/wpa_supplicant/wpa_supplicant.conf
 echo '' >> /etc/wpa_supplicant/wpa_supplicant.conf
 
-echo "Go to the following website: https://www.raspberrypi.org/forums/viewtopic.php?t=62371"
-echo "And find the correct datestring for the corresponding linux kernel version"
-uname -a
-echo "Enter the datestring here in the following format:"
-echo "YYYYMMDD (No spaces, dashes, and slashes)"
-read datestring
-wget https://dl.dropboxusercontent.com/u/80256631/8188eu-v7-$datestring.tar.gz
-tar xzf /home/pi/Desktop/CERF-DAQ/8188eu-v7-$datestring.tar.gz
-/home/pi/Desktop/CERF-DAQ/install.sh
 echo "	+Done"

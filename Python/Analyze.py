@@ -522,7 +522,7 @@ def aggregateRangeData(sensor, analysisNumber):
 						durationOutOfRangeTotal = 0 			#set the totals to 0
 						for x in range(len(durationInRange)): 	#create a weighted average based on how much time elapsed between each bin
 							totalInRange += durationInRange[x] * onPercentArrayInRange[x]
-							durationInRangeTotal += durationInRange[x]
+                                                        durationInRangeTotal += durationInRange[x]
 						for x in range(len(durationOutOfRange)):
 							totalOutOfRange += durationOutOfRange[x] * onPercentArrayOutOfRange[x]
 							durationOutOfRangeTotal += durationOutOfRange[x]
@@ -578,15 +578,19 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
-	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,On-Peak %,Off-Peak %" + '\n'
+	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,High-Peak %,Mid-Peak %,Low-Peak %,Off-Peak %" + '\n'
 	summaryfile.write(summaryString)
 
 	firstDate = getFirstDate(sensor)		#get the first datapoint time
 	today = datetime.datetime.today()		#get the time of today
 
 	minutesOn_Peak = 0
+	minutesMid_Peak = 0
+	minutesLow_Peak = 0
 	minutesOn_OffPeak = 0
 	totalMinutes_Peak = 0
+	totalMinutes_MidPeak = 0
+	totalMinutes_LowPeak = 0
 	totalMinutes_OffPeak = 0
 
 	startYear = int(firstDate.year)			
@@ -606,6 +610,7 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 				fileList.append(file)
 			fileList.sort()
 			for file in fileList:
+
 				file = open(filePath + file)
 				for line in file:
 					if line[0].isdigit():	#ignore the metadata
@@ -623,30 +628,67 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 							Max = 0
 						else:
 							Max = sensor.thresholdMax[analysisNumber]
-
-						peakDay = False
-						if time.weekday() in PEAK_WEEKDAY:
+							
+						peakDay = False	
+						if time.weekday() in PEAK_WEEKDAY: #if a weekday
 							peakDay = True
-						if (time.hour >= START_TIME and time.hour < STOP_TIME and peakDay): 	#if above the threshold during peak hours add to minutes on peak
-							totalMinutes_Peak += 1
-							if (float(data) > float(Min)) and (float(data) < float(Max)):
-								minutesOn_Peak += 1
-						else:															#otherwise add to minutes off peak
-							totalMinutes_OffPeak += 1
-							if (float(data) > float(Min)) and (float(data) < float(Max)):
-								minutesOn_OffPeak += 1
+						if (time.month >= 6 and time.month < 9): #if in the summer months
+                                                        print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
+							if ((time.hour >= START_TIME_HIGH_summer and time.hour < STOP_TIME_HIGH_summer) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
+                                                                #print(str(time.hour) + "  " + str(data) + "  High")
+								totalMinutes_Peak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesOn_Peak += 1  #adding to the high peak
+							elif (((time.hour >= START_TIME_MID_summer and time.hour < START_TIME_HIGH_summer) or (time.hour >= STOP_TIME_HIGH_summer and time.hour < STOP_TIME_MID_summer))) and peakDay: # elif statement for mid peak
+                                                                #print(str(time.hour) + "  " + str(data) + "  Mid")
+								totalMinutes_MidPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesMid_Peak += 1
+							elif (((time.hour >= START_TIME_LOW_summer and time.hour < START_TIME_MID_summer) or (time.hour >= STOP_TIME_MID_summer and time.hour < STOP_TIME_LOW_summer)) and peakDay): # elif statement for low peak
+                                                                #print(str(time.hour) + "  " + str(data) + "  Low")
+								totalMinutes_LowPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesLow_Peak += 1
+							else:		                        #otherwise add to minutes off peak
+                                                                #print(str(time.hour) + "  " + str(data) + "  Off")
+                                                                totalMinutes_OffPeak += 1
+                                                                if (float(data) > float(Min)) and (float(data) < float(Max)):
+                                                                        minutesOn_OffPeak += 1
+						else:    #if in the winter months
+							if ((time.hour >= START_TIME_HIGH_winter and time.hour < STOP_TIME_HIGH_winter) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
+								totalMinutes_Peak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesOn_Peak += 1  #adding to the high peak
+							elif (((time.hour >= START_TIME_MID_winter and time.hour < START_TIME_HIGH_winter) or (time.hour >= STOP_TIME_HIGH_winter and time.hour < STOP_TIME_MID_winter)) and peakDay): # elif statement for mid peak
+								totalMinutes_MidPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesMid_Peak += 1
+                                                        else:															#otherwise add to minutes off peak
+								totalMinutes_OffPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesOn_OffPeak += 1
 		if totalMinutes_Peak == 0:
 			totalMinutes_Peak = 1
+		if totalMinutes_MidPeak == 0:
+			totalMinutes_MidPeak = 1
+		if totalMinutes_LowPeak == 0:
+			totalMinutes_LowPeak = 1
 		if totalMinutes_OffPeak == 0:
 			totalMinutes_OffPeak = 1
 		onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
+		midPeakPercentage = float(100* (float(minutesMid_Peak) / float(totalMinutes_MidPeak)))
+		lowPeakPercentage = float(100* (float(minutesLow_Peak) / float(totalMinutes_LowPeak)))
 		offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
-		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
+		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %midPeakPercentage + ',' + "%.2f" %lowPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
 		summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
 
 		minutesOn_Peak = 0
+		minutesMid_Peak = 0
+		minutesLow_Peak = 0
 		minutesOn_OffPeak = 0
 		totalMinutes_Peak = 0
+		totalMinutes_MidPeak = 0
+		totalMinutes_LowPeak = 0
 		totalMinutes_OffPeak = 0
 
 		startMonth  = int(startMonth) + 1

@@ -32,13 +32,55 @@ RESET = int(f.readline())
 
 f.close()
 
-onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/onPeakOffPeakTime.txt"
+# The website generates onPeakOffPeakTime.txt for user-created times, however is unused
+# here for the new peak times. Maybe consider adding the ability to add multiple times?
+onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt"
 
 f = open(onPeakOffPeakTimeFile)
 
 START_TIME = f.readline().strip()
 if (len(START_TIME) != 0):
 	START_TIME = int(START_TIME)
+	
+START_TIME_LOW_summer = f.readline().strip()
+if (len(START_TIME_LOW_summer) != 0):
+	START_TIME_LOW_summer = int(START_TIME_LOW_summer)
+
+START_TIME_MID_summer = f.readline().strip()
+if (len(START_TIME_MID_summer) != 0):
+	START_TIME_MID_summer = int(START_TIME_MID_summer)
+
+START_TIME_HIGH_summer = f.readline().strip()
+if (len(START_TIME_HIGH_summer) != 0):
+	START_TIME_HIGH_summer = int(START_TIME_HIGH_summer)
+
+STOP_TIME_HIGH_summer = f.readline().strip()
+if (len(STOP_TIME_HIGH_summer) != 0):
+	STOP_TIME_HIGH_summer = int(STOP_TIME_HIGH_summer)
+
+STOP_TIME_MID_summer = f.readline().strip()
+if (len(STOP_TIME_MID_summer) != 0):
+	STOP_TIME_MID_summer = int(STOP_TIME_MID_summer)
+
+STOP_TIME_LOW_summer = f.readline().strip()
+if (len(STOP_TIME_LOW_summer) != 0):
+	STOP_TIME_LOW_summer = int(STOP_TIME_LOW_summer)
+	
+START_TIME_MID_winter = f.readline().strip()
+if (len(START_TIME_MID_winter) != 0):
+	START_TIME_MID_winter = int(START_TIME_MID_winter)
+
+START_TIME_HIGH_winter = f.readline().strip()
+if (len(START_TIME_HIGH_winter) != 0):
+	START_TIME_HIGH_winter = int(START_TIME_HIGH_winter)
+
+STOP_TIME_HIGH_winter = f.readline().strip()
+if (len(STOP_TIME_HIGH_winter) != 0):
+	STOP_TIME_HIGH_winter = int(STOP_TIME_HIGH_winter)
+	
+STOP_TIME_MID_winter = f.readline().strip()
+if (len(STOP_TIME_MID_winter) != 0):
+	STOP_TIME_MID_winter = int(STOP_TIME_MID_winter)
 
 STOP_TIME = f.readline().strip()
 if (len(STOP_TIME) != 0):
