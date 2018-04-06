@@ -83,7 +83,7 @@ echo "Installing packages"
 sudo apt-get update
 sudo apt-get install zip
 sudo apt-get install apache2 -y
-sudo apt-get install php5 libapache2-mod-php5 -y
+sudo apt-get install php
 sudo apt-get install i2c-tools
 sudo apt-get install python-pip
 sudo apt-get install xrdp
@@ -114,7 +114,7 @@ echo "	+Done"
 #==moving git web to webserver =
 #===============================
 echo "Creating the Web Server"
-sudo rm -r /var/www
+sudo rm -rf /var/www
 sudo mkdir "/var/www"
 sudo ln -s /home/pi/Desktop/CERF-DAQ/WebPage/* /var/www
 echo "	+Done"

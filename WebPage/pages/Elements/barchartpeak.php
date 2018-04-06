@@ -27,17 +27,19 @@
                                     <div class="table-responsive" style="height:100%; margin:auto;">
                                         <?php
 						$lines = file($Summary_Base . $summary_file . 'a' . ($k+1) . '.csv');
-						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>On Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
+						$table = '<table class="table table-bordered table-hover table-striped"><thead><tr><th>Month</th><th>High Peak %</th><th>Mid Peak %</th><th>Low Peak %</th><th>Off Peak %</th></tr></thead><tbody>';
 						$IndexToMonth = array("01" => "Jan", "02" => "Feb", "03" => "Mar", "04" => "Apr", "05" => "May", "06" => "Jun", "07" => "Jul", "08" => "Aug", "09" => "Sep", "10" => "Oct", "11" => "Nov", "12" => "Dec");
 						foreach($lines as $line){
 							if(substr($line, 0, 1) == "#"){
 							}else{
-								list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
+								list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $high, $mid, $low, $off) = explode(',', $line);
 								$month = $IndexToMonth[$month];
-								if($on == "0.00"){$on = "-";}
+								if($high == "0.00"){$high = "-";}
+								if($mid == "0.00"){$mid = "-";}
+								if($low == "0.00"){$low = "-";}
 								if($off == "0.00\n"){$off = "-";}
                                 if ($summary_year == $year_sum){
-                                    $table .= "<tr><td>$month</td><td>$on</td><td>$off</td></tr>";
+                                    $table .= "<tr><td>$month</td><td>$high</td><td>$mid</td><td>$low</td><td>$off</td></tr>";
                                 }
 								
 							}

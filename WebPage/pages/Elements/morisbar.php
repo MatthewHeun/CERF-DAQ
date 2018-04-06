@@ -8,10 +8,10 @@ new Morris.Bar({
                                         foreach($lines as $line){
 						if(substr($line, 0, 1) == "#"){
 						}else{
-                            list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $on, $off) = explode(',', $line);
+                            list($pi_id, $sensor_id, $sensor_name, $summary_year, $month, $high, $mid, $low, $off) = explode(',', $line);
 							$monthstring = $IndexToMonth[$month];
 							if ($summary_year == $year_sum){
-								$data .= "{y: '$monthstring', a: $on, b: $off},";
+								$data .= "{y: '$monthstring', a: $high, b: $mid, c:$low, d: $off},";
 							}
 						}
 					}
@@ -20,8 +20,8 @@ new Morris.Bar({
 					echo $data;
 				?> 
         	xkey: 'y',
-        	ykeys: ['a', 'b'],
-        	labels: ['On Peak %', 'Off Peak %'],
+        	ykeys: ['a', 'b', 'c', 'd'],
+        	labels: ['High Peak %', 'Mid Peak %', 'Low Peak %', 'Off Peak %'],
         	hideHover: false,
 		xLabelMargin: 10,
 		grid: false,
