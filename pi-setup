@@ -29,6 +29,23 @@ echo 1 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/zipHealth.txt
 echo 0 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/zipStatus.txt
 echo 1 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/updateHealth.txt
 echo 0 > /home/pi/Desktop/CERF-DAQ/WebPage/pages/onPeakOffPeakTime.txt
+echo '0' > /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '6' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '12' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '14' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '17' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '19' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '23' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '14' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '16' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '19' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '21' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '23' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '1' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '2' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '3' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '4' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '5' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 chmod ugo+rwx /home/pi/Desktop/CERF-DAQ/ -R
 
 echo "Starting i2c...."
@@ -151,7 +168,11 @@ echo "	+Done"
 #==============================
 echo -e '\n\n'
 echo "Configuring the Wifi"
-/bin/bash /home/pi/Desktop/CERF-DAQ/writeSupplicant
+read -p "Would you like to setup wifi?(y/n): " REPLY
+if [ "$REPLY" == "y" ]; then
+	/bin/bash /home/pi/Desktop/CERF-DAQ/writeSupplicant
+fi
+echo "proceeding"
 
 #==============================
 #========Upgrading Pi==========
