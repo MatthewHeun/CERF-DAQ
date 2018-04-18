@@ -25,8 +25,10 @@ from globalVars import*  # Global vars (also includes the sensor class) [anythin
 #==================================================================
 #-------------------Tell the website the pi is busy----------------
 #==================================================================
+cwd = os.getcwd()
+datadir = cwd[:(len(cwd) - 15)] + "Data/"
 
-file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open(cwd + '/WebPage/pages/analysisStatus.txt', "w")
 file.write("1")
 file.close()
 
@@ -39,9 +41,9 @@ debug = False # used for helping in development of code, turn to false for norma
 nameOfPi = str(PI_NUMBER) # From Global Vars 
 month_list= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 #Base directory leading to the summary
-summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
+summary_path = datadir + 'Pi_' + nameOfPi + '_Summary/'
 #Base directory leading to the raw
-raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
+raw_path = datadir + 'Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 
@@ -52,7 +54,7 @@ year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 #------------------------------------------------------------------
 
-					#initializeSummary() writes the metadata to each file
+#initializeSummary() writes the metadata to each file
 def initializeSummary(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	newfile = open(filename, 'w')
@@ -62,7 +64,7 @@ def initializeSummary(sensor, analysisNumber):
 
 #------------------------------------------------------------------
 					
-					#delclares the path to the data based on the organizational structur of the raw data
+					#delcares the path to the data based on the organizational structur of the raw data
 def get_full_raw_path(sensor):
 	return (raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/')
 
@@ -108,7 +110,7 @@ def dateInRange(checkDate, date1, date2):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest year for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest year for a sensor's data collection, using the organizational structure from the data collection
 def getFirstYear(sensor):
 	years = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/'):
@@ -117,7 +119,7 @@ def getFirstYear(sensor):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest month for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest month for a sensor's data collection, using the organizational structure from the data collection
 def getFirstMonth(sensor, year):
 	months = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/'):
@@ -126,7 +128,7 @@ def getFirstMonth(sensor, year):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest day for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest day for a sensor's data collection, using the organizational structure from the data collection
 def getFirstDay(sensor, year, month):
 	days = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/' + month + '/'):
@@ -1012,7 +1014,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 def analyzeData():
 
 	percentComplete = "0%"
-	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 	#print percentComplete
 	file.write(str(percentComplete))
 	file.close()
@@ -1036,7 +1038,7 @@ def analyzeData():
 				elif SENSOR_INFO[i].analysis[c] == "kWh":
 					kWhAnalysis(SENSOR_INFO[i], c)
 					#print 'Permorming kWh Analysis: ' + Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)			
-			file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+			file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 			percentComplete = float(float(percentIndex)/float((3)*(NUM_SENSORS)))*100
 			percentComplete = "%.2f" %percentComplete + '%'
 			#print percentComplete
@@ -1045,7 +1047,7 @@ def analyzeData():
 			percentIndex += 1;
 	
 	percentComplete = "100%"
-	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 	#print percentComplete
 	file.write(str(percentComplete))
 	file.close()
@@ -1073,7 +1075,7 @@ analyzeData()
 #-----------------Tell the website the pi is not busy--------------
 #==================================================================
 
-file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open(cwd + '/WebPage/pages/analysisStatus.txt', "w")
 file.write("0")
 file.close()
 

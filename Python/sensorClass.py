@@ -3,13 +3,14 @@ import time
 import os
 from Adafruit_ADS1x15 import ADS1x15
 from Occupancy_vars import *
-import RPi.GPIO as GPIO
+# This is used for finding wattage, currently unit tests cannot be run with this being imported
+# import RPi.GPIO as GPIO
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
 #==================================================================
 									#Define the type of ADC to be used
-ADS1115 = 0x01								#16-bit ADC defined (would be 0x00 for the 12bit ADC)
+ADS1115 = 0x01						#16-bit ADC defined (would be 0x00 for the 12bit ADC)
 
 #==================================================================
 #----------------------FUNCTION DEFINITIONS------------------------
@@ -27,21 +28,22 @@ def getTemperature(i2cAddress, pinNumber):
 	value  = (100 * voltage) - 50
 	return value
 
-def getOccupancy(pinNumber):
-	#print "pinNumber: " + str(pinNumber)
-	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
-	return value
-
-def getWattage(self):
-	#print "pinNumber: " + str(self.pinNumber)
-	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-	#print(self.pinNumber)
-	#print(GPIO.input(int(self.pinNumber)))
-	#print(self.wattage)
-	value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
-	#print(value)
-	return value
+#	def getOccupancy(pinNumber):
+#			#print "pinNumber: " + str(pinNumber)
+#			#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
+#		value = Occupancy[str(pinNumber)] 
+#		return value
+#
+#	def getWattage(self):
+#			#print "pinNumber: " + str(self.pinNumber)
+#		GPIO.setmode(GPIO.BOARD)
+#		GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+#			#print(self.pinNumber)
+#			#print(GPIO.input(int(self.pinNumber)))
+#			#print(self.wattage)
+#		value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
+#			#print(value)
+#		return value
 
 
 #==================================================================
@@ -103,10 +105,10 @@ class Sensor:
 			reading = getLight(self.i2cAddress, self.pinNumber)
 		elif (self.type == "Temperature"):
 			reading = getTemperature(self.i2cAddress, self.pinNumber)
-		elif (self.type == "Occupancy"):
-			reading = getOccupancy(self.pinNumber)
-		elif (self.type == "Current"):
-			reading = getWattage(self)
+#		elif (self.type == "Occupancy"):
+#			reading = getOccupancy(self.pinNumber)
+#		elif (self.type == "Current"):
+#			reading = getWattage(self)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):

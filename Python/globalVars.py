@@ -1,6 +1,10 @@
 from sensorClass import *
+import os
 
-numPiFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
+cwd = os.getcwd()
+
+numPiFile = cwd + "/WebPage/pages/piNumber.txt"
+#numPiFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
 
 f = open(numPiFile)
 
@@ -8,7 +12,8 @@ PI_NUMBER = int(f.readline())
 
 f.close()
 
-numSensorFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt"
+numSensorFile = cwd + "/WebPage/pages/numSensors.txt"
+#numSensorFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/numSensors.txt"
 
 f = open(numSensorFile)
 
@@ -16,7 +21,8 @@ NUM_SENSORS = int(f.readline())
 
 f.close()
 
-dataCollectionSetFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionSet.txt"
+dataCollectionSetFile = cwd + "/WebPage/pages/dataCollectionSet.txt"
+#dataCollectionSetFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionSet.txt"
 
 f = open(dataCollectionSetFile)
 
@@ -24,7 +30,8 @@ DATA_COLLECTION_SET = int(f.readline())
 
 f.close()
 
-resetFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt"
+resetFile = cwd + "/WebPage/pages/reset.txt"
+#resetFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt"
 
 f = open(resetFile)
 
@@ -34,7 +41,9 @@ f.close()
 
 # The website generates onPeakOffPeakTime.txt for user-created times, however is unused
 # here for the new peak times. Maybe consider adding the ability to add multiple times?
-onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt"
+
+onPeakOffPeakTimeFile = cwd + "/WebPage/pages/newPeakTimes.txt"
+#onPeakOffPeakTimeFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt"
 
 f = open(onPeakOffPeakTimeFile)
 
@@ -95,7 +104,8 @@ for w in range(7):
 
 f.close()
 
-sensorInfoFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
+sensorInfoFile = cwd + "/WebPage/pages/sensorInfo.txt"
+#sensorInfoFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/sensorInfo.txt"
 
 #The data in this file is in order of the way the properties of the sensor are read in below. If the order of either of these are changed
 #They would have to be changed in the same fashion or this file would stop reading in the sensor properites correctly. 
