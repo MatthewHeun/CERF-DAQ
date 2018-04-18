@@ -19,7 +19,7 @@ before_script:
  - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/
  - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/
  - wget -P /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/ "https://drive.google.com/file/d/1lujyJBZStVmR4iF4s6ljfOOVgoIk4rb6/view?usp=sharing"
- - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/ Ri__Raw_2018-04-18.zip
+ - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Pi__Raw_2018-04-18.zip
 script:
  - python Python/TestAnalyze.py
  
