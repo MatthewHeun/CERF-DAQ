@@ -15,15 +15,15 @@ before_script:
  - cp UnitTest/reset.txt -r WebPage/pages
  - cp UnitTest/sensorInfo.txt -r WebPage/pages
  - cp UnitTest/dataCollectionSet.txt -r WebPage/pages
- - mkdir /home/travis/build/pjh26/Data/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Raw/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Summary/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Raw/Sensor1/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Summary/Sensor1/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Raw/Sensor2/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Summary/Sensor2/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Raw/Sensor3/
- - mkdir /home/travis/build/pjh26/Data/Pi_-1_Summary/Sensor3/
+ - mkdir /home/travis/build/MatthewHeun/Data/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor1/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor2/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor3/
+ - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor3/
  
 script:
  - python Python/TestAnalyze.py
