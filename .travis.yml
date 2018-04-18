@@ -27,3 +27,8 @@ before_script:
  
 script:
  - python Python/TestAnalyze.py
+ 
+notifications:
+  email: false
+  
+ 
