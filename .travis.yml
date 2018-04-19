@@ -10,7 +10,7 @@ install:
 
 before_script:
  - chmod ugo+x prepUnitTest.sh
- - .prepUnitTest.sh
+ - ./prepUnitTest.sh
  
  
 script:
