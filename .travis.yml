@@ -10,12 +10,9 @@ cache: pip
 install:
  - "pip install -r UnitTest/requirements.txt"
 
-before_script:
+script:
  - chmod ugo+x prepUnitTest.sh
  - bash prepUnitTest.sh
- 
- 
-script:
  - python Python/TestAnalyze.py
  
 notifications:
