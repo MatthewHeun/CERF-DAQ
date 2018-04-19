@@ -18,13 +18,6 @@ before_script:
  - mkdir /home/travis/build/MatthewHeun/Data/
  - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/
  - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/
-<<<<<<< HEAD
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor1/
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor2/
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor3/
- - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/Sensor3/
  - wget -O /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Pi__Raw_2018-04-18.zip "https://doc-0s-2c-docs.googleusercontent.com/docs/securesc/l0vfqvk5d54qovihd50498v5fprgrmdf/hcd3kd9smlh9100p8a0ipa3u2v24bnq6/1524146400000/17232760777664467175/17232760777664467175/1lujyJBZStVmR4iF4s6ljfOOVgoIk4rb6?e=download&h=18306636861912854895&nonce=4fg0u9re9auue&user=17232760777664467175&hash=o09f5bshp89fs47hharjdfjifp6csfrj"
  - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Pi__Raw_2018-04-18.zip
 
