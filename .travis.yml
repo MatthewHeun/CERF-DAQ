@@ -1,6 +1,6 @@
 language:
  - python
- - bash
+ - Bash
 
 python:
  - "2.7"
