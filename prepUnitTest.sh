@@ -16,3 +16,4 @@ do
 	unzip -d /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/ /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/$sensorNum.zip
 done
 
+mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/

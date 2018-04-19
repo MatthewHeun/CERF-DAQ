@@ -571,8 +571,7 @@ def aggregateRangeData(sensor, analysisNumber):
 	summaryfile.write(summarystring)			#the new information now overwrites the old
 	summaryfile.close()
 #------------------------------------------------------------------
-
-					# determines if the data was high during set hours, or high during off set hours
+# determines if the data was high during set hours, or high during off set hours
 def onPeakOffPeakAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
@@ -755,7 +754,7 @@ def kWhAnalysis(sensor, analysisNumber):
 			startYear += 1
 
 #-----------------------------------------------------------------------
-							#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
+#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
 def rangeAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
