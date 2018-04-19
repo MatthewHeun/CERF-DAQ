@@ -20,7 +20,6 @@ import re  #line delimiter
 from binClass import*
 from datetime import date
 from globalVars import*  # Global vars (also includes the sensor class) [anything that has sensor.#### comes from here]
-#<<<<<<< HEAD
 
 #==================================================================
 #-------------------Tell the website the pi is busy----------------
