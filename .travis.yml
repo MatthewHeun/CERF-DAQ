@@ -22,8 +22,8 @@ before_script:
  - mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/
  - wget -O /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/sensor1Raw "https://raw.githubusercontent.com/pjh26/UnitTestData/master/Sensor1(Light).rar"
  - wget -O /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/sensor2Raw "https://raw.githubusercontent.com/pjh26/UnitTestData/master/Sensor2(Temp).rar"
- - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/sensor1Raw.zip
- - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/sensor2Raw.zip
+ - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/sensor1Raw
+ - unzip /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor2/sensor2Raw
  
 script:
  - python Python/TestAnalyze.py
