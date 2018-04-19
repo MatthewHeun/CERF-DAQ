@@ -1009,7 +1009,7 @@ def minMaxAnalysis(sensor, analysisNumber):
 
 #------------------------------------------------------------------
 
-					#analyzeData() calls the functions to output for each of the sensors
+#analyzeData() calls the functions to output for each of the sensors
 def analyzeData():
 
 	percentComplete = "0%"
