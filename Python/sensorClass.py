@@ -84,8 +84,9 @@ class Sensor:
 
 	def set_pinNumber(self, new_pinNumber):
 		self.pinNumber = new_pinNumber
-
+	
 	def set_numberOfAnalysis(self, new_number):
+		# How many analysis will be done i.e. (1. peak analysis 2. range analysis 3. 
 		self.numberOfAnalysis = new_number
 
 	def set_analysis(self, new_analysis, index):
