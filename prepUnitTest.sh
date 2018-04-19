@@ -17,7 +17,7 @@ do
 		do
 			for month in 01 02 03 04 05 06 07 08 09 10 11 12
 			do
-				echo '/home/travis/build/MatthewHeun/Data/$pi/$SensorNum/$year/$month/'
+				echo "/home/travis/build/MatthewHeun/Data/$pi/$SensorNum/$year/$month/"
 				mkdir -p /home/travis/build/MatthewHeun/Data/$pi/$SensorNum/$year/$month/
 			done
 		done
