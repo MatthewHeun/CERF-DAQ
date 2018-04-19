@@ -9,18 +9,11 @@ cp UnitTest/newPeakTimes.txt -r WebPage/pages
 cp UnitTest/reset.txt -r WebPage/pages
 cp UnitTest/sensorInfo.txt -r WebPage/pages
 cp UnitTest/dataCollectionSet.txt -r WebPage/pages
-for pi in Pi_-1_Raw Pi_-1_Summary
+
+for sensorNum in Sensor1 Sensor2
 do
-	for sensorNum in Sensor1 Sensor2
-	do
-		for year in 2015 2016 2017 2018
-		do
-			for month in 01 02 03 04 05 06 07 08 09 10 11 12
-			do
-				echo "/home/travis/build/MatthewHeun/Data/$pi/$sensorNum/$year/$month/"
-				mkdir -p /home/travis/build/MatthewHeun/Data/$pi/$sensorNum/$year/$month/
-			done
-		done
-	done
+	mkdir -p /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/
+	wget -P /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/$sensorNum.zip "https://raw.githubusercontent.com/pjh26/UnitTestData/master/$sensorNum.zip"
+	unzip /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/$sensorNum.zip
 done
-echo "for loop successful"
+
