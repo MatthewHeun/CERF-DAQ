@@ -1,15 +1,13 @@
 #!/bin/bash
-set -ev
-
+set -e
+set -v
 cp UnitTest/piNumber.txt -r WebPage/pages
 cp UnitTest/numSensors.txt -r WebPage/pages
 cp UnitTest/newPeakTimes.txt -r WebPage/pages
 cp UnitTest/reset.txt -r WebPage/pages
 cp UnitTest/sensorInfo.txt -r WebPage/pages
 cp UnitTest/dataCollectionSet.txt -r WebPage/pages
-
-
-mkdir /home/travis/build/MatthewHeun/Data/
+mkdir -p "/home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/year/01/"
 mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/
 mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Summary/
 mkdir /home/travis/build/MatthewHeun/Data/Pi_-1_Raw/Sensor1/
