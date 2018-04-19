@@ -1,4 +1,3 @@
-#!/bin/bash
 set -e
 set -v
 cp UnitTest/piNumber.txt -r WebPage/pages
