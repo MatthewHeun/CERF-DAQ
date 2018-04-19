@@ -1,6 +1,6 @@
 language:
  - python
- - Bash
+ - bash
 
 python:
  - "2.7"
@@ -12,7 +12,7 @@ install:
 
 before_script:
  - chmod ugo+x prepUnitTest.sh
- - ./prepUnitTest.sh
+ - bash prepUnitTest.sh
  
  
 script:
