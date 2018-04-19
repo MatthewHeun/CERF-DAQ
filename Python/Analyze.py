@@ -178,8 +178,7 @@ def createMonthBins(sensor, analysisNumber):
 		firstDate = addMonth(firstDate)
 
 #------------------------------------------------------------------
-					
-					#creates a list of start and stop times divided by days
+#creates a list of start and stop times divided by days
 def createDayBins(sensor, analysisNumber):
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
@@ -195,8 +194,7 @@ def createDayBins(sensor, analysisNumber):
 		#print "Start time: " + startTime + " Stop Time: " + stopTime
 
 #------------------------------------------------------------------
-					
-					#creates a list of start and stop times based on the user input on the webpage
+#creates a list of start and stop times based on the user input on the webpage
 def createCustomBins(sensor, analysisNumber):
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
@@ -220,7 +218,7 @@ def createCustomBins(sensor, analysisNumber):
 		firstDate += datetime.timedelta(days=1)
 
 #------------------------------------------------------------------
-					#creates a list of start and stop times based on the data of a sensor
+#creates a list of start and stop times based on the data of a sensor
 
 def createSensorBins(sensor, analysisNumber):
 	firstYear = int(getFirstYear(sensor))

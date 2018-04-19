@@ -55,8 +55,8 @@ Day
 0
 0
 Year
-Light2
-Light
+Temp3
+Temp
 0x48
 3
 3
