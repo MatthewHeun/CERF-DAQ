@@ -5,8 +5,11 @@ language:
 python:
  - "2.7"
 
-cache: pip
-
+cache: 
+ - pip
+ - chmod ugo+x prepUnitTest.sh
+ - bash prepUnitTest.sh
+ 
 install:
  - "pip install -r UnitTest/requirements.txt"
 
