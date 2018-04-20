@@ -6,7 +6,6 @@ class TestPython(unittest.TestCase):
     # Testing to see whether we can actually get to testing before failing
     def test_nothing(self):
         print("Successfully made it to testing stage! Now make some tests >:D")
-        pass
 
     def test_globalVars(self):
         print("Testing globalVars")
@@ -51,7 +50,6 @@ class TestPython(unittest.TestCase):
 #        self.assertEqual(first, second, msg)
 #        self.assertEqual(first, second, msg)
 #        self.assertEqual(first, second, msg)
-        pass
 
 if __name__ == '__main__':
     unittest.main()
