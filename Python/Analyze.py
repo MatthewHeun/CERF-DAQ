@@ -608,7 +608,6 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 				fileList.append(file)
 			fileList.sort()
 			for file in fileList:
-
 				file = open(filePath + file)
 				for line in file:
 					if line[0].isdigit():	#ignore the metadata
