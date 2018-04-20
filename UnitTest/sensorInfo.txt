@@ -55,8 +55,8 @@ Day
 0
 0
 Year
-Temp3
-Temp
+Light2
+Light
 0x48
 3
 3
@@ -95,6 +95,29 @@ Year
 0
 0
 Year
+Min-Max
+
+
+Day
+1
+
+
+
+
+
+
+
+
+
+0
+0
+Year
+Temp1
+Temp
+0x48
+0
+1
+
 Min-Max
 
 
