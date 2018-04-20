@@ -1,14 +1,14 @@
 import unittest
+import os
 import Analyze
 from globalVars import *
 
 class TestPython(unittest.TestCase):
     # Testing to see whether we can actually get to testing before failing
     def test_nothing(self):
-        print("Successfully made it to testing stage! Now make some tests >:D")
-
+        self.assertEqual(0,0)
+    
     def test_globalVars(self):
-        print("Testing globalVars")
         self.assertEqual(PI_NUMBER, 3, "globalVars.py incorrectly reading piNumber.txt")
         self.assertEqual(NUM_SENSORS, 3, "globalVars.py incorrectly reading numSensors.txt")
         self.assertEqual(DATA_COLLECTION_SET, 1, "globalVars.py incorrectly reading dataCollectionSet.txt")
@@ -37,9 +37,14 @@ class TestPython(unittest.TestCase):
         print("Passed!")
 
     def test_analyze(self):
-        print("Testing analyze")
+        self.assertEqual(0,0)
+        currentWorkingDirectory = os.getcwd()
+        dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
+        print(dataDirectory)
         
-        print("Passed!")
+        
+        
+        
 
 if __name__ == '__main__':
     unittest.main()
