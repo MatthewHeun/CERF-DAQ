@@ -1,6 +1,6 @@
 import unittest
 import Analyze
-import globalVars
+from globalVars import *
 
 class TestPython(unittest.TestCase):
     # Testing to see whether we can actually get to testing before failing
