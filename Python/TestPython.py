@@ -51,7 +51,7 @@ class TestPython(unittest.TestCase):
 #        self.assertEqual(first, second, msg)
 #        self.assertEqual(first, second, msg)
 #        self.assertEqual(first, second, msg)
-        
+        pass
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
