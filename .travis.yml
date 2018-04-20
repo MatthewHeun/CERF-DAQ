@@ -16,7 +16,7 @@ install:
 script:
  - chmod ugo+x prepUnitTest.sh
  - bash prepUnitTest.sh
- - python Python/TestAnalyze.py
+ - python Python/TestPython.py
  
 notifications:
   email: false
