@@ -175,6 +175,14 @@ fi
 echo "proceeding"
 
 #==============================
+#=====Changing Wifi Dir.=======
+#==============================
+echo "Changing wifi directory"
+truncate -s 0 /etc/apache2/sites-enabled/000-default.conf
+/bin/bash /home/pi/Desktop/CERF-DAQ/writeWebDirectory
+echo "	+Done"
+
+#==============================
 #========Upgrading Pi==========
 #==============================
 echo "Upgrading the pi to the latest kernel version"
