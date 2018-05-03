@@ -4,7 +4,7 @@ import os
 from Adafruit_ADS1x15 import ADS1x15
 from Occupancy_vars import *
 # This is used for finding wattage, currently unit tests cannot be run with this being imported
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
@@ -28,22 +28,22 @@ def getTemperature(i2cAddress, pinNumber):
 	value  = (100 * voltage) - 50
 	return value
 
-#	def getOccupancy(pinNumber):
-#			#print "pinNumber: " + str(pinNumber)
-#			#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
-#		value = Occupancy[str(pinNumber)] 
-#		return value
-#
-#	def getWattage(self):
-#			#print "pinNumber: " + str(self.pinNumber)
-#		GPIO.setmode(GPIO.BOARD)
-#		GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-#			#print(self.pinNumber)
-#			#print(GPIO.input(int(self.pinNumber)))
-#			#print(self.wattage)
-#		value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
-#			#print(value)
-#		return value
+	def getOccupancy(pinNumber):
+			#print "pinNumber: " + str(pinNumber)
+			#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
+		value = Occupancy[str(pinNumber)] 
+		return value
+
+	def getWattage(self):
+			#print "pinNumber: " + str(self.pinNumber)
+		GPIO.setmode(GPIO.BOARD)
+		GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+			#print(self.pinNumber)
+			#print(GPIO.input(int(self.pinNumber)))
+			#print(self.wattage)
+		value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
+			#print(value)
+		return value
 
 
 #==================================================================
