@@ -630,7 +630,7 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 						if time.weekday() in PEAK_WEEKDAY: #if a weekday
 							peakDay = True
 						if (time.month >= 6 and time.month < 9): #if in the summer months
-                                                        print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
+                                                                #print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
 							if ((time.hour >= START_TIME_HIGH_summer and time.hour < STOP_TIME_HIGH_summer) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
                                                                 #print(str(time.hour) + "  " + str(data) + "  High")
 								totalMinutes_Peak += 1
@@ -646,8 +646,8 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 								totalMinutes_LowPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesLow_Peak += 1
-							else:		                        #otherwise add to minutes off peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Off")
+							else:#otherwise add to minutes off peak
+                            	#print(str(time.hour) + "  " + str(data) + "  Off")
                                                                 totalMinutes_OffPeak += 1
                                                                 if (float(data) > float(Min)) and (float(data) < float(Max)):
                                                                         minutesOn_OffPeak += 1
