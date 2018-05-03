@@ -1,2 +1,2 @@
 smbus-cffi
-gpiozero
+RPi.GPIO
