@@ -4,7 +4,9 @@ import os
 from Adafruit_ADS1x15 import ADS1x15
 from Occupancy_vars import *
 # This is used for finding wattage, currently unit tests cannot be run with this being imported
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
+import gpiozero as GPIO
+
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
