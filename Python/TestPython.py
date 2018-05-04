@@ -1,3 +1,9 @@
+cwd = os.getcwd()
+amTestFile = cwd + "/UnitTest/amTest.txt"
+f = open(amTestFile, "w")
+f.write("1")
+f.close()
+
 import unittest
 import os
 import Analyze
@@ -48,3 +54,17 @@ class TestPython(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    
+    f = open(amTestFile)
+    amTest = int(f.readline())
+    f.close()
+    print(amTest)
+    
+    f = open(amTestFile, "w")
+    f.write("0")
+    f.close()
+    
+    f = open(amTestFile)
+    amTest = int(f.readline())
+    f.close()
+    print(amTest)
