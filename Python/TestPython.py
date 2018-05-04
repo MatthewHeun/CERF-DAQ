@@ -1,11 +1,11 @@
+import unittest
+import os
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
 f.write("1")
 f.close()
 
-import unittest
-import os
 import Analyze
 from globalVars import *
 
