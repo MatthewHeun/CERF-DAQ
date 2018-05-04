@@ -48,23 +48,23 @@ class TestPython(unittest.TestCase):
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
         print(dataDirectory)
         
-        
+    def test_amTest(self):
+            
+        f = open(amTestFile)
+        amTest = int(f.readline())
+        f.close()
+        print(amTest)
+    
+        f = open(amTestFile, "w")
+        f.write("0")
+        f.close()
+    
+        f = open(amTestFile)
+        amTest = int(f.readline())
+        f.close()
+        print(amTest)
         
         
 
 if __name__ == '__main__':
     unittest.main()
-    
-    f = open(amTestFile)
-    amTest = int(f.readline())
-    f.close()
-    print(amTest)
-    
-    f = open(amTestFile, "w")
-    f.write("0")
-    f.close()
-    
-    f = open(amTestFile)
-    amTest = int(f.readline())
-    f.close()
-    print(amTest)
