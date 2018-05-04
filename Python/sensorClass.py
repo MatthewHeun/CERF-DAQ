@@ -3,11 +3,16 @@ import time
 import os
 from Adafruit_ADS1x15 import ADS1x15
 from Occupancy_vars import *
-# This is used for finding wattage, currently unit tests cannot be run with this being imported
+
+# RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
 cwd = os.getcwd()
-amTest = cwd + "UnitTest/amTest.txt"
-print(amTest)
-#import RPi.GPIO as GPIO
+amTestFile = cwd + "/UnitTest/amTest.txt"
+print(amTestFile)
+f = open(amTestFile)
+amTest = int(f.readline())
+f.close()
+if not amTest:
+	import RPi.GPIO as GPIO
 
 
 #==================================================================
