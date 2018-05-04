@@ -1,0 +1,17 @@
+0	Startime
+6	Startime Low  Summer
+12	Startime Mid  Summer
+14	Startime High Summer
+17	Stoptime High Summer
+19	Stoptime Mid  Summer
+23	Stoptime Low  Summer
+14	Startime Mid  Winter
+16	Startime High Winter
+19	Stoptime High Winter
+21	Stoptime Mid  Winter
+23	Stop Time
+1	Peak Weekdays
+2	     :
+3	     :
+4	     :
+5	     :
