@@ -47,7 +47,7 @@ class TestPython(unittest.TestCase):
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
         sumDataDir = dataDirectory + "Pi_3_Summary/"
         
-        summary1 = open(dataDirectory + "")
+#        summary1 = open(dataDirectory + "")
 
 
 
