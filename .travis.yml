@@ -20,8 +20,7 @@ script:
  
 after_script:
  - sudo apt-get install mailutils
- - install mailx
- - mail -s "Subject Here" pjh26@students.calvin.edu -A /home/travis/build/MatthewHeun/Data/Pi_3_Summary/Pi_3_a1.csv
+ - echo "Message Body" | mail -s "Message Subject" pjh26@students.calvin.edu -A /home/travis/build/MatthewHeun/Data/Pi_3_Summary/Pi_3_1a1.csv
 notifications:
   email: false
   
