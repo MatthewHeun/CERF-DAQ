@@ -40,31 +40,26 @@ class TestPython(unittest.TestCase):
         self.assertEqual(SENSOR_INFO[0].analysis[0], "Range Analysis", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].analysis[1], "On-Peak Off-Peak %", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].analysis[2], "Min-Max", "globalVars.py incorrectly newPeakTimes.txt")
-        print("Passed!")
 
     def test_analyze(self):
         self.assertEqual(0,0)
         currentWorkingDirectory = os.getcwd()
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
-        print(dataDirectory)
+        sumDataDir = dataDirectory + "Pi_3_Summary/"
         
-    def test_amTest(self):
-            
-        f = open(amTestFile)
-        amTest = int(f.readline())
-        f.close()
-        print(amTest)
-    
-        f = open(amTestFile, "w")
-        f.write("0")
-        f.close()
-    
-        f = open(amTestFile)
-        amTest = int(f.readline())
-        f.close()
-        print(amTest)
-        
-        
+        summary1 = open(dataDirectory + "")
+
+
+
+
+
+# This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
+# Running this ensures that the sensor class knows it's in normal mode, not test mode
+#
+#   def test_amTest(self):
+#       f = open(amTestFile, "w")
+#       f.write("0")
+#       f.close()
 
 if __name__ == '__main__':
     unittest.main()

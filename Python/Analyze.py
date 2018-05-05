@@ -4,7 +4,7 @@
 # Analysis readings from lux sensors for summary data                    #
 #                                                                        #
 # Started by Derek De Young                                              #
-# Continued by Curtis Kortman						 #
+# Continued by Curtis Kortman                                            #
 # Started: 4/25/15                                                       #
 # Last Edited: 7/13/15                                                   #
 # ********************************************************************** #
