@@ -647,10 +647,9 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesLow_Peak += 1
 							else:#otherwise add to minutes off peak
-                            	#print(str(time.hour) + "  " + str(data) + "  Off")
-                                                                totalMinutes_OffPeak += 1
-                                                                if (float(data) > float(Min)) and (float(data) < float(Max)):
-                                                                        minutesOn_OffPeak += 1
+								totalMinutes_OffPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesOn_OffPeak += 1
 						else:    #if in the winter months
 							if ((time.hour >= START_TIME_HIGH_winter and time.hour < STOP_TIME_HIGH_winter) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
 								totalMinutes_Peak += 1
@@ -660,7 +659,7 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 								totalMinutes_MidPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesMid_Peak += 1
-                                                        else:															#otherwise add to minutes off peak
+							else:	#otherwise add to minutes off peak
 								totalMinutes_OffPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesOn_OffPeak += 1
