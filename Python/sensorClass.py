@@ -7,7 +7,6 @@ from Occupancy_vars import *
 # RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
-print(amTestFile)
 f = open(amTestFile)
 amTest = int(f.readline())
 f.close()
