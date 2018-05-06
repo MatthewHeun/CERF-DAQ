@@ -18,9 +18,6 @@ script:
  - bash prepUnitTest.sh
  - python Python/TestPython.py
  
-after_script:
- - sudo apt-get install mailutils
- - echo "Message Body" | mail -s "Message Subject" pjh26@students.calvin.edu -A /home/travis/build/MatthewHeun/Data/Pi_3_Summary/Pi_3_1a1.csv
 notifications:
   email: false
   
