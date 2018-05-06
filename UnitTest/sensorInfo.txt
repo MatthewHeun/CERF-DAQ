@@ -4,7 +4,7 @@ Light
 1
 3
 
-Range Analysis
+On-Peak Off-Peak %
 5
 100
 Day
@@ -21,7 +21,7 @@ Day
 0
 0
 Year
-On-Peak Off-Peak %
+Range Analysis
 5
 100
 Year
