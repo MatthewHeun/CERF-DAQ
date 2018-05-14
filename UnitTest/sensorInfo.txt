@@ -24,7 +24,7 @@ Year
 Range Analysis
 5
 100
-Year
+Month
 1
 
 
