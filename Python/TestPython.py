@@ -47,12 +47,13 @@ class TestPython(unittest.TestCase):
         currentWorkingDirectory = os.getcwd()
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a1.csv", 'r')
-
+        print(summaryFile)
+        
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
                 print(row[5])
-                self.assertEqual(row[5], 50)
+                self.assertEqual(row[5], 0)
                 print(row[6])
                 self.assertEqual(row[6], 50)
                 print(row[7])
