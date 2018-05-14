@@ -53,13 +53,13 @@ class TestPython(unittest.TestCase):
             if line[0].isdigit():
                 row = re.split(',', line)
                 print(row[5])
-                self.assertEqual(row[5], 0)
+                self.assertEqual(int(row[5]), 0)
                 print(row[6])
-                self.assertEqual(row[6], 50)
+                self.assertEqual(int(row[6]), 50)
                 print(row[7])
-                self.assertEqual(row[7], 0 )
+                self.assertEqual(int(row[7]), 0 )
                 print(row[8])
-                self.assertEqual(row[8], 50)
+                self.assertEqual(int(row[8]), 50)
         
         summaryFile.close()
 
