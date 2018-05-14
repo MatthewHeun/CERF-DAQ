@@ -45,7 +45,7 @@ class TestPython(unittest.TestCase):
         self.assertEqual(0,0)
         currentWorkingDirectory = os.getcwd()
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
-        summaryfile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a1.csv", 'r')
+        summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a1.csv", 'r')
 
         for line in summaryFile:
             if line[0].isdigit():
@@ -58,7 +58,8 @@ class TestPython(unittest.TestCase):
                 self.assertEqual(row[7], 0 )
                 print(row[8])
                 self.assertEqual(row[8], 50)
-
+        
+        summaryFile.close()
 
 
 
