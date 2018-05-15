@@ -5,7 +5,7 @@ Light
 3
 
 On-Peak Off-Peak %
-0
+5
 300
 Day
 1
