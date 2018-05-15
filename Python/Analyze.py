@@ -307,7 +307,7 @@ def createBins(sensor, analysisNumber):
 			createYearBins(sensor, analysisNumber)
 
 #------------------------------------------------------------------
-					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
+#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateMinMaxData(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
@@ -459,7 +459,7 @@ def aggregateMinMaxData(sensor, analysisNumber):
 	summaryfile.close()
 
 #------------------------------------------------------------------
-					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
+#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateRangeData(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')	#navigate to the sumamry file
@@ -663,20 +663,21 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 								totalMinutes_OffPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesOn_OffPeak += 1
-		if totalMinutes_Peak == 0:
-			totalMinutes_Peak = 1
-		if totalMinutes_MidPeak == 0:
-			totalMinutes_MidPeak = 1
-		if totalMinutes_LowPeak == 0:
-			totalMinutes_LowPeak = 1
-		if totalMinutes_OffPeak == 0:
-			totalMinutes_OffPeak = 1
-		onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
-		midPeakPercentage = float(100* (float(minutesMid_Peak) / float(totalMinutes_MidPeak)))
-		lowPeakPercentage = float(100* (float(minutesLow_Peak) / float(totalMinutes_LowPeak)))
-		offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
-		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %midPeakPercentage + ',' + "%.2f" %lowPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
-		summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
+		
+			if totalMinutes_Peak == 0:
+				totalMinutes_Peak = 1
+			if totalMinutes_MidPeak == 0:
+				totalMinutes_MidPeak = 1
+			if totalMinutes_LowPeak == 0:
+				totalMinutes_LowPeak = 1
+			if totalMinutes_OffPeak == 0:
+				totalMinutes_OffPeak = 1
+			onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
+			midPeakPercentage = float(100* (float(minutesMid_Peak) / float(totalMinutes_MidPeak)))
+			lowPeakPercentage = float(100* (float(minutesLow_Peak) / float(totalMinutes_LowPeak)))
+			offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
+			summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %midPeakPercentage + ',' + "%.2f" %lowPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
+			summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
 
 		minutesOn_Peak = 0
 		minutesMid_Peak = 0
