@@ -5,8 +5,8 @@ Light
 3
 
 On-Peak Off-Peak %
-5
-100
+0
+300
 Day
 1
 
@@ -22,8 +22,8 @@ Day
 0
 Day
 Range Analysis
-5
-100
+0
+300
 Month
 1
 
@@ -62,8 +62,8 @@ Light
 3
 
 Range Analysis
-5
-100
+0
+300
 Day
 1
 
@@ -79,8 +79,8 @@ Day
 0
 Year
 On-Peak Off-Peak %
-5
-100
+0
+300
 Year
 1
 
