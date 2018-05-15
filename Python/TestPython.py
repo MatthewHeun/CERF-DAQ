@@ -52,16 +52,14 @@ class TestPython(unittest.TestCase):
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
-                for i in range(len(row)):
-                    print(row[i])
-                #print(row[5])
-                #self.assertEqual(row[5], '50.0')
-                #print(row[6])
-                #self.assertEqual(row[6], '50.0')
-                #print(row[7])
-                #self.assertEqual(row[7], '0.00')
-                #print(row[8])
-                #self.assertEqual(row[8], '50.0')
+                print(row[5])
+                self.assertEqual(row[5], '50.0')
+                print(row[6])
+                self.assertEqual(row[6], '50.0')
+                print(row[7])
+                self.assertEqual(row[7], '0.00')
+                print(row[8])
+                self.assertEqual(row[8], '50.0')
         summaryFile.close()
 
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a2.csv", 'r')
@@ -70,16 +68,8 @@ class TestPython(unittest.TestCase):
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
-                for i in range(len(row)):
-                    print(row[i])
-                #print(row[5])
-                #self.assertEqual(row[5], '50.0')
-                #print(row[6])
-                #self.assertEqual(row[6], '50.0')
-                #print(row[7])
-                #self.assertEqual(row[7], '0.00')
-                #print(row[8])
-                #self.assertEqual(row[8], '50.0')
+                print(row[5])
+                self.assertEqual(row[5], '100.00')
         summaryFile.close()
         
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a3.csv", 'r')
@@ -90,14 +80,12 @@ class TestPython(unittest.TestCase):
                 row = re.split(',', line)
                 for i in range(len(row)):
                     print(row[i])
-                #print(row[5])
-                #self.assertEqual(row[5], '50.0')
-                #print(row[6])
-                #self.assertEqual(row[6], '50.0')
-                #print(row[7])
-                #self.assertEqual(row[7], '0.00')
-                #print(row[8])
-                #self.assertEqual(row[8], '50.0')
+                print(row[5])
+                self.assertEqual(row[5], '1.00')
+                print(row[6])
+                self.assertEqual(row[6], '250.00')
+                print(row[7])
+                self.assertEqual(row[7], '125.50')
         summaryFile.close()
 
 

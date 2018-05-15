@@ -630,19 +630,19 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 						if time.weekday() in PEAK_WEEKDAY: #if a weekday
 							peakDay = True
 						if (time.month >= 6 and time.month < 9): #if in the summer months
-                                                                #print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
+								#print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
 							if ((time.hour >= START_TIME_HIGH_summer and time.hour < STOP_TIME_HIGH_summer) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  High")
+									#print(str(time.hour) + "  " + str(data) + "  High")
 								totalMinutes_Peak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesOn_Peak += 1  #adding to the high peak
 							elif (((time.hour >= START_TIME_MID_summer and time.hour < START_TIME_HIGH_summer) or (time.hour >= STOP_TIME_HIGH_summer and time.hour < STOP_TIME_MID_summer))) and peakDay: # elif statement for mid peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Mid")
+									#print(str(time.hour) + "  " + str(data) + "  Mid")
 								totalMinutes_MidPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesMid_Peak += 1
 							elif (((time.hour >= START_TIME_LOW_summer and time.hour < START_TIME_MID_summer) or (time.hour >= STOP_TIME_MID_summer and time.hour < STOP_TIME_LOW_summer)) and peakDay): # elif statement for low peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Low")
+									#print(str(time.hour) + "  " + str(data) + "  Low")
 								totalMinutes_LowPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesLow_Peak += 1
