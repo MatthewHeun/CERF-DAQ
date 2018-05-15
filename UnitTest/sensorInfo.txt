@@ -20,7 +20,7 @@ Day
 
 0
 0
-Year
+Day
 Range Analysis
 5
 100
