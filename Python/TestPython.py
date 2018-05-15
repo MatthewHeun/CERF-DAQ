@@ -59,7 +59,7 @@ class TestPython(unittest.TestCase):
                 print(row[7])
                 self.assertEqual(row[7], '0.00')
                 print(row[8])
-                self.assertEqual(row[8], '50.00')
+                self.assertEqual(row[8].strip(), '50.00')
         summaryFile.close()
 
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a2.csv", 'r')
