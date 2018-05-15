@@ -7,7 +7,7 @@ Light
 On-Peak Off-Peak %
 5
 300
-Day
+Year
 1
 
 
@@ -20,11 +20,11 @@ Day
 
 0
 0
-Day
+Year
 Range Analysis
 0
 300
-Month
+Year
 1
 
 
@@ -41,7 +41,7 @@ Year
 Min-Max
 
 
-Day
+Year
 1
 
 
