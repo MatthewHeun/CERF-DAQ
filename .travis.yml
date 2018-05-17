@@ -1,0 +1,24 @@
+language:
+ - python
+ - bash
+
+python:
+ - "2.7"
+
+cache: 
+ - pip
+ - chmod ugo+x prepUnitTest.sh
+ - bash prepUnitTest.sh
+ 
+install:
+ - "pip install -r UnitTest/requirements.txt"
+
+script:
+ - chmod ugo+x prepUnitTest.sh
+ - bash prepUnitTest.sh
+ - python Python/TestPython.py
+ 
+notifications:
+  email: false
+  
+ 

@@ -4,7 +4,7 @@
 # Analysis readings from lux sensors for summary data                    #
 #                                                                        #
 # Started by Derek De Young                                              #
-# Continued by Curtis Kortman						 #
+# Continued by Curtis Kortman                                            #
 # Started: 4/25/15                                                       #
 # Last Edited: 7/13/15                                                   #
 # ********************************************************************** #
@@ -20,13 +20,14 @@ import re  #line delimiter
 from binClass import*
 from datetime import date
 from globalVars import*  # Global vars (also includes the sensor class) [anything that has sensor.#### comes from here]
-#<<<<<<< HEAD
 
 #==================================================================
 #-------------------Tell the website the pi is busy----------------
 #==================================================================
+cwd = os.getcwd()
+datadir = cwd[:(len(cwd) - 8)] + "Data/"
 
-file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open(cwd + '/WebPage/pages/analysisStatus.txt', "w")
 file.write("1")
 file.close()
 
@@ -39,9 +40,9 @@ debug = False # used for helping in development of code, turn to false for norma
 nameOfPi = str(PI_NUMBER) # From Global Vars 
 month_list= ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 #Base directory leading to the summary
-summary_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Summary/'
+summary_path = datadir + 'Pi_' + nameOfPi + '_Summary/'
 #Base directory leading to the raw
-raw_path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'
+raw_path = datadir + 'Pi_' + nameOfPi + '_Raw/'
 year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 
@@ -52,7 +53,7 @@ year = datetime.datetime.strftime(datetime.datetime.now(), '%Y')
 
 #------------------------------------------------------------------
 
-					#initializeSummary() writes the metadata to each file
+#initializeSummary() writes the metadata to each file
 def initializeSummary(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
 	newfile = open(filename, 'w')
@@ -62,7 +63,7 @@ def initializeSummary(sensor, analysisNumber):
 
 #------------------------------------------------------------------
 					
-					#delclares the path to the data based on the organizational structur of the raw data
+					#delcares the path to the data based on the organizational structur of the raw data
 def get_full_raw_path(sensor):
 	return (raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/')
 
@@ -108,7 +109,7 @@ def dateInRange(checkDate, date1, date2):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest year for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest year for a sensor's data collection, using the organizational structure from the data collection
 def getFirstYear(sensor):
 	years = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/'):
@@ -117,7 +118,7 @@ def getFirstYear(sensor):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest month for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest month for a sensor's data collection, using the organizational structure from the data collection
 def getFirstMonth(sensor, year):
 	months = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/'):
@@ -126,7 +127,7 @@ def getFirstMonth(sensor, year):
 
 #------------------------------------------------------------------
 					
-					#finds the earliest day for a sensor's data collection, using the organizational structure from the data collection
+#finds the earliest day for a sensor's data collection, using the organizational structure from the data collection
 def getFirstDay(sensor, year, month):
 	days = []
 	for name in os.listdir(raw_path + 'Sensor' + str(sensor.number) + '/' + year + '/' + month + '/'):
@@ -177,8 +178,7 @@ def createMonthBins(sensor, analysisNumber):
 		firstDate = addMonth(firstDate)
 
 #------------------------------------------------------------------
-					
-					#creates a list of start and stop times divided by days
+#creates a list of start and stop times divided by days
 def createDayBins(sensor, analysisNumber):
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
@@ -194,8 +194,7 @@ def createDayBins(sensor, analysisNumber):
 		#print "Start time: " + startTime + " Stop Time: " + stopTime
 
 #------------------------------------------------------------------
-					
-					#creates a list of start and stop times based on the user input on the webpage
+#creates a list of start and stop times based on the user input on the webpage
 def createCustomBins(sensor, analysisNumber):
 	firstDate = getFirstDate(sensor)
 	today = datetime.datetime.today()
@@ -219,7 +218,7 @@ def createCustomBins(sensor, analysisNumber):
 		firstDate += datetime.timedelta(days=1)
 
 #------------------------------------------------------------------
-					#creates a list of start and stop times based on the data of a sensor
+#creates a list of start and stop times based on the data of a sensor
 
 def createSensorBins(sensor, analysisNumber):
 	firstYear = int(getFirstYear(sensor))
@@ -308,7 +307,7 @@ def createBins(sensor, analysisNumber):
 			createYearBins(sensor, analysisNumber)
 
 #------------------------------------------------------------------
-					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
+#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateMinMaxData(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')
@@ -460,7 +459,7 @@ def aggregateMinMaxData(sensor, analysisNumber):
 	summaryfile.close()
 
 #------------------------------------------------------------------
-					#takes the data from "from sensor" or "custom time" and summarizes it by month or year
+#takes the data from "from sensor" or "custom time" and summarizes it by month or year
 
 def aggregateRangeData(sensor, analysisNumber):
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber + 1) + '.csv')	#navigate to the sumamry file
@@ -572,8 +571,7 @@ def aggregateRangeData(sensor, analysisNumber):
 	summaryfile.write(summarystring)			#the new information now overwrites the old
 	summaryfile.close()
 #------------------------------------------------------------------
-
-					# determines if the data was high during set hours, or high during off set hours
+# determines if the data was high during set hours, or high during off set hours
 def onPeakOffPeakAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
@@ -610,7 +608,6 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 				fileList.append(file)
 			fileList.sort()
 			for file in fileList:
-
 				file = open(filePath + file)
 				for line in file:
 					if line[0].isdigit():	#ignore the metadata
@@ -633,27 +630,26 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 						if time.weekday() in PEAK_WEEKDAY: #if a weekday
 							peakDay = True
 						if (time.month >= 6 and time.month < 9): #if in the summer months
-                                                        print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
+								#print(str(time.hour) + "  " + str(time.weekday()) + "  " + str(peakDay) + "  " + str(PEAK_WEEKDAY))
 							if ((time.hour >= START_TIME_HIGH_summer and time.hour < STOP_TIME_HIGH_summer) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  High")
+									#print(str(time.hour) + "  " + str(data) + "  High")
 								totalMinutes_Peak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesOn_Peak += 1  #adding to the high peak
 							elif (((time.hour >= START_TIME_MID_summer and time.hour < START_TIME_HIGH_summer) or (time.hour >= STOP_TIME_HIGH_summer and time.hour < STOP_TIME_MID_summer))) and peakDay: # elif statement for mid peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Mid")
+									#print(str(time.hour) + "  " + str(data) + "  Mid")
 								totalMinutes_MidPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesMid_Peak += 1
 							elif (((time.hour >= START_TIME_LOW_summer and time.hour < START_TIME_MID_summer) or (time.hour >= STOP_TIME_MID_summer and time.hour < STOP_TIME_LOW_summer)) and peakDay): # elif statement for low peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Low")
+									#print(str(time.hour) + "  " + str(data) + "  Low")
 								totalMinutes_LowPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesLow_Peak += 1
-							else:		                        #otherwise add to minutes off peak
-                                                                #print(str(time.hour) + "  " + str(data) + "  Off")
-                                                                totalMinutes_OffPeak += 1
-                                                                if (float(data) > float(Min)) and (float(data) < float(Max)):
-                                                                        minutesOn_OffPeak += 1
+							else:#otherwise add to minutes off peak
+								totalMinutes_OffPeak += 1
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									minutesOn_OffPeak += 1
 						else:    #if in the winter months
 							if ((time.hour >= START_TIME_HIGH_winter and time.hour < STOP_TIME_HIGH_winter) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
 								totalMinutes_Peak += 1
@@ -663,24 +659,25 @@ def onPeakOffPeakAnalysis(sensor, analysisNumber):
 								totalMinutes_MidPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesMid_Peak += 1
-                                                        else:															#otherwise add to minutes off peak
+							else:	#otherwise add to minutes off peak
 								totalMinutes_OffPeak += 1
 								if (float(data) > float(Min)) and (float(data) < float(Max)):
 									minutesOn_OffPeak += 1
-		if totalMinutes_Peak == 0:
-			totalMinutes_Peak = 1
-		if totalMinutes_MidPeak == 0:
-			totalMinutes_MidPeak = 1
-		if totalMinutes_LowPeak == 0:
-			totalMinutes_LowPeak = 1
-		if totalMinutes_OffPeak == 0:
-			totalMinutes_OffPeak = 1
-		onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
-		midPeakPercentage = float(100* (float(minutesMid_Peak) / float(totalMinutes_MidPeak)))
-		lowPeakPercentage = float(100* (float(minutesLow_Peak) / float(totalMinutes_LowPeak)))
-		offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
-		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %midPeakPercentage + ',' + "%.2f" %lowPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
-		summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
+		
+			if totalMinutes_Peak == 0:
+				totalMinutes_Peak = 1
+			if totalMinutes_MidPeak == 0:
+				totalMinutes_MidPeak = 1
+			if totalMinutes_LowPeak == 0:
+				totalMinutes_LowPeak = 1
+			if totalMinutes_OffPeak == 0:
+				totalMinutes_OffPeak = 1
+			onPeakPercentage = float(100 * (float(minutesOn_Peak) / float(totalMinutes_Peak)))
+			midPeakPercentage = float(100* (float(minutesMid_Peak) / float(totalMinutes_MidPeak)))
+			lowPeakPercentage = float(100* (float(minutesLow_Peak) / float(totalMinutes_LowPeak)))
+			offPeakPercentage = float(100 * (float(minutesOn_OffPeak) / float(totalMinutes_OffPeak)))
+			summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %onPeakPercentage + ',' + "%.2f" %midPeakPercentage + ',' + "%.2f" %lowPeakPercentage + ',' + "%.2f" %offPeakPercentage + "\n"
+			summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
 
 		minutesOn_Peak = 0
 		minutesMid_Peak = 0
@@ -756,7 +753,7 @@ def kWhAnalysis(sensor, analysisNumber):
 			startYear += 1
 
 #-----------------------------------------------------------------------
-							#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
+#onPeakOffPeakAnalysis - checks for the on% for the on peak and off peak hours as defined by the electrical grid
 def rangeAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
@@ -1008,11 +1005,11 @@ def minMaxAnalysis(sensor, analysisNumber):
 
 #------------------------------------------------------------------
 
-					#analyzeData() calls the functions to output for each of the sensors
+#analyzeData() calls the functions to output for each of the sensors
 def analyzeData():
 
 	percentComplete = "0%"
-	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 	#print percentComplete
 	file.write(str(percentComplete))
 	file.close()
@@ -1036,7 +1033,7 @@ def analyzeData():
 				elif SENSOR_INFO[i].analysis[c] == "kWh":
 					kWhAnalysis(SENSOR_INFO[i], c)
 					#print 'Permorming kWh Analysis: ' + Sensor Number: ' + str(SENSOR_INFO[i].number) + ' Analysis Number: ' + str(c+1)			
-			file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+			file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 			percentComplete = float(float(percentIndex)/float((3)*(NUM_SENSORS)))*100
 			percentComplete = "%.2f" %percentComplete + '%'
 			#print percentComplete
@@ -1045,7 +1042,7 @@ def analyzeData():
 			percentIndex += 1;
 	
 	percentComplete = "100%"
-	file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisPercentage.txt', "w")
+	file = open(cwd + '/WebPage/pages/analysisPercentage.txt', "w")
 	#print percentComplete
 	file.write(str(percentComplete))
 	file.close()
@@ -1073,7 +1070,7 @@ analyzeData()
 #-----------------Tell the website the pi is not busy--------------
 #==================================================================
 
-file = open('/home/pi/Desktop/CERF-DAQ/WebPage/pages/analysisStatus.txt', "w")
+file = open(cwd + '/WebPage/pages/analysisStatus.txt', "w")
 file.write("0")
 file.close()
 

@@ -2,14 +2,24 @@
 import time
 import os
 from Adafruit_ADS1x15 import ADS1x15
+import ADS1x15tempFix
 from Occupancy_vars import *
-import RPi.GPIO as GPIO
+
+# RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
+cwd = os.getcwd()
+amTestFile = cwd + "/UnitTest/amTest.txt"
+f = open(amTestFile)
+amTest = int(f.readline())
+f.close()
+if not amTest:
+	import RPi.GPIO as GPIO
+
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
 #==================================================================
 									#Define the type of ADC to be used
-ADS1115 = 0x01								#16-bit ADC defined (would be 0x00 for the 12bit ADC)
+ADS1115 = 0x01						#16-bit ADC defined (would be 0x00 for the 12bit ADC)
 
 #==================================================================
 #----------------------FUNCTION DEFINITIONS------------------------
@@ -28,19 +38,28 @@ def getTemperature(i2cAddress, pinNumber):
 	return value
 
 def getOccupancy(pinNumber):
-	#print "pinNumber: " + str(pinNumber)
-	value = Occupancy[str(pinNumber)] 		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
+		#print "pinNumber: " + str(pinNumber)
+		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
+	value = Occupancy[str(pinNumber)] 
 	return value
 
-def getWattage(self):
-	#print "pinNumber: " + str(self.pinNumber)
-	GPIO.setmode(GPIO.BOARD)
-	GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-	#print(self.pinNumber)
-	#print(GPIO.input(int(self.pinNumber)))
-	#print(self.wattage)
-	value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
-	#print(value)
+def getWattage(sensorNum, voltage):
+	adc = ADS1x15tempFix.ADS1115()
+	GAIN = 1
+	value = adc.read_adc((sensorNum-1), gain = GAIN)
+	
+	# These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
+	# However, I am still figuring out how to do that. These numbers will work for the 
+	value = (((float(value)/32767) * 4.096) - .0175) / .025
+	value = value * voltage
+		#print "pinNumber: " + str(self.pinNumber)
+		#GPIO.setmode(GPIO.BOARD)
+		#GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
+		#print(self.pinNumber)
+		#print(GPIO.input(int(self.pinNumber)))
+		#print(self.wattage)
+		#value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
+		#print(value)
 	return value
 
 
@@ -70,6 +89,7 @@ class Sensor:
 		self.summaryMethod = ["","",""]
 		self.numberOfAnalysis = 0
 		self.wattage = 0
+		self.voltage = 0
 
 	def set_name(self, new_name):
 		self.name = new_name
@@ -82,8 +102,9 @@ class Sensor:
 
 	def set_pinNumber(self, new_pinNumber):
 		self.pinNumber = new_pinNumber
-
+	
 	def set_numberOfAnalysis(self, new_number):
+		# How many analysis will be done i.e. (1. peak analysis 2. range analysis 3. 
 		self.numberOfAnalysis = new_number
 
 	def set_analysis(self, new_analysis, index):
@@ -106,7 +127,11 @@ class Sensor:
 		elif (self.type == "Occupancy"):
 			reading = getOccupancy(self.pinNumber)
 		elif (self.type == "Current"):
-			reading = getWattage(self)
+			reading = 0
+			if (getWattage(self.number) > 0):
+				# Get wattage uses the wattage value while pretending it is a voltage value. This will eventually
+				# be configured properly, however, I am still figuring out how to do that.
+				reading = getWattage(self.number, self.wattage)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):
@@ -136,9 +161,17 @@ class Sensor:
 
 	def set_summaryMethod(self, new_summaryMethod, index):
 		self.summaryMethod[index] = new_summaryMethod
-
+	
+	# Currently working on moving over to setting voltage. Currently the wattage setting stands in as the voltage
+	# I'm still learning how to get rid of magic numbers and make everything configurable from the website
 	def set_wattage(self, new_wattage):
 		self.wattage = new_wattage
+	
+	# Eventually this function will replace the wattage function. Still figuring out how to manage that.	
+	# Otherwise the wattage should be properly calculated if one pretends self.wattage is actually the voltage
+	# of the line.
+	def set_voltage(self, new_voltage):
+		self.voltage = new_voltage
 
 #testSensor = Sensor(8)
 #testSensor.set_type("Wattage")
