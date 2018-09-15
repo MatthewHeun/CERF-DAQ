@@ -60,7 +60,7 @@ var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
 						</form>
 					</div> <!-- form-group -->
 					<span class="input-group-btn">
-						<button style="margin-left:0%;" type="sbumit" form="numSensors" class="btn btn-primary" name="submitSensors">Submit</button>
+						<button style="margin-left:0%;" type="submit" form="numSensors" class="btn btn-primary" name="submitSensors">Submit</button>
 					</span>
 				</div> <!-- input-group -->
 			</div> <!-- col-lg-3 -->

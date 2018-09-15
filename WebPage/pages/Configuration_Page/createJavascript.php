@@ -119,4 +119,6 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 	}
 }
 
+fclose($javaFile);
+
 ?>
