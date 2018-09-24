@@ -17,7 +17,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$Picture = '<i class="fa fa-bolt fa-fw"></i>';
 		}
 
-		$html_sensor_list .= '<button type="button" onClick="toggleDisplay' . ($i+1) . '()" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . ' ' . $Picture . '</button></div>' . "\n";
+		$html_sensor_list .= '<button type="button" onClick="toggleDisplay(' . ($i+1) . ')" style="background:none; border:none; margin:0; padding:0; cursor:pointer;"><i class="fa fa-caret-square-o-down fa-fw"></i> Sensor ' . ($i+1) . ': ' . $SENSOR_INFO[$i]->name . ' ' . $Picture . '</button></div>' . "\n";
 		$html_sensor_list .= '<div class="panel-body" style="display:none;" id=panelBody'. ($i+1) . '>' . "\n";
 		$html_sensor_list .= '<div class="row">' . "\n";
 

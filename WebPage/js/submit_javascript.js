@@ -1,10 +1,11 @@
-function toggleDisplay1() {
-if (document.getElementById("panelBody1").style.display == "none") {
-document.getElementById("panelBody1").style.display = "block";
-document.getElementById("submit1").style.display = "block";
+function toggleDisplay(num) {
+numStr = num.toString();
+if (document.getElementById("panelBody" + numStr).style.display == "none") {
+document.getElementById("panelBody" + numStr).style.display = "block";
+document.getElementById("submit" + numStr).style.display = "block";
 } else {
-document.getElementById("panelBody1").style.display = "none";
-document.getElementById("submit1").style.display = "none";
+document.getElementById("panelBody" + numStr).style.display = "none";
+document.getElementById("submit" + numStr).style.display = "none";
 }
 }
 
