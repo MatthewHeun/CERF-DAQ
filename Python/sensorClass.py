@@ -6,7 +6,8 @@ import ADS1x15tempFix
 from Occupancy_vars import *
 
 # RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
-cwd = os.getcwd()
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-7]
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile)
 amTest = int(f.readline())

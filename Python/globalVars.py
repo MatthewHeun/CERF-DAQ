@@ -1,7 +1,8 @@
 from sensorClass import *
 import os
 
-cwd = os.getcwd()
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-7]
 
 numPiFile = cwd + "/WebPage/pages/piNumber.txt"
 #numPiFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
