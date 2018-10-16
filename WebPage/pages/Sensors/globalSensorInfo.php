@@ -163,9 +163,10 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	}
 	// echo "Number Of Analysis: ";
 	// echo $SENSOR_INFO[$i-1]->numberOfAnalysis . "\n";
-	$SENSOR_INFO[$i-1]->set_wattage(trim(fgets($sensorInfoFile)));
-	// echo "Wattage: ";
-	// echo $SENSOR_INFO->wattage . "\n";
+	$SENSOR_INFO[$i-1]->set_voltage(trim(fgets($sensorInfoFile)));
+	// echo "Voltage: ";
+	// echo $SENSOR_INFO->voltage . "\n";
+	
 
 	
 	

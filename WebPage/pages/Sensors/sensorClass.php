@@ -23,6 +23,7 @@ class sensor {
 	public $summaryMethod;
 	public $numberOfAnalysis;
 	public $wattage;
+	public $voltage;
 
 
 
@@ -33,6 +34,7 @@ class sensor {
 		$this->pinNumber = 0;
 		$this->numberOfAnalysis = 0;
 		$this->wattage = 0;
+		$this->voltage = 0;
 		$this->analysis = array("","","");
 		$this->thresholdMin = array(0,0,0);
 		$this->thresholdMax = array(0,0,0);
@@ -69,6 +71,10 @@ class sensor {
 
 	function set_wattage($new_wattage){
 		$this->wattage = $new_wattage;
+	}
+	
+	function set_voltage($new_voltage){
+		$this->voltage = $new_voltage;
 	}
 
 	function set_analysis($new_analysis, $index){

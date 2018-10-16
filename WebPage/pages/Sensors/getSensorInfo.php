@@ -6,7 +6,7 @@ $typeStrings = new ArrayObject(array());
 $i2cStrings = new ArrayObject(array());
 $pinStrings = new ArrayObject(array());
 $numberOfAnalysisStrings = new ArrayObject(array());
-$wattageStrings = new ArrayObject(array());
+$voltageStrings = new ArrayObject(array());
 $analysisStrings = new ArrayObject(array());
 $minStrings = new ArrayObject(array());
 $maxStrings = new ArrayObject(array());
@@ -25,7 +25,7 @@ $typeArray = new ArrayObject(array());
 $i2cArray = new ArrayObject(array());
 $pinArray = new ArrayObject(array());
 $numberOfAnalysisArray = new ArrayObject(array());
-$wattageArray = new ArrayObject(array());
+$voltageArray = new ArrayObject(array());
 $analysisArray = new ArrayObject(array());
 $minArray = new ArrayObject(array());
 $maxArray = new ArrayObject(array());
@@ -45,7 +45,7 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$i2cStrings->append("i2c" . $i);
 	$pinStrings->append("pin" . $i);
 	$numberOfAnalysisStrings->append("numberOfAnalysis" . $i);
-	$wattageStrings->append("wattage" . $i);
+	$voltageStrings->append("wattage" . $i);
 	$analysisStrings->append(array("","",""));
 	$minStrings->append(array("", "", ""));
 	$maxStrings->append(array("", "", ""));
@@ -79,7 +79,7 @@ if(isset($_GET["sensorInfo"])){
 		$i2cArray->append($_GET[$i2cStrings[$i-1]]);
 		$pinArray->append($_GET[$pinStrings[$i-1]]);
 		$numberOfAnalysisArray->append($_GET[$numberOfAnalysisStrings[$i-1]]);
-		$wattageArray->append($_GET[$wattageStrings[$i-1]]);
+		$voltageArray->append($_GET[$wattageStrings[$i-1]]);
 		$analysisStrings->append(array("","",""));
 		$minArray->append(array("", "", ""));
 		$maxArray->append(array("", "", ""));
@@ -117,7 +117,7 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $i2cArray[$i-1] . "\n");
 		fwrite($infoFile, $pinArray[$i-1] . "\n");
 		fwrite($infoFile, $numberOfAnalysisArray[$i-1] . "\n");
-		fwrite($infoFile, $wattageArray[$i-1] . "\n");
+		fwrite($infoFile, $voltageArray[$i-1] . "\n");
 		for ($i4 = 0; $i4 < 3; $i4++) {
 			fwrite($infoFile, $analysisArray[$i-1][$i4] . "\n");
 			// print ($i-1);

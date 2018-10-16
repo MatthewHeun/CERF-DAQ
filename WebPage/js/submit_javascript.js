@@ -24,13 +24,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress1").style.display = "none";
-document.getElementById("wattage1").style.display = "none";
+document.getElementById("voltage1").style.display = "none";
 } else if (sensorType == 'Current'){
-document.getElementById("wattage1").style.display = "block";
+document.getElementById("voltage1").style.display = "block";
 document.getElementById("i2cAddress1").style.display = "none";
 } else {
 document.getElementById("i2cAddress1").style.display = "block";
-document.getElementById("wattage1").style.display = "none";
+document.getElementById("voltage1").style.display = "none";
 }
 } );
 
@@ -40,13 +40,13 @@ console.log(sensorType);
 console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress2").style.display = "none";
-document.getElementById("wattage2").style.display = "none";
+document.getElementById("voltage2").style.display = "none";
 } else if (sensorType == 'Current'){
-document.getElementById("wattage2").style.display = "block";
+document.getElementById("voltage2").style.display = "block";
 document.getElementById("i2cAddress2").style.display = "none";
 } else {
 document.getElementById("i2cAddress2").style.display = "block";
-document.getElementById("wattage2").style.display = "none";
+document.getElementById("voltage2").style.display = "none";
 }
 } );
 
