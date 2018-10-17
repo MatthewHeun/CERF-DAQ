@@ -79,7 +79,7 @@ class Sensor:
 		self.customStart = [0,0,0]
 		self.customStop = [0,0,0]
 		self.summaryMethod = ["","",""]
-		self.numberOfAnalysis = 0
+		self.number = sensorNumber
 		self.voltage = 0
 
 	def set_name(self, new_name):
