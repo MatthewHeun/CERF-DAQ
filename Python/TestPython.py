@@ -37,7 +37,7 @@ class TestPython(unittest.TestCase):
         self.assertEqual(SENSOR_INFO[0].i2cAddress, "0x49", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].pinNumber, "1", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].numberOfAnalysis, "3", "globalVars.py incorrectly newPeakTimes.txt")
-        self.assertEqual(SENSOR_INFO[0].wattage, "", "globalVars.py incorrectly newPeakTimes.txt")
+        self.assertEqual(SENSOR_INFO[0].voltage, "", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].analysis[0], "On-Peak Off-Peak %", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].analysis[1], "Range Analysis", "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(SENSOR_INFO[0].analysis[2], "Min-Max", "globalVars.py incorrectly newPeakTimes.txt")
