@@ -699,13 +699,15 @@ def kWhAnalysis(sensor, analysisNumber):
 	initializeSummary(sensor, analysisNumber)
 	filename = (summary_path + 'Pi_' + nameOfPi + '_'+ str(sensor.number) + 'a' + str(analysisNumber+1) + '.csv')
 	summaryfile = open(filename, 'a')
-	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,kWh On-Peak,kWh Off-Peak" + '\n'
+	summaryString = "#Pi_Number,Sensor_Number,Sensor Name,Year,Month,kWh On-Peak, kWh Mid-Peak, kWh Low-Peak, kWh Off-Peak" + '\n'
 	summaryfile.write(summaryString)
 
 	firstDate = getFirstDate(sensor)		#get the first datapoint time
 	today = datetime.datetime.today()		#get the time of today
 
 	kWhOn_Peak = 0
+	kWhMid_Peak = 0
+	kWhLow_Peak = 0
 	kWhOn_OffPeak = 0
 
 	startYear = int(firstDate.year)			
@@ -734,17 +736,38 @@ def kWhAnalysis(sensor, analysisNumber):
 						time = getDateFromDataString(time)
 
 						peakDay = False
-						if time.weekday() in PEAK_WEEKDAY:
+						if time.weekday() in PEAK_WEEKDAY: #if a weekday
 							peakDay = True
-						if (time.hour >= START_TIME and time.hour < STOP_TIME and peakDay): 	#if during peak hours add to kWh on peak
-							kWhOn_Peak += float(data) / 60.0
-						else:															#otherwise add to minutes off peak
-							kWhOn_OffPeak += float(data) / 60.0
+						if (time.month >= 6 and time.month <= 9): #if in the summer months
+							if ((time.hour >= START_TIME_HIGH_summer and time.hour < STOP_TIME_HIGH_summer) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhOn_Peak += float(data) / 60  #adding to the high peak
+							elif (((time.hour >= START_TIME_MID_summer and time.hour < START_TIME_HIGH_summer) or (time.hour >= STOP_TIME_HIGH_summer and time.hour < STOP_TIME_MID_summer))) and peakDay: # elif statement for mid peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhMid_Peak += float(data) / 60
+							elif (((time.hour >= START_TIME_LOW_summer and time.hour < START_TIME_MID_summer) or (time.hour >= STOP_TIME_MID_summer and time.hour < STOP_TIME_LOW_summer)) and peakDay): # elif statement for low peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhLow_Peak += float(data) / 60
+							else:	#otherwise add to minutes off peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhOn_OffPeak += float(data) / 60
+						else:    #if in the winter months
+							if ((time.hour >= START_TIME_HIGH_winter and time.hour < STOP_TIME_HIGH_winter) and peakDay): 	#if above the threshold during peak hours add to minutes on peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhOn_Peak += float(data) / 60  #adding to the high peak
+							elif (((time.hour >= START_TIME_MID_winter and time.hour < START_TIME_HIGH_winter) or (time.hour >= STOP_TIME_HIGH_winter and time.hour < STOP_TIME_MID_winter)) and peakDay): # elif statement for mid peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhMid_Peak += float(data) / 60
+							else:	#otherwise add to minutes off peak
+								if (float(data) > float(Min)) and (float(data) < float(Max)):
+									kWhOn_OffPeak += float(data) / 60
 
-		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %kWhOn_Peak + ',' + "%.2f" %kWhOn_OffPeak + "\n"
+		summaryString = nameOfPi + ',' + str(sensor.number) + ',' + sensor.name + ',' + str(startYear) + ',' + str(startMonth) + ',' + "%.2f" %kWhOn_Peak + ',' + "%.2f" %kWhMid_Peak+ ',' + "%.2f" %kWhLow_Peak + ',' + "%.2f" %kWhOn_OffPeak + "\n"
 		summaryfile.write(summaryString)		#at the end of the month, write the data to the file, and reset the counters
 
 		kWhOn_Peak = 0
+		kWhMid_Peak = 0
+		kWhLow_Peak = 0
 		kWhOn_OffPeak = 0
 
 		startMonth  = int(startMonth) + 1
