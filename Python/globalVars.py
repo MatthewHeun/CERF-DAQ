@@ -1,7 +1,8 @@
 from sensorClass import *
 import os
 
-cwd = os.getcwd()
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-7]
 
 numPiFile = cwd + "/WebPage/pages/piNumber.txt"
 #numPiFile = "/home/pi/Desktop/CERF-DAQ/WebPage/pages/piNumber.txt"
@@ -121,7 +122,7 @@ for i in range(NUM_SENSORS):
 	SENSOR_INFO[i].set_i2cAddress(f.readline().rstrip())
 	SENSOR_INFO[i].set_pinNumber(f.readline().rstrip())
 	SENSOR_INFO[i].set_numberOfAnalysis(f.readline().rstrip())
-	SENSOR_INFO[i].set_wattage(f.readline().rstrip())
+	SENSOR_INFO[i].set_voltage(f.readline().rstrip())
 	for x in range(3):
 		SENSOR_INFO[i].set_analysis(f.readline().rstrip(), x)
 		SENSOR_INFO[i].set_threshold(f.readline().rstrip(),f.readline().rstrip(), x)

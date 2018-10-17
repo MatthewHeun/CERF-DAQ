@@ -24,13 +24,13 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 			$fileString .= 'console.log("sensor type");' . "\n";
 			$fileString .= 'if (sensorType == \'Occupancy\'){' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
-				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '} else if (sensorType == \'Current\'){' . "\n";
-				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "block";' . "\n";
+				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '} else {' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "block";' . "\n";
-				$fileString .= 'document.getElementById("wattage' . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '}' . "\n";
 		$fileString .= '} );' . "\n" . "\n";
 		fwrite($javaFile, $fileString);
