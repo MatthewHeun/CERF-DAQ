@@ -6,7 +6,8 @@ import ADS1x15tempFix
 from Occupancy_vars import *
 
 # RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
-cwd = os.getcwd()
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-7]
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile)
 amTest = int(f.readline())
@@ -46,20 +47,12 @@ def getOccupancy(pinNumber):
 def getWattage(sensorNum, voltage):
 	adc = ADS1x15tempFix.ADS1115()
 	GAIN = 1
-	value = adc.read_adc((sensorNum-1), gain = GAIN)
+	value = adc.read_adc((int(sensorNum)-1), gain = GAIN)
 	
 	# These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
 	# However, I am still figuring out how to do that. These numbers will work for the 
 	value = (((float(value)/32767) * 4.096) - .0175) / .025
-	value = value * voltage
-		#print "pinNumber: " + str(self.pinNumber)
-		#GPIO.setmode(GPIO.BOARD)
-		#GPIO.setup(int(self.pinNumber), GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
-		#print(self.pinNumber)
-		#print(GPIO.input(int(self.pinNumber)))
-		#print(self.wattage)
-		#value = (float(GPIO.input(int(self.pinNumber))) * float(self.wattage))
-		#print(value)
+	value = value * float(int(voltage))
 	return value
 
 
@@ -77,7 +70,6 @@ class Sensor:
 		self.analysis = ["","",""]
 		self.thresholdMin = [0,0,0]
 		self.thresholdMax = [0,0,0]
-		self.number = sensorNumber
 		self.value = [0,0,0]
 		self.binType = ["","",""]
 		self.fromSensorNumber = [0,0,0]
@@ -87,8 +79,7 @@ class Sensor:
 		self.customStart = [0,0,0]
 		self.customStop = [0,0,0]
 		self.summaryMethod = ["","",""]
-		self.numberOfAnalysis = 0
-		self.wattage = 0
+		self.number = sensorNumber
 		self.voltage = 0
 
 	def set_name(self, new_name):
@@ -127,11 +118,7 @@ class Sensor:
 		elif (self.type == "Occupancy"):
 			reading = getOccupancy(self.pinNumber)
 		elif (self.type == "Current"):
-			reading = 0
-			if (getWattage(self.number) > 0):
-				# Get wattage uses the wattage value while pretending it is a voltage value. This will eventually
-				# be configured properly, however, I am still figuring out how to do that.
-				reading = getWattage(self.number, self.wattage)
+			reading = getWattage(self.pinNumber, self.voltage)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):
@@ -161,11 +148,6 @@ class Sensor:
 
 	def set_summaryMethod(self, new_summaryMethod, index):
 		self.summaryMethod[index] = new_summaryMethod
-	
-	# Currently working on moving over to setting voltage. Currently the wattage setting stands in as the voltage
-	# I'm still learning how to get rid of magic numbers and make everything configurable from the website
-	def set_wattage(self, new_wattage):
-		self.wattage = new_wattage
 	
 	# Eventually this function will replace the wattage function. Still figuring out how to manage that.	
 	# Otherwise the wattage should be properly calculated if one pretends self.wattage is actually the voltage

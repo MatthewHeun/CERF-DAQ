@@ -24,8 +24,9 @@ from globalVars import*  # Global vars (also includes the sensor class) [anythin
 #==================================================================
 #-------------------Tell the website the pi is busy----------------
 #==================================================================
-cwd = os.getcwd()
-datadir = cwd[:(len(cwd) - 8)] + "Data/"
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-7]
+datadir = cwd[:-8] + "Data/"
 
 file = open(cwd + '/WebPage/pages/analysisStatus.txt', "w")
 file.write("1")

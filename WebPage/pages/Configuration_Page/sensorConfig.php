@@ -1,4 +1,4 @@
-<?php include '../global_vars.php' . "\n"; ?>
+<?php include 'Sensors/globalSensorInfo.php' . "\n"; ?>
 <?php
 $pageLink = 'configuration.php' . "\n";
 $html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="get">' . "\n";
@@ -74,7 +74,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 			
-			//-------------------------Wattage Level-----------------------//
+			//-------------------------Voltage Level-----------------------//
 			
 			$displayString = '';
 				//echo "CHECK HERE";
@@ -83,9 +83,9 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 					//echo "Changing Display";
 					$displayString = ' style="display:none;"';
 				}
-			$html_sensor_list .= '<div class="col-lg-4" id="wattage' . ($i+1) . '"' . $displayString . '>' . "\n";
+			$html_sensor_list .= '<div class="col-lg-4" id="voltage' . ($i+1) . '"' . $displayString . '>' . "\n";
 
-				include 'wattage.php';
+				include 'voltage.php';
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 
