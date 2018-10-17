@@ -52,7 +52,7 @@ def getWattage(sensorNum, voltage):
 	# These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
 	# However, I am still figuring out how to do that. These numbers will work for the 
 	value = (((float(value)/32767) * 4.096) - .0175) / .025
-	value = value * float(voltage)
+	value = value * float(int(voltage))
 	return value
 
 
@@ -153,7 +153,7 @@ class Sensor:
 	# Otherwise the wattage should be properly calculated if one pretends self.wattage is actually the voltage
 	# of the line.
 	def set_voltage(self, new_voltage):
-		self.voltage = int(new_voltage)
+		self.voltage = new_voltage
 
 #testSensor = Sensor(8)
 #testSensor.set_type("Wattage")
