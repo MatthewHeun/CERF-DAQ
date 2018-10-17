@@ -45,7 +45,7 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$i2cStrings->append("i2c" . $i);
 	$pinStrings->append("pin" . $i);
 	$numberOfAnalysisStrings->append("numberOfAnalysis" . $i);
-	$voltageStrings->append("wattage" . $i);
+	$voltageStrings->append("voltage" . $i);
 	$analysisStrings->append(array("","",""));
 	$minStrings->append(array("", "", ""));
 	$maxStrings->append(array("", "", ""));
@@ -79,7 +79,7 @@ if(isset($_GET["sensorInfo"])){
 		$i2cArray->append($_GET[$i2cStrings[$i-1]]);
 		$pinArray->append($_GET[$pinStrings[$i-1]]);
 		$numberOfAnalysisArray->append($_GET[$numberOfAnalysisStrings[$i-1]]);
-		$voltageArray->append($_GET[$wattageStrings[$i-1]]);
+		$voltageArray->append($_GET[$voltageStrings[$i-1]]);
 		$analysisStrings->append(array("","",""));
 		$minArray->append(array("", "", ""));
 		$maxArray->append(array("", "", ""));
