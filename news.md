@@ -1,4 +1,10 @@
-# hotfix 1.2.1
+# release 1.2.3
+- Configuration page is fully working
+- Now have voltage input, this will be a measure of line voltage
+- Pi's record wattage and can do a kWhr analysis
+- Corrected how certain directories were accessed, should reduce bugs when accessing through SSH
+
+## hotfix 1.2.1
 - September now included as a "summer month" for on peak/off peak analysis
 
 ## release 1.2.0
