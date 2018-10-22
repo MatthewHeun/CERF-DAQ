@@ -27,7 +27,9 @@ from globalVars import*		## Global Variables are defined in ALL CAPS for easy id
 nameOfPi = str(PI_NUMBER)
 
 ##### Data path
-path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-16]
+path = cwd + '/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
 #==================================================================
 #------------------------DEFINE FUNCTIONS--------------------------

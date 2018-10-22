@@ -8,6 +8,7 @@ f.write("1")
 f.close()
 
 import Analyze
+import GetData
 from globalVars import *
 
 class TestPython(unittest.TestCase):
@@ -87,6 +88,10 @@ class TestPython(unittest.TestCase):
                 print(row[7])
                 self.assertEqual(row[7], '125.50')
         summaryFile.close()
+        
+        def test_getData(self):
+            assertEqual(0,0)
+            
 
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
