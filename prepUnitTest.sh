@@ -18,4 +18,6 @@ done
 
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
 
+sudo apt-get install python-pip
+sudo apt-get install xrdp
 sudo easy_install pytz
