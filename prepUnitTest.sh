@@ -14,7 +14,7 @@ do
 	mkdir -p /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/
 	wget -P /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/ "https://raw.githubusercontent.com/pjh26/UnitTestData/master/$sensorNum.zip"
 	unzip -d /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/ /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/$sensorNum.zip
-	chmod 777 -r /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/
 done
 
+chmod 777 -R /home/travis/build/MatthewHeun/Data/
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
