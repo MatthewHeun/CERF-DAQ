@@ -12,7 +12,9 @@ cache:
  
 install:
  - "pip install -r UnitTest/requirements.txt"
-
+ - sudo apt-get install python-pip
+ - sudo apt-get install xrdp
+ - sudo easy_install pytz
 script:
  - chmod ugo+x prepUnitTest.sh
  - bash prepUnitTest.sh
