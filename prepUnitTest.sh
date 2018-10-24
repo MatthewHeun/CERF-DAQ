@@ -17,3 +17,5 @@ do
 done
 
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
+
+sudo easy_install pytz
