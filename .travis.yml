@@ -11,6 +11,8 @@ cache:
 before_install:
  - chmod ugo+x prepUnitTest.sh
  - bash prepUnitTest.sh
+ - sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/
+ 
  
 install:
  - "pip install -r UnitTest/requirements.txt"
