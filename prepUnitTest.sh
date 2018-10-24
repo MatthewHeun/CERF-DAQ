@@ -17,6 +17,6 @@ do
 done
 
 sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/Sensor1/2017/03/Pi_1_1_2017-03-01.csv
-sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/Sensor2/2017/03/Pi_3_1_2017-03-01.csv
-sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/Sensor3/2017/03/Pi_3_3_2017-03-01.csv
+sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/Sensor2/2017/03/Pi_3_1_2017-03-31.csv
+sudo chmod -R 777 /home/travis/build/MatthewHeun/Data/Pi_3_Raw/Sensor3/2017/03/Pi_3_3_2017-03-31.csv
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
