@@ -36,7 +36,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$displayString = '';
 				//echo "CHECK HERE";
 				//echo $SENSOR_INFO[$i]->type;
-				if ($SENSOR_INFO[$i]->type == "Occupancy" || $SENSOR_INFO[$i]->type == "Current"){
+				if ($SENSOR_INFO[$i]->type == "Occupancy"){
 					//echo "Changing Display";
 					$displayString = ' style="display:none;"';
 				}

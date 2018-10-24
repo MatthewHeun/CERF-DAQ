@@ -16,6 +16,9 @@ install:
  - sudo apt-get install xrdp
  - sudo easy_install pytz
 script:
+ - sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/CERF-DAQ/Scripts" >> /etc/profile
+ - sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/Python" >> /etc/profile
+ - sudo echo "export PATH" >> /etc/profile
  - chmod ugo+x prepUnitTest.sh
  - bash prepUnitTest.sh
  - python Python/TestPython.py
