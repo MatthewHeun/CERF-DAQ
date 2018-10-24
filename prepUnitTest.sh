@@ -16,5 +16,5 @@ do
 	unzip -d /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/ /home/travis/build/MatthewHeun/Data/Pi_3_Raw/$sensorNum/$sensorNum.zip
 done
 
-chmod 777 -R /home/travis/build/MatthewHeun/Data/
+sudo chmod -R 777/home/travis/build/MatthewHeun/Data/
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
