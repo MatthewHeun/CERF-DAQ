@@ -1,2 +1,4 @@
 smbus-cffi
 RPi.GPIO
+xrdp
+pytz
