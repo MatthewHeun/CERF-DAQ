@@ -22,8 +22,8 @@ if grep "CERF-DAQ/Scripts" /etc/profile
 then
 	echo "Bash file set up correctly" 
 else
-	echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/CERF-DAQ/Scripts" >> /etc/profile
-	echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/Python" >> /etc/profile
-	echo "export PATH" >> /etc/profile
+	sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/CERF-DAQ/Scripts" >> /etc/profile
+	sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/Python" >> /etc/profile
+	sudo echo "export PATH" >> /etc/profile
 fi
 echo "	+Done"
