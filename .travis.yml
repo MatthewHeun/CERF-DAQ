@@ -16,7 +16,6 @@ install:
  - "pip install -r UnitTest/requirements.txt"
 
 script:
- - bash prepUnitTest.sh
  - python Python/TestPython.py
  
 notifications:
