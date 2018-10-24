@@ -17,13 +17,3 @@ do
 done
 
 mkdir /home/travis/build/MatthewHeun/Data/Pi_3_Summary/
-
-if grep "CERF-DAQ/Scripts" /etc/profile
-then
-	echo "Bash file set up correctly" 
-else
-	sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/CERF-DAQ/Scripts" >> /etc/profileXXD
-	sudo echo "PATH=""$""PATH:/home/travis/build/MatthewHeun/Python" >> /etc/profile
-	sudo echo "export PATH" >> /etc/profile
-fi
-echo "	+Done"
