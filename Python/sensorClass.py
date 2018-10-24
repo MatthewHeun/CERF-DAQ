@@ -44,8 +44,8 @@ def getOccupancy(pinNumber):
 	value = Occupancy[str(pinNumber)] 
 	return value
 
-def getWattage(sensorNum, voltage):
-	adc = ADS1x15tempFix.ADS1115()
+def getWattage(i2cAddress, sensorNum, voltage):
+	adc = ADS1x15tempFix.ADS1115(address = int(i2cAddress, 16))
 	GAIN = 1
 	value = adc.read_adc((int(sensorNum)-1), gain = GAIN)
 	
@@ -118,7 +118,7 @@ class Sensor:
 		elif (self.type == "Occupancy"):
 			reading = getOccupancy(self.pinNumber)
 		elif (self.type == "Current"):
-			reading = getWattage(self.pinNumber, self.voltage)
+			reading = getWattage(self.i2cAddress, self.pinNumber, self.voltage)
 		self.value = reading
 
 	def set_binType(self, new_binType, index):
