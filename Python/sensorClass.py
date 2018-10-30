@@ -44,10 +44,19 @@ def getOccupancy(pinNumber):
 	value = Occupancy[str(pinNumber)] 
 	return value
 
-def getWattage(sensorNum, voltage):
-	adc = ADS1x15tempFix.ADS1115()
+def getWattage(pinNumber, voltage):
 	GAIN = 1
-	value = adc.read_adc((int(sensorNum)-1), gain = GAIN)
+	# Setting the i2cAddress based on the adc pcb board. the inputs 1-4 are on 0x49 while 5-8 is on 0x48
+	# Additionally, we correct the pinNumber for later reading from that adc
+	pinNumber = int(pinNumber)
+	i2cAddress = 0x49
+	if pinNumber > 4:
+		i2cAddress = 0x48
+		pinNumber -= 4
+	
+	adc = ADS1x15tempFix.ADS1115(address = i2cAddress)
+
+	value = adc.read_adc((pinNumber-1), gain = GAIN)
 	
 	# These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
 	# However, I am still figuring out how to do that. These numbers will work for the 
