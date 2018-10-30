@@ -27,7 +27,7 @@ for ($i = 0; $i < $NUM_SENSORS; $i++){
 				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "none";' . "\n";
 			$fileString .= '} else if (sensorType == \'Current\'){' . "\n";
 				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "block";' . "\n";
-				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "none";' . "\n";
+				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "block";' . "\n";
 			$fileString .= '} else {' . "\n";
 				$fileString .= 'document.getElementById("i2cAddress' . ($i+1) . '").style.display = "block";' . "\n";
 				$fileString .= 'document.getElementById("voltage' . ($i+1) . '").style.display = "none";' . "\n";
