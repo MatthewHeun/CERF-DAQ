@@ -2,13 +2,13 @@
 
 $javaFile = fopen("/home/pi/Desktop/CERF-DAQ/WebPage/js/submit_javascript.js", "w");
 
-$fileString = 'function toggleDisplay' . ($i+1) . '() {' . "\n";
-$fileString .= 'if (document.getElementById("panelBody' . ($i+1) . '").style.display == "none") {' . "\n";
-$fileString .= 'document.getElementById("panelBody' . ($i+1) . '").style.display = "block";' . "\n";
-$fileString .= 'document.getElementById("submit' . ($i+1) . '").style.display = "block";' . "\n";
+$fileString = 'function toggleDisplay(sensorNum) {' . "\n";
+$fileString .= 'if (document.getElementById("panelBody + sensorNum").style.display == "none") {' . "\n";
+$fileString .= 'document.getElementById("panelBody + sensorNum").style.display = "block";' . "\n";
+$fileString .= 'document.getElementById("submit + sensorNum").style.display = "block";' . "\n";
 $fileString .= '} else {' . "\n";
-$fileString .= 'document.getElementById("panelBody' . ($i+1) . '").style.display = "none";' . "\n";
-$fileString .= 'document.getElementById("submit' . ($i+1) . '").style.display = "none";' . "\n";
+$fileString .= 'document.getElementById("panelBody + sensorNum").style.display = "none";' . "\n";
+$fileString .= 'document.getElementById("submit + sensorNum").style.display = "none";' . "\n";
 $fileString .= '}' . "\n";
 $fileString .= '}' . "\n" . "\n";
 fwrite($javaFile, $fileString);
