@@ -1,4 +1,3 @@
 smbus-cffi
 RPi.GPIO
 pytz
-urllib2
