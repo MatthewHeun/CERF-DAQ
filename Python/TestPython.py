@@ -89,11 +89,11 @@ class TestPython(unittest.TestCase):
                 self.assertEqual(row[7], '125.50')
         summaryFile.close()
         
-        def test_getData(self):
-            self.assertEqual(0,1, "This test has shown up finally")
+    def test_getData(self):
+        self.assertEqual(0,1, "This test has shown up finally")
         
-        def test_piConnectivity(self):
-            self.assertEqual(0,0)
+    def test_piConnectivity(self):
+        self.assertEqual(0,0)
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
