@@ -1,7 +1,7 @@
 import unittest
 import re
 import os
-import httplib
+import urllib
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
@@ -96,26 +96,13 @@ class TestPython(unittest.TestCase):
         
     def test_piConnectivity(self):
         self.assertEqual(0,0)
-#         connect = httplib.HTTPConnection("cerfpi2.calvin.edu/pages/index.php")
-#         connect.request("HEAD","/")
-#         response = connect.getresponse()
-#         self.assertEqual(200, response.stats)
-        connect = httplib.HTTPConnection("cerfpi3.calvin.edu/pages/index.php", timeout=10)
-        connect.request("HEAD","/")
-        response = connect.getresponse()
-        self.assertEqual(200, response.stats)
-        connect = httplib.HTTPConnection("cerfpi4.calvin.edu/pages/index.php", timeout=10)
-        connect.request("HEAD","/")
-        response = connect.getresponse()
-        self.assertEqual(200, response.stats)
-        connect = httplib.HTTPConnection("cerfpi5.calvin.edu/pages/index.php", timeout=10)
-        connect.request("HEAD","/")
-        response = connect.getresponse()
-        self.assertEqual(200, response.stats)
-#         connect = httplib.HTTPConnection("cerfpi6.calvin.edu/pages/index.php")
-#         connect.request("HEAD","/")
-#         response = connect.getresponse()
-#         self.assertEqual(200, response.stats)
+#         self.assertEqual(urllib.request.urlopen("http://cerfpi2.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib.request.urlopen("http://cerfpi3.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib.request.urlopen("http://cerfpi4.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib.request.urlopen("http://cerfpi5.calvin.edu").getcode(), 200)
+#         self.assertEqual(urllib.request.urlopen("http://cerfpi6.calvin.edu").getcode(), 200)
+#         self.assertEqual(urllib.request.urlopen("http://cerfpi7.calvin.edu").getcode(), 200)
+
 
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi

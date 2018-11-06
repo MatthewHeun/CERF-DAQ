@@ -1,4 +1,4 @@
 smbus-cffi
 RPi.GPIO
 pytz
-httplib2
+urllib
