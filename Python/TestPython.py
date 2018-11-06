@@ -98,11 +98,11 @@ class TestPython(unittest.TestCase):
     def test_piConnectivity(self):
         self.assertEqual(0,0)
         os.environ['http_proxy']=''
-#         self.assertEqual(urllib.request.urlopen("http://cerfpi2.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
-        self.assertEqual(urllib2.urlopen("http://cerfpi3.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
-        self.assertEqual(urllib2.urlopen("http://cerfpi4.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
-        self.assertEqual(urllib2.urlopen("http://cerfpi5.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
-#         self.assertEqual(urllib.request.urlopen("http://cerfpi6.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
+#         self.assertEqual(urllib.request.urlopen("cerfpi2.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
+        self.assertEqual(urllib2.urlopen("cerfpi3.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
+        self.assertEqual(urllib2.urlopen("cerfpi4.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
+        self.assertEqual(urllib2.urlopen("cerfpi5.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
+#         self.assertEqual(urllib.request.urlopen("cerfpi6.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi7.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
 
 
