@@ -1,6 +1,7 @@
 import unittest
 import re
 import os
+import requests
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
@@ -90,10 +91,24 @@ class TestPython(unittest.TestCase):
         summaryFile.close()
         
     def test_getData(self):
-        self.assertEqual(0,1, "This test has shown up finally")
+        self.assertEqual(0,0)
+
         
     def test_piConnectivity(self):
         self.assertEqual(0,0)
+#         connectivity = requests.head('cerfpi2.calvin.edu')
+#         self.assertEqual(200, connectivity)
+        connectivity = requests.head('cerfpi3.calvin.edu')
+        self.assertEqual(200, connectivity)
+        connectivity = requests.head('cerfpi4.calvin.edu')
+        self.assertEqual(200, connectivity)
+        connectivity = requests.head('cerfpi5.calvin.edu')
+        self.assertEqual(200, connectivity)
+#         connectivity = requests.head('cerfpi6.calvin.edu')
+#         self.assertEqual(200, connectivity)
+#         connectivity = requests.head('cerfpi7.calvin.edu')
+#         self.assertEqual(200, connectivity)
+
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
