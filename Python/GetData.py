@@ -133,7 +133,7 @@ def outputData(numberOfSensors):
 #==================================================================
 if RESET == 1:
 	shutil.rmtree(path)
-	resetPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/reset.txt'
+	resetPath = cwd + '/CERF-DAQ/WebPage/pages/reset.txt'
 	file = open(resetPath, 'w')
 	file.write('0')
 	file.close()
@@ -150,13 +150,13 @@ if DATA_COLLECTION_SET == 1:
 #==================================================================
 
 if DATA_COLLECTION_SET == 0:
-	indicatorPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('0')
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	indicatorPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('1')
 	file.close()
