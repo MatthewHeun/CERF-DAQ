@@ -1,7 +1,7 @@
 import unittest
 import re
 import os
-import requests
+import httplib
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
@@ -96,18 +96,26 @@ class TestPython(unittest.TestCase):
         
     def test_piConnectivity(self):
         self.assertEqual(0,0)
-#         connectivity = requests.head('cerfpi2.calvin.edu')
-#         self.assertEqual(200, connectivity)
-        connectivity = requests.head('http://cerfpi3.calvin.edu/pages/index.php')
-        self.assertEqual(200, connectivity.status_code)
-        connectivity = requests.head('http://cerfpi4.calvin.edu/pages/index.php')
-        self.assertEqual(200, connectivity.status_code)
-        connectivity = requests.head('http://cerfpi5.calvin.edu/pages/index.php')
-        self.assertEqual(200, connectivity.status_code)
-#         connectivity = requests.head('cerfpi6.calvin.edu')
-#         self.assertEqual(200, connectivity)
-#         connectivity = requests.head('cerfpi7.calvin.edu')
-#         self.assertEqual(200, connectivity)
+#         connect = httplib.HTTPConnection("http://cerfpi2.calvin.edu/pages/index.php")
+#         connect.request("HEAD","/")
+#         response = connect.getresponse()
+#         self.assertEqual(200, response.stats)
+        connect = httplib.HTTPConnection("http://cerfpi3.calvin.edu/pages/index.php")
+        connect.request("HEAD","/")
+        response = connect.getresponse()
+        self.assertEqual(200, response.stats)
+        connect = httplib.HTTPConnection("http://cerfpi4.calvin.edu/pages/index.php")
+        connect.request("HEAD","/")
+        response = connect.getresponse()
+        self.assertEqual(200, response.stats)
+        connect = httplib.HTTPConnection("http://cerfpi5.calvin.edu/pages/index.php")
+        connect.request("HEAD","/")
+        response = connect.getresponse()
+        self.assertEqual(200, response.stats)
+#         connect = httplib.HTTPConnection("http://cerfpi6.calvin.edu/pages/index.php")
+#         connect.request("HEAD","/")
+#         response = connect.getresponse()
+#         self.assertEqual(200, response.stats)
 
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
