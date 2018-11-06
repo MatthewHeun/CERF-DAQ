@@ -19,7 +19,7 @@ class TestPython(unittest.TestCase):
     def test_globalVars(self):
         self.assertEqual(PI_NUMBER, 3, "globalVars.py incorrectly reading piNumber.txt")
         self.assertEqual(NUM_SENSORS, 3, "globalVars.py incorrectly reading numSensors.txt")
-        self.assertEqual(DATA_COLLECTION_SET, 1, "globalVars.py incorrectly reading dataCollectionSet.txt")
+        self.assertEqual(DATA_COLLECTION_SET, 0, "globalVars.py incorrectly reading dataCollectionSet.txt")
         self.assertEqual(RESET, 0, "globalVars.py incorrectly reading reset.txt")
         self.assertEqual(START_TIME, 0, "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(START_TIME_LOW_summer, 6, "globalVars.py incorrectly newPeakTimes.txt")
