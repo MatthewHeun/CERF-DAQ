@@ -90,10 +90,10 @@ class TestPython(unittest.TestCase):
         summaryFile.close()
         
         def test_getData(self):
-            assertEqual(0,1)
+            self.assertEqual(0,0)
         
         def test_piConnectivity(self):
-            assertEqual(0,0)
+            self.assertEqual(0,0)
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
