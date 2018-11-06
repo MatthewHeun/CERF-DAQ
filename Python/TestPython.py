@@ -90,7 +90,7 @@ class TestPython(unittest.TestCase):
         summaryFile.close()
         
         def test_getData(self):
-            self.assertEqual(0,1)
+            self.assertEqual(0,1, "This test has shown up finally")
         
         def test_piConnectivity(self):
             self.assertEqual(0,0)
