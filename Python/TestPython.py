@@ -97,9 +97,9 @@ class TestPython(unittest.TestCase):
     def test_piConnectivity(self):
         self.assertEqual(0,0)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi2.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib2.request.urlopen("http://cerfpi3.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib2.request.urlopen("http://cerfpi4.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib2.request.urlopen("http://cerfpi5.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.urlopen("http://cerfpi3.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.urlopen("http://cerfpi4.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.urlopen("http://cerfpi5.calvin.edu").getcode(), 200)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi6.calvin.edu").getcode(), 200)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi7.calvin.edu").getcode(), 200)
 
