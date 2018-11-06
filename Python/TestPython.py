@@ -1,7 +1,7 @@
 import unittest
 import re
 import os
-import urllib
+import urllib2
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
@@ -97,12 +97,11 @@ class TestPython(unittest.TestCase):
     def test_piConnectivity(self):
         self.assertEqual(0,0)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi2.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib.request.urlopen("http://cerfpi3.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib.request.urlopen("http://cerfpi4.calvin.edu").getcode(), 200)
-        self.assertEqual(urllib.request.urlopen("http://cerfpi5.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.request.urlopen("http://cerfpi3.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.request.urlopen("http://cerfpi4.calvin.edu").getcode(), 200)
+        self.assertEqual(urllib2.request.urlopen("http://cerfpi5.calvin.edu").getcode(), 200)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi6.calvin.edu").getcode(), 200)
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi7.calvin.edu").getcode(), 200)
-
 
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
