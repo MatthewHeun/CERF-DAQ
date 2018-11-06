@@ -29,7 +29,7 @@ nameOfPi = str(PI_NUMBER)
 ##### Data path
 cwd = os.path.dirname(os.path.abspath(__file__))
 cwd = cwd[:-16]
-path = cwd + '/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
+path = cwd + "/Data" + '/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
 #==================================================================
 #------------------------DEFINE FUNCTIONS--------------------------
@@ -133,7 +133,7 @@ def outputData(numberOfSensors):
 #==================================================================
 if RESET == 1:
 	shutil.rmtree(path)
-	resetPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt'
+	resetPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/reset.txt'
 	file = open(resetPath, 'w')
 	file.write('0')
 	file.close()
@@ -150,13 +150,13 @@ if DATA_COLLECTION_SET == 1:
 #==================================================================
 
 if DATA_COLLECTION_SET == 0:
-	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('0')
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('1')
 	file.close()
