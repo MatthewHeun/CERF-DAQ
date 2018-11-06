@@ -8,6 +8,7 @@ f = open(amTestFile, "w")
 f.write("1")
 f.close()
 
+
 import Analyze
 import GetData
 from globalVars import *
@@ -96,6 +97,7 @@ class TestPython(unittest.TestCase):
         
     def test_piConnectivity(self):
         self.assertEqual(0,0)
+        os.environ['http_proxy']=''
 #         self.assertEqual(urllib.request.urlopen("http://cerfpi2.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
         self.assertEqual(urllib2.urlopen("http://cerfpi3.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
         self.assertEqual(urllib2.urlopen("http://cerfpi4.calvin.edu/pages/index.php", timeout=10).getcode(), 200)
