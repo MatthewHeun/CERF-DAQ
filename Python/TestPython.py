@@ -90,8 +90,7 @@ class TestPython(unittest.TestCase):
         summaryFile.close()
         
         def test_getData(self):
-            assertEqual(0,0)
-            
+            assertEqual(0,1)
         
         def test_piConnectivity(self):
             assertEqual(0,0)
