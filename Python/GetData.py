@@ -139,7 +139,7 @@ if RESET == 1:
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	outputData(NUM_SENSORS)
+	 (NUM_SENSORS)
 
 	# for i in range(NUM_SENSORS):
 	#	print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
@@ -161,9 +161,9 @@ if DATA_COLLECTION_SET == 1:
 	file.write('1')
 	file.close()
 
-#==================================================================
-#------------KEEP THESE LINES FOR THE STATUS LOG-------------------
-#==================================================================
+#==================================================================================
+#------------------------KEEP THESE LINES FOR THE STATUS LOG-----------------------
+#==================================================================================
 
 if DATA_COLLECTION_SET == 1:
 	print "Data collection succeeded:" +  str(datetime.datetime.now())
