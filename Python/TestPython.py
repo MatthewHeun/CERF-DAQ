@@ -1,13 +1,16 @@
 import unittest
 import re
 import os
+import urllib2
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
 f.write("1")
 f.close()
 
+
 import Analyze
+import GetData
 from globalVars import *
 
 class TestPython(unittest.TestCase):
@@ -18,7 +21,7 @@ class TestPython(unittest.TestCase):
     def test_globalVars(self):
         self.assertEqual(PI_NUMBER, 3, "globalVars.py incorrectly reading piNumber.txt")
         self.assertEqual(NUM_SENSORS, 3, "globalVars.py incorrectly reading numSensors.txt")
-        self.assertEqual(DATA_COLLECTION_SET, 1, "globalVars.py incorrectly reading dataCollectionSet.txt")
+        self.assertEqual(DATA_COLLECTION_SET, 0, "globalVars.py incorrectly reading dataCollectionSet.txt")
         self.assertEqual(RESET, 0, "globalVars.py incorrectly reading reset.txt")
         self.assertEqual(START_TIME, 0, "globalVars.py incorrectly newPeakTimes.txt")
         self.assertEqual(START_TIME_LOW_summer, 6, "globalVars.py incorrectly newPeakTimes.txt")
@@ -87,7 +90,10 @@ class TestPython(unittest.TestCase):
                 print(row[7])
                 self.assertEqual(row[7], '125.50')
         summaryFile.close()
-
+        
+    def test_getData(self):
+        self.assertEqual(0,0)
+        
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode

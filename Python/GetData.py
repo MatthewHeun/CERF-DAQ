@@ -27,7 +27,9 @@ from globalVars import*		## Global Variables are defined in ALL CAPS for easy id
 nameOfPi = str(PI_NUMBER)
 
 ##### Data path
-path = '/home/pi/Desktop/Data/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
+cwd = os.path.dirname(os.path.abspath(__file__))
+cwd = cwd[:-16]
+path = cwd + "/Data" + '/Pi_' + nameOfPi + '_Raw/'		#Filepath for data storage
 		
 #==================================================================
 #------------------------DEFINE FUNCTIONS--------------------------
@@ -131,13 +133,13 @@ def outputData(numberOfSensors):
 #==================================================================
 if RESET == 1:
 	shutil.rmtree(path)
-	resetPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/reset.txt'
+	resetPath = cwd + '/CERF-DAQ/WebPage/pages/reset.txt'
 	file = open(resetPath, 'w')
 	file.write('0')
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	outputData(NUM_SENSORS)
+	 (NUM_SENSORS)
 
 	# for i in range(NUM_SENSORS):
 	#	print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
@@ -148,20 +150,20 @@ if DATA_COLLECTION_SET == 1:
 #==================================================================
 
 if DATA_COLLECTION_SET == 0:
-	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('0')
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	indicatorPath = '/home/pi/Desktop/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
+	indicatorPath = cwd + '/CERF-DAQ/WebPage/pages/dataCollectionStatus.txt'
 	file = open(indicatorPath, 'w')
 	file.write('1')
 	file.close()
 
-#==================================================================
-#------------KEEP THESE LINES FOR THE STATUS LOG-------------------
-#==================================================================
+#==================================================================================
+#------------------------KEEP THESE LINES FOR THE STATUS LOG-----------------------
+#==================================================================================
 
 if DATA_COLLECTION_SET == 1:
 	print "Data collection succeeded:" +  str(datetime.datetime.now())
