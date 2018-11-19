@@ -98,6 +98,7 @@ echo "	+Done"
 #===============================
 echo "Installing packages"
 sudo apt-get update
+sudo apt-get dist-upgrade
 sudo apt-get install zip
 sudo apt-get install apache2 -y
 sudo apt-get install php
@@ -144,6 +145,7 @@ echo "Creating Cron Jobs"
 echo "#m h dom mon dow  command" > mycron
 echo "* * * * * /home/pi/Desktop/CERF-DAQ/Python/runpython.sh >> /dev/GetDataCron.log 2>&1" >> mycron
 echo "00 10 * * * /home/pi/Desktop/CERF-DAQ/Python/runAnalysis.sh >> /dev/AnalysisCron.log 2>&1" >> mycron
+echo "00 10 * * * /home/pi/Desktop/CERF-DAQ/UnitTest/connectionTest.sh" >> mycron
 echo "00 01 * * * /home/pi/Desktop/CERF-DAQ/Scripts/zip-data.sh >> /dev/ZipCron.log 2>&1" >> mycron
 echo "00 02 * * 6 /home/pi/Desktop/CERF-DAQ/Scripts/update-pi.sh >> /dev/UpdatePiCron.log 2>&1" >> mycron
 echo "00 00 * * *  sudo reboot" >> mycron
