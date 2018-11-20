@@ -139,7 +139,7 @@ if RESET == 1:
 	file.close()
 
 if DATA_COLLECTION_SET == 1:
-	 (NUM_SENSORS)
+	outputData(NUM_SENSORS)
 
 	# for i in range(NUM_SENSORS):
 	#	print SENSOR_INFO[i].name + ": " + str(SENSOR_INFO[i].value)
