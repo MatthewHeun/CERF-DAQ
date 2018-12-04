@@ -105,6 +105,7 @@ sudo apt-get install php
 sudo apt-get install i2c-tools
 sudo apt-get install python-pip
 sudo apt-get install xrdp
+sudo apt-get install swaks
 sudo easy_install pytz
 sudo apt-get install python-smbus 
 sudo adduser pi i2c 

@@ -1,21 +1,10 @@
-function toggleDisplay(num) {
-numStr = num.toString();
-if (document.getElementById("panelBody" + numStr).style.display == "none") {
-document.getElementById("panelBody" + numStr).style.display = "block";
-document.getElementById("submit" + numStr).style.display = "block";
+function toggleDisplay(sensorNum) {
+if (document.getElementById("panelBody" + sensorNum).style.display == "none") {
+document.getElementById("panelBody" + sensorNum).style.display = "block";
+document.getElementById("submit" + sensorNum).style.display = "block";
 } else {
-document.getElementById("panelBody" + numStr).style.display = "none";
-document.getElementById("submit" + numStr).style.display = "none";
-}
-}
-
-function toggleDisplay2() {
-if (document.getElementById("panelBody2").style.display == "none") {
-document.getElementById("panelBody2").style.display = "block";
-document.getElementById("submit2").style.display = "block";
-} else {
-document.getElementById("panelBody2").style.display = "none";
-document.getElementById("submit2").style.display = "none";
+document.getElementById("panelBody" + sensorNum).style.display = "none";
+document.getElementById("submit" + sensorNum).style.display = "none";
 }
 }
 
