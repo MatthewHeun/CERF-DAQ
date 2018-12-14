@@ -80,11 +80,15 @@ class TestPython(unittest.TestCase):
                     self.assertEqual(row[7], '125.50')
         summaryFile.close()
         
-    def test_getData(self):
-        self.assertEqual(0,0)
-        print(getWattage(20000, 1))
-        
-        
+    def test_currentConversion(self):
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        print(ceil(getWattage(20000, 1)))
+        self.assertEqual(floor(getWattage(0, 1)), 0)
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
 #
