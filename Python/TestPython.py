@@ -91,7 +91,7 @@ class TestPython(unittest.TestCase):
         self.assertEqual(ceil(getWattage(200, 0)), 0)
         self.assertEqual(ceil(getWattage(0, 0)), 0)
         self.assertEqual(ceil(getWattage(20000, 120)), 11953)
-        self.assertEqual(ceil(getWattage(2000, 120)), 1195)
+        self.assertEqual(ceil(getWattage(2000, 120)), 1153)
         self.assertEqual(ceil(getWattage(200, 120)), 120)
         self.assertEqual(ceil(getWattage(0, 120)), 0)
 
