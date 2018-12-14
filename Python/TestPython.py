@@ -2,6 +2,7 @@ import unittest
 import re
 import os
 import urllib2
+from math import ceil, floor
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
