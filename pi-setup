@@ -107,6 +107,7 @@ sudo apt-get install xrdp
 sudo easy_install pytz
 sudo apt-get install python-smbus 
 sudo adduser pi i2c 
+sudo pip install adafruit-ads1x15
 echo "	+Done"
 
 
