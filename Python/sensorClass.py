@@ -44,7 +44,7 @@ def getOccupancy(pinNumber):
     value = Occupancy[str(pinNumber)] 
     return value
 
-def getWattage(pinReading, voltage):
+def getWattage(value, voltage):
     # These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
     # However, I am still figuring out how to do that. These numbers will work for the 
     value = (((float(value)/32767) * 4.096) - .0175) / .025
