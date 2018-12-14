@@ -82,7 +82,7 @@ class TestPython(unittest.TestCase):
         
     def test_getData(self):
         self.assertEqual(0,0)
-        print(getWattage(4096, 24))
+        print(getWattage(20000, 1))
         
         
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
