@@ -11,6 +11,7 @@ f.close()
 
 import Analyze
 import GetData
+from sensorClass import getWattage
 from globalVars import *
 
 class TestPython(unittest.TestCase):
@@ -81,8 +82,9 @@ class TestPython(unittest.TestCase):
         
     def test_getData(self):
         self.assertEqual(0,0)
-        print(sensorClass.getWattage(1, 1))
-
+        print(getWattage(1, 1))
+        
+        
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
 #
