@@ -83,9 +83,8 @@ class TestPython(unittest.TestCase):
         
     def test_currentConversion(self):
         self.assertEqual(ceil(getWattage(20000, 1)), 100)
-        print(ceil(getWattage(20000, 1)))
-        self.assertEqual(floor(getWattage(0, 1)), 0)
-        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(0, 1)), 0)
+        self.assertEqual(ceil(getWattage(2000, 1)), 10)
         self.assertEqual(ceil(getWattage(20000, 1)), 100)
         self.assertEqual(ceil(getWattage(20000, 1)), 100)
         self.assertEqual(ceil(getWattage(20000, 1)), 100)
