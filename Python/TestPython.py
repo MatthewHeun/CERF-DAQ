@@ -83,11 +83,17 @@ class TestPython(unittest.TestCase):
         
     def test_currentConversion(self):
         self.assertEqual(ceil(getWattage(20000, 1)), 100)
-        self.assertEqual(ceil(getWattage(0, 1)), 0)
         self.assertEqual(ceil(getWattage(2000, 1)), 10)
-        self.assertEqual(ceil(getWattage(20000, 1)), 100)
-        self.assertEqual(ceil(getWattage(20000, 1)), 100)
-        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(200, 1)), 1)
+        self.assertEqual(ceil(getWattage(0, 1)), 0)
+        self.assertEqual(ceil(getWattage(20000, 0)), 0)
+        self.assertEqual(ceil(getWattage(2000, 0)), 0)
+        self.assertEqual(ceil(getWattage(200, 0)), 0)
+        self.assertEqual(ceil(getWattage(0, 0)), 0)
+        self.assertEqual(ceil(getWattage(20000, 120)), 12000)
+        self.assertEqual(ceil(getWattage(2000, 120)), 1200)
+        self.assertEqual(ceil(getWattage(200, 120)), 120)
+        self.assertEqual(ceil(getWattage(0, 120)), 0)
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
