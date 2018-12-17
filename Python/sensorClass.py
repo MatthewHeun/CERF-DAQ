@@ -44,7 +44,16 @@ def getOccupancy(pinNumber):
     value = Occupancy[str(pinNumber)] 
     return value
 
-def getWattage(pinNumber, voltage):
+def getWattage(value, voltage):
+    # These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
+    # However, I am still figuring out how to do that. These numbers will work for the 
+    if not(voltage > 0):
+        return -1;
+    value = (((float(value)/32767) * 4.096)-(.01/voltage)) / .025
+    value = value * float(int(voltage))
+    return value
+
+def readPin(pinNumber):
     GAIN = 1
     # Setting the i2cAddress based on the adc pcb board. the inputs 1-4 are on 0x49 while 5-8 is on 0x48
     # Additionally, we correct the pinNumber for later reading from that adc
@@ -53,17 +62,8 @@ def getWattage(pinNumber, voltage):
     if pinNumber > 4:
         i2cAddress = 0x48
         pinNumber -= 4
-    
     adc = ADS1x15tempFix.ADS1115(address = i2cAddress)
-
     value = adc.read_adc((pinNumber-1), gain = GAIN)
-    
-    # These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
-    # However, I am still figuring out how to do that. These numbers will work for the 
-    value = (((float(value)/32767) * 4.096) - .0175) / .025
-    value = value * float(int(voltage))
-    return value
-
 
 #==================================================================
 #------------------------CLASS DEFINITION--------------------------
@@ -127,7 +127,8 @@ class Sensor:
         elif (self.type == "Occupancy"):
             reading = getOccupancy(self.pinNumber)
         elif (self.type == "Current"):
-            reading = getWattage(self.pinNumber, self.voltage)
+            reading = readPin(self.pinNumber)
+            reading = getWattage(reading, self.voltage)
         self.value = reading
 
     def set_binType(self, new_binType, index):

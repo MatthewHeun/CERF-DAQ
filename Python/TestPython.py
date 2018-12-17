@@ -2,6 +2,7 @@ import unittest
 import re
 import os
 import urllib2
+from math import ceil, floor
 cwd = os.getcwd()
 amTestFile = cwd + "/UnitTest/amTest.txt"
 f = open(amTestFile, "w")
@@ -11,6 +12,7 @@ f.close()
 
 import Analyze
 import GetData
+from sensorClass import getWattage
 from globalVars import *
 
 class TestPython(unittest.TestCase):
@@ -50,50 +52,48 @@ class TestPython(unittest.TestCase):
         currentWorkingDirectory = os.getcwd()
         dataDirectory = currentWorkingDirectory[:(len(currentWorkingDirectory) - 8)] + "Data/"
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a1.csv", 'r')
-        print(summaryFile)
         
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
-                print(row[5])
                 self.assertEqual(row[5], '50.00')
-                print(row[6])
                 self.assertEqual(row[6], '50.00')
-                print(row[7])
                 self.assertEqual(row[7], '0.00')
-                print(row[8])
                 self.assertEqual(row[8].strip(), '50.00')
         summaryFile.close()
 
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a2.csv", 'r')
-        print(summaryFile)
         
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
-                print(row[5])
                 self.assertEqual(row[5], '100.00')
         summaryFile.close()
         
         summaryFile = open(dataDirectory + "Pi_3_Summary/Pi_3_1a3.csv", 'r')
-        print(summaryFile)
         
         for line in summaryFile:
             if line[0].isdigit():
                 row = re.split(',', line)
                 for i in range(len(row)):
-                    print(row[i])
-                print(row[5])
-                self.assertEqual(row[5], '1.00')
-                print(row[6])
-                self.assertEqual(row[6], '250.00')
-                print(row[7])
-                self.assertEqual(row[7], '125.50')
+                    self.assertEqual(row[5], '1.00')
+                    self.assertEqual(row[6], '250.00')
+                    self.assertEqual(row[7], '125.50')
         summaryFile.close()
         
-    def test_getData(self):
-        self.assertEqual(0,0)
-        
+    def test_currentConversion(self):
+        self.assertEqual(ceil(getWattage(20000, 1)), 100)
+        self.assertEqual(ceil(getWattage(2000, 1)), 10)
+        self.assertEqual(ceil(getWattage(200, 1)), 1)
+        self.assertEqual(ceil(getWattage(0, 1)), 0)
+        self.assertEqual(ceil(getWattage(20000, 0)), -1)
+        self.assertEqual(ceil(getWattage(2000, 0)), -1)
+        self.assertEqual(ceil(getWattage(200, 0)), -1)
+        self.assertEqual(ceil(getWattage(0, 0)), -1)
+        self.assertEqual(ceil(getWattage(20000, 120)), 12000)
+        self.assertEqual(ceil(getWattage(2000, 120)), 1200)
+        self.assertEqual(ceil(getWattage(200, 120)), 120)
+        self.assertEqual(ceil(getWattage(0, 120)), 0)
 
 # This method is just a safety mechanism in case TestPython is run on a Raspberry Pi
 # Running this ensures that the sensor class knows it's in normal mode, not test mode
