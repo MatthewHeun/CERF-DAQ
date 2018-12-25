@@ -47,9 +47,11 @@ def getOccupancy(pinNumber):
 def getWattage(value, voltage):
     # These values are 'magic numbers' found by testing the adc's. They will eventually be configurable
     # However, I am still figuring out how to do that. These numbers will work for the 
+    # changed 'value = (((float(value)/32767) * 4.096)-(.01/voltage)) / .025' to get rid of negative number problem
+    # previous testing did not account for a wire through the sensors with no current
     if not(voltage > 0):
         return -1;
-    value = (((float(value)/32767) * 4.096)-(.01/voltage)) / .025
+    value = ((float(value)/32768) * 4.096) / .025
     value = value * float(int(voltage))
     return value
 
