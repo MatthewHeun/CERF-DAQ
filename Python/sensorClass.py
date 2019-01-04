@@ -65,7 +65,9 @@ def readPin(pinNumber):
         i2cAddress = 0x48
         pinNumber -= 4
     adc = ADS1x15tempFix.ADS1115(address = i2cAddress)
-    value = adc.read_adc((pinNumber-1), gain = GAIN, data_rate = 8)
+    # data_rate is set at 64, experimentally found to the slowest data collection rate to give correct values
+    # The slower data collection speed gives more accurate numbers
+    value = adc.read_adc((pinNumber-1), gain = GAIN, data_rate = 64)
 
 #==================================================================
 #------------------------CLASS DEFINITION--------------------------
