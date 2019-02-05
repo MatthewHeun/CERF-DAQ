@@ -68,6 +68,7 @@ def readPin(pinNumber):
     # data_rate is set at 64, experimentally found to the slowest data collection rate to give correct values
     # The slower data collection speed gives more accurate numbers
     value = adc.read_adc((pinNumber-1), gain = GAIN, data_rate = 64)
+    return value
 
 #==================================================================
 #------------------------CLASS DEFINITION--------------------------
