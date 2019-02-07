@@ -41,11 +41,11 @@ echo '16' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '19' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '21' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '23' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
+echo '0' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '1' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '2' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '3' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 echo '4' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
-echo '5' >> /home/pi/Desktop/CERF-DAQ/WebPage/pages/newPeakTimes.txt
 chmod ugo+rwx /home/pi/Desktop/CERF-DAQ/ -R
 
 echo "Starting i2c...."
