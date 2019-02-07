@@ -49,51 +49,51 @@ onPeakOffPeakTimeFile = cwd + "/WebPage/pages/newPeakTimes.txt"
 f = open(onPeakOffPeakTimeFile)
 
 START_TIME = f.readline().strip()
-if (len(START_TIME) != 0):
+if (len(START_TIME) != 0): 			 # line 1
 	START_TIME = int(START_TIME)
 	
 START_TIME_LOW_summer = f.readline().strip()
-if (len(START_TIME_LOW_summer) != 0):
+if (len(START_TIME_LOW_summer) != 0): 			 # line 2
 	START_TIME_LOW_summer = int(START_TIME_LOW_summer)
 
 START_TIME_MID_summer = f.readline().strip()
-if (len(START_TIME_MID_summer) != 0):
+if (len(START_TIME_MID_summer) != 0): 			 # line 3
 	START_TIME_MID_summer = int(START_TIME_MID_summer)
 
 START_TIME_HIGH_summer = f.readline().strip()
-if (len(START_TIME_HIGH_summer) != 0):
+if (len(START_TIME_HIGH_summer) != 0): 			 # line 4
 	START_TIME_HIGH_summer = int(START_TIME_HIGH_summer)
 
 STOP_TIME_HIGH_summer = f.readline().strip()
-if (len(STOP_TIME_HIGH_summer) != 0):
+if (len(STOP_TIME_HIGH_summer) != 0): 			 # line 5
 	STOP_TIME_HIGH_summer = int(STOP_TIME_HIGH_summer)
 
 STOP_TIME_MID_summer = f.readline().strip()
-if (len(STOP_TIME_MID_summer) != 0):
+if (len(STOP_TIME_MID_summer) != 0): 			 # line 6
 	STOP_TIME_MID_summer = int(STOP_TIME_MID_summer)
 
 STOP_TIME_LOW_summer = f.readline().strip()
-if (len(STOP_TIME_LOW_summer) != 0):
+if (len(STOP_TIME_LOW_summer) != 0): 			 # line 7
 	STOP_TIME_LOW_summer = int(STOP_TIME_LOW_summer)
 	
 START_TIME_MID_winter = f.readline().strip()
-if (len(START_TIME_MID_winter) != 0):
+if (len(START_TIME_MID_winter) != 0): 			 # line 8
 	START_TIME_MID_winter = int(START_TIME_MID_winter)
 
 START_TIME_HIGH_winter = f.readline().strip()
-if (len(START_TIME_HIGH_winter) != 0):
+if (len(START_TIME_HIGH_winter) != 0): 			 # line 9
 	START_TIME_HIGH_winter = int(START_TIME_HIGH_winter)
 
 STOP_TIME_HIGH_winter = f.readline().strip()
-if (len(STOP_TIME_HIGH_winter) != 0):
+if (len(STOP_TIME_HIGH_winter) != 0): 			 # line 10
 	STOP_TIME_HIGH_winter = int(STOP_TIME_HIGH_winter)
 	
 STOP_TIME_MID_winter = f.readline().strip()
-if (len(STOP_TIME_MID_winter) != 0):
+if (len(STOP_TIME_MID_winter) != 0): 			 # line 11
 	STOP_TIME_MID_winter = int(STOP_TIME_MID_winter)
 
 STOP_TIME = f.readline().strip()
-if (len(STOP_TIME) != 0):
+if (len(STOP_TIME) != 0): 			 # line 12
 	STOP_TIME = int(STOP_TIME)
 
 PEAK_WEEKDAY = []
