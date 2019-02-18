@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +13,6 @@
 	$pageLink = 'index.php';
 	$sensor_number = 1;
 	$pageSensor = "None";
-
 ?>
 
 </head>
