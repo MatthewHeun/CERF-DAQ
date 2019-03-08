@@ -106,7 +106,7 @@ sudo apt-get install python-pip
 sudo apt-get install xrdp
 sudo easy_install pytz
 sudo apt-get install python-smbus
-sudo apt-get install mysql-server
+sudo apt-get install php-mysql -y
 sudo adduser pi i2c 
 sudo pip install adafruit-ads1x15
 echo "	+Done"
