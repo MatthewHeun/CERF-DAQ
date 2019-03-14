@@ -6,7 +6,6 @@ if ( ! empty( $_POST ) )
 	{
 		// Getting submitted user data from database
 		require 'dbh.inc.php';
-		
 		// Get username and password entered in text boxes
 		$mailuid = $_POST['mailuid'];
 		$pwd = $_POST['pwd'];
