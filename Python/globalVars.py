@@ -123,6 +123,8 @@ for i in range(NUM_SENSORS):
 	SENSOR_INFO[i].set_pinNumber(f.readline().rstrip())
 	SENSOR_INFO[i].set_numberOfAnalysis(f.readline().rstrip())
 	SENSOR_INFO[i].set_voltage(f.readline().rstrip())
+	SENSOR_INFO[i].set_mqttIP(f.readline().rstrip())
+	SENSOR_INFO[i].set_mqttSensor(f.readline().rstrip())
 	for x in range(3):
 		SENSOR_INFO[i].set_analysis(f.readline().rstrip(), x)
 		SENSOR_INFO[i].set_threshold(f.readline().rstrip(),f.readline().rstrip(), x)

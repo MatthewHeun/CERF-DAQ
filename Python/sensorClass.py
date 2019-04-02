@@ -4,6 +4,7 @@ import os
 from Adafruit_ADS1x15 import ADS1x15
 import ADS1x15tempFix
 from Occupancy_vars import *
+import MqttClient as MQTT
 
 # RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
 cwd = os.path.dirname(os.path.abspath(__file__))
@@ -70,6 +71,17 @@ def readPin(pinNumber):
     value = adc.read_adc((pinNumber-1), gain = GAIN, data_rate = 64)
     return value
 
+# Create an MQTT object and get the value for the given ID from the MQTT server
+def getMQTT(mqttID):
+
+    # The MQTT connection will require an MQTT server IP and a sensor ID to subscribe to
+    mqtt = MQTT(SERVER_ID, mqttID)
+    # The constructor for MQTT will connect to the server, subscribe to the mqttID and get
+    # the current value for that publisher and store it in a variable that can be accessed using .getValue()
+    value = mqtt.getValue();
+
+    return value
+
 #==================================================================
 #------------------------CLASS DEFINITION--------------------------
 #==================================================================
@@ -95,6 +107,8 @@ class Sensor:
         self.summaryMethod = ["","",""]
         self.number = sensorNumber
         self.voltage = 0
+        self.mqttIP = 0
+        self.mqttSensor = 0
 
     def set_name(self, new_name):
         self.name = new_name
@@ -164,11 +178,14 @@ class Sensor:
     def set_summaryMethod(self, new_summaryMethod, index):
         self.summaryMethod[index] = new_summaryMethod
     
-    # Eventually this function will replace the wattage function. Still figuring out how to manage that.    
-    # Otherwise the wattage should be properly calculated if one pretends self.wattage is actually the voltage
-    # of the line.
     def set_voltage(self, new_voltage):
         self.voltage = new_voltage
+
+    def set_mqttIP(self, new_MQTT):
+        self.mqttIP = new_MQTT
+
+    def set_mqttSensor(self, new_MQTTSensor):
+        self.mqttSensor = new_MQTTSensor
 
 #testSensor = Sensor(8)
 #testSensor.set_type("Wattage")

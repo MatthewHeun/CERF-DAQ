@@ -8,6 +8,8 @@ $pinStrings = new ArrayObject(array());
 $numberOfAnalysisStrings = new ArrayObject(array());
 $voltageStrings = new ArrayObject(array());
 $analysisStrings = new ArrayObject(array());
+$mqttipStrings = new ArrayObject(array());
+$mqttSensorStrings = new ArrayObject(array());
 $minStrings = new ArrayObject(array());
 $maxStrings = new ArrayObject(array());
 $binTypeStrings = new ArrayObject(array());
@@ -26,6 +28,8 @@ $i2cArray = new ArrayObject(array());
 $pinArray = new ArrayObject(array());
 $numberOfAnalysisArray = new ArrayObject(array());
 $voltageArray = new ArrayObject(array());
+$mqttipArray = new ArrayObject(array());
+$mqttSensorArray = new ArrayObject(array());
 $analysisArray = new ArrayObject(array());
 $minArray = new ArrayObject(array());
 $maxArray = new ArrayObject(array());
@@ -46,6 +50,8 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$pinStrings->append("pin" . $i);
 	$numberOfAnalysisStrings->append("numberOfAnalysis" . $i);
 	$voltageStrings->append("voltage" . $i);
+	$mqttipStrings->append("mqttIP" . $i);
+	$mqttSensorStrings->append("mqttSensor" . $i);
 	$analysisStrings->append(array("","",""));
 	$minStrings->append(array("", "", ""));
 	$maxStrings->append(array("", "", ""));
@@ -80,6 +86,8 @@ if(isset($_GET["sensorInfo"])){
 		$pinArray->append($_GET[$pinStrings[$i-1]]);
 		$numberOfAnalysisArray->append($_GET[$numberOfAnalysisStrings[$i-1]]);
 		$voltageArray->append($_GET[$voltageStrings[$i-1]]);
+		$mqttipArray->append($_GET[$mqttipStrings[$i-1]]);
+		$mqttSensorArray->append($_GET[$mqttSensorStrings[$i-1]]);
 		$analysisStrings->append(array("","",""));
 		$minArray->append(array("", "", ""));
 		$maxArray->append(array("", "", ""));
@@ -118,6 +126,8 @@ if(isset($_GET["sensorInfo"])){
 		fwrite($infoFile, $pinArray[$i-1] . "\n");
 		fwrite($infoFile, $numberOfAnalysisArray[$i-1] . "\n");
 		fwrite($infoFile, $voltageArray[$i-1] . "\n");
+		fwrite($infoFile, $mqttipArray[$i-1] . "\n");
+		fwrite($infoFile, $mqttSensorArray[$i-1] . "\n");
 		for ($i4 = 0; $i4 < 3; $i4++) {
 			fwrite($infoFile, $analysisArray[$i-1][$i4] . "\n");
 			// print ($i-1);

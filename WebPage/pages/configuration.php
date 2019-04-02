@@ -71,7 +71,7 @@ var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
 	<button onclick="loadAndAlert()" style="margin-left:auto; margin-right:auto;" type="submit" form="sensorSpecifics" class="btn btn-primary btn-block" name="sensorInfo">Submit</button>
 	<br>
 		<?php include 'Configuration_Page/sensorConfig.php'; ?>
-  	<br><br>
+ 	<br><br>
 	</div>  <!-- page-wrapper -->
 	</div>	<!-- wrapper -->
 		<?php include 'Elements/scriptincludes.php'; ?>
