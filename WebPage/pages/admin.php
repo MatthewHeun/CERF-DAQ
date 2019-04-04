@@ -1,3 +1,11 @@
+<?php 
+	session_start();
+	if (!(isset($_SESSION['userHASH']))) {
+		header("Location: ../pages/index.php?error=adminrequired");
+		exit();
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
