@@ -78,16 +78,16 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	}
 }
 
-if(isset($_GET["sensorInfo"])){
+if(isset($_POST["sensorInfo"])){
 	for ($i = 1; $i <= $NUM_SENSORS; $i++) {
-		$nameArray->append($_GET[$nameStrings[$i-1]]);
-		$typeArray->append($_GET[$typeStrings[$i-1]]);
-		$i2cArray->append($_GET[$i2cStrings[$i-1]]);
-		$pinArray->append($_GET[$pinStrings[$i-1]]);
-		$numberOfAnalysisArray->append($_GET[$numberOfAnalysisStrings[$i-1]]);
-		$voltageArray->append($_GET[$voltageStrings[$i-1]]);
-		$mqttipArray->append($_GET[$mqttipStrings[$i-1]]);
-		$mqttSensorArray->append($_GET[$mqttSensorStrings[$i-1]]);
+		$nameArray->append($_POST[$nameStrings[$i-1]]);
+		$typeArray->append($_POST[$typeStrings[$i-1]]);
+		$i2cArray->append($_POST[$i2cStrings[$i-1]]);
+		$pinArray->append($_POST[$pinStrings[$i-1]]);
+		$numberOfAnalysisArray->append($_POST[$numberOfAnalysisStrings[$i-1]]);
+		$voltageArray->append($_POST[$voltageStrings[$i-1]]);
+		$mqttipArray->append($_POST[$mqttipStrings[$i-1]]);
+		$mqttSensorArray->append($_POST[$mqttSensorStrings[$i-1]]);
 		$analysisStrings->append(array("","",""));
 		$minArray->append(array("", "", ""));
 		$maxArray->append(array("", "", ""));
@@ -101,19 +101,19 @@ if(isset($_GET["sensorInfo"])){
 		$summaryMethodArray->append(array("", "", ""));
 		for ($i4 = 0; $i4 < 3; $i4 ++){
 			for ($i4 = 0; $i4 < 3; $i4++) {
-				$analysisArray[$i-1][$i4] = ($_GET[$analysisStrings[$i-1][$i4]]);
+				$analysisArray[$i-1][$i4] = ($_POST[$analysisStrings[$i-1][$i4]]);
 				// print $analysisArray[$i-1][$i4];
 				// print "LOOK HERE";
-				$minArray[$i-1][$i4] = ($_GET[$minStrings[$i-1][$i4]]);
-				$maxArray[$i-1][$i4] = ($_GET[$maxStrings[$i-1][$i4]]);
-				$binTypeArray[$i-1][$i4] = ($_GET[$binTypeStrings[$i-1][$i4]]);
-				$fromSensorNumberArray[$i-1][$i4] = ($_GET[$fromSensorNumberStrings[$i-1][$i4]]);
-				$fromSensorMinArray[$i-1][$i4] = ($_GET[$fromSensorMinStrings[$i-1][$i4]]);
-				$fromSensorMaxArray[$i-1][$i4] = ($_GET[$fromSensorMaxStrings[$i-1][$i4]]);
-				$weekdaysArray[$i-1][$i4] = (array($_GET[$weekdaysStrings[$i-1][$i4][0]],$_GET[$weekdaysStrings[$i-1][$i4][1]],$_GET[$weekdaysStrings[$i-1][$i4][2]],$_GET[$weekdaysStrings[$i-1][$i4][3]],$_GET[$weekdaysStrings[$i-1][$i4][4]],$_GET[$weekdaysStrings[$i-1][$i4][5]],$_GET[$weekdaysStrings[$i-1][$i4][6]]));
-				$customStartArray[$i-1][$i4] = ($_GET[$customStartStrings[$i-1][$i4]]);
-				$customStopArray[$i-1][$i4] = ($_GET[$customStopStrings[$i-1][$i4]]);
-				$summaryMethodArray[$i-1][$i4] = ($_GET[$summaryMethodStrings[$i-1][$i4]]);
+				$minArray[$i-1][$i4] = ($_POST[$minStrings[$i-1][$i4]]);
+				$maxArray[$i-1][$i4] = ($_POST[$maxStrings[$i-1][$i4]]);
+				$binTypeArray[$i-1][$i4] = ($_POST[$binTypeStrings[$i-1][$i4]]);
+				$fromSensorNumberArray[$i-1][$i4] = ($_POST[$fromSensorNumberStrings[$i-1][$i4]]);
+				$fromSensorMinArray[$i-1][$i4] = ($_POST[$fromSensorMinStrings[$i-1][$i4]]);
+				$fromSensorMaxArray[$i-1][$i4] = ($_POST[$fromSensorMaxStrings[$i-1][$i4]]);
+				$weekdaysArray[$i-1][$i4] = (array($_POST[$weekdaysStrings[$i-1][$i4][0]],$_POST[$weekdaysStrings[$i-1][$i4][1]],$_POST[$weekdaysStrings[$i-1][$i4][2]],$_POST[$weekdaysStrings[$i-1][$i4][3]],$_POST[$weekdaysStrings[$i-1][$i4][4]],$_POST[$weekdaysStrings[$i-1][$i4][5]],$_POST[$weekdaysStrings[$i-1][$i4][6]]));
+				$customStartArray[$i-1][$i4] = ($_POST[$customStartStrings[$i-1][$i4]]);
+				$customStopArray[$i-1][$i4] = ($_POST[$customStopStrings[$i-1][$i4]]);
+				$summaryMethodArray[$i-1][$i4] = ($_POST[$summaryMethodStrings[$i-1][$i4]]);
 			}
 		}
 	}

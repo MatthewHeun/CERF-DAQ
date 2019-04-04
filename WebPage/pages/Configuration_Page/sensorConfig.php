@@ -2,7 +2,7 @@
 <?php include 'Sensors/globalSensorInfo.php' . "\n"; ?>
 <?php
 $pageLink = 'configuration.php' . "\n";
-$html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="get">' . "\n";
+$html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="post">' . "\n";
 for ($i=0; $i < $NUM_SENSORS; $i++){
 	$html_sensor_list .= '<div class="panel panel-default">' . "\n";
 		$html_sensor_list .= '<div class="panel-heading">' . "\n";
