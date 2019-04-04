@@ -79,12 +79,31 @@
 						   . '</li>';
 					}
 				
-					if (strpos($pageLink, 'sor') !== false){
+					if (strpos($pageLink, 'sensor.php') !== false){
 						echo '<li><a> </a></li>';
 						echo '<li><a style="color:black">Sensor Characteristics: </a></li>';
 						echo '<ul style="list-style:none; padding-left:10px">';
-						echo '<li><a style="color:black; Text-decoration:none;" > <span class="fa-stack fa-fw"><i class="fa fa-plug fa-stack-1x"></i></span> i2c port: </a> <a class="pull-right" style="color:black; Text-decoration:none; vertical-align:middle; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
-						echo '<li><a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-slack fa-stack-1x"></i></span> pin number: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a></li>';
+
+						if ($SENSOR_INFO[$sensor_number-1]->type == "MQTT") {
+							echo 	'<li>
+										<a style="color:black; Text-decoration:none;"><span class="fa-stack fa-fw"><i class="fa fa-plug fa-stack-1x"></i></span>MQTT IP: </a><a class="pull-right" style="color:black; Text-decoration:none; vertical-align:middle; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->mqttIP . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a>
+									</li>';
+							
+							echo 	'<li>
+										<a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-slack fa-stack-1x"></i></span>Sensor ID: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->mqttSensor . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a>
+									</li>';
+						} else {
+							echo 	'<li>
+										<a style="color:black; Text-decoration:none;"><span class="fa-stack fa-fw"><i class="fa fa-plug fa-stack-1x"></i></span>i2c port: </a><a class="pull-right" style="color:black; Text-decoration:none; vertical-align:middle; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->i2cAddress . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a>
+									</li>';
+							
+							echo 	'<li>
+										<a style="color:black; Text-decoration:none;"> <span class="fa-stack fa-fw"><i class="fa fa-slack fa-stack-1x"></i></span> pin number: </a> <a class="pull-right" style="color:black; Text-decoration:none; line-height:2em;">' . $SENSOR_INFO[$sensor_number-1]->pinNumber . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . '</a>
+									</li>';
+						}
+
+
+
 						echo '</ul>';
 						echo '<ul style="list-style:none; padding-left:10px">';
 
