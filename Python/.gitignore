@@ -16,3 +16,5 @@ user_input.py
 
 #pyc files
 *.pyc
+
+*.py~

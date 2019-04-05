@@ -166,6 +166,10 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	$SENSOR_INFO[$i-1]->set_voltage(trim(fgets($sensorInfoFile)));
 	// echo "Voltage: ";
 	// echo $SENSOR_INFO->voltage . "\n";
+
+	$SENSOR_INFO[$i-1]->set_mqttIP(trim(fgets($sensorInfoFile)));
+
+	$SENSOR_INFO[$i-1]->set_mqttSensor(trim(fgets($sensorInfoFile)));
 	
 
 	

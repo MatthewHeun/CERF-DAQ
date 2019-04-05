@@ -1,21 +1,10 @@
-function toggleDisplay(num) {
-numStr = num.toString();
-if (document.getElementById("panelBody" + numStr).style.display == "none") {
-document.getElementById("panelBody" + numStr).style.display = "block";
-document.getElementById("submit" + numStr).style.display = "block";
+function toggleDisplay(sensorNum) {
+if (document.getElementById("panelBody" + sensorNum).style.display == "none") {
+document.getElementById("panelBody" + sensorNum).style.display = "block";
+document.getElementById("submit" + sensorNum).style.display = "block";
 } else {
-document.getElementById("panelBody" + numStr).style.display = "none";
-document.getElementById("submit" + numStr).style.display = "none";
-}
-}
-
-function toggleDisplay2() {
-if (document.getElementById("panelBody2").style.display == "none") {
-document.getElementById("panelBody2").style.display = "block";
-document.getElementById("submit2").style.display = "block";
-} else {
-document.getElementById("panelBody2").style.display = "none";
-document.getElementById("submit2").style.display = "none";
+document.getElementById("panelBody" + sensorNum).style.display = "none";
+document.getElementById("submit" + sensorNum).style.display = "none";
 }
 }
 
@@ -26,12 +15,23 @@ console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress1").style.display = "none";
 document.getElementById("voltage1").style.display = "none";
+document.getElementById("pinNum1").style.display = "block";
+document.getElementById("MQTT1").style.display = "none";
 } else if (sensorType == 'Current'){
 document.getElementById("voltage1").style.display = "block";
+document.getElementById("i2cAddress1").style.display = "block";
+document.getElementById("pinNum1").style.display = "block";
+document.getElementById("MQTT1").style.display = "none";
+} else if (sensorType == 'MQTT'){
+document.getElementById("voltage1").style.display = "none";
 document.getElementById("i2cAddress1").style.display = "none";
+document.getElementById("pinNum1").style.display = "none";
+document.getElementById("MQTT1").style.display = "block";
 } else {
 document.getElementById("i2cAddress1").style.display = "block";
 document.getElementById("voltage1").style.display = "none";
+document.getElementById("pinNum1").style.display = "block";
+document.getElementById("MQTT1").style.display = "none";
 }
 } );
 
@@ -42,12 +42,104 @@ console.log("sensor type");
 if (sensorType == 'Occupancy'){
 document.getElementById("i2cAddress2").style.display = "none";
 document.getElementById("voltage2").style.display = "none";
+document.getElementById("pinNum2").style.display = "block";
+document.getElementById("MQTT2").style.display = "none";
 } else if (sensorType == 'Current'){
 document.getElementById("voltage2").style.display = "block";
+document.getElementById("i2cAddress2").style.display = "block";
+document.getElementById("pinNum2").style.display = "block";
+document.getElementById("MQTT2").style.display = "none";
+} else if (sensorType == 'MQTT'){
+document.getElementById("voltage2").style.display = "none";
 document.getElementById("i2cAddress2").style.display = "none";
+document.getElementById("pinNum2").style.display = "none";
+document.getElementById("MQTT2").style.display = "block";
 } else {
 document.getElementById("i2cAddress2").style.display = "block";
 document.getElementById("voltage2").style.display = "none";
+document.getElementById("pinNum2").style.display = "block";
+document.getElementById("MQTT2").style.display = "none";
+}
+} );
+
+$("#sensorType3").change(function() {
+var sensorType = $("#sensorType3").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress3").style.display = "none";
+document.getElementById("voltage3").style.display = "none";
+document.getElementById("pinNum3").style.display = "block";
+document.getElementById("MQTT3").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("voltage3").style.display = "block";
+document.getElementById("i2cAddress3").style.display = "block";
+document.getElementById("pinNum3").style.display = "block";
+document.getElementById("MQTT3").style.display = "none";
+} else if (sensorType == 'MQTT'){
+document.getElementById("voltage3").style.display = "none";
+document.getElementById("i2cAddress3").style.display = "none";
+document.getElementById("pinNum3").style.display = "none";
+document.getElementById("MQTT3").style.display = "block";
+} else {
+document.getElementById("i2cAddress3").style.display = "block";
+document.getElementById("voltage3").style.display = "none";
+document.getElementById("pinNum3").style.display = "block";
+document.getElementById("MQTT3").style.display = "none";
+}
+} );
+
+$("#sensorType4").change(function() {
+var sensorType = $("#sensorType4").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress4").style.display = "none";
+document.getElementById("voltage4").style.display = "none";
+document.getElementById("pinNum4").style.display = "block";
+document.getElementById("MQTT4").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("voltage4").style.display = "block";
+document.getElementById("i2cAddress4").style.display = "block";
+document.getElementById("pinNum4").style.display = "block";
+document.getElementById("MQTT4").style.display = "none";
+} else if (sensorType == 'MQTT'){
+document.getElementById("voltage4").style.display = "none";
+document.getElementById("i2cAddress4").style.display = "none";
+document.getElementById("pinNum4").style.display = "none";
+document.getElementById("MQTT4").style.display = "block";
+} else {
+document.getElementById("i2cAddress4").style.display = "block";
+document.getElementById("voltage4").style.display = "none";
+document.getElementById("pinNum4").style.display = "block";
+document.getElementById("MQTT4").style.display = "none";
+}
+} );
+
+$("#sensorType5").change(function() {
+var sensorType = $("#sensorType5").val();
+console.log(sensorType);
+console.log("sensor type");
+if (sensorType == 'Occupancy'){
+document.getElementById("i2cAddress5").style.display = "none";
+document.getElementById("voltage5").style.display = "none";
+document.getElementById("pinNum5").style.display = "block";
+document.getElementById("MQTT5").style.display = "none";
+} else if (sensorType == 'Current'){
+document.getElementById("voltage5").style.display = "block";
+document.getElementById("i2cAddress5").style.display = "block";
+document.getElementById("pinNum5").style.display = "block";
+document.getElementById("MQTT5").style.display = "none";
+} else if (sensorType == 'MQTT'){
+document.getElementById("voltage5").style.display = "none";
+document.getElementById("i2cAddress5").style.display = "none";
+document.getElementById("pinNum5").style.display = "none";
+document.getElementById("MQTT5").style.display = "block";
+} else {
+document.getElementById("i2cAddress5").style.display = "block";
+document.getElementById("voltage5").style.display = "none";
+document.getElementById("pinNum5").style.display = "block";
+document.getElementById("MQTT5").style.display = "none";
 }
 } );
 
@@ -114,6 +206,105 @@ if (parseInt(numberOfAnalysis) > 2){
 document.getElementById("analysisInformation32").style.display = "block";
 } else {
 document.getElementById("analysisInformation32").style.display = "none";
+}
+} );
+
+$("#numAnalysis3").change(function() {
+var numberOfAnalysis = $("#numAnalysis3").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation13").style.display = "block";
+} else {
+document.getElementById("analysisInformation13").style.display = "none";
+}
+} );
+
+$("#numAnalysis3").change(function() {
+var numberOfAnalysis = $("#numAnalysis3").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation23").style.display = "block";
+} else {
+document.getElementById("analysisInformation23").style.display = "none";
+}
+} );
+
+$("#numAnalysis3").change(function() {
+var numberOfAnalysis = $("#numAnalysis3").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation33").style.display = "block";
+} else {
+document.getElementById("analysisInformation33").style.display = "none";
+}
+} );
+
+$("#numAnalysis4").change(function() {
+var numberOfAnalysis = $("#numAnalysis4").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation14").style.display = "block";
+} else {
+document.getElementById("analysisInformation14").style.display = "none";
+}
+} );
+
+$("#numAnalysis4").change(function() {
+var numberOfAnalysis = $("#numAnalysis4").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation24").style.display = "block";
+} else {
+document.getElementById("analysisInformation24").style.display = "none";
+}
+} );
+
+$("#numAnalysis4").change(function() {
+var numberOfAnalysis = $("#numAnalysis4").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation34").style.display = "block";
+} else {
+document.getElementById("analysisInformation34").style.display = "none";
+}
+} );
+
+$("#numAnalysis5").change(function() {
+var numberOfAnalysis = $("#numAnalysis5").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 0){
+document.getElementById("analysisInformation15").style.display = "block";
+} else {
+document.getElementById("analysisInformation15").style.display = "none";
+}
+} );
+
+$("#numAnalysis5").change(function() {
+var numberOfAnalysis = $("#numAnalysis5").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 1){
+document.getElementById("analysisInformation25").style.display = "block";
+} else {
+document.getElementById("analysisInformation25").style.display = "none";
+}
+} );
+
+$("#numAnalysis5").change(function() {
+var numberOfAnalysis = $("#numAnalysis5").val();
+console.log(numberOfAnalysis);
+console.log("number of analysis");
+if (parseInt(numberOfAnalysis) > 2){
+document.getElementById("analysisInformation35").style.display = "block";
+} else {
+document.getElementById("analysisInformation35").style.display = "none";
 }
 } );
 
@@ -267,6 +458,231 @@ document.getElementById("threshold32").style.display = "block";
 }
 } );
 
+$("#analysis13").change(function() {
+var analysis = $("#analysis13").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation13").style.display = "none";
+document.getElementById("binSpecifics13").style.display = "none";
+document.getElementById("threshold13").style.display = "block";
+console.log("13");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation13").style.display = "block";
+document.getElementById("binSpecifics13").style.display = "block";
+document.getElementById("threshold13").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation13").style.display = "none";
+document.getElementById("binSpecifics13").style.display = "none";
+document.getElementById("threshold13").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation13").style.display = "block";
+document.getElementById("binSpecifics13").style.display = "block";
+document.getElementById("threshold13").style.display = "block";
+}
+} );
+
+$("#analysis23").change(function() {
+var analysis = $("#analysis23").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation23").style.display = "none";
+document.getElementById("binSpecifics23").style.display = "none";
+document.getElementById("threshold23").style.display = "block";
+console.log("23");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation23").style.display = "block";
+document.getElementById("binSpecifics23").style.display = "block";
+document.getElementById("threshold23").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation23").style.display = "none";
+document.getElementById("binSpecifics23").style.display = "none";
+document.getElementById("threshold23").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation23").style.display = "block";
+document.getElementById("binSpecifics23").style.display = "block";
+document.getElementById("threshold23").style.display = "block";
+}
+} );
+
+$("#analysis33").change(function() {
+var analysis = $("#analysis33").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation33").style.display = "none";
+document.getElementById("binSpecifics33").style.display = "none";
+document.getElementById("threshold33").style.display = "block";
+console.log("33");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation33").style.display = "block";
+document.getElementById("binSpecifics33").style.display = "block";
+document.getElementById("threshold33").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation33").style.display = "none";
+document.getElementById("binSpecifics33").style.display = "none";
+document.getElementById("threshold33").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation33").style.display = "block";
+document.getElementById("binSpecifics33").style.display = "block";
+document.getElementById("threshold33").style.display = "block";
+}
+} );
+
+$("#analysis14").change(function() {
+var analysis = $("#analysis14").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation14").style.display = "none";
+document.getElementById("binSpecifics14").style.display = "none";
+document.getElementById("threshold14").style.display = "block";
+console.log("14");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation14").style.display = "block";
+document.getElementById("binSpecifics14").style.display = "block";
+document.getElementById("threshold14").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation14").style.display = "none";
+document.getElementById("binSpecifics14").style.display = "none";
+document.getElementById("threshold14").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation14").style.display = "block";
+document.getElementById("binSpecifics14").style.display = "block";
+document.getElementById("threshold14").style.display = "block";
+}
+} );
+
+$("#analysis24").change(function() {
+var analysis = $("#analysis24").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation24").style.display = "none";
+document.getElementById("binSpecifics24").style.display = "none";
+document.getElementById("threshold24").style.display = "block";
+console.log("24");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation24").style.display = "block";
+document.getElementById("binSpecifics24").style.display = "block";
+document.getElementById("threshold24").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation24").style.display = "none";
+document.getElementById("binSpecifics24").style.display = "none";
+document.getElementById("threshold24").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation24").style.display = "block";
+document.getElementById("binSpecifics24").style.display = "block";
+document.getElementById("threshold24").style.display = "block";
+}
+} );
+
+$("#analysis34").change(function() {
+var analysis = $("#analysis34").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation34").style.display = "none";
+document.getElementById("binSpecifics34").style.display = "none";
+document.getElementById("threshold34").style.display = "block";
+console.log("34");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation34").style.display = "block";
+document.getElementById("binSpecifics34").style.display = "block";
+document.getElementById("threshold34").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation34").style.display = "none";
+document.getElementById("binSpecifics34").style.display = "none";
+document.getElementById("threshold34").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation34").style.display = "block";
+document.getElementById("binSpecifics34").style.display = "block";
+document.getElementById("threshold34").style.display = "block";
+}
+} );
+
+$("#analysis15").change(function() {
+var analysis = $("#analysis15").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation15").style.display = "none";
+document.getElementById("binSpecifics15").style.display = "none";
+document.getElementById("threshold15").style.display = "block";
+console.log("15");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation15").style.display = "block";
+document.getElementById("binSpecifics15").style.display = "block";
+document.getElementById("threshold15").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation15").style.display = "none";
+document.getElementById("binSpecifics15").style.display = "none";
+document.getElementById("threshold15").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation15").style.display = "block";
+document.getElementById("binSpecifics15").style.display = "block";
+document.getElementById("threshold15").style.display = "block";
+}
+} );
+
+$("#analysis25").change(function() {
+var analysis = $("#analysis25").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation25").style.display = "none";
+document.getElementById("binSpecifics25").style.display = "none";
+document.getElementById("threshold25").style.display = "block";
+console.log("25");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation25").style.display = "block";
+document.getElementById("binSpecifics25").style.display = "block";
+document.getElementById("threshold25").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation25").style.display = "none";
+document.getElementById("binSpecifics25").style.display = "none";
+document.getElementById("threshold25").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation25").style.display = "block";
+document.getElementById("binSpecifics25").style.display = "block";
+document.getElementById("threshold25").style.display = "block";
+}
+} );
+
+$("#analysis35").change(function() {
+var analysis = $("#analysis35").val();
+console.log(analysis);
+console.log("analysis type");
+console.log(analysis=="On-Peak Off-Peak %");
+if (analysis == "On-Peak Off-Peak %"){
+document.getElementById("binInformation35").style.display = "none";
+document.getElementById("binSpecifics35").style.display = "none";
+document.getElementById("threshold35").style.display = "block";
+console.log("35");
+} else if (analysis == "Min-Max"){
+document.getElementById("binInformation35").style.display = "block";
+document.getElementById("binSpecifics35").style.display = "block";
+document.getElementById("threshold35").style.display = "none";
+} else if (analysis == "kWh"){
+document.getElementById("binInformation35").style.display = "none";
+document.getElementById("binSpecifics35").style.display = "none";
+document.getElementById("threshold35").style.display = "none";
+} else if (analysis == "Range Analysis"){
+document.getElementById("binInformation35").style.display = "block";
+document.getElementById("binSpecifics35").style.display = "block";
+document.getElementById("threshold35").style.display = "block";
+}
+} );
+
 $("#binChoice11").change(function() {
 var bins = $("#binChoice11").val();
 console.log(bins);
@@ -372,6 +788,168 @@ document.getElementById("summaryMethod32").style.display = "block";
 document.getElementById("customTimeBlock32").style.display = "none";
 document.getElementById("fromSensorBlock32").style.display = "none";
 document.getElementById("summaryMethod32").style.display = "none";
+}
+} );
+
+$("#binChoice13").change(function() {
+var bins = $("#binChoice13").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock13").style.display = "none";
+document.getElementById("fromSensorBlock13").style.display = "block";
+document.getElementById("summaryMethod13").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock13").style.display = "block";
+document.getElementById("fromSensorBlock13").style.display = "none";
+document.getElementById("summaryMethod13").style.display = "block";
+} else {
+document.getElementById("customTimeBlock13").style.display = "none";
+document.getElementById("fromSensorBlock13").style.display = "none";
+document.getElementById("summaryMethod13").style.display = "none";
+}
+} );
+
+$("#binChoice23").change(function() {
+var bins = $("#binChoice23").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock23").style.display = "none";
+document.getElementById("fromSensorBlock23").style.display = "block";
+document.getElementById("summaryMethod23").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock23").style.display = "block";
+document.getElementById("fromSensorBlock23").style.display = "none";
+document.getElementById("summaryMethod23").style.display = "block";
+} else {
+document.getElementById("customTimeBlock23").style.display = "none";
+document.getElementById("fromSensorBlock23").style.display = "none";
+document.getElementById("summaryMethod23").style.display = "none";
+}
+} );
+
+$("#binChoice33").change(function() {
+var bins = $("#binChoice33").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock33").style.display = "none";
+document.getElementById("fromSensorBlock33").style.display = "block";
+document.getElementById("summaryMethod33").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock33").style.display = "block";
+document.getElementById("fromSensorBlock33").style.display = "none";
+document.getElementById("summaryMethod33").style.display = "block";
+} else {
+document.getElementById("customTimeBlock33").style.display = "none";
+document.getElementById("fromSensorBlock33").style.display = "none";
+document.getElementById("summaryMethod33").style.display = "none";
+}
+} );
+
+$("#binChoice14").change(function() {
+var bins = $("#binChoice14").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock14").style.display = "none";
+document.getElementById("fromSensorBlock14").style.display = "block";
+document.getElementById("summaryMethod14").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock14").style.display = "block";
+document.getElementById("fromSensorBlock14").style.display = "none";
+document.getElementById("summaryMethod14").style.display = "block";
+} else {
+document.getElementById("customTimeBlock14").style.display = "none";
+document.getElementById("fromSensorBlock14").style.display = "none";
+document.getElementById("summaryMethod14").style.display = "none";
+}
+} );
+
+$("#binChoice24").change(function() {
+var bins = $("#binChoice24").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock24").style.display = "none";
+document.getElementById("fromSensorBlock24").style.display = "block";
+document.getElementById("summaryMethod24").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock24").style.display = "block";
+document.getElementById("fromSensorBlock24").style.display = "none";
+document.getElementById("summaryMethod24").style.display = "block";
+} else {
+document.getElementById("customTimeBlock24").style.display = "none";
+document.getElementById("fromSensorBlock24").style.display = "none";
+document.getElementById("summaryMethod24").style.display = "none";
+}
+} );
+
+$("#binChoice34").change(function() {
+var bins = $("#binChoice34").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock34").style.display = "none";
+document.getElementById("fromSensorBlock34").style.display = "block";
+document.getElementById("summaryMethod34").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock34").style.display = "block";
+document.getElementById("fromSensorBlock34").style.display = "none";
+document.getElementById("summaryMethod34").style.display = "block";
+} else {
+document.getElementById("customTimeBlock34").style.display = "none";
+document.getElementById("fromSensorBlock34").style.display = "none";
+document.getElementById("summaryMethod34").style.display = "none";
+}
+} );
+
+$("#binChoice15").change(function() {
+var bins = $("#binChoice15").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock15").style.display = "none";
+document.getElementById("fromSensorBlock15").style.display = "block";
+document.getElementById("summaryMethod15").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock15").style.display = "block";
+document.getElementById("fromSensorBlock15").style.display = "none";
+document.getElementById("summaryMethod15").style.display = "block";
+} else {
+document.getElementById("customTimeBlock15").style.display = "none";
+document.getElementById("fromSensorBlock15").style.display = "none";
+document.getElementById("summaryMethod15").style.display = "none";
+}
+} );
+
+$("#binChoice25").change(function() {
+var bins = $("#binChoice25").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock25").style.display = "none";
+document.getElementById("fromSensorBlock25").style.display = "block";
+document.getElementById("summaryMethod25").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock25").style.display = "block";
+document.getElementById("fromSensorBlock25").style.display = "none";
+document.getElementById("summaryMethod25").style.display = "block";
+} else {
+document.getElementById("customTimeBlock25").style.display = "none";
+document.getElementById("fromSensorBlock25").style.display = "none";
+document.getElementById("summaryMethod25").style.display = "none";
+}
+} );
+
+$("#binChoice35").change(function() {
+var bins = $("#binChoice35").val();
+console.log(bins);
+if (bins == "From Sensor"){
+document.getElementById("customTimeBlock35").style.display = "none";
+document.getElementById("fromSensorBlock35").style.display = "block";
+document.getElementById("summaryMethod35").style.display = "block";
+} else if (bins == "Custom Time"){
+document.getElementById("customTimeBlock35").style.display = "block";
+document.getElementById("fromSensorBlock35").style.display = "none";
+document.getElementById("summaryMethod35").style.display = "block";
+} else {
+document.getElementById("customTimeBlock35").style.display = "none";
+document.getElementById("fromSensorBlock35").style.display = "none";
+document.getElementById("summaryMethod35").style.display = "none";
 }
 } );
 

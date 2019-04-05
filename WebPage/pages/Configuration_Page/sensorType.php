@@ -23,6 +23,11 @@
 	} else {
 		$html_sensor_list .= '<option>Current</option>' . "\n";
 	}
+	if ($SENSOR_INFO[$i]->type == "MQTT"){
+		$html_sensor_list .= '<option selected="selected">MQTT</option>' . "\n";
+	} else {
+		$html_sensor_list .= '<option>MQTT</option>' . "\n";
+	}
 	$html_sensor_list .= '</select>' . "\n";
 	$html_sensor_list .= '<br>' . "\n";
 

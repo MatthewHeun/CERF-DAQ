@@ -24,6 +24,8 @@ class sensor {
 	public $numberOfAnalysis;
 	public $wattage;
 	public $voltage;
+	public $mqttIP;
+	public $mqttSensor;
 
 
 
@@ -47,6 +49,8 @@ class sensor {
 		$this->customStart = array(0,0,0);
 		$this->customStop = array(0,0,0);
 		$this->summaryMethod = array("","","");
+		$this->mqttIP = "";
+		$this->mqttSensor = 0;
 	}
 
 	function set_name($new_name){
@@ -119,6 +123,14 @@ class sensor {
 
 	function set_summaryMethod($new_summaryMethod, $index){
 		$this->summaryMethod[$index] = $new_summaryMethod;
+	}
+
+	function set_mqttIP($new_mqttIP) {
+		$this->mqttIP = $new_mqttIP;
+	}
+
+	function set_mqttSensor($new_mqttSensor) {
+		$this->mqttSensor = $new_mqttSensor;
 	}
 }
 

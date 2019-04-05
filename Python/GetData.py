@@ -17,7 +17,6 @@ import pytz
 import stat
 import shutil
 from globalVars import*		## Global Variables are defined in ALL CAPS for easy identification
-#<<<<<<< HEAD
 
 #==================================================================
 #----------------------INITIALIZE VARIABLES------------------------
@@ -70,6 +69,8 @@ def createMetadata(sensor):
 		sensorKey = "Occupancy[1/0]"
 	elif (SENSOR_INFO[sensor-1].type == "Current"):
 		sensorKey = "Power[W]"
+	elif (SENSOR_INFO[sensor-1].type == "MQTT"):
+		sensorKey = "MQTT [Lux]"
 	return ("#Pi_Number,str(sensor),Descriptive_Sensor_Name,Date/Time_[UTC],Date/Time_[Local]," + sensorKey + '\n')
 
 #------------------------------------------------------------------
@@ -166,13 +167,9 @@ if DATA_COLLECTION_SET == 1:
 #==================================================================================
 
 if DATA_COLLECTION_SET == 1:
-	print "Data collection succeeded:" +  str(datetime.datetime.now())
+	print("Data collection succeeded:" +  str(datetime.datetime.now()))
 
 if DATA_COLLECTION_SET == 0:
-	print "Data collection paused:" + str(datetime.datetime.now())
+	print("Data collection paused:" + str(datetime.datetime.now()))
 
 # The status log is found in /dev/GetDataCron.log
-
-
-
-

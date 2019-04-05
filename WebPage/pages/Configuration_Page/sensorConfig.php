@@ -1,7 +1,8 @@
+
 <?php include 'Sensors/globalSensorInfo.php' . "\n"; ?>
 <?php
 $pageLink = 'configuration.php' . "\n";
-$html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="get">' . "\n";
+$html_sensor_list = '<form action="configuration.php" id="sensorSpecifics" method="post">' . "\n";
 for ($i=0; $i < $NUM_SENSORS; $i++){
 	$html_sensor_list .= '<div class="panel panel-default">' . "\n";
 		$html_sensor_list .= '<div class="panel-heading">' . "\n";
@@ -36,7 +37,7 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 			$displayString = '';
 				//echo "CHECK HERE";
 				//echo $SENSOR_INFO[$i]->type;
-				if ($SENSOR_INFO[$i]->type == "Occupancy"){
+				if ($SENSOR_INFO[$i]->type == "Occupancy" || $SENSOR_INFO[$i]->type == "MQTT"){
 					//echo "Changing Display";
 					$displayString = ' style="display:none;"';
 				}
@@ -55,12 +56,21 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
 
-		$html_sensor_list .= '</div> <!-- row -->'. "\n";
-		$html_sensor_list .= '<div class="row">' . "\n";
+			$html_sensor_list .= '</div> <!-- row -->'. "\n";
+			$html_sensor_list .= '<div class="row">' . "\n";
 
 				//----------------------pinNumber---------------------//
 
-			$html_sensor_list .= '<div class="col-lg-4">' . "\n";
+			$displayString = '';
+				//echo "CHECK HERE";
+				//echo $SENSOR_INFO[$i]->type;
+				if ($SENSOR_INFO[$i]->type == "MQTT"){
+					//echo "Changing Display";
+					$displayString = ' style="display:none;"';
+				}
+
+
+			$html_sensor_list .= '<div class="col-lg-4" id="pinNum' . ($i+1) . '"' . $displayString . '>' . "\n";
 
 				include 'pinNumber.php';
 
@@ -88,6 +98,22 @@ for ($i=0; $i < $NUM_SENSORS; $i++){
 				include 'voltage.php';
 
 			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
+
+
+			//-------------------------MQTT Info-------------------------//
+			$displayString = '';
+
+				if ($SENSOR_INFO[$i]->type != "MQTT"){
+					//echo "Changing Display";
+					$displayString = ' style="display:none;"';
+				}
+
+			$html_sensor_list .= '<div id="MQTT' . ($i+1) . '"' . $displayString . '>' . "\n";
+
+				include 'mqtt.php';
+
+			$html_sensor_list .= '</div> <!-- col-lg-4 -->' . "\n";
+
 
 		//----------------------------Divider---------------------------//
 
