@@ -109,6 +109,7 @@ sudo apt-get install python-smbus
 sudo apt-get install php-mysql -y
 sudo adduser pi i2c 
 sudo pip install adafruit-ads1x15
+sudo pip install paho-mqtt
 echo "	+Done"
 
 
