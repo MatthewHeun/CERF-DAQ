@@ -41,7 +41,7 @@ class MqttClient:
 	def __init__(self, mqttServerAddress, sensorID, keepAlive):
 		self.mqttIP = mqttServerAddress			# Address of MQTT server
 		self.keepAlive = keepAlive 				# how long to try and connect
-		self.topic = "/test/pjh/" + str(sensorID)
+		self.topic = "/" + str(sensorID)
 		self.Client = mqtt.Client()
 		self.Client.user_data_set(self.topic)
 		self.Client.on_message = on_message
