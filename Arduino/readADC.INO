@@ -5,10 +5,8 @@ void setup() {
  pinMode(LED_BUILTIN, OUTPUT);
  digitalWrite( LED_BUILTIN, HIGH);
  Serial.begin(9600);
-}
-
-void loop() {
-// 4095 - measured to make light meter not darkness meter
+ 
+ // 4095 - measured to make light meter not darkness meter
 // 4095 is bytes in the ADC
 
  val = 4095 - analogRead(analogPin);
@@ -20,9 +18,17 @@ void loop() {
   digitalWrite( LED_BUILTIN, LOW);
   delay(1000);
   digitalWrite( LED_BUILTIN, HIGH);
-  delay(1000);
+  delay(500);
  }
  else {
- delay(1000);
+ delay(500);
+   }
+ // number of microseconds to sleep
+ esp_sleep_enable_timer_wakeup(60000000);
+ esp_deep_sleep_start();
+ }
+
+void loop() {
+// loop does not run when using deep sleep!
   }
 }
