@@ -5,7 +5,8 @@ void setup() {
  pinMode(LED_BUILTIN, OUTPUT);
  digitalWrite( LED_BUILTIN, HIGH);
  Serial.begin(9600);
- 
+ // delay due to tutorial noting issue of ESP32 not waking up
+ delay(500);
  // 4095 - measured to make light meter not darkness meter
 // 4095 is bytes in the ADC
 
