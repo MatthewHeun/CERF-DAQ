@@ -3,7 +3,9 @@ long int val = 0;
 
 void setup() {
  pinMode(LED_BUILTIN, OUTPUT);
+ pinMode(15, OUTPUT);
  digitalWrite( LED_BUILTIN, HIGH);
+ digitalWrite(15, HIGH);
  Serial.begin(9600);
  // delay due to tutorial noting issue of ESP32 not waking up
  delay(500);
@@ -12,6 +14,7 @@ void setup() {
 
  val = 4095 - analogRead(analogPin);
  Serial.println(val);
+  digitalWrite(15, LOW);
  
  // 3500 is estimated lights on threshold
  // blinks lights if above threashold
