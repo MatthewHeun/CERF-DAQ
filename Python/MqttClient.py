@@ -19,7 +19,7 @@ import paho.mqtt.client as mqtt
 #==================================================================
 
 MQTT_Port = 1883
-VALUE = 0
+VALUE = -2
 
 #==================================================================
 #----------------------CALLBACK DEFINITIONS------------------------
@@ -50,12 +50,12 @@ class MqttClient:
 		self.Client.on_message = on_message
 		self.Client.on_connect = on_connect
 		global VALUE 							# Because we have to set VALUE to global we need to ensure
-		VALUE = 0								# That it will be zero any time the client is reconstructed
+		VALUE = -2								# That it will be zero any time the client is reconstructed
 
 	def attemptConnect(self):
 		self.Client.loop_start()
 		self.Client.connect(self.mqttIP, int(MQTT_Port), int(self.keepAlive))
-		while (VALUE == 0):
+		while (VALUE == -2):
 			time.sleep(0.1)
 			continue
 
