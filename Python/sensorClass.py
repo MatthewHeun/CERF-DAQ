@@ -79,6 +79,7 @@ def getMQTT(mqttServerIP, mqttID):
 	# The constructor for MQTT will connect to the server, subscribe to the mqttID and get
 	# the current value for that publisher and store it in a variable that can be accessed using .getValue()
 	client.attemptConnect()
+	value = 0
 	value = client.getValue()
 	return value
 

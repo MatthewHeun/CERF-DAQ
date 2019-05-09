@@ -30,7 +30,10 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
 	global VALUE
-	VALUE = int(msg.payload)
+	try:
+		VALUE = int(msg.payload)
+	except:
+		VALUE = -1
 	client.loop_stop(force=False)
 
 #==================================================================
