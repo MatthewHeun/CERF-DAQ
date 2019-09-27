@@ -27,9 +27,12 @@ VALUE = -2
 
 def on_connect(client, userdata, flags, rc):
 	client.subscribe(userdata)
+	print(userdata)
+	print("Subscribed")
 
 def on_message(client, userdata, msg):
 	global VALUE
+	print(msg.payload)
 	try:
 		VALUE = int(msg.payload)
 	except:
@@ -55,9 +58,17 @@ class MqttClient:
 	def attemptConnect(self):
 		self.Client.loop_start()
 		self.Client.connect(self.mqttIP, int(MQTT_Port), int(self.keepAlive))
-		while (VALUE == -2):
+		global VALUE
+		count = 0
+		for i in range(200):
+			print(i)
 			time.sleep(0.1)
+			if (VALUE != -2):
+				break
 			continue
+		self.Client.loop_stop()
+
 
 	def getValue(self):
+		global VALUE
 		return VALUE
