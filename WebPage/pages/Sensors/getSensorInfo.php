@@ -10,6 +10,7 @@ $voltageStrings = new ArrayObject(array());
 $analysisStrings = new ArrayObject(array());
 $mqttipStrings = new ArrayObject(array());
 $mqttSensorStrings = new ArrayObject(array());
+$mqttTimoutStrings = new ArrayObject(array());
 $minStrings = new ArrayObject(array());
 $maxStrings = new ArrayObject(array());
 $binTypeStrings = new ArrayObject(array());
@@ -30,6 +31,7 @@ $numberOfAnalysisArray = new ArrayObject(array());
 $voltageArray = new ArrayObject(array());
 $mqttipArray = new ArrayObject(array());
 $mqttSensorArray = new ArrayObject(array());
+$mqttTimoutArray = new ArrayObject(array());
 $analysisArray = new ArrayObject(array());
 $minArray = new ArrayObject(array());
 $maxArray = new ArrayObject(array());
@@ -52,6 +54,7 @@ for ($i = 1; $i <= $NUM_SENSORS; $i++) {
 	$voltageStrings->append("voltage" . $i);
 	$mqttipStrings->append("mqttIP" . $i);
 	$mqttSensorStrings->append("mqttSensor" . $i);
+	$mqttTimoutStrings->append("mqttSensor" . $i);
 	$analysisStrings->append(array("","",""));
 	$minStrings->append(array("", "", ""));
 	$maxStrings->append(array("", "", ""));
@@ -88,6 +91,7 @@ if(isset($_POST["sensorInfo"])){
 		$voltageArray->append($_POST[$voltageStrings[$i-1]]);
 		$mqttipArray->append($_POST[$mqttipStrings[$i-1]]);
 		$mqttSensorArray->append($_POST[$mqttSensorStrings[$i-1]]);
+		$mqttTimoutArray->append($_POST[$mqttSensorStrings[$i-1]]);
 		$analysisStrings->append(array("","",""));
 		$minArray->append(array("", "", ""));
 		$maxArray->append(array("", "", ""));
@@ -116,6 +120,11 @@ if(isset($_POST["sensorInfo"])){
 				$summaryMethodArray[$i-1][$i4] = ($_POST[$summaryMethodStrings[$i-1][$i4]]);
 			}
 		}
+	}
+
+	$mqttTimoutFile = fopen("/home/pi/Desktop/CERF-DAQ/MQTTConnection.csv", "w");
+	for ($i = 1; $i <= $NUM_SENSORS; $i++) {
+		fwrite($mqttTimoutFile, $mqttTimoutArray[$i-1] . ",0" . "\n");
 	}
 
 	$infoFile = fopen("sensorInfo.txt", "w");

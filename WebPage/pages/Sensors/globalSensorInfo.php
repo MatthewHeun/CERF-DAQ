@@ -157,7 +157,7 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	// echo "Pin Number: ";
 	// echo $SENSOR_INFO[$i-1]->pinNumber . "\n";
 	$SENSOR_INFO[$i-1]->set_numberOfAnalysis(trim(fgets($sensorInfoFile)));
-	
+
 	if (($SENSOR_INFO[$i-1]->numberOfAnalysis != "1") and ($SENSOR_INFO[$i-1]->numberOfAnalysis != "2") and ($SENSOR_INFO[$i-1]->numberOfAnalysis != "3")) {
 		$SENSOR_INFO[$i-1]->set_numberOfAnalysis("1");
 	}
@@ -170,10 +170,8 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 	$SENSOR_INFO[$i-1]->set_mqttIP(trim(fgets($sensorInfoFile)));
 
 	$SENSOR_INFO[$i-1]->set_mqttSensor(trim(fgets($sensorInfoFile)));
-	
 
-	
-	
+
 	for ($i4 = 0; $i4 < 3; $i4++){
 		$SENSOR_INFO[$i-1]->set_analysis(trim(fgets($sensorInfoFile)), $i4);
 		// echo "Analysis Type" . ($i4+1) . ": ";
@@ -203,7 +201,7 @@ for ($i=1; $i <= $NUM_SENSORS; $i++) {
 		// echo "Summary Method" . ($i4+1) . ": ";
 		// echo $SENSOR_INFO[$i-1]->summaryMethod[$i4] . "\n";
 	}
-}	
+}
 
 fclose($sensorInfoFile);
 

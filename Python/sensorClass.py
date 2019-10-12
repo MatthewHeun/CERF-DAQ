@@ -1,11 +1,12 @@
 # import RPi.GPIO as GPIO
 import time
 import os
+import csv
 from Adafruit_ADS1x15 import ADS1x15
 import ADS1x15tempFix
 from Occupancy_vars import *
 import MqttClient
-
+import time
 # RPi.GPIO is used for finding wattage, currently unit tests cannot be run with this being imported
 cwd = os.path.dirname(os.path.abspath(__file__))
 cwd = cwd[:-7]
@@ -42,7 +43,7 @@ def getTemperature(i2cAddress, pinNumber):
 def getOccupancy(pinNumber):
 		#print "pinNumber: " + str(pinNumber)
 		#This comes from the occupancy vars file. The file has the current occupancy status stored in it. It the Occuoancy vars file is written by the GPIO_Occupancy file.
-	value = Occupancy[str(pinNumber)] 
+	value = Occupancy[str(pinNumber)]
 	return value
 
 def getWattage(value, voltage):
@@ -79,10 +80,27 @@ def getMQTT(mqttServerIP, mqttID):
 	# The constructor for MQTT will connect to the server, subscribe to the mqttID and get
 	# the current value for that publisher and store it in a variable that can be accessed using .getValue()
 	client.attemptConnect()
-	value = 0
-	value = client.getValue()
-	return value
+	values = client.getValue()
+	epochTime = int(time.time())
+	downTime = epochTime - values[1]
+	if downTime > 3600 and downTime < 1000000000:
+		print("Sensor Offline") # Here we'll have to do something to deal with downtime
+		sendEmail(mqttID)
+	return values[0]
 
+def sendEmail(mqttID):
+	emailFile = open("/home/pi/Desktop/CERF-DAQ/MQTTEmail.txt", 'r')
+	mqttConnectionList = csv.reader(open("/home/pi/Desktop/CERF-DAQ/MQTTConnection.csv"))
+	mqttConnectionList = list(mqttConnectionList)
+	for mqttConn in mqttConnectionList:
+		if (mqttConn[0].strip() == mqttID):
+			if (mqttConn[1].strip() == "0"):
+				mqttConn[1] = "1"
+				for email in emailFile:
+					os.system("swaks --to " + email.strip() + " -s smtp.gmail.com:587 -tls -au cerfraspberrypi@gmail.com -ap MasterCerf153$ --body 'Sensor " + mqttID + " is not responding!'")
+	writer = csv.writer(open("/home/pi/Desktop/CERF-DAQ/MQTTConnection.csv", 'w'))
+	writer.writerows(mqttConnectionList)
+	emailFile.close()
 #==================================================================
 #------------------------CLASS DEFINITION--------------------------
 #==================================================================
@@ -122,7 +140,7 @@ class Sensor:
 
 	def set_pinNumber(self, new_pinNumber):
 		self.pinNumber = new_pinNumber
-	
+
 	def set_numberOfAnalysis(self, new_number):
 		# How many analysis will be done i.e. (1. peak analysis 2. range analysis 3. 
 		self.numberOfAnalysis = new_number
@@ -180,7 +198,7 @@ class Sensor:
 
 	def set_summaryMethod(self, new_summaryMethod, index):
 		self.summaryMethod[index] = new_summaryMethod
-	
+
 	def set_voltage(self, new_voltage):
 		self.voltage = new_voltage
 

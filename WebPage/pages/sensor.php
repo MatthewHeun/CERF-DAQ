@@ -12,7 +12,6 @@
 <?php
 	$pageSensor = $SENSOR_INFO[$sensor_number-1]->name;
 	$pageLink = 'sensor.php?sensorNumber=' . $sensor_number;
-	
 ?>
 <script>
 

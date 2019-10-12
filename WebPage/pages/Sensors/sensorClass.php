@@ -76,7 +76,7 @@ class sensor {
 	function set_wattage($new_wattage){
 		$this->wattage = $new_wattage;
 	}
-	
+
 	function set_voltage($new_voltage){
 		$this->voltage = $new_voltage;
 	}

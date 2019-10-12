@@ -1,4 +1,4 @@
-<?php 
+<?php
 	session_start();
 	if (!(isset($_SESSION['userHASH']))) {
 		header("Location: ../pages/index.php?error=adminrequired");
@@ -32,7 +32,7 @@ var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
 	<div id = "wrapper">
 		<!--Navigation -->
 		<?php include 'Elements/navigation.php'; ?>
-	
+
 	<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12" style="margin-top:50px">
@@ -40,7 +40,7 @@ var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-	
+
 	<div class="panel panel-default">
 		<div class="panel-heading"> Sensor Configuration </div>
 		<div class="panel-body">
@@ -84,4 +84,4 @@ var NUM_SENSORS = <?php Print($NUM_SENSORS); ?>;
 	</div>	<!-- wrapper -->
 		<?php include 'Elements/scriptincludes.php'; ?>
 </body>
-	
+
