@@ -83,21 +83,33 @@ def getMQTT(mqttServerIP, mqttID):
 	values = client.getValue()
 	epochTime = int(time.time())
 	downTime = epochTime - values[1]
-	if downTime > 3600 and downTime < 1000000000:
-		print("Sensor Offline") # Here we'll have to do something to deal with downtime
-		sendEmail(mqttID)
+
+	sendEmail(mqttID, downTime)
+#	if downTime > 3600 and downTime < 1000000000:
+#		print("Sensor Offline") # Here we'll have to do something to deal with downtime
+#		sendEmail(mqttID)
 	return values[0]
 
-def sendEmail(mqttID):
-	emailFile = open("/home/pi/Desktop/CERF-DAQ/MQTTEmail.txt", 'r')
+def sendEmail(mqttID, downTime):
 	mqttConnectionList = csv.reader(open("/home/pi/Desktop/CERF-DAQ/MQTTConnection.csv"))
 	mqttConnectionList = list(mqttConnectionList)
+        emailFile = open("/home/pi/Desktop/CERF-DAQ/MQTTEmail.txt", 'r')
+	inList = False
 	for mqttConn in mqttConnectionList:
 		if (mqttConn[0].strip() == mqttID):
-			if (mqttConn[1].strip() == "0"):
-				mqttConn[1] = "1"
-				for email in emailFile:
-					os.system("swaks --to " + email.strip() + " -s smtp.gmail.com:587 -tls -au cerfraspberrypi@gmail.com -ap MasterCerf153$ --body 'Sensor " + mqttID + " is not responding!'")
+			inList = True
+			if (downTime > 3600 and downTime < 1000000000):
+				if mqttConn[1] == "0":
+					mqttConn[1] = "1"
+					for email in emailFile:
+						os.system("swaks --to " + email.strip() + " -s smtp.gmail.com:587 -tls -au cerfraspberrypi@gmail.com -ap MasterCerf153$ --body 'Sensor " + mqttID + " is not responding!'")
+			else:
+				mqttConn[1] = "0"
+
+	if not(inList):
+		newItem = [mqttID,"0"]
+		mqttConnectionList.append(newItem)
+
 	writer = csv.writer(open("/home/pi/Desktop/CERF-DAQ/MQTTConnection.csv", 'w'))
 	writer.writerows(mqttConnectionList)
 	emailFile.close()
